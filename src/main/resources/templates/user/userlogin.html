@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="/css/userlogin.css">
+    <script src="/js/userlogin.js"></script>
+</head>
+<body>
+    
+    <!-- 메뉴 바 추가 -->
+    <nav>
+        <ul class="menu">
+            <li><a href="/user/user">사용자 로그인</a></li>
+            <li><a href="/user/owner">공급자 로그인</a></li>
+        </ul>
+    </nav>
+
+    <section class="login-form">
+        <h1>사용자 로그인</h1>
+        <form action="user/login" method="POST">
+            <div class="int-area">
+                <input type="text" name="user_id" id="user_id" autocomplete="off" required>
+                <label for="id">USER NAME</label>
+            </div>
+            <div class="int-area">
+                <input type="password" name="user_pwd" id="user_pwd" autocomplete="off" required>
+                <label for="pw">PASSWORD</label>
+            </div>
+            <div class="btn-area">			
+                <button id="userLoginBtn" type="submit">LOGIN</button>
+            </div>
+        </form>
+        <div class="caption">
+            <a href="">Forgot Password?</a>
+            <a href="userjoin">회원가입</a>
+        </div>
+    </section>   
+</body>
+</html>

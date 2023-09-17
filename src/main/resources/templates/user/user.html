@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>회원 정보 확인</title>
+    <link rel="stylesheet" href="/css/member.css" />
+</head>
+
+<body>
+    <h2>User 회원 정보 확인</h2>
+    <form action="/search" method="post">
+        검색 대상:
+        <select name="searchName">
+            <option value="user_name" selected>회원이름</option>
+            <option value="user_id">아이디</option>
+        </select>
+        <input type="text" name="searchValue">
+        <input type="submit" value="검 색">
+    </form>
+
+    <table style="width: 90%">
+        <tr>
+            <th>아이디</th>
+            <th>비밀번호</th>
+            <th>이름</th>
+            <th>전화번호</th>
+            <th>이메일</th>
+            <th>주소</th>
+            <th>주민번호</th>
+        </tr>
+        <th:block th:if="${lists.size > 0}">
+            <tr th:each="data:${lists}">
+                <td th:text="${data.user_id}">num 출력</td>
+                <td th:text="${data.user_pwd}"></td>
+                <td th:text="${data.user_name}"></td>
+                <td th:text="${data.user_tel}"></td>
+                <td th:text="${data.user_email}"></td>
+                <td th:text="${data.user_addr}"></td>
+                <td th:text="${data.user_jumin}"></td>
+            </tr>
+        </th:block>
+    </table>
+</body>
+
+</html>

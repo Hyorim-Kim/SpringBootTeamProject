@@ -1,0 +1,18 @@
+@charset "UTF-8";
+table {
+    width: 90%;
+    margin: 0 auto; /* 수평 가운데 정렬 */
+    border-collapse: collapse;
+}
+
+th, td {
+    text-align: center; /* 텍스트 가운데 정렬 */
+    padding: 8px; /* 내부 여백 설정 */
+    border: 1px solid #ddd; /* 테두리 추가 */
+}
+
+/* 선택 상자 및 검색 버튼 스타일링 (선택적) */
+select, input[type="text"], input[type="submit"] {
+    padding: 5px;
+    margin-right: 10px;
+}

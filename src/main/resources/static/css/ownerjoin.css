@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 회원가입 CSS*/
+.join-form {
+  width: 500px;
+  background-color: whitesmoke;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  margin-bottom: 180px;
+  border-radius: 5px;
+  padding: 30px;
+}
+
+.join-form h3 {
+  color: black;
+  font-size: 13px;
+}
+
+/* 텍스트칸 css */
+.text-field {
+  font-size: 14px;
+  width: 470px;
+  border: none;
+  border-radius: 5px;
+  padding: 15px 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/* 회원가입 버튼 */
+.button-postcode{
+  font-size: 14px;
+  width: 200px;
+  border: none;
+  border-radius: 5px;
+  padding: 15px 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: #007BFF; /* 배경색 */
+  color: #fff; /* 텍스트 색상 */
+  cursor: pointer; /* 포인터 형태로 변경하여 버튼임을 나타냅니다 */
+}
+
+.button-postcode:hover {
+  background-color: #0056b3; /* 마우스 오버 시 배경색 변경 */
+}
+
+.submit-btn {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  background-color: #166caa;
+  color: white;
+  width: 47%;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: none;
+  float: right; /* 오른쪽으로 이동 */
+  clear: both; /* 다음 요소와의 레이아웃 충돌 방지 */
+
+}
+
+.reset-btn {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  background-color: #166caa;
+  color: white;
+  width: 47%;
+  border-radius: 5px;
+  margin-top: 5px;
+  padding: 10px;
+  border: none;
+}

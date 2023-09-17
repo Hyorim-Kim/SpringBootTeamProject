@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>회원 정보 확인</title>
+    <link rel="stylesheet" href="/css/member.css" />
+</head>
+
+<body>
+    <h2>Owner 회원 정보 확인</h2>
+    <form action="/search2" method="post">
+        검색 대상:
+        <select name="searchName">
+            <option value="business_num" selected>사업자번호</option>
+        </select>
+        <input type="text" name="searchValue">
+        <input type="submit" value="검 색">
+    </form>
+
+    <table style="width: 90%">
+        <tr>
+            <th>사업자번호</th>
+            <th>비밀번호</th>
+            <th>이름</th>
+            <th>전화번호</th>
+            <th>이메일</th>
+            <th>창고번호</th>
+        </tr>
+        <th:block th:if="${lists2.size > 0}">
+            <tr th:each="data2:${lists2}">
+                <td th:text="${data2.business_num}">num 출력</td>
+                <td th:text="${data2.owner_pwd}"></td>
+                <td th:text="${data2.owner_name}"></td>
+                <td th:text="${data2.owner_tel}"></td>
+                <td th:text="${data2.email}"></td>
+                <td th:text="${data2.cont_num}"></td>
+            
+            </tr>
+        </th:block>
+    </table>
+</body>
+
+</html>

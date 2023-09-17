@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/ownerjoin.js"></script>
+    <title>회원가입 페이지</title>
+    <link rel="stylesheet" href="/css/ownerjoin.css">
+</head>
+<body>
+    <h3 style="text-align: center;">공급자 회원가입</h3>
+    <!-- 회원가입 페이지 구성-->
+    <div class="join-form">
+        <div class="content">
+			<form action="ownerjoin" name="ownerForm" method="POST">
+                <h3>사업자 번호</h3>
+                <input type="text" name="business_num" id="business_num" class="text-field" placeholder="사업자 번호">
+                <!-- <input type="button" value="ID중복확인" id="btnId"> -->
+
+                <h3>비밀번호</h3>
+                <input type="password" name="owner_pwd" id="owner_pwd" class="text-field" placeholder="비밀번호">
+
+                <h3>비밀번호 확인</h3>
+                <input type="password" name="owner_repwd" id="owner_repwd" class="text-field" placeholder="비밀번호 확인">
+
+                <h3>이름</h3>
+                <input type="text" name="owner_name" id="owner_name" class="text-field" placeholder="이름">
+
+                <h3>전화번호</h3>
+                <input type="tel" name="owner_tel" id="owner_tel" class="text-field" placeholder="전화번호">
+
+                <h3>이메일</h3>
+                <input type="text" name="email" id="email" class="text-field" placeholder="이메일" maxlength="30" >
+
+                <input type="submit" class="submit-btn" id="btnSupplierInsertData" onclick="joinform_check();" value="가입완료">
+                <input type="reset" class="reset-btn" id="btnreset" value="취소">
+            </form>
+          </div>
+    </div>
+</body>
+</html>
