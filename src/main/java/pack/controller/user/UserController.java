@@ -20,9 +20,9 @@ public class UserController {
 	private UserDao userDao;
 	
 	// 메인페이지 헤더메뉴에서 회원가입 선택할 때
-	@GetMapping("joinchoice")
-	public String joinchoice() {
-		return "joinchoice";
+	@GetMapping("joinchoicego")
+	public String joinchoiceGo() {
+	    return "../templates/user/joinchoice"; // 지원이 누나 짱
 	}
 	
 	// 회원가입 선택란에서 사용자를 선택할 때 

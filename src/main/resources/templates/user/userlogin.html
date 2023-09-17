@@ -10,18 +10,18 @@
     <script src="/js/userlogin.js"></script>
 </head>
 <body>
-    
     <!-- 메뉴 바 추가 -->
     <nav>
         <ul class="menu">
-            <li><a href="/user/user">사용자 로그인</a></li>
-            <li><a href="/user/owner">공급자 로그인</a></li>
+			<!-- 사용자 로그인 화면에서 공급자로 이동하는 경우 -->
+            <li><a href="userlogingo">사용자 로그인</a></li>
+            <li><a href="ownerlogingo">공급자 로그인</a></li>
         </ul>
     </nav>
 
     <section class="login-form">
         <h1>사용자 로그인</h1>
-        <form action="user/login" method="POST">
+        <form action="userlogsuccess" method="POST">
             <div class="int-area">
                 <input type="text" name="user_id" id="user_id" autocomplete="off" required>
                 <label for="id">USER NAME</label>
@@ -35,8 +35,8 @@
             </div>
         </form>
         <div class="caption">
-            <a href="">Forgot Password?</a>
-            <a href="userjoin">회원가입</a>
+            <a href="">Forgot Password?</a> <!-- 요거는 일단 스킵 -->
+            <a href="userjoinGo">회원가입</a>
         </div>
     </section>   
 </body>
