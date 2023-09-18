@@ -21,14 +21,14 @@
 
     <section class="login-form">
         <h1>사용자 로그인</h1>
-        <form action="userlogsuccess" method="POST">
+        <form action="userLogSuccess" name="userLoginForm" method="post">
             <div class="int-area">
                 <input type="text" name="user_id" id="user_id" autocomplete="off" required>
                 <label for="id">USER NAME</label>
             </div>
             <div class="int-area">
                 <input type="password" name="user_pwd" id="user_pwd" autocomplete="off" required>
-                <label for="pw">PASSWORD</label>
+                <label for="pwd">PASSWORD</label>
             </div>
             <div class="btn-area">			
                 <button id="userLoginBtn" type="submit">LOGIN</button>
@@ -36,7 +36,7 @@
         </form>
         <div class="caption">
             <a href="">Forgot Password?</a> <!-- 요거는 일단 스킵 -->
-            <a href="userjoinGo">회원가입</a>
+            <a href="userJoinGo">회원가입</a>
         </div>
     </section>   
 </body>

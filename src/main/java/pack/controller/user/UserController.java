@@ -12,89 +12,94 @@ import pack.model.user.UserDao;
 import pack.model.user.UserDto;
 
 // **** 광진 ****// 
-/**** 광진  *****/
 @Controller
 public class UserController {
 	
 	@Autowired
 	private UserDao userDao;
 	
-	// 메인페이지 헤더메뉴에서 회원가입 선택할 때
-	@GetMapping("joinchoicego")
+	// 메인페이지 헤더메뉴에서 회원가입 선택할 때 (성공)
+	@GetMapping("joinChoiceGo")
 	public String joinchoiceGo() {
-	    return "../templates/user/joinchoice"; // 지원이 누나 짱
+	    return "../templates/user/joinchoice"; 
 	}
 	
-	// 회원가입 선택란에서 사용자를 선택할 때 
-	@GetMapping("userjoin")
+	// 메인페이지에서 로그인을 클릭했을 때 수행 (성공)
+	@GetMapping("firstLogin")
+	public String loginGo() {
+		return "../templates/user/userlogin";
+	}
+	
+	// 사용자 로그인 페이지에서 회원가입 링크를 클릭했을 때 (성공) 
+	@GetMapping("userJoinGo")
+	public String userJoinGo() {
+		return "../templates/user/userjoin";
+	}
+	
+	// 회원가입 선택란에서 사용자를 선택할 때 (성공)
+	@GetMapping("userJoinChoiceGo")
 	public String userchoice() {
-		return "userjoin";
+		return "../templates/user/userjoin";
 	}
 	
 	
-	// 사용자 회원가입에서 가입 버튼을 클릭하고 성공 했을 때
-	@PostMapping("userjoin")
+	// 사용자 회원가입에서 가입 버튼을 클릭하고 성공 했을 때 (성공)
+	@PostMapping("userJoinClick")
 	public String userloginOK(UserDto userDto) {
-		boolean b = userDao.userinsertData(userDto);
+		boolean b = userDao.userInsertData(userDto);
 		if(b) {
-			return "userlogin";  
+			return "../templates/user/userlogin";  
 		} else {
-			return "testfail";  
+			return "../templates/user/userfail";  
 		}	
 	}
-	
-	
-	// 메인페이지에서 로그인을 클릭했을 때 수행
-	@GetMapping("login")
-	public String loginGo() {
-		return "userlogin";
-	}
-	
-	// 사용자로그인 페이지에서 공급자로그인을 클릭했을 때
-	@GetMapping("/user/owner")
+		
+	// 사용자로그인 페이지에서 공급자로그인을 클릭했을 때 (성공)
+	@GetMapping("ownerlogingo")
 	public String ownerloginGo() {
-		return "ownerlogin";
+		return "../templates/owner/ownerlogin";
 	}
 	
-    // 로그인 요청 처리
-    @PostMapping("/user/login")
+    // 사용자 로그인 페이지에서 요청 처리 (성공)
+    @PostMapping("userLogSuccess")
     public String processLoginForm(@RequestParam("user_id") String user_id,
             					   @RequestParam("user_pwd") String user_pwd,
-            					   Model model,
-            					   HttpSession session){
+            					   Model model, HttpSession session){
         // 사용자 로그인 처리
         UserDto user = userDao.userloginProcess(user_id, user_pwd);
         
         if (user != null) {
-            // 로그인 성공
-        	session.setAttribute("user", user); // 세션에 사용자 정보 저장
-            return "userloginok"; // 로그인 성공 시 userloginok.html로 이동
+            // 로그인 성공과 동시에 세션에 사용자 정보 저장
+        	session.setAttribute("user", user); 
+            return "../templates/user/usermypage"; // 로그인 성공 시 usermypage.html로 이동.
             
         } else {
-            return "testfail"; // 로그인 실패 시 userlogin.html로 이동하고 에러 메시지를 표시
+            return "../templates/user/userfail"; // 로그인 실패 시 userlogin.html로 이동.
         }
     }
     
     /*** 9/15일 추가 작업 (회원수정) 광진 ***/
     
+    // 사용자 마이페이지에서 회원수정을 클릭했을 때 (성공)
 	@GetMapping("/userupdate")
 	public String userUpdatePage(Model model, HttpSession session) {
 		// 세션에서 회원 정보를 가져와서 모델에 추가
 		UserDto user = (UserDto) session.getAttribute("user");
 		model.addAttribute("user", user);
 
-		return "userupdate"; // 회원 수정 페이지로 이동
+		return "../templates/user/userupdate"; // 회원 수정 페이지로 이동
 	}
 	
-	@PostMapping("/userinfoupdate")
+	// 회원수정 페이지에서 회원수정을 클릭했을 때 (일단 성공이지만 세션값 최신으로 유지되게 설정하기)
+	@PostMapping("/userInfoUpdate")
 	public String userInfoupdate(UserDto userDto, Model model, HttpSession session) {
 		boolean b = userDao.userupdate(userDto);
 		if(b) {
 			UserDto user = (UserDto) session.getAttribute("user");
 			model.addAttribute("user", user);
-			return "updateok";  
+			return "../templates/user/usermypage";  
 		} else {
-			return "testfail";  
+			return "../templates/user/userfail";  
 		}
 	}
 	
