@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <!-- kakao 주소 api -->
@@ -12,8 +12,10 @@
     <h3 style="text-align: center; line-height: 2;"><span th:text="${user.user_name}"></span>님의 회원수정</h3>
     <div class="join-form" >
         <div class="content">
+
 			<!-- ********* 광진 ********* -->
 			<form action="/userinfoupdate" name="userUpdate" method="POST">
+
                 <h3>아이디</h3>
 				<input type="text" name="user_id" id="user_id" class="text-field" th:value="${user.user_id}">
 
@@ -49,7 +51,7 @@
                 <h3>주민등록번호</h3>
                 <input type="tel" name="user_jumin" id="user_jumin" class="text-field" th:value="${user.user_jumin}" >
                 <!-- 버튼 -->
-                <input type="submit" class="submit-btn" id="btnUserUpdata" onclick="joinform_check();" value="수정하기">
+                <input type="submit" class="submit-btn" value="수정하기">
                 <input type="reset" class="reset-btn" id="btnreset" value="취소">
             </form>
           </div>

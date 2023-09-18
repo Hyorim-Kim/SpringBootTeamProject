@@ -1,6 +1,6 @@
 window.onload = function (){
-	document.querySelector("#supplierLoginBtn").onclick = function (){
-		//alert("a");
+	document.querySelector("#ownerLoginBtn").onclick = function (){
+		alert("로그인 성공");
 	}
 }
   

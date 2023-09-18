@@ -20,7 +20,7 @@ public class DetailController {
 	public String detail(@RequestParam("cont_no")String cont_no, Model model) {
 		ContainerDto containerDto = dataDao.detail(cont_no);
 		model.addAttribute("containerDto",containerDto);
-		return "detail";
+		return "../templates/container/detail";
 	}
 }
 

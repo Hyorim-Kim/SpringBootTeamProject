@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import pack.model.DataMapperInter;
 
 
-//************ 광진 **************//
+//*********** 광진 *************//
 @Repository
 public class AdminDao {
 	@Autowired

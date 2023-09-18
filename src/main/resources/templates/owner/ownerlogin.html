@@ -13,14 +13,14 @@
     <!-- 메뉴 바 추가 -->
     <nav>
         <ul class="menu">
-            <li><a href="user">사용자 로그인</a></li>
-            <li><a href="owner">공급자 로그인</a></li>
+            <li><a href="userlogingo">사용자 로그인</a></li>
+            <li><a href="ownerlogingo">공급자 로그인</a></li>
         </ul>
     </nav>
 
     <section class="login-form">
         <h1>공급자 로그인</h1>
-        <form action="/owner/login" method="post">
+        <form action="ownerLogSuccess" method="post">
             <div class="int-area">
                 <input type="text" name="business_num" id="sup_id" autocomplete="off" required>
                 <label for="id">USER NAME</label>
@@ -30,12 +30,12 @@
                 <label for="pw">PASSWORD</label>
             </div>
             <div class="btn-area">
-                <button id="supplierLoginBtn" type="submit">LOGIN</button>
+                <button id="ownerLoginBtn" type="submit">LOGIN</button>
             </div>
         </form>
         <div class="caption">
             <a href="">Forgot Password?</a>
-            <a href="supplierjoin">회원가입</a>
+            <a href="ownerJoinGo">회원가입</a>
         </div>
     </section>        
 </body>
