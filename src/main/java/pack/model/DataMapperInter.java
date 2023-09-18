@@ -43,10 +43,13 @@ public interface DataMapperInter {
 	int userupdate(UserDto userDto);
 	
 	// Owner 회원수정 (광진)
+	@Update("update owner set owner_pwd=#{owner_pwd}, owner_name=#{owner_name}, owner_tel=#{owner_tel}, email=#{email} where business_num=#{business_num}")
 	int ownerupdate(OwnerDto ownerDto);
 	
 	// User 회원탈퇴 (광진)
 	@Delete("delete from user WHERE user_id = #{user_id}")
 	int userdelete(UserDto userDto);
+	
+	// Owner 회원탈퇴 (광진)
 	
 }

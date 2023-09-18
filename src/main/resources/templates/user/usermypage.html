@@ -9,13 +9,12 @@
 	<!-- 세션 정보 출력 -->
 	<div th:if="${session.user != null}">
 	<h1>마이페이지</h1><br/>
-		<!-- 세션 잘 되는지 확인용
+		<!-- 세션 잘 되는지 확인용 --> 
         <p>로그인 세션 정보:</p>
         <p>사용자 ID: <span th:text="${session.user.user_id}"></span></p>
         <p>사용자 Pwd: <span th:text="${session.user.user_pwd}"></span></p>
-        --> 
         <!-- 세션 값 유지 -->
-        <a href="/userlogout">로그아웃</a>
+        <a href="/userlogoutgo">로그아웃</a>
         <a href="/userupdate">회원수정</a>
         <a href="/userdelete">회원탈퇴</a>
     </div>
