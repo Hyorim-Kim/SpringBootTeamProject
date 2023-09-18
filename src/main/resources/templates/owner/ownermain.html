@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>임대인 메인 페이지</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" th:href="@{/css/drop_menubar.css}" />
+</head>
+
+<body>
+	<nav>
+		<div>
+			<ul>
+				<li><a href="#">Home</a></li>
+				<li><a href="#">About Us</a></li>
+				<li> <a href="#">창고관리<i class='fa fa-angle-down'></i></a>
+					<ul>
+						<li><a href="/owner/list">창고관리</a></li>
+						<!-- 컨트롤러에서 매핑한 어노테이션의 파라미터?인자? 값으로 경로 정해줌 -->
+						<!-- /owner > 클래스 매핑, /manage > 메소드 매핑  
+						>>> 메소드에서 수행한 값을 달고 리턴값의 경로파일로 이동 -->
+						<li><a href="/owner/paid">결제창고관리</a></li>
+						<li><a href="/owner/reserve">예약창고관리</a></li>
+						<li><a href="/owner/register">창고등록</a></li>
+					</ul>
+				</li>
+				<li class='sub-menu'> <a href="#">서비스 소개<i class='fa fa-angle-down'></i></a>
+					<ul>
+						<li><a href="#">Service One</a></li>
+						<li><a href="#">Service Two</a></li>
+						<li><a href="#">Service Three</a></li>
+						<li><a href="#">Service Four</a></li>
+						<li><a href="#">Service Five</a></li>
+						<li><a href="#">Service Six</a></li>
+					</ul>
+				</li>
+				<li><a href="#">마이페이지</a>
+					<ul>
+						<li><a href="#">회원수정</a></li>
+						<li><a href="#">결제/예약정보</a></li>
+						<li><a href="#">리뷰확인</a></li>
+						<li><a href="#">문의확인</a></li>
+						<li><a href="#">로그아웃</a></li>
+						<li><a href="#">회원탈퇴</a></li>
+					</ul>
+				</li>
+
+			</ul>
+		</div>
+	</nav>
+
+	<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script>
+		$('nav li').hover(
+			function () {
+				$('ul', this).stop().slideDown(200);
+			},
+			function () {
+				$('ul', this).stop().slideUp(200);
+			}
+		);
+	</script>
+</body>
+
+</html>

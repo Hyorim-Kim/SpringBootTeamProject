@@ -26,33 +26,33 @@ public class ContainerController {
 
 	@GetMapping("/ownerMain")
 	public String main() {
-		return "owner/ownerMain";
+		return "container/ownerMain";
 	}
 
 	@GetMapping("/paid")
 	public String cont_pay() {
-		return "owner/container_paid";
+		return "container/container_paid";
 	}
 
 	@GetMapping("/reserve")
 	public String cont_book() {
-		return "owner/container_reserve";
+		return "container/container_reserve";
 	}
 
 	@GetMapping("/register")
 	public String cont_regs() {
-		return "owner/container_register";
+		return "container/container_register";
 	}
 	
 	
 
-	@GetMapping("/manage")
+	@GetMapping("/list")
 	public String cont_mgr(Model model) {
 		// 창고관리 페이지로 매핑해주는 메소드 리스트값을 달고 가서 반복문을 통해 테이블에 값들을 밀어넣어줌
 		ArrayList<ContainerDto> clist = (ArrayList<ContainerDto>)ContainDao.getDataAll();
 		model.addAttribute("datas", clist);
 
-		return "owner/container_manage";
+		return "container/container_list";
 	}
 
 	@GetMapping("/detail")
@@ -60,7 +60,7 @@ public class ContainerController {
 		ContainerDto conDto = ContainDao.conDetail(cont_no);
 		model.addAttribute("conDto", conDto);
 
-		return "owner/container_detail";
+		return "container/container_detail";
 
 	}
 
@@ -69,7 +69,7 @@ public class ContainerController {
 	// 창고관리(목록)페이지에서 창고등록 페이지로 넘어가는 링크 매핑
 	// 창고관리 페이지에서 a th:href="@{/insert}" 요거 타고 들어옴
 	public String insertContainer() {
-		return "owner/container_register";
+		return "container/container_register";
 	}
 
 	@PostMapping("insert")
@@ -84,7 +84,7 @@ public class ContainerController {
 		// b가 false라면(bean에 값이 제대로 안들어갔을때)
 		// insert 쿼리문을 수행하지 않고 error 페이지로 이동
 		if (b) {
-			return "redirect:/owner/manage";
+			return "redirect:/owner/list";
 			// 추가 후 목록보기
 			// forwarding 하게 되면 서버에서 서버를 그냥 불러버려서 select를 만날 수 가 없대
 		} else {
@@ -97,7 +97,7 @@ public class ContainerController {
 	public String update(FormBean bean) {
 		boolean b = ContainDao.update(bean);
 		if(b)
-			return "redirect:/owner/manage";   // 수정 후 목록보기
+			return "redirect:/owner/list";   // 수정 후 목록보기
 		else return "error";
 	}
 	
@@ -105,7 +105,7 @@ public class ContainerController {
 	public String delete(@RequestParam("cont_no") String cont_no) {
 		boolean b = ContainDao.delete(cont_no);
 		if(b)
-			return "redirect:/owner/manage";   // 수정 후 목록보기
+			return "redirect:/owner/list";   // 수정 후 목록보기
 		else return "error";
 	}
 }

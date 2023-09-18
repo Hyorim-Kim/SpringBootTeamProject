@@ -57,7 +57,7 @@ public class OwnerController {
 
         if (owner != null) {
         	session.setAttribute("owner", owner);
-            return "../templates/owner/ownermypage"; // 로그인 성공 시 ownermypage.html로 이동
+            return "../templates/owner/ownermain"; // 로그인 성공 시 ownermain.html로 이동
             
         } else {
             // 로그인 실패
@@ -65,9 +65,6 @@ public class OwnerController {
         }
     }
     
-<<<<<<< HEAD
-    
-=======
     // 공급자 마이페이지 에서 회원수정 클릭할 때 
     @GetMapping("/ownerupdate")
     public String ownerUpdatePage (Model model, HttpSession session) {
@@ -90,5 +87,4 @@ public class OwnerController {
 		}
     }
       
->>>>>>> branch 'master' of https://github.com/Hyorim-Kim/Team.git
 }

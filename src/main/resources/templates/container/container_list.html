@@ -17,7 +17,7 @@
 		
 			<!-- <td>[[${data.cont_addr}]]</td> -->
 			<td>
-				<a th:href="@{/supplier/detail(cont_no=${data.cont_no})}" th:text="${data.cont_addr}"></a>
+				<a th:href="@{/owner/detail(cont_no=${data.cont_no})}" th:text="${data.cont_addr}"></a>
 			</td>
 			<td>[[${data.cont_size}]]</td>
 			<!-- <td>[[${#numbers.formatInteger(data.cont_price, 3, 'COMMA')}]]</td> -->
@@ -29,7 +29,7 @@
 	
 	
 </table>
-<a th:href="@{/supplier/insert}">추가</a> 
+<a th:href="@{/owner/insert}">추가</a> 
 <!-- 창고등록 페이지로 이동 -->
 <!-- 링크를 누르면 컨트롤러의 insertContainer()메소드를 만나 페이지 이동...... -->
 </body>
