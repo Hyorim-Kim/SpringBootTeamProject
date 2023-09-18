@@ -19,13 +19,13 @@ public class SearchController {  // 조건을 검색했을 때 나오게 해주�
 	public String search(FormBean bean, Model model) {  //넘어가니까 Model 사용
 		ArrayList<pack.model.user.UserDto> slist = (ArrayList<pack.model.user.UserDto>)dataDao.getDataSearch(bean);
 		model.addAttribute("lists", slist);
-		return "user";
+		return "../templates/user/user";
 	}
 	
 	@PostMapping("search2")
 	public String search2(FormBean bean, Model model) {  //넘어가니까 Model 사용
 		ArrayList<pack.model.owner.OwnerDto> slist2 = (ArrayList<pack.model.owner.OwnerDto>)dataDao.getDataSearch2(bean);
 		model.addAttribute("lists2", slist2);
-		return "owner";
+		return "../templates/owner/owner";
 	}
 }

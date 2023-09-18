@@ -1,31 +1,87 @@
-// ****** 회원 가입일 때 ****** (광진) //
-document.querySelector("#btnUserJoin").onclick = function() {
-    // joinform_check 함수를 호출하여 폼 유효성을 검사
-    if (joinform_check()) {
-        // 폼 유효성 검사가 통과되면 폼을 제출
-        let userForm = document.forms["userForm"];
-        userForm.action = "userjoin";
-        userForm.method = "post";
-        userForm.submit();
-    }
-};
-
-
-// ****** 회원 수정일 때 ****** (광진) 
-document.querySelector("#btnUserUpdata").onclick = function() {
-/*	let userUpdate = document.forms["userUpdate"];
-	userUpdate.action = "userinfoupdate";
-	userUpdate.method = "post";*/
-	userUpdate.submit();
-
+// ****** 회원 가입일 때 각 필드의 유효성 검사 ****** (광진) //
+function userJoinForm_check() {
+	// 폼을 식별하는 부분
+	let userJoinForm = document.forms["userJoinForm"];
 	
-};
+    // 아이디, 비밀번호, 이름, 이메일, 전화번호 객체 생성
+    let id = document.getElementById('user_id');
+    let pwd1 = document.getElementById('user_pwd');
+    let pwd2 = document.getElementById('user_repwd');
+    let name = document.getElementById('user_name');
+    let email = document.getElementById('user_email');
+    let tel = document.getElementById('user_tel');
+
+    if (id.value === "") {
+        alert("아이디를 입력해 주세요.");
+        id.focus();
+        return false;
+    }
+
+    if (pwd1.value === "") {
+        alert("비밀번호를 입력해 주세요.");
+        pwd1.focus();
+        return false;
+    }
+
+    if (pwd1.value !== pwd2.value) {
+        alert("비밀번호가 일치하지 않습니다. 다시 입력해 주세요.");
+        pwd2.focus();
+        return false;
+    }
+
+    if (name.value === "") {
+        alert("이름을 입력해 주세요.");
+        name.focus();
+        return false;
+    }
+
+    if (email.value === "") {
+        alert("이메일 주소를 입력해 주세요.");
+        email.focus();
+        return false;
+    }
+
+	if (tel.value === "") {
+	    alert("전화번호를 입력해 주세요.");
+	    tel.focus();
+	    return false;
+	}
+	
+	// 정규식을 사용하여 숫자와 하이픈을 포함되어 있는지 확인.
+	let reg = /^[0-9-]+$/; 
+	
+	if (!reg.test(tel.value)) {
+	    alert("전화번호는 숫자와 하이픈(-)만 입력할 수 있습니다.");
+	    tel.focus();
+	    return false;
+	}
     
+    // 주민번호 유효성 검사
+    let jumin = document.getElementById('user_jumin').value;
+	let juminRegex = /^\d{6}-\d{7}$/; 
 
-
-// ****** 회원 삭제일 때 ****** (광진) //
-
-
+	if (!juminRegex.test(jumin)) {
+    alert("올바른 주민등록번호를 입력해 주세요.");
+	}
+	
+	if (
+        id.value !== "" &&
+        pwd1.value !== "" &&
+        pwd2.value !== "" &&
+        name.value !== "" &&
+        email.value !== "" &&
+        tel.value !== "" &&
+        jumin.value !== ""     
+    ) {
+        // 모든 필드가 채워져 있다면 축하 메시지를 띄우고 회원가입을 진행.
+        alert("회원가입을 축하합니다!");
+        userJoinForm.submit(); // 폼 제출을 허용.
+    } else {
+        // 필드 중 하나라도 누락되었을 경우 경고 메시지를 표시.
+        alert("가입란을 확인하세요!");
+        return false; // 폼 제출이 되지않는다.
+    }
+}
 
 
 // **** 주소 등록하기 **** (광진) //
@@ -110,90 +166,7 @@ function user_execDaumPostcode() {
 	});
 }
 
-// ****** 회원 가입일 때 각 필드의 유효성 검사 ****** (광진) //
-function joinform_check() {
-	// 폼을 식별하는 부분
-	let userForm = document.forms["userForm"];
-	
-    // 아이디, 비밀번호, 이름, 이메일, 전화번호 객체 생성
-    let id = document.getElementById('user_id');
-    let pwd1 = document.getElementById('user_pwd');
-    let pwd2 = document.getElementById('user_repwd');
-    let name = document.getElementById('user_name');
-    let email = document.getElementById('user_email');
-    let tel = document.getElementById('user_tel');
 
-    if (id.value === "") {
-        alert("아이디를 입력해 주세요.");
-        id.focus();
-        return false;
-    }
-
-    if (pwd1.value === "") {
-        alert("비밀번호를 입력해 주세요.");
-        pwd1.focus();
-        return false;
-    }
-
-    if (pwd1.value !== pwd2.value) {
-        alert("비밀번호가 일치하지 않습니다. 다시 입력해 주세요.");
-        pwd2.focus();
-        return false;
-    }
-
-    if (name.value === "") {
-        alert("이름을 입력해 주세요.");
-        name.focus();
-        return false;
-    }
-
-    if (email.value === "") {
-        alert("이메일 주소를 입력해 주세요.");
-        email.focus();
-        return false;
-    }
-
-	if (tel.value === "") {
-	    alert("전화번호를 입력해 주세요.");
-	    tel.focus();
-	    return false;
-	}
-	
-	// 정규식을 사용하여 숫자와 하이픈을 포함되어 있는지 확인.
-	let reg = /^[0-9-]+$/; 
-	
-	if (!reg.test(tel.value)) {
-	    alert("전화번호는 숫자와 하이픈(-)만 입력할 수 있습니다.");
-	    tel.focus();
-	    return false;
-	}
-    
-    // 주민번호 유효성 검사
-    let jumin = document.getElementById('user_jumin').value;
-	let juminRegex = /^\d{6}-\d{7}$/; 
-
-	if (!juminRegex.test(jumin)) {
-    alert("올바른 주민등록번호를 입력해 주세요.");
-	}
-	
-	if (
-        id.value !== "" &&
-        pwd1.value !== "" &&
-        pwd2.value !== "" &&
-        name.value !== "" &&
-        email.value !== "" &&
-        tel.value !== "" &&
-        jumin.value !== ""     
-    ) {
-        // 모든 필드가 채워져 있다면 축하 메시지를 띄우고 회원가입을 진행.
-        alert("회원가입을 축하합니다!");
-        userForm.submit(); // 폼 제출을 허용.
-    } else {
-        // 필드 중 하나라도 누락되었을 경우 경고 메시지를 표시.
-        alert("가입란을 확인하세요!");
-        return false; // 폼 제출이 되지않는다.
-    }
-}
 
 
 
