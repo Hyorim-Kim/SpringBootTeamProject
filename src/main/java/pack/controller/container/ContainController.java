@@ -27,12 +27,12 @@ public class ContainController {
 	
 	for(ContainDtoMap c:containDao.getcontainAll()) { // 전체자료 읽음
 		data = new HashMap<String, String>();
-		data.put("con_no", c.getCon_no());
-		data.put("con_name", c.getCon_name());
-		data.put("con_addr", c.getCon_addr());
-		data.put("we", c.getWe());
-		data.put("kyung", c.getKyung());
-		data.put("con_area", c.getCon_area());
+		data.put("con_no", c.getCont_no());
+		data.put("con_name", c.getCont_name());
+		data.put("con_addr", c.getCont_addr());
+		data.put("we", c.getCont_we());
+		data.put("kyung", c.getCont_kyung());
+		data.put("con_area", c.getCont_size());
 		list.add(data); //작업을 반복한다
 	}
 	System.out.println(list);
