@@ -26,19 +26,14 @@ public class UserDao {
             isEmpty(userDto.getUser_name()) ||
             isEmpty(userDto.getUser_tel()) ||
             isEmpty(userDto.getUser_email()) ||
-            // 숫자와 하이픈만 허용하는 정규식
+            // 정규식에 맞지 않거나 비밀번호가 일치하지 않거나 이름, 비밀번호, 이메일이 조건을 만족하지 않으면 유효하지 않음.
             !userDto.getUser_tel().matches("^[0-9-]+$") || 
-            // 주민번호 패턴을 검사하는 정규식
             !userDto.getUser_jumin().matches("^\\d{6}-\\d{7}$") ||
-            // 비밀번호와 비밀번호 확인 데이터값이 같은지 확인 
             !userDto.getUser_pwd().equals(userDto.getUser_repwd()) ||
-            // 한글 2글자 이상인지 검사
             !userDto.getUser_name().matches("^[가-힣]{2,}$") ||
-            // 비밀번호가 4글자 이상인지 검사
-            !userDto.getUser_pwd().matches("^.{4,}$") ||
-            // 이메일 주소 유효성 검사
+            !userDto.getUser_pwd().matches("^.{4,}$") ||          
             !userDto.getUser_email().matches("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$")) { 
-            // 어떤 필드라도 비어 있거나 정규식에 맞지 않거나 비밀번호가 일치하지 않거나 이름, 비밀번호, 이메일이 조건을 만족하지 않으면 유효하지 않음.
+            
             b = false; 
         } else {
             b = true; // 모든 필드와 정규식에 유효하고 비밀번호가 일치하면 true로 설정.
@@ -80,6 +75,4 @@ public class UserDao {
 		if(re >= 0) b = true;
 		return b; 
     }
-	
-
 }

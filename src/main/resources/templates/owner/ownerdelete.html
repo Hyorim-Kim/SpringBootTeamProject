@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <!-- kakao 주소 api -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script src="/js/ownerjoin.js"></script>
+    <script src="/js/ownerdelete.js"></script>
     <title>회원수정 페이지</title>
     <link rel="stylesheet" href="/css/ownerjoin.css">
 </head>
 <body>
-    <h3 style="text-align: center; line-height: 2;"><span th:text="${owner.owner_name}"></span>님의 회원수정</h3>
+<div th:if="${session.owner != null}">
+    <h3 style="text-align: center; line-height: 2;"><span th:text="${owner.owner_name}"></span>님의 회원정보</h3>
     <div class="join-form">
         <div class="content">
             <form action="/ownerInfoDelete" method="POST">
@@ -37,5 +38,6 @@
             </form>
         </div>
     </div>
+</div>
 </body>
 </html>

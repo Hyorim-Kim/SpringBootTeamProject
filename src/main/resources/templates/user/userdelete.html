@@ -5,11 +5,12 @@
     <!-- kakao 주소 api -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="/js/userdelete.js"></script>
-    <title>회원수정 페이지</title>
+    <title>회원탈퇴 페이지</title>
     <link rel="stylesheet" href="/css/userjoin.css">
 </head>
 <body>
-    <h3 style="text-align: center; line-height: 2;"><span th:text="${user.user_name}"></span>님의 회원수정</h3>
+<div th:if="${session.user != null}">
+    <h3 style="text-align: center; line-height: 2;"><span th:text="${user.user_name}"></span>님의 회원정보</h3>
     <div class="join-form" >
         <div class="content">
 			<!-- ********** 광진 ********** -->
@@ -54,5 +55,6 @@
             </form>
           </div>
     </div>
+</div>
 </body>
 </html>

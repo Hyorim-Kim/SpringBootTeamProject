@@ -71,6 +71,7 @@ public class UserController {
         if (user != null) {
             // 로그인 성공과 동시에 세션에 사용자 정보 저장
         	session.setAttribute("user", user); 
+        	session.setAttribute("user_name", user.getUser_name());
             return "../templates/user/usermypage"; // 로그인 성공 시 usermypage.html로 이동.
             
         } else {
@@ -128,5 +129,13 @@ public class UserController {
 			return "../templates/user/userdelete";  
 		}
 	}
+	
+	/*** 9/19일 추가 작업 사용자 마이페이지에서 로그아웃 하기 (광진) ***/
+	@GetMapping("/userlogoutgo")
+	public String userLogoutProcess(HttpSession session) {
+	    session.removeAttribute("user"); // 세션 유지 종료
+	    return "redirect:/"; // 로그아웃 클릭시 메인 홈페이지로 이동 
+	}
+
 		
 }
