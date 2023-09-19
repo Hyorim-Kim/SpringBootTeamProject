@@ -12,20 +12,8 @@ public class OwnerDao {
 	
 	@Autowired
 	private DataMapperInter dataMapperInter;
-
-	public boolean ownerinsertData(OwnerDto ownerDto) {
-	    boolean b = false;
-
-	    if (isValidOwnerData(ownerDto)) {
-	        int re = dataMapperInter.ownerinsertData(ownerDto);
-	        if (re > 0) {
-	            b = true;
-	        }
-	    }
-
-	    return b;
-	}
-
+	
+	// 회원 가입 페이지 필드란에 입력 데이터가 없어도 DB에 들어가는걸 방지
 	private boolean isValidOwnerData(OwnerDto ownerDto) {
 	    boolean b = false; // 초기값을 false로 설정합니다.
 
@@ -53,16 +41,35 @@ public class OwnerDao {
 	    return value == null || value.trim().isEmpty();
 	}
 	
+	public boolean ownerinsertData(OwnerDto ownerDto) {
+	    boolean b = false;
+	    if (isValidOwnerData(ownerDto)) {
+	        int re = dataMapperInter.ownerinsertData(ownerDto);
+	        if (re > 0) {
+	            b = true;
+	        }
+	    }
+	    return b;
+	}
+	
 	// 공급자 로그인 사용 여부 메서드
     public OwnerDto ownerloginProcess(String business_num, String owner_pwd) {
         return dataMapperInter.ownerloginProcess(business_num, owner_pwd);
     }
-    
+  
     // 공급자 회원수정 여부 메서드
     public boolean ownerupdate(OwnerDto ownerDto) {
     	boolean b = false;
     	int re = dataMapperInter.ownerupdate(ownerDto);
 		if(re > 0) b = true;
+		return b;
+    }
+    
+    // 공급자 회원탈퇴 여부 메서드
+    public boolean ownerdelete(OwnerDto ownerDto) {
+    	boolean b = false;
+    	int re = dataMapperInter.ownerdelete(ownerDto);
+		if(re >= 0) b = true;
 		return b;
     }
 }

@@ -50,7 +50,7 @@ public class UserController {
 		if(b) {
 			return "../templates/user/userlogin";  
 		} else {
-			return "../templates/user/userfail";  
+			return "../templates/user/userjoin";  
 		}	
 	}
 		
@@ -61,7 +61,7 @@ public class UserController {
 	}
 	
     // 사용자 로그인 페이지에서 요청 처리 (성공)
-    @PostMapping("userLogSuccess")
+    @PostMapping("/userLogSuccess")
     public String processLoginForm(@RequestParam("user_id") String user_id,
             					   @RequestParam("user_pwd") String user_pwd,
             					   Model model, HttpSession session){
@@ -74,7 +74,7 @@ public class UserController {
             return "../templates/user/usermypage"; // 로그인 성공 시 usermypage.html로 이동.
             
         } else {
-            return "../templates/user/userfail"; // 로그인 실패 시 userlogin.html로 이동.
+            return "../templates/user/userlogin"; // 로그인 실패 시 userlogin.html로 이동.
         }
     }
     
@@ -97,10 +97,36 @@ public class UserController {
 		if(b) {
 			UserDto user = (UserDto) session.getAttribute("user");
 			model.addAttribute("user", user);
-			return "../templates/user/usermypage";  
+			return "../templates/user/userlogin";  
 		} else {
-			return "../templates/user/userfail";  
+			return "../templates/user/usermypage";  
 		}
 	}
 	
+	 /*** 9/18일 추가 작업 (회원탈퇴) 광진 ***/
+	
+	
+    // 사용자 마이페이지에서 회원삭제을 클릭했을 때 (성공)
+	@GetMapping("/userdelete")
+	public String userDeletePage(Model model, HttpSession session) {
+		// 세션에서 회원 정보를 가져와서 모델에 추가
+		UserDto user = (UserDto) session.getAttribute("user");
+		model.addAttribute("user", user);
+
+		return "../templates/user/userdelete"; // 회원 수정 페이지로 이동
+	}
+	
+	// 회원삭제 페이지에서 버튼을 클릭할 때 수행 (광진)
+	@PostMapping("/userInfoDelete")
+	public String userInfoDelete(UserDto userDto, Model model, HttpSession session) {
+		boolean b = userDao.userdelete(userDto);
+		if(b) {
+			UserDto user = (UserDto) session.getAttribute("user");
+			model.addAttribute("user", user);
+			return "../templates/user/userlogin";  
+		} else {
+			return "../templates/user/userdelete";  
+		}
+	}
+		
 }

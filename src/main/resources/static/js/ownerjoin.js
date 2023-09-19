@@ -1,81 +1,60 @@
-function joinform_check() {
-    let ownerForm = document.forms["ownerForm"];
+window.onload = function () {
+    const ownerJoinForm = document.querySelector("form"); // 공급자 회원가입 폼 선택
 
-    let bunum = document.getElementById('business_num');
-    let owpwd = document.getElementById('owner_pwd');
-    let owrepwd = document.getElementById('owner_repwd');
-    let name = document.getElementById('owner_name');
-    let tel = document.getElementById('owner_tel');
-    let email = document.getElementById('email');
+    ownerJoinForm.addEventListener("submit", function(event) {
+        event.preventDefault();
 
-    if (bunum.value === "") {
-        alert("사업자 번호를 입력해 주세요.");
-        bunum.focus();
-        return false;
-    }
+        let business_num = document.getElementById('business_num').value;
+        let owner_pwd = document.getElementById('owner_pwd').value;
+        let owner_repwd = document.getElementById('owner_repwd').value;
+        let owner_name = document.getElementById('owner_name').value;
+        let owner_tel = document.getElementById('owner_tel').value;
+        let email = document.getElementById('email').value;
 
-    // 사업자 등록 번호 유효성 검사를 위한 정규식
-    let bunumRegEx = /^[0-9]{3}-[0-9]{2}-[0-9]{5}$/;
+        let telReg = /^\d{3}-\d{2,4}-\d{4}$/; // 전화번호 정규식
+        let nameReg = /^[가-힣]{2,}$/; // 한글 2글자 이상
+        let emailReg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/; // 이메일 주소 정규식
+        let businessNumReg = /^\d{3}-\d{2}-\d{5}$/; // 사업자 등록 번호 정규식
 
-    if (!bunumRegEx.test(bunum.value)) {
-        alert("올바른 사업자 등록 번호 형식이 아닙니다. 다시 입력해 주세요.");
-        bunum.focus();
-        return false;
-    }
+        // 필드 유효성 검사
+        if (
+            business_num === "" ||
+            owner_pwd === "" ||
+            owner_repwd === "" ||
+            owner_name === "" ||
+            owner_tel === "" ||
+            email === "" ||
+            !businessNumReg.test(business_num) || // 사업자 등록 번호 유효성 검사
+            owner_pwd !== owner_repwd || // 비밀번호 일치 여부 검사
+            !telReg.test(owner_tel) || // 전화번호 유효성 검사
+            !nameReg.test(owner_name) || // 이름 유효성 검사
+            !emailReg.test(email) // 이메일 주소 유효성 검사
+        ) {
+            let errorMessage = "";
 
-    if (owpwd.value === "") {
-        alert("비밀번호를 입력해 주세요.");
-        owpwd.focus();
-        return false;
-    }
+            if (!businessNumReg.test(business_num)) {
+                errorMessage += "사업자 등록 번호를 올바르게 입력하세요.\n";
+            }
 
-    if (owpwd.value !== owrepwd.value) {
-        alert("비밀번호가 일치하지 않습니다. 다시 입력해 주세요.");
-        owrepwd.focus();
-        return false;
-    }
+            if (!nameReg.test(owner_name)) {
+                errorMessage += "이름을 올바르게 입력하세요.\n";
+            }
 
-    if (name.value === "") {
-        alert("이름을 입력해 주세요.");
-        name.focus();
-        return false;
-    }
+            if (!telReg.test(owner_tel)) {
+                errorMessage += "전화번호 형식이 올바르지 않습니다.\n";
+            }
 
-    if (tel.value === "") {
-        alert("전화번호를 입력해 주세요.");
-        tel.focus();
-        return false;
-    }
+            if (!emailReg.test(email)) {
+                errorMessage += "올바른 이메일 주소를 입력하세요.\n";
+            }
 
-    // 정규식을 사용하여 숫자와 하이픈을 포함되어 있는지 확인.
-    let owreg = /^[0-9-]+$/;
+            alert(errorMessage);
+            return false; // 폼이 제출되지 않고 초기화
+        }
 
-    if (!owreg.test(tel.value)) {
-        alert("전화번호는 숫자와 하이픈(-)만 입력할 수 있습니다.");
-        tel.focus();
-        return false;
-    }
-
-    if (email.value === "") {
-        alert("이메일 주소를 입력해 주세요.");
-        email.focus();
-        return false;
-    }
-
-    if (
-        bunum.value !== "" &&
-        owpwd.value !== "" &&
-        owrepwd.value !== "" &&
-        name.value !== "" &&
-        tel.value !== "" &&
-        email.value !== ""
-    ) {
-        // 모든 필드가 채워져 있다면 축하 메시지를 띄우고 회원가입을 진행.
+        // 유효한 경우, 폼을 서버로 제출
         alert("회원가입을 축하합니다!");
-        ownerForm.submit(); // 폼 제출을 허용.
-    } else {
-        // 필드 중 하나라도 누락되었을 경우 경고 메시지를 표시.
-        alert("가입란을 확인하세요!");
-        return false; // 폼 제출이 되지않는다.
-    }
+        ownerJoinForm.submit();
+    });
 }
+
