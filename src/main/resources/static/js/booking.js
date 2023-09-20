@@ -30,9 +30,9 @@ function checkPrice() {
 function insertOpt() {
     const stringCity = document.querySelector("input[name='location']");
     const stringSize = document.getElementById("stringsize");
-    const intMoney = document.getElementById("intmoney");
-    const userId = document.getElementById("userId").value;
-    const bookName = document.getElementById("book-name").value;
+    const intMoney = document.getElementById("booking_price");
+    const user_id = document.getElementById("user_id").value;
+    const name = document.getElementById("user_name").value;
     const startDay = document.getElementById("start-day").value;
     const endDay = document.getElementById("end-day").value;
     const selectedSize = stringSize.options[stringSize.selectedIndex].value;

@@ -17,25 +17,25 @@
 			<div>
 				<form action="/booking/bookingDo" method="post" class="cf" name="select">
 					<!-- 나중에 type:hidden으로 바꾸기 -->
-					<input type="hidden" name="userId" id="userId" value="${successLoginUser}">
+					<input type="hidden" name="user_id" id="user_id" value="${session.user.user_id}">
 					<div id="date-group">
 						<div id="start-date">
-							<label for="start-day">시작일자</label> <input type="date" name="bookDateS" id="start-day"
+							<label for="start-day">시작일자</label> <input type="date" name="booking_date_start" id="start-day"
 								class="start-date" onchange="checkPrice()">
 						</div>
 						<div id="end-date">
-							<label for="end-day">종료일자</label> <input type="date" name="bookDateE" id="end-day"
+							<label for="end-day">종료일자</label> <input type="date" name="booking_date_end" id="end-day"
 								class="end-date" onchange="checkPrice()">
 						</div>
 					</div>
-					<label for="bookingName">예약자</label> <input type="text" name="name" id="book-name"
+					<label for="bookingName">예약자</label> <input type="text" name="name" id="user_name" value="${session.user.user_name}"
 						required="required"> <label for="stringcity">지점명</label> <input type="text" name="location" /> <label for="stringsize">사이즈</label> <select name="size" id="stringsize"
 						onchange="checkPrice()">
 						<option value="0">선택하세요</option>
 						<option value="5000">소 ( 20 x 20 x 45(cm) 이내 )</option>
 						<option value="6000">중 (30 x 30 x 60(cm) 이내)</option>
 						<option value="7000">대 (50 x 50 x 80(cm) 이내)</option>
-					</select> <label for="intmoney">이용요금</label> <input type="text" name="price" id="intmoney"
+					</select> <label for="booking_price">이용요금</label> <input type="text" name="price" id="booking_price"
 						class="totalPay" readonly>
 					<div style="color: red; font-size: 15px;">*결제 후 예약이 완료됩니다.</div>
 					<div class="btn-div">
