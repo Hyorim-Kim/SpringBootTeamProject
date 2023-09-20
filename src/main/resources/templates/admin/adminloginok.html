@@ -2,17 +2,30 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자 마이페이지</title>
 </head>
 <body>
-    <h1>로그인 성공</h1>
-    <!-- ********** 광진 ********** -->
-관리자 페이지
-<br/>
-<a href="#">예약관리</a>
-<a href="#">창고 승인관리</a>
-<a href="/registered">등록된 창고관리</a>
-<a href="/user">User 회원관리</a> / <a href="/owner">owner 회원관리</a>
-
+    <h1>관리자 페이지</h1>
+    <!-- ********** 광진 9/19 추가 작업  ********** -->
+    <div th:if="${session.admin != null}">
+		
+		<!-- 세션 적용 되는지 확인용
+		<p>로그인 세션 정보:</p>
+        <p>관리자 아이디 번호 : <span th:text="${session.admin.admin_id}"></span></p>
+        <p>관리자 Pwd: <span th:text="${session.admin.admin_pwd}"></span></p>
+        -->
+		<br/>
+		<!-- 서호 작업 -->
+		<a href="#">예약관리</a>
+		<a href="#">창고 승인관리</a>
+		<a href="/registered">등록된 창고관리</a>
+		<a href="/user">User 회원관리</a> / <a href="/owner">owner 회원관리</a>
+		<a href="adminlogout">로그아웃</a>
+	</div>
+	
+	<!-- 세션 정보가 없는 경우 -->
+    <div th:unless="${session.admin != null}">
+        <p>로그인 세션 정보가 없습니다.</p>
+    </div>
 </body>
 </html>
