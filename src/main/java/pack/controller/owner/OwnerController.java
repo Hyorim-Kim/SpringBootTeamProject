@@ -56,7 +56,7 @@ public class OwnerController {
     	OwnerDto owner = ownerDao.ownerloginProcess(business_num, owner_pwd);
 
         if (owner != null) {
-        	session.setAttribute("owner", owner);
+        	session.setAttribute("business_num", owner.getBusiness_num());
             return "../templates/owner/ownermain"; // 로그인 성공 시 ownermain.html로 이동
             
         } else {
