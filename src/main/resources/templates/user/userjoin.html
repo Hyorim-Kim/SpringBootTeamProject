@@ -5,6 +5,43 @@
     <!-- kakao 주소 api -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="../js/userjoin.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+		$(document).ready(function () {
+			// "아이디 중복 확인" 버튼 클릭 시
+			$("#user_id_check").click(function (e) {
+				e.preventDefault(); // 폼 제출 방지
+
+				let user_id = $("#user_id").val(); // 입력한 사용자 아이디 가져오기
+
+				// Ajax 요청 보내기
+				$.ajax({
+					type: "POST",
+					url: "/userIdCheck", // 컨트롤러의 경로로 해야 한다 광진아!
+					data: {user_id: user_id}, // 사용자 아이디를 서버로 전달
+					success: function (data) {
+						let message = "";
+						let textColor = "";
+
+						if (data === 0) {
+							// 아이디 중복이 아닌 경우
+							message = "사용 가능한 아이디입니다.";
+							textColor = "blue"; // 파란 글씨 스타일
+						} else {
+							// 아이디 중복인 경우
+							message = "아이디가 중복되었습니다.";
+							textColor = "red"; // 빨간 글씨 스타일
+						}
+						// 메시지와 글씨 색상을 설정
+						$("#id_check_message").text(message).css("color", textColor);
+					},
+					error: function () {
+						alert("오류가 발생했습니다.");
+					}
+				});
+			});
+		});
+	</script>
     <title>사용자 회원가입 페이지</title>
     <link rel="stylesheet" href="../css/userjoin.css">
 </head>
@@ -15,9 +52,10 @@
         <div class="content">
 			<form action="userJoinClick" method="post">
                 <h3>아이디</h3>
-                <input type="text" name="user_id" id="user_id" class="userId_text-field" placeholder="아이디">
-                <!-- 아이디 중복 하는 로직 -->
-                <input type="submit" class="userId_button" value="아이디 중복 확인">
+                <input type="text" name="user_id" id="user_id" class="userId_text-field" placeholder="아이디">            
+                <!-- 아이디 중복 메시지 출력 영역 -->
+                <input type="submit" class="userId_button" id ="user_id_check" value="아이디 중복 확인">
+            	<div id="id_check_message"></div>
 
                 <h3>비밀번호</h3>
                 <input type="password" name="user_pwd" id="user_pwd" class="text-field" placeholder="비밀번호">
