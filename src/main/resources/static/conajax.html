@@ -114,17 +114,64 @@
 </head>
 
 <body>
-	<div id="map" style="width:100%;height:100vh;"></div>
+    <!-- 검색창 추가 -->
+    <div>
+        <input type="text" id="addressInput" placeholder="주소를 입력하세요">
+        <button onclick="searchAddress()">검색</button>
+    </div>
 
-	<script
-		src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=f8bbc7549216335625367284bd469f94&libraries=clusterer"></script>
-	<script>
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-			mapOption = {
-				center: new kakao.maps.LatLng(37.56692, 126.97845), // 지도의 중심좌표
-				level: 3, // 지도의 확대 레벨
-				mapTypeId: kakao.maps.MapTypeId.ROADMAP // 지도종류
-			};
+    <div id="map" style="width:100%;height:90vh;"></div>
+
+    <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=f8bbc7549216335625367284bd469f94&libraries=clusterer,services"></script>
+    <script>
+        var mapContainer = document.getElementById('map');
+        var mapOption = {
+            center: new kakao.maps.LatLng(37.56692, 126.97845),
+            level: 3,
+            mapTypeId: kakao.maps.MapTypeId.ROADMAP
+        };
+        
+        var currentOverlay = null;
+
+        function closeOverlay() {
+            if (currentOverlay) {
+                currentOverlay.setMap(null);
+            }
+        }
+
+        function attachOverlay(marker, content) {
+            kakao.maps.event.addListener(marker, 'click', function () {
+                closeOverlay();
+
+                var overlay = new kakao.maps.CustomOverlay({
+                    content: content,
+                    map: map,
+                    position: marker.getPosition()
+                });
+
+                currentOverlay = overlay;
+            });
+        }
+
+        function searchAddress() {
+            var addressInput = document.getElementById('addressInput');
+            var address = addressInput.value;
+
+            if (address) {
+                var geocoder = new kakao.maps.services.Geocoder();
+
+                geocoder.addressSearch(address, function (result, status) {
+                    if (status === kakao.maps.services.Status.OK && result.length > 0) {
+                        // 주소로 검색된 좌표로 지도 중심 이동
+                        map.setCenter(new kakao.maps.LatLng(result[0].y, result[0].x));
+                    } else {
+                        alert('주소를 찾을 수 없습니다.');
+                    }
+                });
+            } else {
+                alert('주소를 입력하세요.');
+            }
+        }
 
 		// 지도를 생성한다 
 		var map = new kakao.maps.Map(mapContainer, mapOption);

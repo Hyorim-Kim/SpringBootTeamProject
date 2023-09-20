@@ -75,4 +75,11 @@ public class UserDao {
 		if(re >= 0) b = true;
 		return b; 
     }
+    
+    // 사용자 회원가입시 중복체크
+    public int userIdCheck(String user_id) {
+    	int result = dataMapperInter.useridcheck(user_id);
+		return result;
+    }
+
 }
