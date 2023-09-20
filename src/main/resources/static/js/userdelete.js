@@ -1,4 +1,4 @@
-// ***** 회원 가입 (사용자) 수정 *****
+// ***** 회원 가입일 때 각 필드의 유효성 검사 *****
 window.onload = function () {
     const userJoinForm = document.querySelector("form"); // 회원가입 폼 선택
 
@@ -33,7 +33,7 @@ window.onload = function () {
             return false;
         }
 
-        // 다른 유효성 검사는 여기에 계속 작성.
+        // 다른 유효성 검사는 여기에 계속 작성합니다.
         if (
             !telReg.test(user_tel) ||
             !juminReg.test(user_jumin) ||
@@ -71,7 +71,7 @@ window.onload = function () {
             confirm(errorMessage);
             return false;
         }
-        confirm("가입을 축하합니다!");
+        confirm("그동안 이용해주셔서 감사합니다.");
         // 회원가입 정보가 유효한 경우, 폼을 서버로 제출
         userJoinForm.submit();
     });

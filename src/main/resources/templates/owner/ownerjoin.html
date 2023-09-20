@@ -13,7 +13,7 @@
     <!-- 회원가입 페이지 구성-->
     <div class="join-form">
         <div class="content">
-			<form action="ownerJoinClick" name="ownerForm" method="POST">
+			<form action="ownerJoinClick" method="POST">
                 <h3>사업자 번호</h3>
                 <input type="text" name="business_num" id="business_num" class="text-field" placeholder="사업자 번호">
                 <!-- <input type="button" value="ID중복확인" id="btnId"> -->
@@ -33,7 +33,7 @@
                 <h3>이메일</h3>
                 <input type="text" name="email" id="email" class="text-field" placeholder="이메일" maxlength="30" >
 
-                <input type="submit" class="submit-btn" id="btnSupplierInsertData" onclick="joinform_check();" value="가입완료">
+                <input type="submit" class="submit-btn" id="btnOwnerJoin" value="가입완료">
                 <input type="reset" class="reset-btn" id="btnreset" value="취소">
             </form>
           </div>
