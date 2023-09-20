@@ -41,6 +41,13 @@ public class AdminController {
             return "../templates/user/userfail"; 
         }
     }
+    
+	/*** 9/19일 추가 작업 사용자 마이페이지에서 로그아웃 하기 (광진) ***/
+	@GetMapping("/adminlogout")
+	public String userLogoutProcess(HttpSession session) {
+	    session.removeAttribute("admin"); // 세션 유지 종료
+	    return "redirect:/"; // 로그아웃 클릭시 메인 홈페이지로 이동 
+	}
 	
 
 	
