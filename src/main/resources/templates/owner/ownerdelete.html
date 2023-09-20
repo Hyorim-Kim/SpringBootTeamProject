@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <!-- kakao 주소 api -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script src="/js/ownerupdate.js"></script>
+    <script src="/js/ownerdelete.js"></script>
     <title>회원수정 페이지</title>
     <link rel="stylesheet" href="/css/ownerjoin.css">
 </head>
 <body>
 <div th:if="${session.owner != null}">
-    <h3 style="text-align: center; line-height: 2;"><span th:text="${owner.owner_name}"></span>님의 회원수정</h3>
+    <h3 style="text-align: center; line-height: 2;"><span th:text="${owner.owner_name}"></span>님의 회원정보</h3>
     <div class="join-form">
         <div class="content">
-            <form action="/ownerInfoUpdate" method="POST">
+            <form action="/ownerInfoDelete" method="POST">
                 <h3>사업자 번호</h3>
                 <input type="text" name="business_num" id="business_num" class="text-field" th:value="${owner.business_num}">
 
@@ -33,7 +33,7 @@
                 <h3>이메일</h3>
                 <input type="text" name="email" id="email" class="text-field" maxlength="30" th:value="${owner.email}">
                 <!-- 버튼 -->
-                <input type="submit" class="submit-btn" value="수정하기">
+                <input type="submit" class="submit-btn" value="삭제하기">
                 <input type="reset" class="reset-btn" id="btnreset" value="취소">
             </form>
         </div>

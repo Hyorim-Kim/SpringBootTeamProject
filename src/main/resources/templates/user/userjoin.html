@@ -15,7 +15,9 @@
         <div class="content">
 			<form action="userJoinClick" method="post">
                 <h3>아이디</h3>
-                <input type="text" name="user_id" id="user_id" class="text-field" placeholder="아이디">
+                <input type="text" name="user_id" id="user_id" class="userId_text-field" placeholder="아이디">
+                <!-- 아이디 중복 하는 로직 -->
+                <input type="submit" class="userId_button" value="아이디 중복 확인">
 
                 <h3>비밀번호</h3>
                 <input type="password" name="user_pwd" id="user_pwd" class="text-field" placeholder="비밀번호">
@@ -49,7 +51,7 @@
                 <h3>주민등록번호</h3>
                 <input type="tel" name="user_jumin" id="user_jumin" class="text-field" placeholder="주민등록번호">
                 <!-- 버튼 -->
-                <input type="submit" class="submit-btn" onclick="userJoinForm_check();" value="가입하기">
+                <input type="submit" class="submit-btn" id="btnUserJoin" value="가입하기">
                 <input type="reset" class="reset-btn" id="btnreset" value="취소">
             </form>
           </div>

@@ -51,5 +51,7 @@ public interface DataMapperInter {
 	int userdelete(UserDto userDto);
 	
 	// Owner 회원탈퇴 (광진)
+	@Delete("delete from owner WHERE business_num = #{business_num}")
+	int ownerdelete(OwnerDto ownerDto);
 	
 }
