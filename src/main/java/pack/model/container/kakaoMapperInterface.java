@@ -7,6 +7,6 @@ import org.apache.ibatis.annotations.Select;
 //재민
 @Mapper
 public interface kakaoMapperInterface {
-	@Select("select * from contain_1")
+	@Select("select * from container")
 	List<ContainDtoMap> MapAll();
 }
