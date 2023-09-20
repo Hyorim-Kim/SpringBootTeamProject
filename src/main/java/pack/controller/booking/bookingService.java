@@ -7,7 +7,7 @@ import pack.model.booking.bookingDTO;
 public interface bookingService {
 	public void bookingDo(bookingDTO bookingDto );
 
-	//예약정보
+	//예약정보 지원 헤헤
 	public bookingDTO bookingInfo(String userId);
 
 	//삭제
