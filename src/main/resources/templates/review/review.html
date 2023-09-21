@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>사용한 창고보기</title>
+	<link rel="stylesheet" href="/css/member.css" />
+	<link href="/css/star.css" rel="stylesheet" />
+</head>
+
+<body>
+	<h2>사용한 창고내역 보기</h2><!-- 이용한 창고내역 보면서 간단한 코멘트와 별점 기능 구현하기 -->
+	<table style="width:90%">
+		<tr>
+			<th>창고번호</th>
+			<th>주소</th>
+			<th>면적</th>
+			<th>회사이름</th>
+			<th>소유주 전화번호</th>
+			<th>창고사진</th>
+			<th>후기</th>
+		</tr>
+		<th:block th:if="${list4.size > 0}">  <!-- listcontroller의 key인 list4 -->
+			<tr th:each="data4, iterStat : ${list4}">
+				<td th:text="${iterStat.index + 1}"></td>
+				<td th:text="${data4.cont_addr}"></td>
+				<td th:text="${data4.cont_size}"></td>
+				<td th:text="${data4.cont_name}"></td>
+				<td th:text="${data4.owner_phone}"></td>
+				<td th:text="${data4.cont_image}"></td>
+				<td>
+					
+					<form class="mb-3" action="/rvinsert" name="myform" id="myform" method="post">
+						<fieldset>
+							<span class="text-bold"></span>
+							<!-- name은 rating으로 통일하고 id는 고유값을 갖게함 -->
+							<input type="radio" name="rating"
+								th:id="'rate5_' + ${iterStat.index + 1}" value="5" th:checked="${param.rating == '5'}" required/>
+							<label th:for="'rate5_' + ${iterStat.index + 1}">★</label>
+
+							<input type="radio" name="rating"
+								th:id="'rate4_' + ${iterStat.index + 1}" value="4" th:checked="${param.rating == '4'}" required/>
+							<label th:for="'rate4_' + ${iterStat.index + 1}">★</label>
+
+							
+							<input type="radio" name="rating"
+								th:id="'rate3_' + ${iterStat.index + 1}" value="3" th:checked="${param.rating == '3'}" required/>
+							<label th:for="'rate3_' + ${iterStat.index + 1}">★</label>
+
+
+							<input type="radio" name="rating"
+								th:id="'rate2_' + ${iterStat.index + 1}" value="2" th:checked="${param.rating == '2'}" required/>
+							<label th:for="'rate2_' + ${iterStat.index + 1}">★</label>
+
+
+							<input type="radio" name="rating"
+								th:id="'rate1_' + ${iterStat.index + 1}" value="1" th:checked="${param.rating == '1'}" required/>
+							<label th:for="'rate1_' + ${iterStat.index + 1}">★</label>
+
+							<!-- id의 값이 똑같으면 동시에 다른 행들의 별점들 중복선택이 불가해서 id값 따로 -->
+						</fieldset>
+						<div>
+							<textarea class="col-auto form-control" type="text" name="content"
+								th:id="'reviewContents' + ${iterStat.index + 1}"
+								placeholder="창고 이용에 대한 평가를 남겨주세요" required>[[${param.content}]]</textarea>
+						</div>   <!-- required을 사용해서 별점과 내용을 작성하고 넘어가게끔 함 -->
+						<input type="submit" value="작성하기">
+						
+					</form>
+					
+				</td>
+			</tr>
+		</th:block>
+	</table>
+</body>
+</html>

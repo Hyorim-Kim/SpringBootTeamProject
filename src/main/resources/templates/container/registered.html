@@ -24,18 +24,17 @@
 	<th:block th:if="${lists3.size > 0}">
 			<tr th:each="data3:${lists3}">
 				<td>
-				
+				<a th:href="@{/detail(cont_no=${data3.cont_no})}" th:text="${data3.cont_no}"></a>
 				</td>
-				<td th:text="${data3.con_addr}"></td>
-				<td th:text="${data3.we}"></td>
-				<td th:text="${data3.kyung}"></td>
-				<td th:text="${data3.con_area}"></td>
-				<td th:text="${data3.con_name}"></td>
-				
-			<!--<td th:text="${data3.owner_phone}"></td>
+				<td th:text="${data3.cont_addr}"></td>
+				<td th:text="${data3.cont_we}"></td>
+				<td th:text="${data3.cont_kyung}"></td>
+				<td th:text="${data3.cont_size}"></td>
+				<td th:text="${data3.cont_name}"></td>
+				<td th:text="${data3.owner_phone}"></td>
 				<td th:text="${data3.cont_status}"></td>
 				<td th:text="${data3.cont_image}"></td>
-				<td th:text="${data3.owner_num}"></td> -->
+				<td th:text="${data3.owner_num}"></td>
 			</tr>
 	</th:block>
 </table>
