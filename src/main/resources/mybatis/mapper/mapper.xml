@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pack.model.board.DataMappingInterface">
+	<select id="selectList" resultType="pack.model.board.BoardDto">
+		select * from notice_board order by gnum desc, onum asc
+	</select>
+	
+	<select id="searchList" parameterType="pack.controller.board.BoardBean" resultType="pack.model.board.BoardDto">
+		select * from notice_board
+		where ${searchName} like concat('%', #{searchValue}, '%')
+		order by gnum desc, onum asc
+	</select>
+	
+	<select id="selectOne" parameterType="string" resultType="pack.model.board.BoardDto">
+		select * from notice_board where num=#{num}
+	</select>
+	
+	<insert id="insertData" parameterType="pack.controller.board.BoardBean">
+		insert into notice_board
+		values(#{num},#{admin_id},#{admin_pwd},#{mail},#{title},#{cont},#{bdate},0,#{gnum},0,0)
+	</insert>
+	
+	<update id="updateReadcnt" parameterType="string">
+		update notice_board set readcnt=readcnt + 1 
+		where num=#{num}
+	</update>
+	
+	<update id="updateData" parameterType="pack.controller.board.BoardBean">
+		update notice_board set admin_id=#{admin_id},mail=#{mail},title=#{title},cont=#{cont}
+		where num=#{num}
+	</update>
+	
+	<delete id="deleteData" parameterType="string">
+		delete from notice_board 
+		where num=#{num}
+	</delete>
+	
+	<select id="currentNum" resultType="integer">
+		select max(num) from notice_board
+	</select>
+	
+	<select id="totalCnt" resultType="integer">
+		select count(*) from notice_board
+	</select>
+	
+	<!-- password -->
+	<select id="selectPass" parameterType="string" resultType="string">
+		select pass from notice_board
+		where num=#{num}
+	</select>
+	
+	<!-- reply -->
+	<update id="updateOnum" parameterType="pack.controller.board.BoardBean">
+		update notice_board set onum=onum + 1
+		where onum >= #{onum} and gnum=#{gnum}
+	</update>
+	
+	<insert id="insertReData" parameterType="pack.controller.board.BoardBean">
+		insert into notice_board values(#{num},#{admin_id},#{admin_pwd},#{mail},#{title},#{cont},#{bdate},0,#{gnum},#{onum},#{nested})
+	</insert>
+</mapper>

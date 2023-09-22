@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" th:href="@{/css/board.css}">
+</head>
+<body>
+<h3>* 공지사항 *</h3>
+<table>
+  <tr>
+  	<td>
+  	[<a th:href="@{/list}">최근목록</a>]&nbsp;  
+  	[<a th:href="@{/insert}">글쓰기</a>]
+  	</td>
+  </tr>
+</table>
+
+<table>
+	<tr style="background-color: silver;">
+	  <th>번호</th><th>제 목</th><th>작성자</th><th>작성일</th><th>조회수</th>
+	</tr>
+	<!-- isEmpty()는 들어온 값이 null 이거나 빈 문자열일 때 true를 반환. 체크 전에 trim()을 적용하기 때문에 빈 줄이나 공백도 같이 걸러진다 -->
+	<th:block th:if="${not #strings.isEmpty(data)}">  <!-- th:if="${data != null}" -->
+	<tr th:each="b:${data}">
+		<td>[[${b.num}]]</td>
+		<td>
+			<!-- 댓글 들여쓰기 준비 -->
+			<th:block th:each="count : ${#numbers.sequence(0, b.nested)}">  <!-- 0부터 nested 만큼 반복 -->
+				<th:with var="tab">&nbsp;</th:with>
+			</th:block>
+			[[${tab}]]<a th:href="@{/detail(num=${b.num},page=${page})}" th:text="${b.title}"></a>
+		</td>
+		<td>[[${b.admin_id}]]</td>
+		<td>[[${b.bdate}]]</td>
+		<td>[[${b.readcnt}]]</td>
+	</tr>
+	
+	<!-- paging -->
+ 	<tr style="text-align: center;">
+		<td colspan="5">
+		<th:block th:each="num : ${#numbers.sequence(1, pagesu)}">
+			<th:span th:if="${num} == ${page}">
+				<b th:text=${num}>num 표시(현재 페이지는 링크를 걸지 않음)</b>
+			</th:span>
+			<th:span th:if="${num} != ${page}">
+				<a th:href="@{list(page=${num})}" th:text="${num}">num 표시</a>
+			</th:span>
+		</th:block>	
+		</td>
+	</tr>
+	</th:block>
+
+	<!-- 검색 작업 추가 -->
+	<tr style="text-align: center;">
+		<td colspan="5">
+		<br/>
+		<form action="/search" method="get">
+		  검색 대상 : 
+		  <select name="searchName">
+			<option value='admin_id' selected>작성자</option>
+			<option value='title'>글제목</option>
+		  </select>
+		  <input type="text" name="searchValue">
+		  <input type="submit" value="검 색">
+		</form>
+		</td>
+	</tr>
+</table>
+</body>
+</html>

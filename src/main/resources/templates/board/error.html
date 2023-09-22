@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	에러 발생 ~<br/>
+	<a href="list?page=1">글 보기</a> 또는
+	<a th:href="@{list(page=1)}">글 보기</a>
+</body>
+</html>

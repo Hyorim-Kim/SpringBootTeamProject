@@ -63,10 +63,11 @@ section {
 }
 
 .section-header h2 {
-  font-size: 32px;
-  font-weight: 700;
+  font-family: 'Noto Sans KR';
+  font-size: 33px;
+  font-weight: 900;
   position: relative;
-  color: #2e3135;
+  color: #364d59;
 }
 
 .section-header h2:before,
@@ -116,7 +117,7 @@ section {
 }
 
 .breadcrumbs h2 {
-  font-size: 56px;
+  font-size: 40px;
   font-weight: 500;
   color: #fff;
   font-family: var(--font-secondary);
@@ -999,6 +1000,7 @@ section {
   overflow: hidden;
 }
 
+
 .testimonials .testimonial-item {
   box-sizing: content-box;
   padding: 30px 30px 30px 60px;
@@ -1112,6 +1114,7 @@ section {
 }
 
 .alt-services h3 {
+  font-family: 'Noto Sans KR';
   font-size: 28px;
   font-weight: 700;
   color: var(--color-secondary);
@@ -1181,7 +1184,7 @@ section {
 # About Section
 --------------------------------------------------------------*/
 .about h2 {
-  font-size: 48px;
+  font-size: 55px;
   font-weight: 700;
   font-family: var(--font-secondary);
   margin: 30px 0;
@@ -1212,7 +1215,8 @@ section {
 }
 
 .about .our-story h3 {
-  font-size: 36px;
+  font-family: 'Noto Sans KR';
+  font-size: 28px;
   font-weight: 700;
   margin-bottom: 20px;
   color: var(--color-secondary);
@@ -1225,7 +1229,7 @@ section {
 .about ul {
   list-style: none;
   padding: 0;
-  font-size: 15px;
+  font-size: 18px;
 }
 
 .about ul li {
@@ -1240,25 +1244,8 @@ section {
   color: var(--color-primary);
 }
 
-.about .watch-video i {
-  font-size: 32px;
-  transition: 0.3s;
-  color: var(--color-primary);
-}
-
-.about .watch-video a {
-  font-weight: 600;
-  color: var(--color-secondary);
-  margin-left: 8px;
-  transition: 0.3s;
-}
-
-.about .watch-video:hover a {
-  color: var(--color-primary);
-}
-
 .about .about-img {
-  min-height: 600px;
+  min-height: 500px;
   background-size: cover;
   background-position: center;
 }
@@ -1304,56 +1291,39 @@ section {
 /*--------------------------------------------------------------
 # Our Team Section
 --------------------------------------------------------------*/
+
+#team-container {
+  border: 3px solid lightgray; /* 테두리 스타일 및 색상 설정 */
+  border-radius: 20px; /* 모서리 둥글게 */
+  padding: 20px; /* 내용과의 간격을 조절할 수 있는 패딩 설정 */
+}
+
 .team .member {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .team .member .member-img {
-  margin: 0 80px;
+  width: 170px; /* 이미지 크기 조정 */
+  height: 170px; /* 이미지 크기 조정 */
   border-radius: 50%;
   overflow: hidden;
+  margin: 10px 0; /* 이미지와 텍스트 간격 조정 */
   position: relative;
-}
-
-@media (max-width: 1024px) {
-  .team .member .member-img {
-    margin: 0 60px;
-  }
 }
 
 .team .member .member-img img {
-  position: relative;
-  z-index: 1;
-}
-
-.team .member .member-img .social {
-  position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 2;
-  padding-bottom: 20px;
-  transition: 0.3s;
-  visibility: hidden;
-  opacity: 0;
-}
-
-.team .member .member-img .social a {
-  transition: 0.3s;
-  color: #fff;
-  font-size: 20px;
-  margin: 0 8px;
-}
-
-.team .member .member-img .social a:hover {
-  color: var(--color-primary);
+  width: 100%; /* 이미지 크기 100%로 설정 */
+  height: auto; /* 이미지 높이 자동 조정 */
 }
 
 .team .member .member-info {
-  margin-top: 30px;
+  margin-top: 10px; /* 텍스트와 이미지 간격 조정 */
 }
+
 
 .team .member .member-info h4 {
   font-weight: 700;
@@ -1362,23 +1332,9 @@ section {
   color: var(--color-secondary);
 }
 
-.team .member .member-info span {
-  font-style: italic;
-  display: block;
-  font-size: 15px;
-  color: #838893;
-  margin-bottom: 10px;
-}
-
 .team .member .member-info p {
   margin-bottom: 0;
   font-size: 14px;
-}
-
-.team .member:hover .member-img .social {
-  padding-bottom: 0;
-  visibility: visible;
-  opacity: 1;
 }
 
 /*--------------------------------------------------------------
@@ -1874,7 +1830,7 @@ section {
 
 .hero .carousel-item::before {
   content: "";
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
   position: absolute;
   inset: 0;
 }
@@ -1895,7 +1851,7 @@ section {
   color: #fff;
   margin-bottom: 30px;
   padding-bottom: 30px;
-  font-size: 56px;
+  font-size: 70px;
   font-weight: 700;
   position: relative;
 }
@@ -2668,14 +2624,4 @@ section {
 .footer .footer-legal .copyright {
   padding-top: 30px;
   border-top: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.footer .footer-legal .credits {
-  padding-top: 4px;
-  font-size: 13px;
-  color: #fff;
-}
-
-.footer .footer-legal .credits a {
-  color: var(--color-primary);
 }

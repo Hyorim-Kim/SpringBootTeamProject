@@ -28,28 +28,28 @@ function checkPrice() {
 
 // 예약하기 클릭 시
 function insertOpt() {
-    const stringCity = document.querySelector("input[name='location']");
-    const stringSize = document.getElementById("stringsize");
-    const intMoney = document.getElementById("intmoney");
-    const userId = document.getElementById("userId").value;
-    const bookName = document.getElementById("book-name").value;
-    const startDay = document.getElementById("start-day").value;
-    const endDay = document.getElementById("end-day").value;
-    const selectedSize = stringSize.options[stringSize.selectedIndex].value;
+	const stringCity = document.querySelector("input[name='cont_no']");
+	const stringSize = document.getElementById("stringsize");
+	const intMoney = document.getElementById("intmoney");
+	const userId = document.getElementById("userId").value;
+	const bookName = document.getElementById("book-name").value;
+	const startDay = document.getElementById("start-day").value;
+	const endDay = document.getElementById("end-day").value;
+	const selectedSize = stringSize.options[stringSize.selectedIndex].value;
 
-    if (startDay === "" || endDay === "" || stringCity.value === "" || selectedSize === "0") {
-        alert("위 항목들을 선택해 주세요.");
-        return false;
-    } else if (confirm("예약하시겠습니까?")) {
-        
-        alert("예약되었습니다. 예약 정보를 서버에 전송했습니다."); // 실제로는 서버 응답을 기다려야 합니다.
-    	
-        
-    } else {
-        alert('예약을 취소합니다.');
-        return false;
-    }
-}
+	if (startDay === "" || endDay === "" || stringCity.value === "" || selectedSize === "0") {
+		alert("위 항목들을 선택해 주세요.");
+		return false;
+	} else if (confirm("예약하시겠습니까?")) {
+
+		alert("예약되었습니다. 예약 정보를 서버에 전송했습니다."); // 실제로는 서버 응답을 기다려야 합니다.
+
+
+	} else {
+		alert('예약을 취소합니다.');
+		return false;
+	}
+
 
 const nextBtn = document.getElementById("next-btn");
 nextBtn.addEventListener("click", () => {
@@ -66,3 +66,4 @@ nextBtn.addEventListener("click", () => {
 	}
 });
 
+}
