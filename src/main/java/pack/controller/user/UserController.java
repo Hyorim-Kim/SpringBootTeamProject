@@ -48,6 +48,7 @@ public class UserController {
 	@PostMapping("userJoinClick")
 	public String userloginOK(UserDto userDto) {
 		boolean b = userDao.userInsertData(userDto);
+		
 		if(b) {
 			return "../templates/user/userlogin";  
 		} else {
@@ -145,6 +146,13 @@ public class UserController {
 		int result = userDao.userIdCheck(user_id);
 		return result;
 		
+	}
+	
+	// 예약페이지에서 마이페이지로 돌아가기
+	@GetMapping("/usermypageback")
+	public String userBack(HttpSession session) {
+		session.getAttribute("user");
+		return "../templates/user/usermypage";
 	}
 
 		
