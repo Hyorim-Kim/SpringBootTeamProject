@@ -1,5 +1,10 @@
 <!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org">
+
+
 <html lang="ko">
+
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -33,7 +38,7 @@
 
 <body>
   <!-- header 파일 따로 만들어서 삽입 -->
-  
+  <div th:if="${session.user != null}">
     <!-- ======= Header ======= -->
     <header id="header" class="header d-flex align-items-center">
       <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
@@ -837,5 +842,6 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  </div>
 </body>
 </html>

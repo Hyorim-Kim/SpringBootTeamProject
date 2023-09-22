@@ -6,5 +6,4 @@ import lombok.Data;
 @Data
 public class OwnerDto {
    private String business_num, owner_pwd, owner_name, owner_tel, email, owner_repwd;
-   private int cont_num;
 }
