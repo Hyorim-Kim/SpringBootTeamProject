@@ -48,6 +48,16 @@ body {
   cursor: pointer; /* 포인터 형태로 변경하여 버튼임을 나타냅니다 */
 }
 
+/* 빨간 글씨 스타일 */
+#id_check_message.red {
+    color: red;
+}
+
+/* 파란 글씨 스타일 */
+#id_check_message.blue {
+    color: blue;
+}
+
 /* 텍스트칸 css */
 .text-field {
   font-size: 14px;

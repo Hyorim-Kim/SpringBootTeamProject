@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.servlet.http.HttpSession;
 import pack.model.user.UserDao;
@@ -47,6 +48,7 @@ public class UserController {
 	@PostMapping("userJoinClick")
 	public String userloginOK(UserDto userDto) {
 		boolean b = userDao.userInsertData(userDto);
+		
 		if(b) {
 			return "../templates/user/userlogin";  
 		} else {
@@ -135,6 +137,22 @@ public class UserController {
 	public String userLogoutProcess(HttpSession session) {
 	    session.removeAttribute("user"); // 세션 유지 종료
 	    return "redirect:/"; // 로그아웃 클릭시 메인 홈페이지로 이동 
+	}
+	
+	// 사용자 회원가입시 아이디 중복체크 (광진)
+	@ResponseBody
+	@PostMapping("/userIdCheck")
+	public int IdCheck(@RequestParam("user_id") String user_id) {
+		int result = userDao.userIdCheck(user_id);
+		return result;
+		
+	}
+	
+	// 예약페이지에서 마이페이지로 돌아가기
+	@GetMapping("/usermypageback")
+	public String userBack(HttpSession session) {
+		session.getAttribute("user");
+		return "../templates/user/usermypage";
 	}
 
 		
