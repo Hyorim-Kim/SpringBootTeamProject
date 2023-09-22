@@ -76,7 +76,7 @@ window.onload = function () {
         }
 
         // 유효한 경우, 폼을 서버로 제출
-        alert("회원가입을 축하합니다!");
+        alert("회원정보가 수정되었습니다!");
         ownerJoinForm.submit();
     });
 }

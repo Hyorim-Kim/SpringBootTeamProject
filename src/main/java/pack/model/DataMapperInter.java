@@ -14,7 +14,7 @@ import pack.model.user.UserDto;
 @Mapper
 public interface DataMapperInter {
 	
-	/**** 회원가입, 회원수정, 회원탈퇴, 로그인에 필효한 SQL 쿼리문 (광진) ****/
+	/**** 회원가입, 회원수정, 회원탈퇴, 로그인에 필요한 SQL 쿼리문 (광진) ****/
 	
 	// User 회원가입 SQL 쿼리 (광진)
 	@Insert("INSERT INTO user (user_id, user_pwd, user_name, user_tel, user_email, user_addr, user_jumin) \r\n"
@@ -51,5 +51,10 @@ public interface DataMapperInter {
 	int userdelete(UserDto userDto);
 	
 	// Owner 회원탈퇴 (광진)
+	@Delete("delete from owner WHERE business_num = #{business_num}")
+	int ownerdelete(OwnerDto ownerDto);
 	
+	// User id 중복체크 (광진)
+	@Select("select count(*) from user where user_id=#{user_id}")
+	int useridcheck(@Param("user_id") String user_id); 
 }

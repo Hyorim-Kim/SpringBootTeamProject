@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="skip">
+		<a href="/usermypageback">메인페이지로</a>
+	</div>
+	<main id="container">
+		<div class="booking-box">
+			<h2>나의 예약정보</h2>
+			<div>
+				<input type="hidden" value="${user_id}" readonly="readonly">
+			</div>
+			<div>
+				<table class="booking-check">
+					<c:choose>
+						<c:when test="${empty booking}">
+  								예약 정보가 없습니다.
+  						</c:when>
+						<c:otherwise>
+							<tbody>
+								<tr>
+									<th scope="row">예약자</th>
+									<td>${booking.user_name}</td>
+								</tr>
+								<tr>
+									<th scope="row">예약날짜</th>
+									<td>${booking.booking_date_start}</td>
+								</tr>
+								<tr>
+									<th scope="row">지점명</th>
+									<td>${booking.location}</td>
+								</tr>
+								<tr>
+									<th scope="row">사이즈</th>
+									<td>${booking.size }</td>
+								</tr>
+								<tr>
+									<th scope="row">이용요금</th>
+									<td>${booking.price }</td>
+								</tr>
+							</tbody>
+						</c:otherwise>
+					</c:choose>
+				</table>
+				<c:if test="${booking.bookingId !=null }">
+					<button type="button" id="cancel-btn"
+						onclick="location.href='${contextPath }/booking/bookDelete?bookingId=${booking.bookingId }'">취소하기</button>
+				</c:if>
+				<button type="button" id="main-btn"
+					onClick="location.href='${contextPath}/index'">메인으로 돌아가기</button>
+			</div>
+			<div>
+				<c:if test="${booking.bookingId !=null }">
+				</c:if>
+			</div>
+		</div>
+	</main>
+	<script src="../js/bookingInfo.js"></script>
+</body>
+</html>

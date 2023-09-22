@@ -22,6 +22,42 @@ body {
   font-size: 13px;
 }
 
+/* 아이디 텍스트칸 css */
+.userId_text-field {
+  font-size: 14px;
+  width: 300px;
+  border: none;
+  border-radius: 5px;
+  padding: 15px 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/* 아이디 중복 확인 버튼 */
+.userId_button{
+  font-size: 14px;
+  width: 140px;
+  border: none;
+  border-radius: 5px;
+  padding: 15px 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 22px;
+  background-color: #007BFF; /* 배경색 */
+  color: #fff; /* 텍스트 색상 */
+  cursor: pointer; /* 포인터 형태로 변경하여 버튼임을 나타냅니다 */
+}
+
+/* 빨간 글씨 스타일 */
+#id_check_message.red {
+    color: red;
+}
+
+/* 파란 글씨 스타일 */
+#id_check_message.blue {
+    color: blue;
+}
+
 /* 텍스트칸 css */
 .text-field {
   font-size: 14px;
@@ -44,7 +80,7 @@ body {
   margin-bottom: 5px;
 }
 
-/* 회원가입 버튼 */
+
 .button-postcode{
   font-size: 14px;
   width: 200px;
