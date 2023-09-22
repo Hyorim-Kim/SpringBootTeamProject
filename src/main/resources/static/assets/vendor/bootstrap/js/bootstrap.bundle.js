@@ -972,7 +972,7 @@
    */
 
   const NAME$e = 'button';
-  const DATA_KEY$9 = 'bs.button';
+  const DATA_KEY$9 = 'bs.button'; 
   const EVENT_KEY$a = `.${DATA_KEY$9}`;
   const DATA_API_KEY$6 = '.data-api';
   const CLASS_NAME_ACTIVE$3 = 'active';
@@ -1105,7 +1105,7 @@
    */
 
   const NAME$d = 'swipe';
-  const EVENT_KEY$9 = '.bs.swipe';
+  const EVENT_KEY$9 = '.bs.swipe'; 
   const EVENT_TOUCHSTART = `touchstart${EVENT_KEY$9}`;
   const EVENT_TOUCHMOVE = `touchmove${EVENT_KEY$9}`;
   const EVENT_TOUCHEND = `touchend${EVENT_KEY$9}`;
