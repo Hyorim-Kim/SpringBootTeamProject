@@ -109,6 +109,12 @@ public class DataDao {
 	            // 예외 처리
 	            logger.error("saveReview err : " + e.getMessage());
 	        }
+	        
 	        return success;
+	    }
+		
+		// ajax
+	    public void saveReviewAjax(ReviewDto reviewDto) {
+	        dataMapper.insertReview(reviewDto);
 	    }
 }

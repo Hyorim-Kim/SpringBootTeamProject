@@ -45,7 +45,12 @@ public interface DataMapperInterface {
 	@Select("select * from container")
 	List<ContainerDto> selectAll4();
 
-	// user가 작성한 별점과 내용이 rv table에 insert
+	// user가 작성한 별점과 내용이 rv table에 insert 
 	@Insert("INSERT INTO rv (rating, content) VALUES (#{rating}, #{content})")
 	int insertReview(ReviewDto reviewDto);
+	
+	// Ajax
+	@Insert("INSERT INTO rv (rating, content) VALUES (#{rating}, #{content})")
+	void insertReviewAjax(ReviewDto reviewDto);
+	
 }
