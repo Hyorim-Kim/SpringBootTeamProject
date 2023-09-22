@@ -1,10 +1,5 @@
 <!DOCTYPE html>
-
-<html xmlns:th="https://www.thymeleaf.org">
-
-
 <html lang="ko">
-
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -38,7 +33,7 @@
 
 <body>
   <!-- header 파일 따로 만들어서 삽입 -->
-  <div th:if="${session.user != null}">
+  
     <!-- ======= Header ======= -->
     <header id="header" class="header d-flex align-items-center">
       <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
@@ -57,13 +52,9 @@
             <li class="dropdown"><a href="#"><span>마이페이지</span> <i
                   class="bi bi-chevron-down dropdown-indicator"></i></a>
               <ul>
-<<<<<<< HEAD
                 <li><a href="/booking/booking">결제/예약정보</a></li>
-=======
-                <li><a href="#">결제/예약정보</a></li>
->>>>>>> branch 'master' of https://github.com/Hyorim-Kim/Team.git
                 <li><a href="#">문의내역</a></li>
-                <li><a href="review">리뷰/평가</a></li>             
+                <li><a href="#">리뷰/평가</a></li>
                 <li><a href="/userupdate">회원수정</a></li>
                 <li><a href="/userdelete">회원탈퇴</a></li>
                 <li><a href="/userlogoutgo">로그아웃</a></li>
@@ -90,7 +81,7 @@
             <span style="color: #ffc732;">.</span></h2>
             <!--회원 페이지에서는 . 눌러도 관리자 페이지로 이동하지 않음-->
             <p data-aos="fade-up" style="font-size: 20px;">
-				<span style="color: #ffffff"><strong><span th:text="${session.user.user_name}"></strong></span> 고객님 환영합니다</p>
+            <span style="color: #ffffff"><strong><span th:text="${session.user.user_name}"></strong></span> 고객님 환영합니다</p>
             <a data-aos="fade-up" data-aos-delay="200" href="#get-started" class="btn-get-started">Get Started</a>
           </div>
         </div>
@@ -846,6 +837,5 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  </div>
 </body>
 </html>
