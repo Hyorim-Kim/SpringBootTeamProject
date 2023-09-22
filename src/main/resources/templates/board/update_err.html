@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- 비밀번호가 틀린 경우 메세지 출력 -->
+<script th:inline="javascript">
+	(function(){
+		alert("에러");
+	})();
+</script>
+
+<a th:href="@{/list(page=${page})}">글 보기</a>
+</body>
+</html>

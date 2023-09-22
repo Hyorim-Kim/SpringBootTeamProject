@@ -42,17 +42,23 @@ public class UserDao {
     }
 
 	// 사용자 회원가입에 사용되는 메서드 (광진)
-	public boolean userInsertData(UserDto userDto) {
+    public boolean userInsertData(UserDto userDto) {
 		boolean b = false;
-
-		if (joinUserData(userDto)) {
-			int re = dataMapperInter.userinsertData(userDto);
-			if (re > 0) {
-				b = true;
+		try {
+			if (joinUserData(userDto)) {
+				int re = dataMapperInter.userinsertData(userDto);
+				if (re > 0) {
+					b = true;
+				}
 			}
+		} catch (Exception e) {
+			// 예외 처리 코드 추가
+			e.printStackTrace(); 
+			// 예외 발생 시에도 b는 false로 유지됩니다.
 		}
+
 		return b;
-	}
+    }
 	    
 	
 	// 사용자 로그인 가능 여부 판단하는 메서드 (광진) 9/15일 추가 작업
