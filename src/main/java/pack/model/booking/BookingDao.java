@@ -1,3 +1,4 @@
+
 package pack.model.booking;
 
 import java.util.ArrayList;
@@ -18,8 +19,10 @@ public class BookingDao {
 		return blist;
 	}
 	
+
 	public ArrayList<bookingDTO> bookingDo(bookingDTO bookingDto) {
 		ArrayList<bookingDTO> olist = (ArrayList<bookingDTO>)bookingMapperInter.bookingDo();
 		return olist;
 	}
 }
+

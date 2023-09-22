@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+** 창고 등록 **<br/>
+<form action="insert" method="post" enctype="multipart/form-data">
+	창고주소 : <input type="text" name="cont_addr" /><br/>
+	창고크기 : <input type="text" name="cont_size" /><br/>
+	<!-- 대여가격 : <input type="text" name="cont_price" /><br/> -->
+	창고설명 :
+	<textarea rows="5" cols="50" name="content"></textarea><br/>
+	사업자번호 :  <input type="text" name="owner_num" /><br/>
+	이미지 :  <input type="file" name="file" /><br/>
+	<br/>
+	<br/>
+	<input type="submit" value="저장">
+</form>
+	
+</br>
+</body>
+</html>

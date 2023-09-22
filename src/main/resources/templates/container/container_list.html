@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div th:if="${session.owner != null}">	
+<h3>창고정보(@mvc : myBatis)</h3>
+<table border="1">
+	<tr>
+		<th>창고번호</th><th>창고주소</th><th>창고크기</th><th>창고상태</th><th>임대인이름</th>
+	</tr>
+	<th:block th:if="${datas.size > 0}">
+		<span type="hidden" th:text="${business_num}"></span>
+		<tr th:each="data:${datas}"> 
+			
+			<td>[[${data.cont_no}]]</td>
+		
+			<!-- <td>[[${data.cont_addr}]]</td> -->
+			<td>
+				<a th:href="@{/owner/detail(cont_no=${data.cont_no})}" th:text="${data.cont_addr}"></a>
+			</td>
+			<td>[[${data.cont_size}]]</td>
+			<!-- <td>[[${#numbers.formatInteger(data.cont_price, 3, 'COMMA')}]]</td> -->
+			<td>[[${data.cont_status}]]</td>
+			<td>[[${data.owner_name}]]</td>
+		</tr>
+	</th:block>
+
+	
+	
+</table>
+<a th:href="@{/owner/insert}">추가</a> 
+<!-- 창고등록 페이지로 이동 -->
+<!-- 링크를 누르면 컨트롤러의 insertContainer()메소드를 만나 페이지 이동...... -->
+</div>
+</body>
+</html>
+
+<!-- 
+공급자 로그인 하면 자신이 소유하고 있는 창고만 출력 될 수 있게 해야함 
+쿼리문에서 해결 가능할거같은데 로그인 했을때 로그인되어있는 아이디나 공급자 번호 값 받아서 그걸 쿼리문에 집어넣어?...
+-->
