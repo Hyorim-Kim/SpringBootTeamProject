@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/css/board.css">
+<script type="text/javascript">
+window.onload = function(){
+	document.querySelector("#btnReply").onclick = chk;	
+}
+
+function chk(){
+	//alert("k");
+	//입력자료 오류 검사 생략...
+	
+	if(reFrm.name.value === ""){
+		reFrm.name.focus();
+		alert("작성자 이름을 입력하세요");
+		return;
+	}
+	
+	reFrm.submit();
+}
+</script>
+</head>
+<body>
+<h3>* 댓글 쓰기 *</h3>
+<form action="reply" method="post" name="reFrm" th:object="${data}">
+	<input type="hidden" th:field="*{num}">
+	<input type="hidden" name="page" th:value="${page}">
+	<input type="hidden" th:field="*{gnum}">
+	<input type="hidden" th:field="*{onum}">
+	<input type="hidden" th:field="*{nested}">
+	
+	<table border="1" style="width: 80%">
+		<tr>
+			<td>이름</td>
+			<td><input type="text" name="name"></td>
+		</tr>
+		<tr>
+			<td>암호</td>
+			<td><input type="text" name="pass"></td>
+		</tr>
+		<tr>
+			<td>이메일</td>
+			<td><input type="text" name="mail"></td>
+		</tr>
+		<tr>
+			<td>제목</td>
+			<td>
+			<!-- 2글자만 출력 
+				<input type="text" style="width: 99%" name="title" 
+						th:value="|RE:*{#strings.substring(title,0,2)}|" />
+			-->	
+			<!-- 4글자 이하 출력 -->
+				<input type="text" style="width: 99%" name="title" 
+						th:value="|RE:*{#strings.length(title) > 4 ? #strings.substring(title,0,4) : title}|" />
+			</td>
+		</tr>
+		<tr>
+			<td>내용</td>
+			<td><textarea rows="5" style="width: 99%" name="cont"></textarea></td>
+		</tr>
+		<tr>
+			<td colspan="2" style="text-align: center;">
+				<input type="button" value="완료" id="btnReply" /> 
+				<input type="button" value="목록" onclick="javascript:window.location.href='list.html?page=${page}'" />
+			</td>
+		</tr>
+	</table>
+</form>
+</body>
+</html>
