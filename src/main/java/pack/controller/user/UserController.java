@@ -48,6 +48,7 @@ public class UserController {
 	@PostMapping("userJoinClick")
 	public String userloginOK(UserDto userDto) {
 		boolean b = userDao.userInsertData(userDto);
+		
 		if(b) {
 			return "../templates/user/userlogin";  
 		} else {

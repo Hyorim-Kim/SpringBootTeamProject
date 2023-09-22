@@ -9,35 +9,27 @@
 <h2>등록된 창고 관리하기</h2>
 
 <table style="width:90%">
-	<tr>
-		<th>창고번호</th>
-		<th>주소</th>
-		<th>위도</th>
-		<th>경도</th>
-		<th>면적</th>
-		<th>회사이름</th>
-		<th>소유주 전화번호</th>
-		<th>현재 상태(사용중,사용가능)</th>
-		<th>창고사진</th>
-		<th>사업자번호</th>
-	</tr>
-	<th:block th:if="${lists3.size > 0}">
-			<tr th:each="data3:${lists3}">
-				<td>
-				
-				</td>
-				<td th:text="${data3.con_addr}"></td>
-				<td th:text="${data3.we}"></td>
-				<td th:text="${data3.kyung}"></td>
-				<td th:text="${data3.con_area}"></td>
-				<td th:text="${data3.con_name}"></td>
-				
-			<!--<td th:text="${data3.owner_phone}"></td>
-				<td th:text="${data3.cont_status}"></td>
-				<td th:text="${data3.cont_image}"></td>
-				<td th:text="${data3.owner_num}"></td> -->
-			</tr>
-	</th:block>
+    <tr>
+        <th>창고번호</th>
+        <th>주소</th>
+        <th>위도</th>
+        <th>경도</th>
+        <th>면적</th>
+        <th>회사이름</th>
+        <th>소유주 전화번호</th>
+        <th>현재 상태(사용중,사용가능)</th>
+        <th>창고사진</th>
+        <th>사업자번호</th>
+    </tr>
+    <th:block th:if="${lists3.size > 0}">
+        <tr th:each="data3:${lists3}">
+            <td th:text="${data3.cont_addr}"></td>
+            <td th:text="${data3.cont_we}"></td>
+            <td th:text="${data3.cont_kyung}"></td>
+            <td th:text="${data3.cont_area}"></td>
+            <td th:text="${data3.cont_name}"></td>
+        </tr>
+    </th:block>
 </table>
 </body>
 </html>

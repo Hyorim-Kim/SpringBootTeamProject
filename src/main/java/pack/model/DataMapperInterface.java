@@ -28,7 +28,7 @@ public interface DataMapperInterface {
 	List<OwnerDto> selectSearch2(FormBean bean);
 	
 	// Container sql문들-------------------------------------------------
-	@Select("select * from contain")
+	@Select("select * from container")
 	List<ContainerDto> selectAll3();
 	
 	

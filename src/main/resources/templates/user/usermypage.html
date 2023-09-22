@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="https://www.thymeleaf.org">
 
 <head>
   <meta charset="utf-8">
@@ -34,7 +34,7 @@
 
 <body>
   <!-- header 파일 따로 만들어서 삽입 -->
-  
+  <div th:if="${session.user != null}">
     <!-- ======= Header ======= -->
     <header id="header" class="header d-flex align-items-center">
       <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
@@ -56,8 +56,9 @@
                 <li><a href="../booking.html">결제/예약정보</a></li>
                 <li><a href="#">문의내역</a></li>
                 <li><a href="#">리뷰/평가</a></li>
-                <li><a href="#">회원수정/탈퇴</a></li>
-                <li><a href="#">로그아웃</a></li>
+                <li><a href="/userupdate">회원수정</a></li>
+                <li><a href="/userdelete">회원탈퇴</a></li>
+                <li><a href="/userlogoutgo">로그아웃</a></li>
               </ul>
             </li>
             <li class="dropdown"><a href="contact.html"><span>문의하기</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
@@ -845,5 +846,6 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  </div>
 </body>
 </html>
