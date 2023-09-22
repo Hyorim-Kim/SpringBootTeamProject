@@ -9,6 +9,53 @@
     <link rel="stylesheet" href="/css/userjoin.css">
 </head>
 <body>
+    <h3 style="text-align: center; line-height: 2;"><span th:text="${user.user_name}"></span>님의 회원수정</h3>
+    <div class="join-form" >
+        <div class="content">
+
+			<!-- ********* 광진 ********* -->
+			<form action="/userinfoupdate" name="userUpdate" method="POST">
+
+                <h3>아이디</h3>
+				<input type="text" name="user_id" id="user_id" class="text-field" th:value="${user.user_id}">
+
+                <h3>비밀번호</h3>
+                <!-- 정보 수정이여서 굳이 type은 password로 해야 하나요..?-->
+                <input type="text" name="user_pwd" id="user_pwd" class="text-field" th:value="${user.user_pwd}">
+
+                <h3>비밀번호 확인</h3>
+                <input type="text" name="user_repwd" id="user_repwd" class="text-field" placeholder="비밀번호 확인">
+
+                <h3>이름</h3>
+                <input type="text" name="user_name" id="user_name" class="text-field" th:value="${user.user_name}">
+                
+                <h3>전화번호</h3>
+                <input type="tel" name="user_tel" id="user_tel" class="text-field" th:value="${user.user_tel}">
+
+                <h3>이메일</h3>              
+                <input type="text" name="user_email" id="user_email" class="text-field" maxlength="30" th:value="${user.user_email}">
+                
+                <h3>주소</h3>          
+				<input type="text" id="user_postcode" class="text-field-postcode" placeholder="우편번호">
+				<input type="button" onclick="user_execDaumPostcode()" class="button-postcode" value="우편번호 찾기"><br>
+				<input type="text" id="user_roadAddress" class="text-field-postcode" placeholder="도로명주소">
+				<input type="text" id="user_jibunAddress" class="text-field-postcode" placeholder="지번주소">
+				<span id="guide" style="color:#999;display:none"></span>
+				<input type="text" id="user_detailAddress" class="text-field-postcode" placeholder="상세주소">
+				<input type="text" id="user_extraAddress" class="text-field-postcode" placeholder="참고항목">
+				<br />
+				<!-- 결과를 출력할 한 줄로 된 주소 필드 -->
+				<h3>입력한 주소</h3>
+				<input type="text" name="user_addr" id="user_combinedAddress" class="text-field" th:value="${user.user_addr}">				
+                
+                <h3>주민등록번호</h3>
+                <input type="tel" name="user_jumin" id="user_jumin" class="text-field" th:value="${user.user_jumin}" >
+                <!-- 버튼 -->
+                <input type="submit" class="submit-btn" value="수정하기">
+                <input type="reset" class="reset-btn" id="btnreset" value="취소">
+            </form>
+          </div>
+
 	<div th:if="${session.user != null}">	
 		<h3 style="text-align: center; line-height: 2;"><span th:text="${user.user_name}"></span>님의 회원수정</h3>
 		<div class="join-form">
