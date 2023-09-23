@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>FAQ</title>
+	<script src="https://code.jquery.com/jquery-latest.js"></script>
+	<script>
+		$(document).ready(function () {
+			$(".faq").click(function () {
+				// FAQ를 클릭할 때마다 해당 데이터 가져오기
+				let answer = $(this).data("answer");
+
+				// 해당 FAQ에 대한 표시 영역 선택
+				let showId = $(this).data("show-id");
+				let showArea = $("#" + showId);
+
+				showArea.empty();
+
+				$.ajax({
+					type: "get",
+					url: "detailfaq",
+					data: {"detail": answer},
+					success: function (data) {
+						let str = data.detail + "<br>";
+						showArea.append(str);
+					},
+					error: function () {
+						showArea.html("<b>에러 발생</b>");
+					}
+				});
+				showArea.toggle(); // 클릭할 때마다 열고 닫기 토글
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<h3>자주 묻는 질문</h3>
+	<table border="1" style="width: 99%;">
+		<tr>
+			<td colspan="3">
+				<form action="/searchfaq?searchpage=1" method="post" style="text-align: right;">
+					검색 대상 : 
+					<select name="searchName">
+						<option value="faq_category" selected>카테고리</option>
+						<option value="faq_question">제목</option>
+					</select>
+					<input type="text" name="searchValue">
+					<input type="submit" value="검 색">
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<th style="width: 10%;">번호</th>
+			<th style="width: 15%;">카테고리</th>
+			<th style="width: 75%;">제목</th>
+		</tr>
+	</table>
+	<th:block th:if="${faq != null and faq.size() > 0}">
+		<table border="1" style="width: 99%; text-align: center;" th:each="data : ${faq}" class="faq"
+			th:data-answer="${data.faq_answer}" th:data-show-id="'show' + ${data.faq_no}">
+			<tr>
+				<td th:text="${data.faq_no}" style="width: 10%;"></td>
+				<td th:text="${data.faq_category}" style="width: 15%;"></td>
+				<td th:text="${data.faq_question}" style="width: 75%; text-align: left; padding-left: 5%"></td>
+			</tr>
+			<tr>
+				<td colspan="3" style="text-align: left; padding-left: 10%">
+					<div th:id="'show' + ${data.faq_no}" style="display: none;"></div>
+				</td>
+			</tr>
+		</table>
+	</th:block>
+	
+	<table style="margin-top: 20px;">
+        <tr style="text-align: center;">
+            <td colspan="5">
+                <th:block th:each="num : ${#numbers.sequence(1, pagesu)}">
+                    <th:span th:if="${num == page}">
+                        <b th:text="${num}">num 표시(현재 페이지는 링크를 걸지 않음)</b>
+                    </th:span>
+                    <th:span th:if="${num != page}">
+                        <a th:href="@{/faq(page=${num})}" th:text="${num}">num 표시</a>
+                    </th:span>
+                </th:block>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>
