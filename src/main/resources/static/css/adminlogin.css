@@ -1,107 +1,103 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
-* {
-  margin: 0;
-  padding: 0;
-}
+* {margin: 0; padding: 0; box-sizing: border-box;}
 
-
-
-body {
-  font-family: 'Noto Sans KR', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url("../images/adminloginimg.jpg") no-repeat center;
+    background-size: cover;
 
 }
 
-.login-form h1 {
-  font-size: 32px;
-  text-align: center;
-  margin-bottom: 50px;
+body::before{
+    content: "";
+    position: absolute; z-index: 1;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background-color: rgb(0, 0, 0,.6);
 }
 
-.int-area {
-  width: 400px;
-  position: relative;
-  margin-top: 20px;
+.login-form{
+    position: relative; z-index: 2;
+}
+
+.login-form h1{
+    font-size: 32px; color: #fff;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+ .int-area {
+    width: 400px;
+    position: relative;
+    margin-top: 20px;
 }
 
 .int-area:first-child {
-  margin-top: 0;
+    margin-top: 0;
 }
 
 .int-area input {
-  width: 100%;
-  padding: 20px 10px 10px;
-  background-color: transparent;
-  border: none;
-  border-bottom: 1px solid black;
-  font-size: 18px;
-  outline: none;
+    width: 100%;
+    padding: 20px 10px 10px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid  #999;
+    font-size: 18px; color: #fff;
+    outline: none;
 }
 
 .int-area label {
-  position: absolute;
-  left: 10px;
-  top: 15px;
-  font-size: 18px;
-  transition: top 0.5s ease;
+    position: absolute; left: 10px; top: 15px;
+    font-size: 18px; color: #999;
+} 
+
+/* 텍스트 필드를 클릭하면 admin id 텍스트가 올라감 */
+.int-area input:focus + label,
+.int-area input:valid + label{
+    top:0;
+    font-size: 13px; color: #166cea;
 }
 
 .int-area label.warning {
-  color: red !important;
-  animation: warning 0.3s ease;
-  animation-iteration-count: 3;
+    color: red !important;
+    animation: warning .3s ease;
+    animation-iteration-count: 3;
 }
 
 @keyframes warning {
-  0% {
-    transform: translateX(-8px);
-  }
-  25% {
-    transform: translateX(8px);
-  }
-  50% {
-    transform: translateX(-8px);
-  }
-  75% {
-    transform: translateX(8px);
-  }
+    0% {transform: translateX(-8px);}
+    25% {transform: translateX(8px);}
+    50% {transform: translateX(-8px);}
+    75% {transform: translateX(8px);}
 }
 
-.int-area input:focus + label,
-.int-area input:valid + label {
-  top: -2px;
-  font-size: 13px;
-  color: #166caa;
-}
-
+/* 로그인 버튼 */
 .btn-area {
-  margin-top: 30px;
+    margin-top: 30px;
 }
 
 .btn-area button {
-  width: 100%;
-  height: 50px;
-  margin: 0px 10px;
-  color: #fff;
-  background: #166caa;
-  border: none;
-  border-radius: 5px;
-  font-size: 20px;
-  cursor: pointer;
+    width: 100%;
+    height: 50px;
+    background: #166cea;
+    color: #fff;
+    font-size: 20px;
+    border: none;
+    border-radius: 25px;
+    margin-bottom: 10px; /* 버튼 사이의 간격 조절 */
 }
 
-.caption {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.caption a {
-  margin: 0 20px;
-  font-size: 15px;
-  color: blue;
-  text-decoration: none;
+.btn-area-join button {
+    width: 100%;
+    height: 50px;
+    background: #166cea;
+    color: #fff;
+    font-size: 20px;
+    border: none;
+    border-radius: 25px;
+    margin-bottom: 10px; /* 버튼 사이의 간격 조절 */
 }
