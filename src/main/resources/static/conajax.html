@@ -2,280 +2,328 @@
 <html>
 <!-- 재민 -->
 <head>
-	<meta charset="utf-8">
-	<title>다음 지도 API</title>
-	<style>
-		.wrap {
-			position: absolute;
-			left: 0;
-			bottom: 40px;
-			width: 288px;
-			height: 132px;
-			margin-left: -144px;
-			text-align: left;
-			overflow: hidden;
-			font-size: 12px;
-			font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
-			line-height: 1.5;
-		}
+   <meta charset="utf-8">
+   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+   <title>창고검색</title>
+   <meta content="" name="description">
+     <meta content="" name="keywords">
+     
+     
+     <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-		.wrap * {
-			padding: 0;
-			margin: 0;
-		}
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
-		.wrap .info {
-			width: 286px;
-			height: 120px;
-			border-radius: 5px;
-			border-bottom: 2px solid #ccc;
-			border-right: 1px solid #ccc;
-			overflow: hidden;
-			background: #fff;
-		}
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+  
+  <!-- 돋보기 모양 만들기-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style> 
+   #search-container {
+            position: absolute;
+            top: 140px;
+            left: 20px;
+            z-index: 9999;
+            background-color: #333; /* 배경 색상 어두운 계열 */
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* 그림자 효과 */
+        }
+        
+   #show-traffic {
+            position: absolute;
+            top: 200px;
+            left: 20px;
+            z-index: 9999;
+            background-color: #333; /* 배경 색상 어두운 계열 */
+            padding: 0px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* 그림자 효과 */
+        }
+        
 
-		.wrap .info:nth-child(1) {
-			border: 0;
-			box-shadow: 0px 1px 2px #888;
-		}
-
-		.info .title {
-			padding: 5px 0 0 10px;
-			height: 30px;
-			background: #eee;
-			border-bottom: 1px solid #ddd;
-			font-size: 18px;
-			font-weight: bold;
-		}
-
-		.info .close {
-			position: absolute;
-			top: 10px;
-			right: 10px;
-			color: #888;
-			width: 17px;
-			height: 17px;
-			background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
-		}
-
-		.info .close:hover {
-			cursor: pointer;
-		}
-
-		.info .body {
-			position: relative;
-			overflow: hidden;
-		}
-
-		.info .desc {
-			position: relative;
-			margin: 13px 0 0 90px;
-			height: 75px;
-		}
-
-		.desc .ellipsis {
-			overflow: hidden;
-			text-overflow: ellipsis;
-			white-space: nowrap;
-		}
-
-		.desc .jibun {
-			font-size: 11px;
-			color: #888;
-			margin-top: -2px;
-		}
-
-		.info .img {
-			position: absolute;
-			top: 6px;
-			left: 5px;
-			width: 73px;
-			height: 71px;
-			border: 1px solid #ddd;
-			color: #888;
-			overflow: hidden;
-		}
-
-		.info:after {
-			content: '';
-			position: absolute;
-			margin-left: -12px;
-			left: 50%;
-			bottom: 0;
-			width: 22px;
-			height: 12px;
-			background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
-		}
-
-		.info .link {
-			color: #5085BB;
-		}
-	</style>
+   .wrap { position: absolute; left: 0; bottom: 40px; width: 288px; height: 132px; margin-left: -144px; text-align: left; overflow: hidden; font-size: 12px; font-family: 'Malgun Gothic', dotum, '돋움', sans-serif; line-height: 1.5; } 
+   .wrap * { padding: 0; margin: 0; } 
+   .wrap .info { width: 286px; height: 120px; border-radius: 5px; border-bottom: 2px solid #ccc; border-right: 1px solid #ccc; overflow: hidden; background: #fff; } 
+   .wrap .info:nth-child(1) { border: 0; box-shadow: 0px 1px 2px #888; } 
+   .info .title { padding: 5px 0 0 10px; height: 30px; background: #eee; border-bottom: 1px solid #ddd; font-size: 18px; font-weight: bold; } .info .close { position: absolute; top: 10px; right: 10px; color: #888; width: 17px; height: 17px; background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png'); } 
+   .info .close:hover { cursor: pointer; } 
+   .info .body { position: relative; overflow: hidden; } 
+   .info .desc { position: relative; margin: 13px 0 0 90px; height: 75px; } 
+   .desc .ellipsis { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .desc .jibun { font-size: 11px; color: #888; margin-top: -2px; } 
+   .info .img { position: absolute; top: 6px; left: 5px; width: 73px; height: 71px; border: 1px solid #ddd; color: #888; overflow: hidden; } .info:after { content: ''; position: absolute; margin-left: -12px; left: 50%; bottom: 0; width: 22px; height: 12px; background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png') }
+   .info .link { color: #5085BB; }
+   </style>
 </head>
 
 <body>
-    <!-- 검색창 추가 -->
-    <div>
-        <input type="text" id="addressInput" placeholder="주소를 입력하세요">
-        <button onclick="searchAddress()">검색</button>
-    </div>
+   <!-- ======= Header ======= -->
+   <header id="header" class="header d-flex align-items-center">
+      <div class="container-fluid container-xl d-flex align-items-center justify-content-between"
+         style="font-family: 'Noto Sans KR'; font-weight: 700;">
 
-    <div id="map" style="width:100%;height:90vh;"></div>
+         <a href="index.html" class="logo d-flex align-items-center">
+            <h1>Acorn<span>.</span></h1>
+         </a>
 
-    <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=f8bbc7549216335625367284bd469f94&libraries=clusterer,services"></script>
-    <script>
-        var mapContainer = document.getElementById('map');
-        var mapOption = {
-            center: new kakao.maps.LatLng(37.56692, 126.97845),
-            level: 3,
-            mapTypeId: kakao.maps.MapTypeId.ROADMAP
-        };
-        
-        var currentOverlay = null;
+         <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+         <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+         <nav id="navbar" class="navbar">
+            <ul>
+               <li><a href="index.html" class="active">Home</a></li>
+               <li><a href="about.html">서비스소개</a></li>
+               <li><a href="conajax.html">창고검색</a></li>
+               <!-- 광진 작업 영역 -->
+               <li><a href="firstLogin">로그인</a></li> <!-- 성공 -->
+               <!-- 광진 작업 영역 -->
+               <li><a href="joinChoiceGo">회원가입</a></li> <!-- 성공 -->
+               <li><a href="/board/list?page=1">공지사항</a></li>
+            </ul>
+         </nav><!-- .navbar -->
+      </div>
+   </header><!-- End Header -->
 
-        function closeOverlay() {
-            if (currentOverlay) {
-                currentOverlay.setMap(null);
-            }
-        }
+   <section id="hero" class="hero">
+      <div class="carousel-item active" style="background-image: url(assets/img/hero-carousel/hero-carousel-1.jpg)">
+      </div>
+   </section>
 
-        function attachOverlay(marker, content) {
-            kakao.maps.event.addListener(marker, 'click', function () {
-                closeOverlay();
+   <!-- 검색창을 지도 왼쪽 상단으로 이동 -->
+   <div id="search-container">
+      <div id="search-input-container">
+         <input type="text" id="addressInput" placeholder="주소를 입력하세요">
+         <button id="searchButton" onclick="searchAddress()">
+            <i class="fas fa-search"></i> <!-- 돋보기 아이콘 추가 -->
+         </button>
+      </div>
+   </div>
+   
+   <div id="show-traffic">
+   <button id="showTrafficButton" onclick="toggleTraffic()">교통 상황</button>
+   </div>
+   
+   <div id="map" style="width:100%;height:90vh;margin-top: 100px"></div>
 
-                var overlay = new kakao.maps.CustomOverlay({
-                    content: content,
-                    map: map,
-                    position: marker.getPosition()
-                });
 
-                currentOverlay = overlay;
+   <script
+      src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=f8bbc7549216335625367284bd469f94&libraries=clusterer,services"></script>
+   <script>
+      var mapContainer = document.getElementById('map');
+      var mapOption = {
+         center: new kakao.maps.LatLng(37.56692, 126.97845),
+         level: 3,
+         mapTypeId: kakao.maps.MapTypeId.ROADMAP
+      };
+
+      var currentOverlay = null;
+
+      function closeOverlay() {
+         if (currentOverlay) {
+            currentOverlay.setMap(null);
+         }
+      }
+
+      function attachOverlay(marker, content) {
+         kakao.maps.event.addListener(marker, 'click', function () {
+            closeOverlay();
+
+            var overlay = new kakao.maps.CustomOverlay({
+               content: content,
+               map: map,
+               position: marker.getPosition()
             });
-        }
 
-        function searchAddress() {
-            var addressInput = document.getElementById('addressInput');
-            var address = addressInput.value;
+            currentOverlay = overlay;
+         });
+      }
 
-            if (address) {
-                var geocoder = new kakao.maps.services.Geocoder();
+      function searchAddress() {
+         var addressInput = document.getElementById('addressInput');
+         var address = addressInput.value;
 
-                geocoder.addressSearch(address, function (result, status) {
-                    if (status === kakao.maps.services.Status.OK && result.length > 0) {
-                        // 주소로 검색된 좌표로 지도 중심 이동
-                        map.setCenter(new kakao.maps.LatLng(result[0].y, result[0].x));
-                    } else {
-                        alert('주소를 찾을 수 없습니다.');
-                    }
-                });
-            } else {
-                alert('주소를 입력하세요.');
+         if (address) {
+            var geocoder = new kakao.maps.services.Geocoder();
+
+            geocoder.addressSearch(address, function (result, status) {
+               if (status === kakao.maps.services.Status.OK && result.length > 0) {
+                  // 주소로 검색된 좌표로 지도 중심 이동
+                  map.setCenter(new kakao.maps.LatLng(result[0].y, result[0].x));
+               } else {
+                  alert('주소를 찾을 수 없습니다.');
+               }
+            });
+         } else {
+            alert('주소를 입력하세요.');
+         }
+      }
+
+      // 지도를 생성한다 
+      var map = new kakao.maps.Map(mapContainer, mapOption);
+      //********여기까지는 지도 생성************
+
+      var imageSrc = '/assets/img/team/storage.png', // 마커이미지의 주소입니다    
+         imageSize = new kakao.maps.Size(40, 45), // 마커이미지의 크기입니다
+         imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+      // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+      var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+         markerPosition = new kakao.maps.LatLng(37.54699, 127.09598); // 마커가 표시될 위치입니다
+
+      // 지도 타입 변경 컨트롤을 생성한다
+      var mapTypeControl = new kakao.maps.MapTypeControl();
+
+      // 지도의 상단 우측에 지도 타입 변경 컨트롤을 추가한다
+      map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+      // 지도에 확대 축소 컨트롤을 생성한다
+      var zoomControl = new kakao.maps.ZoomControl();
+
+      // 지도의 우측에 확대 축소 컨트롤을 추가한다
+      map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+      //********여기까지는 지도 컨트롤***********
+
+      // 지도에 교통정보를 표시하도록 지도타입을 추가합니다
+      map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
+
+      // 마커 클러스터러를 생성합니다
+      var clusterer = new kakao.maps.MarkerClusterer({
+         map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
+         averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
+         minLevel: 5 // 클러스터 할 최소 지도 레벨 
+      });
+
+      // AJAX를 통해 데이터를 가져옵니다.
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "/conta", true);
+      xhr.onreadystatechange = function () {
+         if (xhr.readyState === 4 && xhr.status === 200) {
+            var data = JSON.parse(xhr.responseText).datas;
+
+            var markers = [];
+
+            for (var i = 0; i < data.length; i++) {
+               var marker = new kakao.maps.Marker({
+                  position: new kakao.maps.LatLng(data[i].we, data[i].kyung), //좌표,좌표
+                  map: map,
+                  image: markerImage
+               });
+
+               markers.push(marker); // makers라는 변수안에 maker를 넣음
+
+               // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+               var content = '<div class="wrap">' +
+                  '    <div class="info">' +
+                  '        <div class="title">' +
+                  '            창고 정보' +  // 제목을 변경
+                  '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
+                  '        </div>' +
+                  '        <div class="body">' +
+                  '            <div class="img">' +
+                  '                <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/thumnail.png" width="73" height="70">' +
+                  '           </div>' +
+                  '            <div class="desc">' +
+                  '                <div class="ellipsis">회사명: ' + data[i].con_name + '</div>' +  // 데이터를 표시
+                  '                <div class="ellipsis">주소: ' + data[i].con_addr + '</div>' +  // 데이터를 표시
+                  '                <div class="ellipsis">면적: ' + data[i].con_area + ' ㎡</div>' +  // 데이터를 표시
+                  '            <div><a href="index.html" target="_blank" onclick="openPopup()">상세보기</a></div>' +
+                  '            </div>' +
+                  '    </div>' +
+                  '</div>';
+
+               // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+               attachOverlay(marker, content);
             }
+
+            // 클러스터러에 마커들을 추가
+            clusterer.addMarkers(markers);
+         }
+      };
+      xhr.send();
+
+      // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+      function closeOverlay() {
+         if (currentOverlay) {
+            currentOverlay.setMap(null);
+         }
+      }
+
+      // 현재 표시 중인 오버레이를 저장하는 변수
+      var currentOverlay = null;
+
+      // 마커를 클릭했을 때 커스텀 오버레이를 표시하는 함수
+      function attachOverlay(marker, content) {
+         kakao.maps.event.addListener(marker, 'click', function () {
+            // 기존 오버레이가 있으면 닫기
+            closeOverlay();
+
+            var overlay = new kakao.maps.CustomOverlay({
+               content: content,
+               map: map,
+               position: marker.getPosition()
+            });
+
+            // 클릭한 마커에 대한 오버레이를 현재 오버레이로 저장
+            currentOverlay = overlay;
+         });
+      }
+      // 팝업을 열기 위한 함수
+      function openPopup() {
+         window.open("index.html", "_blank", "width=600, height=400");
+      }
+      
+      
+      //마커 정보에서 상세보기 링크를 누르면 상세보기 팝업을 열기-- 이건 세션관리를 구현해야 실행가능
+   /* function openPopup() {
+    // 로그인 여부를 확인하여 로그인 되어 있지 않으면 로그인 페이지로 이동
+    // 여기에서는 간단한 확인 방법으로 사용자가 로그인되어 있는지 여부를 확인할 수 있도록 isUserLoggedIn() 함수를 사용합니다.
+    if (!isUserLoggedIn()) {
+        // 사용자가 로그인되어 있지 않으면 로그인 페이지로 이동
+        window.location.href = "joinchoice.html"; // 로그인 페이지 URL로 변경
+    } else {
+        // 사용자가 로그인되어 있으면 상세보기 팝업을 열기
+        window.open("details.html", "_blank", "width=600, height=400");
+    }
+   }
+
+// 사용자가 로그인되어 있는지 여부를 확인하는 간단한 함수
+   function isUserLoggedIn() {
+    // 여기에서는 간단히 로컬 스토리지에 로그인 상태를 저장하는 방식을 사용합니다.
+    // 실제로는 서버와의 인증 및 세션 관리를 수행해야 합니다.
+    // 로그인되어 있을 때는 'userLoggedIn' 키를 true로 설정, 로그아웃되면 false로 설정
+    return localStorage.getItem('userLoggedIn') === 'true';
+   }
+   */
+   var trafficShown = false; // 초기에는 교통 정보가 표시되지 않음
+      // 페이지 로딩 시 교통 정보를 제거합니다
+      map.removeOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
+      // 교통 정보를 추가 또는 제거하는 함수
+      function toggleTraffic() {
+        if (trafficShown) {
+          // 교통 정보를 제거합니다
+          map.removeOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
+          trafficShown = false;
+        } else {
+          // 교통 정보를 추가합니다
+          map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
+          trafficShown = true;
         }
+   }
 
-		// 지도를 생성한다 
-		var map = new kakao.maps.Map(mapContainer, mapOption);
-		//********여기까지는 지도 생성************
-
-		// 지도 타입 변경 컨트롤을 생성한다
-		var mapTypeControl = new kakao.maps.MapTypeControl();
-
-		// 지도의 상단 우측에 지도 타입 변경 컨트롤을 추가한다
-		map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
-
-		// 지도에 확대 축소 컨트롤을 생성한다
-		var zoomControl = new kakao.maps.ZoomControl();
-
-		// 지도의 우측에 확대 축소 컨트롤을 추가한다
-		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-		//********여기까지는 지도 컨트롤***********
-
-		// 마커 클러스터러를 생성합니다
-		var clusterer = new kakao.maps.MarkerClusterer({
-			map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
-			averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
-			minLevel: 5 // 클러스터 할 최소 지도 레벨 
-		});
-
-		// AJAX를 통해 데이터를 가져옵니다.
-		var xhr = new XMLHttpRequest();
-		xhr.open("GET", "/conta", true);
-		xhr.onreadystatechange = function () {
-			if (xhr.readyState === 4 && xhr.status === 200) {
-				var data = JSON.parse(xhr.responseText).datas;
-
-				var markers = [];
-
-				for (var i = 0; i < data.length; i++) {
-					var marker = new kakao.maps.Marker({
-						position: new kakao.maps.LatLng(data[i].we, data[i].kyung), //좌표,좌표
-						map: map
-					});
-
-					markers.push(marker); // makers라는 변수안에 maker를 넣음
-
-					// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-					var content = '<div class="wrap">' +
-						'    <div class="info">' +
-						'        <div class="title">' +
-						'            창고 정보' +  // 제목을 변경
-						'            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
-						'        </div>' +
-						'        <div class="body">' +
-						'            <div class="img">' +
-						'                <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/thumnail.png" width="73" height="70">' +
-						'           </div>' +
-						'            <div class="desc">' +
-						'                <div class="ellipsis">회사명: ' + data[i].con_name + '</div>' +  // 데이터를 표시
-						'                <div class="ellipsis">주소: ' + data[i].con_addr + '</div>' +  // 데이터를 표시
-						'                <div class="ellipsis">면적: ' + data[i].con_area + ' ㎡</div>' +  // 데이터를 표시
-						'				<div><a href="index.html" target="_blank" onclick="openPopup()">상세보기</a></div>' +
-						'            </div>' +
-						'    </div>' +
-						'</div>';
-
-					// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-					attachOverlay(marker, content);
-				}
-
-				// 클러스터러에 마커들을 추가
-				clusterer.addMarkers(markers);
-			}
-		};
-		xhr.send();
-
-		// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
-		function closeOverlay() {
-			if (currentOverlay) {
-				currentOverlay.setMap(null);
-			}
-		}
-
-		// 현재 표시 중인 오버레이를 저장하는 변수
-		var currentOverlay = null;
-
-		// 마커를 클릭했을 때 커스텀 오버레이를 표시하는 함수
-		function attachOverlay(marker, content) {
-			kakao.maps.event.addListener(marker, 'click', function () {
-				// 기존 오버레이가 있으면 닫기
-				closeOverlay();
-
-				var overlay = new kakao.maps.CustomOverlay({
-					content: content,
-					map: map,
-					position: marker.getPosition()
-				});
-
-				// 클릭한 마커에 대한 오버레이를 현재 오버레이로 저장
-				currentOverlay = overlay;
-			});
-		}
-		// 팝업을 열기 위한 함수
-		function openPopup() {
-			window.open("index.html", "_blank", "width=600, height=400");
-		}
-	</script>
-
+</script>
 </body>
-
 </html>
