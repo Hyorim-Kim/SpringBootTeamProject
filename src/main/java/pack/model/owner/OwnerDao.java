@@ -18,8 +18,8 @@ public class OwnerDao {
 	    return value == null || value.trim().isEmpty();
 	}
 
-	private boolean isValidOwnerData(OwnerDto ownerDto) {
-	    boolean b = true; // 기본적으로 유효한 값으로 초기화
+	private boolean joinOwnerData(OwnerDto ownerDto) {
+	    boolean b = true; 
 	    
 	    // 회원 가입 페이지 필드란에 입력 데이터가 없어도 DB에 들어가는걸 방지
 	    // 각 필드의 유효성 검사를 수행
@@ -38,15 +38,17 @@ public class OwnerDao {
 	        !ownerDto.getEmail().matches("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$")  // 이메일 주소 패턴
 	    ) {
 	        b = false; // 어떤 필드라도 비어 있거나 비밀번호가 일치하지 않으면 유효하지 않음.
-	    }
+	    } else {
+            b = true; // 모든 필드와 정규식에 유효하고 비밀번호가 일치하면 true로 설정.
+        }
 
 	    return b;
 	}
 
-	
+	// 공급자 회원가입에 필요한 메서드
 	public boolean ownerinsertData(OwnerDto ownerDto) {
 	    boolean b = false;
-	    if (isValidOwnerData(ownerDto)) {
+	    if (joinOwnerData(ownerDto)) {
 	        int re = dataMapperInter.ownerinsertData(ownerDto);
 	        if (re > 0) {
 	            b = true;
@@ -75,4 +77,6 @@ public class OwnerDao {
 		if(re >= 0) b = true;
 		return b;
     }
+    
+    // 추후 공급자가 창고를 등록을 한 상태라면 회원탈퇴가 되지 않도록 로직 구성
 }
