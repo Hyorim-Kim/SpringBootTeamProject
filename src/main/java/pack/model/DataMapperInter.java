@@ -15,7 +15,7 @@ import pack.model.user.UserDto;
 @Mapper
 public interface DataMapperInter {
 	
-	/**** 회원가입, 회원수정, 회원탈퇴, 로그인에 필요한 SQL 쿼리문 (광진) ****/
+	/*** 회원가입, 회원수정, 회원탈퇴, 로그인에 필요한 SQL 쿼리문 (광진) ***/
 	
 	// User 회원가입 SQL 쿼리 (광진)
 	@Insert("INSERT INTO user (user_id, user_pwd, user_name, user_tel, user_email, user_addr, user_jumin) \r\n"
