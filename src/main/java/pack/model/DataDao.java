@@ -89,4 +89,38 @@ public class DataDao {
 	      
 	      return b;
 	   }
+	
+	public List<ContainerDto> getDataAll4(){
+        List<ContainerDto> list4 = dataMapper.selectAll4();  // sql문이 실행
+        logger.info("datas : " + list4.size() + "개");
+        return list4;
+     }
+     
+     @Transactional  // DB와 관련된 클래스나 메소드에 어노테이션을 적어서 사용,, insert작업이 성공하여 DB에 들어가게끔 하기 위해 성공하면 커밋, 실패하면 롤백
+      public boolean saveReview(ReviewDto reviewDto, String user_id) { //이 메소드가 실행되면 ReviewDto 객체를 매개변수로 받아 리뷰 정보를 DB에 저장
+          boolean success = false;
+          try {
+              int result = dataMapper.insertReview(reviewDto); // insertReview 메서드는 MyBatis 매퍼 인터페이스에 매핑되어야 합니다.
+              if (result > 0) {
+                  success = true;
+              }
+          } catch (Exception e) {
+              // 예외 처리
+              logger.error("saveReview err : " + e.getMessage());
+          }
+          
+          return success;
+      }
+     
+     public List<ReviewDto> getreview(){
+        List<ReviewDto> list5 = dataMapper.selectAll5();  // sql문이 실행
+        logger.info("datas : " + list5.size() + "개");
+        return list5;
+     }
+     
+     public List<ContainerDto> getreviews(){
+        List<ContainerDto> list6 = dataMapper.selectAll6();  // sql문이 실행
+        logger.info("datas : " + list6.size() + "개");
+        return list6;
+     }
 }

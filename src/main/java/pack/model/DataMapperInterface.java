@@ -3,6 +3,7 @@ package pack.model;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -38,4 +39,17 @@ public interface DataMapperInterface {
 	
 	@Delete("delete from contain where con_no=#{con_no}")   // 삭제하기
 	int delete(String con_no);
+	
+	// user가 작성한 별점과 내용이 rv table에 insert 
+	   @Insert("INSERT INTO rv (rating, content,user_id,cont_no) VALUES (#{rating}, #{content}, #{user_id}, #{cont_no})")
+	   int insertReview(ReviewDto reviewDto);
+	   
+	   @Select("select * from rv")
+	   List<ReviewDto> selectAll5();
+	   
+	   @Select("select * from container")
+	   List<ContainerDto> selectAll6();
+	   
+	   @Select("select * from container")
+	   List<ContainerDto> selectAll4();
 }
