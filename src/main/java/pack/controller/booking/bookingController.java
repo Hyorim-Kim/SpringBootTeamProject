@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import pack.model.booking.bookingDTO;
-import pack.controller.user.userLoginSession;
+import pack.controller.FormBean;
 import pack.model.booking.BookingDao;
 import pack.model.booking.BookingMapperInter;
 
 
 @Controller
 @RequestMapping("booking")
-public class bookingController implements userLoginSession{
+public class bookingController {
 	@Autowired
 	private BookingDao dao;
 
@@ -35,17 +35,20 @@ public class bookingController implements userLoginSession{
 	}
 	//예약하기
 	@PostMapping("bookingDo")
-	public String bookingDo(HttpSession session, bookingDTO bookingDto) {
-		dao.bookingDo(bookingDto); 
-		return "redirect:/bookingInfo";
+	public String bookingDo() {
+		 
+		return "booking/bookingInfo";
 	}
 
 	
 
 	@GetMapping("bookingList")
-	public String bookingCheck(HttpServletRequest request, HttpServletResponse response ,Model model)throws Exception {
+	public String bookingCheck(HttpSession session, Model model){
+		String user_id = (String)session.getAttribute("user_id");
 		ArrayList<bookingDTO> blist =(ArrayList<bookingDTO>)dao.bookingAll();
-		model.addAttribute("list", blist);
+		session.setAttribute("booking", blist);
+		model.addAttribute("bklist", blist);
+		
 		return "/bookingInfo";
 	}
 
