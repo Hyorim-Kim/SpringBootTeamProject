@@ -1,5 +1,7 @@
 package pack.controller.owner;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,9 +56,14 @@ public class OwnerController {
     	OwnerDto owner = ownerDao.ownerloginProcess(business_num, owner_pwd);
 
         if (owner != null) {
+
+        	session.setAttribute("business_num", owner.getBusiness_num());
         	session.setAttribute("owner", owner);
         	session.setAttribute("owner_name", owner.getOwner_name());
-            return "../templates/owner/ownermypage"; // 로그인 성공 시 ownermypage.html로 이동
+            return "../templates/owner/ownermain"; // 로그인 성공 시 ownermain.html로 이동
+
+            
+
             
         } else {
             // 로그인 실패

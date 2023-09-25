@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -19,7 +20,7 @@ public class ListControllerBoard {
 	private BoardDaoImpl daoImpl;
 	
 	private int tot;        // 전체 레코드 수
-	private int plist = 10;  // 페이지 당 행 수
+	private int plist = 15;  // 페이지 당 행 수
 	private int pagesu;    // 전체 페이지 수
 
 
@@ -68,7 +69,7 @@ public class ListControllerBoard {
 		return "board/list";
 	}
 	
-	@GetMapping("search")
+	@PostMapping("board/search")
 	public String searchProcess(BoardBean bean, Model model) {
 		System.out.println(bean.getSearchName() + " " + bean.getSearchValue());
 		ArrayList<BoardDto> list = (ArrayList<BoardDto>)daoImpl.search(bean);
@@ -76,7 +77,7 @@ public class ListControllerBoard {
 		model.addAttribute("data", list);
 		model.addAttribute("pagesu", getPageSu());
 		model.addAttribute("page", "1");
-		return "list";
+		return "board/list";
 	}
 
 }
