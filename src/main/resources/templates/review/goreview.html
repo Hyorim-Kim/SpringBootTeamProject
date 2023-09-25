@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>후기 작성</title>
+    <link href="/css/star.css" rel="stylesheet" />
+</head>
+
+<body>
+
+            <form action="rvinsert" class="mb-3" name="mystar" id="mystar" method="post">
+                <fieldset>
+                    <span class="text-bold">별점을 선택해주세요</span>
+                    <input type="radio" name="reviewStar" value="5" id="rate1" ><label
+                        for="rate1">★</label>
+                    <input type="radio" name="reviewStar" value="4" id="rate2"><label
+                        for="rate2">★</label>
+                    <input type="radio" name="reviewStar" value="3" id="rate3" ><label
+                        for="rate3">★</label>
+                    <input type="radio" name="reviewStar" value="2" id="rate4"><label
+                        for="rate4">★</label>
+                    <input type="radio" name="reviewStar" value="1" id="rate5"><label
+                        for="rate5">★</label>
+                </fieldset>
+                <div>
+                    <input type="text" name="cont_no" th:value="${cont_no}" required />
+
+                    <input type="hidden" name="user_id" th:value="${session.user_id}" />
+
+                    <textarea class="col-auto form-control" type="text" name="reviewContents" id="reviewContents"
+                        placeholder="창고 사용에 대한 후기를 작성해주시면 감사하겠습니다" th:text="${session.user_content}">
+                    </textarea>
+                </div>
+                <input type="submit" value="작성하기">
+            </form>
+
+</body>
+
+</html>

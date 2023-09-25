@@ -1,27 +1,27 @@
 @charset "UTF-8";
-#myform fieldset{
+#mystar fieldset{
     display: inline-block;
     direction: rtl;
     border:0;
 }
-#myform fieldset legend{
+#mystar fieldset legend{
     text-align: right;
 }
-#myform input[type=radio]{
+#mystar input[type=radio]{
     display: none;
 }
-#myform label{
+#mystar label{
     font-size: 3em;
     color: transparent;
     text-shadow: 0 0 0 #f0f0f0;
 }
-#myform label:hover{
+#mystar label:hover{
     text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
-#myform label:hover ~ label{
+#mystar label:hover ~ label{
     text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
-#myform input[type=radio]:checked ~ label{
+#mystar input[type=radio]:checked ~ label{
     text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
 #reviewContents {

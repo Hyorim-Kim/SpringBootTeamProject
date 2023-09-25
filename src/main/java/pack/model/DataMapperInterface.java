@@ -21,7 +21,7 @@ public interface DataMapperInterface {
 	@Select("SELECT * FROM user WHERE user_name LIKE CONCAT('%', #{searchValue}, '%') OR user_id LIKE CONCAT('%', #{searchValue}, '%')")
 	List<UserDto> selectSearch(FormBean bean);
 	
-	// Supplier sql문들-------------------------------------------------
+	// owner sql문들-------------------------------------------------
 	@Select("select * from owner")
 	List<OwnerDto> selectAll2();
 	
@@ -46,11 +46,23 @@ public interface DataMapperInterface {
 	List<ContainerDto> selectAll4();
 
 	// user가 작성한 별점과 내용이 rv table에 insert 
-	@Insert("INSERT INTO rv (rating, content) VALUES (#{rating}, #{content})")
+	@Insert("INSERT INTO rv (rating, content,user_id,cont_no) VALUES (#{rating}, #{content}, #{user_id}, #{cont_no})")
 	int insertReview(ReviewDto reviewDto);
 	
+	@Select("select * from rv")
+	List<ReviewDto> selectAll5();
+	
+	@Select("select * from container")
+	List<ContainerDto> selectAll6();
+	
+	/*
 	// Ajax
-	@Insert("INSERT INTO rv (rating, content) VALUES (#{rating}, #{content})")
+	@Insert("INSERT INTO rv (rating, content, cont_no, user_id) VALUES (#{rating}, #{content}, #{cont_no}, #{user_id})\r\n"
+			+ "")
 	void insertReviewAjax(ReviewDto reviewDto);
 	
+	// db에 저장된 후기
+	@Select("SELECT * FROM rv")
+	List<ReviewDto> selectAllReviews();
+	*/
 }
