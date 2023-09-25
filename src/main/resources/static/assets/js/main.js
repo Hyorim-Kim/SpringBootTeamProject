@@ -1,6 +1,30 @@
  /*DOMContentLoaded 이벤트를 기다리고, 페이지가 로드되면 다양한 작업을 수행*/
 document.addEventListener('DOMContentLoaded', () => {
-  "use strict";
+  "use strict"; /*코드를 더 엄격하게 해석하고 오류를 방지하기 위해 사용*/
+  
+  // 스크롤 이벤트 감지 - 스크롤을 중단시키는 기능
+  window.addEventListener('scroll', function(event) {
+    event.preventDefault(); // 스크롤 이벤트를 중단시킵니다.
+  });
+
+  // 스크롤 이벤트 감지 - 스크롤 해도 헤더가 사라지지 않고 어두운 색으로 바뀌게 하는 기능
+  window.addEventListener('scroll', function() {
+    var header = document.getElementById('header');
+    var heroSection = document.getElementById('hero');
+    var headerHeight = header.clientHeight;
+    var heroHeight = heroSection.clientHeight;
+    
+    // 헤더의 아랫부분 위치 계산
+    var headerBottom = heroHeight - headerHeight;
+
+    // 스크롤 위치를 확인
+    if (window.scrollY > headerBottom) {
+        header.style.backgroundColor = '#333'; // 배경색을 어두운 색상으로 변경
+    } else {
+        header.style.backgroundColor = 'transparent'; // 아직 헤더 영역 내에 있으면 투명한 배경으로 설정
+    }
+  });
+
 
   /*Preloader : 페이지가 로딩 중일 때 사용자에게 로딩 중임을 시각적으로 알려주는 기능*/
   /* #preloader라는 ID를 가진 요소를 찾고 해당 요소가 존재하면,
