@@ -15,7 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import pack.controller.container.FormBean;
+import pack.controller.FormBean;
+
+
 
 //재민
 @Repository
