@@ -9,19 +9,19 @@
 		$(document).ready(function () {
 			$(".faq").click(function () {
 				// FAQ를 클릭할 때마다 해당 데이터 가져오기
-				let answer = $(this).data("answer");
+				let answer = $(this).data("answer"); // 클릭된 FAQ 항목의 데이터 속성 중 "answer" 값을 가져와서 answer 변수에 저장, 이 데이터 속성은 FAQ 항목의 내용을 나타낸다
 
 				// 해당 FAQ에 대한 표시 영역 선택
-				let showId = $(this).data("show-id");
-				let showArea = $("#" + showId);
+				let showId = $(this).data("show-id"); // 클릭된 FAQ 항목의 데이터 속성 중 "show-id" 값을 가져와서 showId 변수에 저장, 이 데이터 속성은 FAQ 내용이 표시될 영역의 HTML 요소의 ID를 나타낸다
+				let showArea = $("#" + showId); // 위에서 가져온 showId 값을 사용하여 FAQ 내용이 표시될 영역을 선택, jQuery의 $() 함수를 사용하여 해당 ID를 가진 HTML 요소를 선택
 
 				showArea.empty();
 
 				$.ajax({
 					type: "get",
-					url: "detailfaq",
-					data: {"detail": answer},
-					success: function (data) {
+					url: "detailfaq", // Ajax 요청을 보낼 URL을 지정
+					data: {"detail": answer}, // 요청에 포함할 데이터를 지정, 여기서는 "detail" 파라미터에 answer 값을 전달
+					success: function (data) { // 서버로부터 받은 데이터를 showArea에 추가하여 FAQ 내용을 표시
 						let str = data.detail + "<br>";
 						showArea.append(str);
 					},
@@ -60,6 +60,11 @@
 	<th:block th:if="${faq != null and faq.size() > 0}">
 		<table border="1" style="width: 99%; text-align: center;" th:each="data : ${faq}" class="faq"
 			th:data-answer="${data.faq_answer}" th:data-show-id="'show' + ${data.faq_no}">
+			<!-- th:data-answer="${data.faq_answer}" : Thymeleaf의 th:data-* 속성을 사용하여 각 행에 FAQ 답변(faq_answer) 데이터를 data-answer 속성으로 설정, 
+				 이렇게 함으로써 JavaScript 코드에서 FAQ 항목을 클릭할 때 해당 답변을 가져올 수 있다 
+				 
+				 th:data-show-id="'show' + ${data.faq_no}": FAQ 항목을 클릭할 때 해당 답변을 표시할 영역의 ID를 동적으로 생성, 
+				 FAQ 번호(faq_no)를 사용하여 "show" 접두사를 붙이고, 이를 data-show-id 속성으로 설정, 이것은 JavaScript 코드에서 FAQ 항목과 해당 답변 영역을 매핑하는 데 사용-->		
 			<tr>
 				<td th:text="${data.faq_no}" style="width: 10%;"></td>
 				<td th:text="${data.faq_category}" style="width: 15%;"></td>
@@ -68,6 +73,7 @@
 			<tr>
 				<td colspan="3" style="text-align: left; padding-left: 10%">
 					<div th:id="'show' + ${data.faq_no}" style="display: none;"></div>
+					<!-- display: none; 스타일은 해당 요소를 화면에 표시하지 않으며 숨긴 상태로 시작, FAQ 내용을 처음에는 숨긴 상태로 유지하려는 목적 -->
 				</td>
 			</tr>
 		</table>

@@ -30,7 +30,7 @@ public class ContactInsertController {
 		boolean b = contactDao.insertContact(bean);
 			
 		if(b) {
-			return "../templates/owner/ownermain"; // 추가 후 목록 보기
+			return "../templates/contact/contactmain"; // 추가 후 목록 보기
 		} else {
 			return "error";
 		}
