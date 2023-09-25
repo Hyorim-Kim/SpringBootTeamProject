@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import pack.model.booking.bookingDTO;
 import pack.controller.user.userLoginSession;
@@ -35,7 +36,6 @@ public class bookingController implements userLoginSession{
 	//예약하기
 	@PostMapping("bookingDo")
 	public String bookingDo(HttpSession session, bookingDTO bookingDto) {
-		
 		dao.bookingDo(bookingDto); 
 		return "redirect:/bookingInfo";
 	}

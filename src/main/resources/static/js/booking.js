@@ -59,7 +59,6 @@ nextBtn.addEventListener("click", () => {
 		return false;
 	} else if (confirm("예약하시겠습니까?")) {
 		alert("예약되었습니다.");
-		window.location.href = "bookingInfo.html";
 	} else {
 		alert('예약을 취소합니다.');
 		return false;
