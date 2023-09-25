@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>사용한 창고보기</title>
+	<link rel="stylesheet" href="/css/member.css" />
+	<link href="/css/star.css" rel="stylesheet" />
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+	$(document).ready(function () {
+		// "작성하기" 버튼 클릭 시
+		$("form#myform").submit(function (e) {
+			e.preventDefault(); // 폼 제출 방지
+
+			let rating = $("input[name='rating']:checked").val(); // 선택된 별점 가져오기
+			let content = $("textarea[name='content']").val(); // 입력한 내용 가져오기
+
+			// Ajax 요청 보내기
+			$.ajax({
+				type: "POST",
+				url: "/rvinsert", // 컨트롤러의 경로로 설정
+				data: {rating: rating, content: content}, // 별점과 내용을 서버로 전달
+				success: function (data) {
+					// 성공적인 응답을 받았을 때 실행할 코드
+					alert("평가가 저장되었습니다.");
+
+					// 여기에서 서버로부터 새로운 데이터를 가져와서 화면을 업데이트합니다.
+					// 아래는 예시입니다. 실제로 서버에서 데이터를 가져오는 방법에 맞게 수정하세요.
+					$.ajax({
+						type: "GET", // GET 요청으로 데이터를 가져옵니다.
+						url: "/rvinsertAjax", // 업데이트된 데이터를 가져오는 컨트롤러 경로
+						data: {rating: rating, content: content}, // 별점과 내용을 서버로 전달
+						success: function (updatedData) {
+							// 가져온 데이터를 이용하여 화면 업데이트 로직을 수행합니다.
+							// 예를 들어, 업데이트된 후기 목록을 다시 렌더링하는 등의 작업을 수행하세요.
+						},
+						error: function () {
+							alert("새로운 데이터를 가져오는데 오류가 발생했습니다.");
+						}
+					});
+
+					// 화면을 업데이트하는 작업을 여기에서 수행합니다.
+				},
+				error: function () {
+					alert("오류가 발생했습니다.");
+				}
+			});
+		});
+	});
+
+</script>
+</head>
+<body>
+	<h2>사용한 창고내역 보기</h2><!-- 이용한 창고내역 보면서 간단한 코멘트와 별점 기능 구현하기 -->
+	<table style="width:90%">
+		<tr>
+			<th>창고번호</th>
+			<th>주소</th>
+			<th>면적</th>
+			<th>회사이름</th>
+			<th>소유주 전화번호</th>
+			<th>창고사진</th>
+			<th>후기</th>
+		</tr>
+		<th:block th:if="${list4.size > 0}">  <!-- listcontroller의 key인 list4 -->
+			<tr th:each="data4, iterStat : ${list4}">
+				<td th:text="${iterStat.index + 1}"></td>
+				<td th:text="${data4.cont_addr}"></td>
+				<td th:text="${data4.cont_size}"></td>
+				<td th:text="${data4.cont_name}"></td>
+				<td th:text="${data4.owner_phone}"></td>
+				<td th:text="${data4.cont_image}"></td>
+				<td>
+					<!-- <form class="mb-3" id="reviewForm" method="post"> -->
+					<form class="mb-3" action="/rvinsert" name="myform" id="myform" method="post">
+						<fieldset>
+							<span class="text-bold"></span>
+							<!-- name은 rating으로 통일하고 id는 고유값을 갖게함 -->
+							<input type="radio" name="rating"
+								th:id="'rate5_' + ${iterStat.index + 1}" value="5" th:checked="${param.rating == '5'}" required/>
+							<label th:for="'rate5_' + ${iterStat.index + 1}">★</label>
+
+							<input type="radio" name="rating"
+								th:id="'rate4_' + ${iterStat.index + 1}" value="4" th:checked="${param.rating == '4'}" required/>
+							<label th:for="'rate4_' + ${iterStat.index + 1}">★</label>
+
+							
+							<input type="radio" name="rating"
+								th:id="'rate3_' + ${iterStat.index + 1}" value="3" th:checked="${param.rating == '3'}" required/>
+							<label th:for="'rate3_' + ${iterStat.index + 1}">★</label>
+
+
+							<input type="radio" name="rating"
+								th:id="'rate2_' + ${iterStat.index + 1}" value="2" th:checked="${param.rating == '2'}" required/>
+							<label th:for="'rate2_' + ${iterStat.index + 1}">★</label>
+
+
+							<input type="radio" name="rating"
+								th:id="'rate1_' + ${iterStat.index + 1}" value="1" th:checked="${param.rating == '1'}" required/>
+							<label th:for="'rate1_' + ${iterStat.index + 1}">★</label>
+
+							<!-- id의 값이 똑같으면 동시에 다른 행들의 별점들 중복선택이 불가해서 id값 따로 -->
+						</fieldset>
+						<div>
+							<textarea class="col-auto form-control" type="text" name="content"
+								th:id="'reviewContents' + ${iterStat.index + 1}"
+								placeholder="창고 이용에 대한 평가를 남겨주세요" required>[[${param.content}]]</textarea>
+						</div>   <!-- required을 사용해서 별점과 내용을 작성하고 넘어가게끔 함 -->
+						<input type="submit" value="작성하기">					
+					</form>
+				</td>
+			</tr>
+		</th:block>
+	</table>
+</body>
+</html>

@@ -1,5 +1,7 @@
 package pack.controller;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -8,4 +10,5 @@ public class FormBean {
 	business_num,owner_pwd,owner_name,owner_tel,email,cont_num,
 	cont_no,cont_addr,cont_we,cont_kyung,cont_size,cont_name,owner_phone,cont_status,cont_image,owner_num;
 	private String searchValue, selectSearch, svalue;
+	
 }

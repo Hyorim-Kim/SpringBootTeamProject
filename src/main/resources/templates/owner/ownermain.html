@@ -58,10 +58,13 @@
           <li class="dropdown"><a href="#"><span>창고관리</span> <i
                 class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
-              <li><a href="#">창고등록</a></li>
-              <li><a href="#">예약창고</a></li>
-              <li><a href="#">결제창고</a></li>
-              <li><a href="#">잉여창고</a></li>
+              <li><a href="/owner/list">창고관리</a></li>
+             <!-- 컨트롤러에서 매핑한 어노테이션의 파라미터?인자? 값으로 경로 정해줌 -->
+						<!-- /owner > 클래스 매핑, /manage > 메소드 매핑한다.
+						>>> 메소드에서 수행한 값을 달고 리턴값의 경로파일로 이동 -->
+						<li><a href="/owner/paid">결제창고관리</a></li>
+						<li><a href="/owner/reserve">예약창고관리</a></li>
+						<li><a href="/owner/register">창고등록</a></li>
             </ul>
           </li>
           <li class="dropdown"><a href="#"><span>마이페이지</span> <i
@@ -92,7 +95,7 @@
             <span style="color: #ffc732;">.</span></h2>
             <!--소유주 페이지에서는 . 눌러도 관리자 페이지로 이동하지 않음-->
             <p data-aos="fade-up" style="font-size: 20px;">
-				<span style="color: #ffffff"><strong><span th:text="${session.owner.owner_name}"></strong></span> 사업자님 환영합니다</p>
+            <span style="color: #ffffff"><strong><span th:text="${session.owner.owner_name}"></strong></span> 사업자님 환영합니다</p>
             <a data-aos="fade-up" data-aos-delay="200" href="#get-started" class="btn-get-started">Get Started</a>
           </div>
         </div>

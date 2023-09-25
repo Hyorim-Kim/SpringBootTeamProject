@@ -13,7 +13,7 @@ import pack.model.admin.AdminDto;
 
 @Controller
 public class AdminController {
-	
+	// 광진
 	@Autowired
 	private AdminDao adminDao;
 	

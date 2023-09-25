@@ -14,24 +14,32 @@
     <div class="join-form">
         <div class="content">
             <form action="/ownerInfoUpdate" method="POST">
-                <h3>사업자 번호</h3>
-                <input type="text" name="business_num" id="business_num" class="text-field" th:value="${owner.business_num}">
-
-                <h3>비밀번호</h3>
-                <!-- 정보 수정이므로 type은 text로 유지 -->
-                <input type="text" name="owner_pwd" id="owner_pwd" class="text-field" th:value="${owner.owner_pwd}">
-
-                <h3>비밀번호 확인</h3>
-                <input type="text" name="owner_repwd" id="owner_repwd" class="text-field" placeholder="비밀번호 확인">
-
-                <h3>이름</h3>
-                <input type="text" name="owner_name" id="owner_name" class="text-field" th:value="${owner.owner_name}">
-
-                <h3>전화번호</h3>
-                <input type="tel" name="owner_tel" id="owner_tel" class="text-field" th:value="${owner.owner_tel}">
-
-                <h3>이메일</h3>
-                <input type="text" name="email" id="email" class="text-field" maxlength="30" th:value="${owner.email}">
+				<div id="messageContainer">
+	                <h3>사업자 번호</h3>
+	                <input type="text" name="business_num" id="business_num" class="text-field" th:value="${owner.business_num}" placeholder="사업자 번호">
+					<div id="business_numMessage" class="error-message"></div>
+					
+	                <h3>비밀번호</h3>
+	                <!-- 정보 수정이므로 type은 text로 유지 -->
+	                <input type="text" name="owner_pwd" id="owner_pwd" class="text-field" th:value="${owner.owner_pwd}" placeholder="비밀번호">
+					<div id="owner_pwdMessage" class="error-message"></div>
+					
+	                <h3>비밀번호 확인</h3>
+	                <input type="text" name="owner_repwd" id="owner_repwd" class="text-field" placeholder="비밀번호 확인">
+					<div id="owner_repwdMessage" class="error-message"></div>
+					
+	                <h3>이름</h3>
+	                <input type="text" name="owner_name" id="owner_name" class="text-field" th:value="${owner.owner_name}" placeholder="이름">
+					<div id="owner_nameMessage" class="error-message"></div>
+					
+	                <h3>전화번호</h3>
+	                <input type="tel" name="owner_tel" id="owner_tel" class="text-field" th:value="${owner.owner_tel}" placeholder="전화번호">
+					<div id="owner_telMessage" class="error-message"></div>
+					
+	                <h3>이메일</h3>
+	                <input type="text" name="email" id="email" class="text-field" maxlength="30" th:value="${owner.email}" placeholder="이메일">
+                	<div id="emailMessage" class="error-message"></div>
+                </div>
                 <!-- 버튼 -->
                 <input type="submit" class="submit-btn" value="수정하기">
                 <input type="reset" class="reset-btn" id="btnreset" value="취소">

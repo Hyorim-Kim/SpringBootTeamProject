@@ -89,4 +89,32 @@ public class DataDao {
 	      
 	      return b;
 	   }
+	
+	// 사용한 창고 정보 출력 및 검색하기-------------------------------------------------------------
+		public List<ContainerDto> getDataAll4(){
+			List<ContainerDto> list4 = dataMapper.selectAll4();  // sql문이 실행
+			logger.info("datas : " + list4.size() + "개");
+			return list4;
+		}
+		
+		@Transactional  // DB와 관련된 클래스나 메소드에 어노테이션을 적어서 사용,, insert작업이 성공하여 DB에 들어가게끔 하기 위해 성공하면 커밋, 실패하면 롤백
+	    public boolean saveReview(ReviewDto reviewDto) { //이 메소드가 실행되면 ReviewDto 객체를 매개변수로 받아 리뷰 정보를 DB에 저장
+	        boolean success = false;
+	        try {
+	            int result = dataMapper.insertReview(reviewDto); // insertReview 메서드는 MyBatis 매퍼 인터페이스에 매핑되어야 합니다.
+	            if (result > 0) {
+	                success = true;
+	            }
+	        } catch (Exception e) {
+	            // 예외 처리
+	            logger.error("saveReview err : " + e.getMessage());
+	        }
+	        
+	        return success;
+	    }
+		
+		// ajax
+	    public void saveReviewAjax(ReviewDto reviewDto) {
+	        dataMapper.insertReview(reviewDto);
+	    }
 }
