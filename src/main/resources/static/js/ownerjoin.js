@@ -5,6 +5,8 @@ window.onload = function () {
     let owner_name = document.querySelector('#owner_name');
     let owner_tel = document.querySelector('#owner_tel');
     let email = document.querySelector('#email');
+    
+    let submitBtn = document.querySelector('#btnOwnerJoin');
 
     /* 이벤트 핸들러 연결하기 */
     business_num.addEventListener("focusout", checkBusinessNum);
@@ -13,6 +15,47 @@ window.onload = function () {
     owner_name.addEventListener("focusout", checkName);
     owner_tel.addEventListener("focusout", checkTel);
     email.addEventListener("focusout", checkEmail);
+    
+    /* 추가: submit 버튼 클릭 시 전체 필드 검사 */
+    submitBtn.addEventListener("click", function (event) {
+        event.preventDefault(); // 기본 submit 동작 방지
+        if (checkAllFields()) {
+            // 모든 필드가 유효한 경우 서버로 전송
+            document.querySelector('form').submit();
+        } else {
+                   
+        }
+    });
+    
+    // 추가: 모든 필드 유효성 검사 함수
+    function checkAllFields() {
+        let isValid = true;
+
+        // 각 필드별로 유효성 검사 수행
+        if (!checkField(business_num)) isValid = false;
+        if (!checkField(owner_pwd)) isValid = false;
+        if (!checkField(owner_name)) isValid = false;
+        if (!checkField(owner_tel)) isValid = false;
+        if (!checkField(email)) isValid = false;
+
+
+        return isValid;
+    }
+
+    // 추가: 개별 필드 유효성 검사 함수
+    function checkField(field) {
+        let isValid = true;
+        const value = field.value.trim(); // 앞뒤 공백 제거
+
+        if (value === "") { // 공백일 때
+            setErrorStyle(field.id);
+            isValid = false;
+        } else {
+            resetErrorStyle(field.id);
+        }
+
+        return isValid;
+    }
 
     /* 콜백 함수 */
     function checkBusinessNum() {

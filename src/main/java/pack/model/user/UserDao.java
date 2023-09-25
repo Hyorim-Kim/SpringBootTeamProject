@@ -6,13 +6,14 @@ import org.springframework.stereotype.Repository;
 import pack.model.DataMapperInter;
 
 // ************ 광진 **************// 
+
 @Repository
-public class UserDao {
+public class UserDao { // DAO 는 쉽게 말해서 DB 서버에 접근하여 SQL문을 실행할 수 있는 객체
 	
 	@Autowired
 	private DataMapperInter dataMapperInter;
 	
-	//  isEmpty()은 문자열의 길이가 0인 경우에, true를 리턴	
+	// isEmpty() 정의 문자열이 비였는지 여부 체크.
     private boolean isEmpty(String value) {
         return value == null || value.trim().isEmpty();
     }
@@ -26,7 +27,9 @@ public class UserDao {
             isEmpty(userDto.getUser_name()) ||
             isEmpty(userDto.getUser_tel()) ||
             isEmpty(userDto.getUser_email()) ||
-            // 정규식에 맞지 않거나 비밀번호가 일치하지 않거나 이름, 비밀번호, 이메일이 조건을 만족하지 않으면 유효하지 않음.
+            isEmpty(userDto.getUser_addr()) ||
+            // 비밀번호가 일치하지 않거나 이름, 비밀번호, 이메일이 조건을 만족하지 않으면 유효하지 않음.
+            !userDto.getUser_id().matches("^[a-zA-Z]{4,}$") ||
             !userDto.getUser_tel().matches("^[0-9-]+$") || 
             !userDto.getUser_jumin().matches("^\\d{6}-\\d{7}$") ||
             !userDto.getUser_pwd().equals(userDto.getUser_repwd()) ||
@@ -54,9 +57,8 @@ public class UserDao {
 		} catch (Exception e) {
 			// 예외 처리 코드 추가
 			e.printStackTrace(); 
-			// 예외 발생 시에도 b는 false로 유지됩니다.
+			// 예외 발생 시에도 b는 false로 유지
 		}
-
 		return b;
     }
 	    
@@ -68,8 +70,10 @@ public class UserDao {
     
     // 사용자 회원수정에 필요한 메서드(광진)
     public boolean userupdate(UserDto userDto) {
+    	// boolean 기본 타입이 false지만 가독성을 위해 추가
     	boolean b = false;
 		int re = dataMapperInter.userupdate(userDto); 
+		// 필드값이 하나라도 수정이 되면 b가 true로 반환 
 		if(re > 0) b = true;
 		return b;  	
     }
@@ -77,7 +81,9 @@ public class UserDao {
     /*** 9/15일 추가 작업 (회원삭제) 광진 ***/   
     public boolean userdelete(UserDto userDto) {
     	boolean b = false;
+    	// 데이터베이스에서의 삭제 연산을 수행하고 영향을 받은 행의 수를 re 변수에 저장
     	int re = dataMapperInter.userdelete(userDto);
+    	// 필드값이 그대로거나, 하나이상의 값이 수정이 되면 b가 true로 반환 
 		if(re >= 0) b = true;
 		return b; 
     }
@@ -85,7 +91,7 @@ public class UserDao {
     // 사용자 회원가입시 중복체크
     public int userIdCheck(String user_id) {
     	int result = dataMapperInter.useridcheck(user_id);
-		return result;
+		return result; // 중복되는 경우 1을 반환하고, 중복되지 않으면 0을 반환
     }
 
 }
