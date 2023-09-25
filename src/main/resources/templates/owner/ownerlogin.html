@@ -5,38 +5,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로그인</title>
-    <link rel="stylesheet" href="/css/ownerlogin.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/js/ownerlogin.js"></script>
+    <link rel="stylesheet" href="/css/ownerlogin.css">
+    <link href="../assets/css/main.css" rel="stylesheet">
 </head>
 <body>
-    <!-- 메뉴 바 추가 -->
-    <nav>
-        <ul class="menu">
-            <li><a href="userlogingo">사용자 로그인</a></li>
-            <li><a href="ownerlogingo">공급자 로그인</a></li>
-        </ul>
-    </nav>
-
+	<!-- ======= Header ======= -->
+    <header id="header" class="header d-flex align-items-center">        
+        </a>
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="userlogingo">사용자 로그인</a></li>  <!-- 성공 -->
+          </ul>
+        </nav><!-- .navbar -->
+      </div>
+    </header><!-- End Header -->
+  <!-- ======= Hero Section ======= -->
     <section class="login-form">
         <h1>공급자 로그인</h1>
         <form action="ownerLogSuccess" method="post">
+            <!-- 사용자 로그인 ID 입력란-->
             <div class="int-area">
-                <input type="text" name="business_num" id="sup_id" autocomplete="off" required>
-                <label for="id">USER NAME</label>
+                <input type="text" name="business_num" id="id" autocomplete="off" required>
+                <label for="id">Business Num</label>
             </div>
+            <!-- 사용자 비밀번호 ID 입력란-->
             <div class="int-area">
-                <input type="password" name="owner_pwd" id="sup_pwd" autocomplete="off" required>
-                <label for="pw">PASSWORD</label>
+                <input type="password" name="owner_pwd" id="pwd" autocomplete="off" required>
+                <label for="id">Password</label>
             </div>
-            <div class="btn-area">
-                <button id="ownerLoginBtn" type="submit">LOGIN</button>
+            <!-- 로그인 버튼 -->
+            <div class="btn-area">  
+                <button type="submit" id="btn">LOGIN</button>
             </div>
         </form>
         <div class="caption">
-            <a href="">Forgot Password?</a>
+            <a href="">비밀번호 찾기</a>
             <a href="ownerJoinGo">회원가입</a>
         </div>
-    </section>        
+    </section>
+    <script src="/js/ownerlogin.js"></script>
 </body>
 </html>

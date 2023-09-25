@@ -7,37 +7,44 @@
     <title>로그인</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="/css/userlogin.css">
-    <script src="/js/userlogin.js"></script>
+    <link href="../assets/css/main.css" rel="stylesheet">
 </head>
 <body>
-    <!-- 메뉴 바 추가 -->
-    <nav>
-        <ul class="menu">
-			<!-- 사용자 로그인 화면에서 공급자로 이동하는 경우 -->
-            <li><a href="userlogingo">사용자 로그인</a></li>
-            <li><a href="ownerlogingo">공급자 로그인</a></li>
-        </ul>
-    </nav>
-
+	<!-- ======= Header ======= -->
+    <header id="header" class="header d-flex align-items-center">        
+        </a>
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="ownerlogingo">공급자 로그인</a></li>  <!-- 성공 -->
+          </ul>
+        </nav><!-- .navbar -->
+      </div>
+    </header><!-- End Header -->
+  <!-- ======= Hero Section ======= -->
     <section class="login-form">
         <h1>사용자 로그인</h1>
-        <form action="userLogSuccess" name="userLoginForm" method="post">
+        <form action="userLogSuccess" method="post">
+            <!-- 사용자 로그인 ID 입력란-->
             <div class="int-area">
-                <input type="text" name="user_id" id="user_id" autocomplete="off" required>
-                <label for="id">USER NAME</label>
+                <input type="text" name="user_id" id="id" autocomplete="off" required>
+                <label for="id">User Id</label>
             </div>
+            <!-- 사용자 비밀번호 ID 입력란-->
             <div class="int-area">
-                <input type="password" name="user_pwd" id="user_pwd" autocomplete="off" required>
-                <label for="pwd">PASSWORD</label>
+                <input type="password" name="user_pwd" id="pwd" autocomplete="off" required>
+                <label for="id">Password</label>
             </div>
-            <div class="btn-area">			
-                <button id="userLoginBtn" type="submit">LOGIN</button>
+            <!-- 로그인 버튼 -->
+            <div class="btn-area">  
+                <button type="submit" id="btn">LOGIN</button>
             </div>
         </form>
         <div class="caption">
-            <a href="">Forgot Password?</a> <!-- 요거는 일단 스킵 -->
+            <a href="">아이디/비밀번호 찾기</a>
             <a href="userJoinGo">회원가입</a>
         </div>
-    </section>   
+    </section>
+    <script src="/js/userlogin.js"></script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+
 package pack.model.booking;
 
 import java.util.List;
@@ -25,3 +26,7 @@ public interface BookingMapperInter {
 	List<bookingDTO> bookDelete(int booking_id);
 	
 }
+
+
+
+

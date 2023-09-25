@@ -1,84 +1,168 @@
 // ***** 회원 가입 (사용자) 수정 *****
 window.onload = function () {
-    const userJoinForm = document.querySelector("form"); // 회원가입 폼 선택
+    let pw1 = document.querySelector('#user_pwd');
+    let pw2 = document.querySelector('#user_repwd');
+    let name = document.querySelector('#user_name');
+    let email = document.querySelector('#user_email');
+    let tel = document.querySelector('#user_tel');
+    let jumin = document.querySelector('#user_jumin');
+    let submitBtn = document.querySelector('#btnUserJoin'); // 추가: submit 버튼
 
-    userJoinForm.addEventListener("submit", function(event) {
-        event.preventDefault();
+    /* 이벤트 핸들러 연결하기 */
+    pw1.addEventListener("focusout", checkPw);
+    pw2.addEventListener("focusout", check2Pw);
+    name.addEventListener("focusout", checkName);
+    email.addEventListener("focusout", checkEmail);
+    tel.addEventListener("focusout", checkTel);
+    jumin.addEventListener("focusout", checkJumin);
 
-        let user_id = document.getElementById('user_id').value;
-        let user_pwd = document.getElementById('user_pwd').value;
-        let user_repwd = document.getElementById('user_repwd').value;
-        let user_name = document.getElementById('user_name').value;
-        let user_email = document.getElementById('user_email').value;
-        let user_tel = document.getElementById('user_tel').value;
-        let user_jumin = document.getElementById('user_jumin').value;
-
-        let telReg = /^\d{3}-\d{3,4}-\d{4}$/;
-        let juminReg = /^\d{6}-\d{7}$/;
-        let nameReg = /^[가-힣]{2,}$/;
-        let pwdReg = /^.{4,}$/;
-        let emailReg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-
-        // 모든 필드가 비어있을 때 경고 메시지 표시
-        if (
-            user_id === "" ||
-            user_pwd === "" ||
-            user_repwd === "" ||
-            user_name === "" ||
-            user_email === "" ||
-            user_tel === "" ||
-            user_jumin === ""
-        ) {
-            confirm("가입란을 모두 채워주세요.");
-            return false;
+    // 추가: submit 버튼 클릭 시 전체 필드 검사
+    submitBtn.addEventListener("click", function (event) {
+        event.preventDefault(); // 기본 submit 동작 방지
+        if (checkAllFields()) {
+            // 모든 필드가 유효한 경우 서버로 전송
+            document.querySelector('form').submit();
+        } else {
+            // 모든 필드가 유효하지 않은 경우 경고 메시지 표시
+            // showMessage('모든 필드를 올바르게 입력해주세요.');
         }
-
-        // 다른 유효성 검사는 여기에 계속 작성.
-        if (
-            !telReg.test(user_tel) ||
-            !juminReg.test(user_jumin) ||
-            !nameReg.test(user_name) ||
-            !pwdReg.test(user_pwd) ||
-            user_pwd !== user_repwd ||
-            !emailReg.test(user_email)
-        ) {
-            let errorMessage = "";
-
-            if (!nameReg.test(user_name)) {
-                errorMessage += "이름을 올바르게 입력하세요.\n";
-            }
-
-            if (!telReg.test(user_tel)) {
-                errorMessage += "전화번호 형식이 올바르지 않습니다.\n";
-            }
-
-            if (!juminReg.test(user_jumin)) {
-                errorMessage += "주민번호 형식이 올바르지 않습니다.\n";
-            }
-
-            if (!pwdReg.test(user_pwd)) {
-                errorMessage += "비밀번호는 4글자 이상이어야 합니다.\n";
-            }
-
-            if (user_pwd !== user_repwd) {
-                errorMessage += "비밀번호가 일치하지 않습니다.\n";
-            }
-
-            if (!emailReg.test(user_email)) {
-                errorMessage += "올바른 이메일 주소를 입력하세요.\n";
-            }
-
-            confirm(errorMessage);
-            return false;
-        }
-        confirm("가입을 축하합니다!");
-        // 회원가입 정보가 유효한 경우, 폼을 서버로 제출
-        userJoinForm.submit();
     });
+    
+    	// 추가: 모든 필드 유효성 검사 함수
+    function checkAllFields() {
+        let isValid = true;
+
+        // 각 필드별로 유효성 검사 수행
+        if (!checkField(pw1)) isValid = false;
+        if (!checkField(pw2)) isValid = false;
+        if (!checkField(name)) isValid = false;
+        if (!checkField(email)) isValid = false;
+        if (!checkField(tel)) isValid = false;
+        if (!checkField(jumin)) isValid = false;
+
+        return isValid;
+    }
+
+    // 추가: 개별 필드 유효성 검사 함수
+    function checkField(field) {
+        let isValid = true;
+        const value = field.value.trim(); // 앞뒤 공백 제거
+
+        if (value === "") { // 공백일 때
+            setErrorStyle(field.id);
+            isValid = false;
+        } else {
+            resetErrorStyle(field.id);
+        }
+
+        return isValid;
+    }
+
+
+	
+	function checkPw() {
+		let pwPattern = /^.{4,}$/; // 정규식 패턴
+		if (pw1.value === "") { // 공백일 때 
+			setErrorStyle('user_pwd');
+		} else if (!pwPattern.test(pw1.value)) {
+			setErrorStyle('user_pwd');
+		} else {
+			resetErrorStyle('user_pwd');
+		}
+	}
+
+	function check2Pw() {
+		if (pw2.value === pw1.value && pw2.value !== "") {
+			resetErrorStyle('user_repwd');
+		} else if (pw2.value !== pw1.value) {
+			setErrorStyle('user_repwd');
+		}
+
+		if (pw2.value === "") {
+			setErrorStyle('user_repwd');
+		}
+	}
+
+	function checkName() {
+		let namePattern = /^[가-힣]{2,}$/;
+		if (name.value === "") {
+			setErrorStyle('user_name');
+		} else if (!namePattern.test(name.value)) {
+			setErrorStyle('user_name');
+		} else {
+			resetErrorStyle('user_name');
+		}
+	}
+
+	function checkEmail() {
+		let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+		if (email.value === "") {
+			setErrorStyle('user_email');
+		} else if (!emailPattern.test(email.value)) {
+			setErrorStyle('user_email');
+		} else {
+			resetErrorStyle('user_email');
+		}
+	}
+
+	function checkTel() {
+		let telPattern = /^\d{3}-\d{3,4}-\d{4}$/;
+		if (tel.value === "") {
+			setErrorStyle('user_tel');
+		} else if (!telPattern.test(tel.value)) {
+			setErrorStyle('user_tel');
+		} else {
+			resetErrorStyle('user_tel');
+		}
+	}
+
+	function checkJumin() {
+		let juminPattern = /^\d{6}-\d{7}$/;
+		if (jumin.value === "") {
+			setErrorStyle('user_jumin');
+		} else if (!juminPattern.test(jumin.value)) {
+			setErrorStyle('user_jumin');
+		} else {
+			resetErrorStyle('user_jumin');
+		}
+	}
+	
+
+	/* 메시지 표시 함수 */
+	function showMessage(message) {
+		const messageDiv = document.createElement('div');
+		messageDiv.className = 'message';
+		messageDiv.textContent = message;
+		// 메세지를 표시할 위치의 id를 설정
+		const messageContainer = document.getElementById('messageContainer'); // 수정 필요
+		messageContainer.appendChild(messageDiv);
+	}
+
+	/* 에러 스타일 적용 함수 */
+	function setErrorStyle(elementId) {
+		const element = document.getElementById(elementId);
+		element.classList.add('error-input'); // 예를 들어, 'error-input' 클래스를 추가하여 스타일링
+
+		// 해당 메시지 요소에 빨간색 텍스트 스타일 적용
+		const messageElement = document.getElementById(elementId + 'Message');
+		messageElement.style.color = 'red';
+
+		// 에러 메시지 설정
+		messageElement.textContent = '입력한 ' + element.getAttribute('placeholder') + '이(가) 올바르지 않습니다.';
+	}
+
+	/* 에러 스타일 초기화 함수 */
+	function resetErrorStyle(elementId) {
+		const element = document.getElementById(elementId);
+		element.classList.remove('error-input'); // 'error-input' 클래스를 제거하여 초기 스타일로 복원
+
+		// 해당 메시지 요소 초기화
+		const messageElement = document.getElementById(elementId + 'Message');
+		messageElement.style.color = 'black'; // 원하는 색상으로 변경 가능
+		messageElement.textContent = ''; // 에러 메시지 초기화
+	}
 }
-
-
-
+	
 
 
 // **** 주소 등록하기 **** (광진) //

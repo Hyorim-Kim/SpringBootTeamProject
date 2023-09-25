@@ -16,3 +16,6 @@ select, input[type="text"], input[type="submit"] {
     padding: 5px;
     margin-right: 10px;
 }
+center-button{
+    text-align: center;
+}	

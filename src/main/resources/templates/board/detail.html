@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/css/board.css">
+</head>
+<body>
+<h3>공지 시항</h3>
+<table>
+  <tr>
+  	<td>
+  		작성자 : <a href="mailto:${data.mail}">[[${data.admin_id}]]</a>
+  	</td>
+  	<td>작성일 : [[${data.bdate}]]</td>
+  	<td>조회수 : [[${data.readcnt}]]</td>
+  </tr>
+  <tr>
+  	<td colspan="3">제목 : [[${data.title}]]</td>
+  </tr>
+  <tr>
+  	<td colspan="3">
+  		<textarea rows="5" style="width: 98%" readonly="readonly">[[${data.cont}]]</textarea>
+  	</td>
+  </tr>
+</table>
+</body>
+</html>

@@ -13,7 +13,7 @@ import pack.model.admin.AdminDto;
 
 @Controller
 public class AdminController {
-	
+	// 광진
 	@Autowired
 	private AdminDao adminDao;
 	
@@ -33,12 +33,11 @@ public class AdminController {
     	AdminDto admin = adminDao.adminloginProcess(admin_id, admin_pwd);
 
         if (admin != null) {
-        	session.setAttribute("admin", admin); // 세션에 사용자 정보 저장
-            return "../templates/admin/adminloginok"; // 로그인 성공 시 adminloginok.html로 이동
-            
+        	session.setAttribute("admin", admin); // 세션에 관리자 정보 저장
+            return "../templates/admin/adminloginok"; // 로그인 성공 시 adminloginok.html로 이동           
         } else {
             // 로그인 실패
-            return "../templates/user/userfail"; 
+            return "../templates/admin/adminlogin"; 
         }
     }
     

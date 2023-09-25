@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.servlet.http.HttpSession;
 import pack.model.user.UserDao;
@@ -18,12 +19,6 @@ public class UserController {
 	@Autowired
 	private UserDao userDao;
 	
-	// 메인페이지 헤더메뉴에서 회원가입 선택할 때 (성공)
-	@GetMapping("joinChoiceGo")
-	public String joinchoiceGo() {
-	    return "../templates/user/joinchoice"; 
-	}
-	
 	// 메인페이지에서 로그인을 클릭했을 때 수행 (성공)
 	@GetMapping("firstLogin")
 	public String loginGo() {
@@ -35,11 +30,11 @@ public class UserController {
 	public String userJoinGo() {
 		return "../templates/user/userjoin";
 	}
-	
-	// 회원가입 선택란에서 사용자를 선택할 때 (성공)
-	@GetMapping("userJoinChoiceGo")
-	public String userchoice() {
-		return "../templates/user/userjoin";
+		
+	// 사용자로그인 페이지에서 공급자로그인을 클릭했을 때 (성공)
+	@GetMapping("ownerlogingo")
+	public String ownerloginGo() {
+		return "../templates/owner/ownerlogin";
 	}
 	
 	
@@ -47,6 +42,7 @@ public class UserController {
 	@PostMapping("userJoinClick")
 	public String userloginOK(UserDto userDto) {
 		boolean b = userDao.userInsertData(userDto);
+		
 		if(b) {
 			return "../templates/user/userlogin";  
 		} else {
@@ -54,11 +50,6 @@ public class UserController {
 		}	
 	}
 		
-	// 사용자로그인 페이지에서 공급자로그인을 클릭했을 때 (성공)
-	@GetMapping("ownerlogingo")
-	public String ownerloginGo() {
-		return "../templates/owner/ownerlogin";
-	}
 	
     // 사용자 로그인 페이지에서 요청 처리 (성공)
     @PostMapping("/userLogSuccess")
@@ -68,13 +59,13 @@ public class UserController {
         // 사용자 로그인 처리
         UserDto user = userDao.userloginProcess(user_id, user_pwd);
         
-        if (user != null) {
+        if (user != null) { // 사용자 정보가 있는 경우 로그인 성공
             // 로그인 성공과 동시에 세션에 사용자 정보 저장
         	session.setAttribute("user", user); 
         	session.setAttribute("user_name", user.getUser_name());
             return "../templates/user/usermypage"; // 로그인 성공 시 usermypage.html로 이동.
             
-        } else {
+        } else { // 사용자 정보가 DB에 없는 경우 즉, 아이디와 비밀번호가 없는 경우 
             return "../templates/user/userlogin"; // 로그인 실패 시 userlogin.html로 이동.
         }
     }
@@ -91,7 +82,7 @@ public class UserController {
 		return "../templates/user/userupdate"; // 회원 수정 페이지로 이동
 	}
 	
-	// 회원수정 페이지에서 회원수정을 클릭했을 때 (일단 성공이지만 세션값 최신으로 유지되게 설정하기)
+	// 회원수정 페이지에서 회원수정을 클릭했을 때 (광진)
 	@PostMapping("/userInfoUpdate")
 	public String userInfoupdate(UserDto userDto, Model model, HttpSession session) {
 		boolean b = userDao.userupdate(userDto);
@@ -134,8 +125,23 @@ public class UserController {
 	@GetMapping("/userlogoutgo")
 	public String userLogoutProcess(HttpSession session) {
 	    session.removeAttribute("user"); // 세션 유지 종료
+	    //session.invalidate(); 이거 쓰면 큰일난다 
 	    return "redirect:/"; // 로그아웃 클릭시 메인 홈페이지로 이동 
 	}
-
+	
+	// 사용자 회원가입시 아이디 중복체크 (광진)
+	@ResponseBody
+	@PostMapping("/userIdCheck")
+	public int IdCheck(@RequestParam("user_id") String user_id) {
+		int result = userDao.userIdCheck(user_id);
+		return result;
 		
+	}
+	
+	// 예약페이지에서 마이페이지로 돌아가기
+	@GetMapping("/usermypageback")
+	public String userBack(HttpSession session) {
+		session.getAttribute("user");
+		return "../templates/user/usermypage";
+	}	
 }
