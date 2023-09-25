@@ -12,12 +12,6 @@ window.onload = function(){
 function chkUpData(){
 	//입력자료 오류 검사 생략...
 	
-	if(upFrm.pass.value === ""){
-		upFrm.pass.focus();
-		alert("비밀번호를 입력하세요");
-		return;
-	}
-	
 	if(confirm("정말 수정할까요?")){
 		upFrm.submit();
 	}
@@ -33,10 +27,6 @@ function chkUpData(){
 		<tr>
 			<td>이름</td>
 			<td><input type="text" th:field="*{name}"></td>
-		</tr>
-		<tr>
-			<td>암호</td>
-			<td><input type="text" name="pass"></td>
 		</tr>
 		<tr>
 			<td>이메일</td>
