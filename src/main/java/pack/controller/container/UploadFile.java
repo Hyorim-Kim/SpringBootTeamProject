@@ -9,5 +9,5 @@ import lombok.Data;
 @Data
 @Component
 public class UploadFile {
-	private MultipartFile file;
+	private MultipartFile file, randomFilename;
 }

@@ -57,8 +57,8 @@ public class OwnerController {
 
         if (owner != null) {
 
-        	session.setAttribute("business_num", owner.getBusiness_num());
         	session.setAttribute("owner", owner);
+        	session.setAttribute("business_num", owner.getBusiness_num());
         	session.setAttribute("owner_name", owner.getOwner_name());
             return "../templates/owner/ownermain"; // 로그인 성공 시 ownermain.html로 이동
 
@@ -75,6 +75,7 @@ public class OwnerController {
     @GetMapping("/ownerupdate")
     public String ownerUpdatePage (Model model, HttpSession session) {
     	OwnerDto owner = (OwnerDto) session.getAttribute("owner");
+    	System.out.println("owner : " + owner);
     	model.addAttribute("owner", owner);
     	
     	return "../templates/owner/ownerupdate";
