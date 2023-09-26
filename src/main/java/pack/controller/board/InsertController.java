@@ -4,19 +4,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import jakarta.servlet.http.HttpServletRequest;
 import pack.model.board.BoardDaoImpl;
 
 @Controller
+@RequestMapping("/board")
 public class InsertController {
 	@Autowired
 	private BoardDaoImpl daoImpl;
 	
 	@GetMapping("insert")
 	public String insertform() {
-		return "insform";
+		return "board/insert";
 	}
 	
 	@PostMapping("insert")
@@ -33,9 +35,9 @@ public class InsertController {
 		
 		boolean b = daoImpl.insert(bean);
 		if(b) {
-			return "redirect:/list?page=1";  // 추가 후 목록 보기
+			return "redirect:/board/list?page=1";  // 추가 후 목록 보기
 		}else {
-			return "redirect:/error";
+			return "redirect:/board/error";
 		}
 	}
 }

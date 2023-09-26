@@ -50,7 +50,7 @@ public interface DataMapperInterface {
 	int insertReview(ReviewDto reviewDto);
 	
 	// 작성한 후기 화면에 출력하기
-	@Select("SELECT rating, content FROM rv WHERE cont_no=#{cont_no} LIMIT 1")
+	@Select("SELECT rating, content, cont_no, user_id FROM rv WHERE cont_no=#{cont_no} LIMIT 1")
 	ReviewDto selectreview(int cont_no);  
 	
 	/*

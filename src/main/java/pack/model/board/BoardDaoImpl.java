@@ -1,8 +1,6 @@
 package pack.model.board;
 
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pack.controller.board.BoardBean;
@@ -10,20 +8,17 @@ import pack.controller.board.BoardBean;
 
 @Repository
 public class BoardDaoImpl {
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private DataMappingInterface dataInterface;
 
 	public List<BoardDto> listAll() {
 		List<BoardDto> list = dataInterface.selectList();
-		logger.info("반환된 레코드 수 : " + list.size());
 		return list;
 	}
 
 	public List<BoardDto> search(BoardBean bean) {
 		List<BoardDto> list = dataInterface.searchList(bean);
-		logger.info("검색 반환된 레코드 수 : " + list.size());
 		return list;
 	}
 

@@ -18,10 +18,10 @@
 	</select>
 	
 	<insert id="insertData" parameterType="pack.controller.board.BoardBean">
-		insert into notice_board
-		values(#{num},#{admin_id},#{admin_pwd},#{mail},#{title},#{cont},#{bdate},0,#{gnum},0,0)
-	</insert>
-	
+     	insert into notice_board
+     	values (#{num}, 'aa', #{mail}, #{title}, #{cont}, #{bdate}, 0, #{gnum}, 0, 0)
+ 	</insert>
+
 	<update id="updateReadcnt" parameterType="string">
 		update notice_board set readcnt=readcnt + 1 
 		where num=#{num}

@@ -12,7 +12,7 @@ import pack.model.board.BoardDaoImpl;
 import pack.model.board.BoardDto;
 
 @Controller
-@RequestMapping("/list")
+@RequestMapping("/board")
 public class UpdateController {
 	@Autowired
 	private BoardDaoImpl daoImpl;
@@ -27,31 +27,25 @@ public class UpdateController {
 		model.addAttribute("data", dto);
 		model.addAttribute("page", page);
 		
-		return "update";
+		return "board/update";
 	}
 	
 	@PostMapping("update")
 	public String editProcess(BoardBean bean, 
-			@RequestParam("page") String page, 
-			Model model) {
-		// 비밀번호 확인을 위해 DB에서 비밀번호 읽기
-		String pass = daoImpl.selectPass(Integer.toString(bean.getNum()));
-		System.out.println("bean.getPass:" + bean.getAdmin_pwd() + " pass : " + pass);
-		if(bean.getAdmin_pwd().equals(pass) || bean.getAdmin_pwd()==pass) {  // 비밀번호 비교 
-			boolean b = daoImpl.update(bean);
-			if(b) {
-				// 상세보기로 이동
-				//return "redirect:detail?num=" + bean.getNum() + "&page=" + page;
-				
-				// 목록보기로 이동
-				return "redirect:list?page=" + page;
-			}else {
-				return "redirect:error";
-			}
-		}else{
-			model.addAttribute("msg", "비밀번호 불일치~");
-			model.addAttribute("page", page);
-			return "update_err";
-		}
+	        @RequestParam("page") String page, 
+	        Model model) {
+	    // 수정을 위한 코드
+	    
+	    boolean b = daoImpl.update(bean);
+	    if (b) {
+	        // 수정 성공 시 상세보기로 이동
+	        // return "redirect:detail?num=" + bean.getNum() + "&page=" + page;
+	        
+	        // 목록보기로 이동
+	        return "redirect:list?page=" + page;
+	    } else {
+	        // 수정 실패 시
+	        return "redirect:error";
+	    }
 	}
 }

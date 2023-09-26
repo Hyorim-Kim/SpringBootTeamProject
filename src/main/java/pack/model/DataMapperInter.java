@@ -11,6 +11,7 @@ import pack.model.admin.AdminDto;
 import pack.model.owner.OwnerDto;
 import pack.model.user.UserDto;
 
+// @Mapper 어노테이션이 붙은 DataMapperInter 인터페이스는 데이터베이스와 Java 객체 간의 매핑 작업을 정의하는 인터페이스이다.
 @Mapper
 public interface DataMapperInter {
 	
@@ -56,5 +57,7 @@ public interface DataMapperInter {
 	
 	// User id 중복체크 (광진)
 	@Select("select count(*) from user where user_id=#{user_id}")
+	// 주어진 사용자 ID가 데이터베이스에 이미 존재하는 경우, 그 중복된 사용자 ID의 개수를 나타낸다
+	// 예를 들어, 1이 반환되면 해당 ID가 한 번 중복됐음을 의미하기 위해서 반환 타입을 정수형으로 설정 
 	int useridcheck(@Param("user_id") String user_id); 
 }

@@ -1,5 +1,7 @@
 package pack.controller.owner;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,9 +56,14 @@ public class OwnerController {
     	OwnerDto owner = ownerDao.ownerloginProcess(business_num, owner_pwd);
 
         if (owner != null) {
+
+        	session.setAttribute("business_num", owner.getBusiness_num());
         	session.setAttribute("owner", owner);
         	session.setAttribute("owner_name", owner.getOwner_name());
-            return "../templates/owner/ownermypage"; // 로그인 성공 시 ownermypage.html로 이동
+            return "../templates/owner/ownermain"; // 로그인 성공 시 ownermain.html로 이동
+
+            
+
             
         } else {
             // 로그인 실패
@@ -73,7 +80,7 @@ public class OwnerController {
     	return "../templates/owner/ownerupdate";
     }
     
-    // 공급자 회원수정 페이지에서 회원수정 클릭할 때 (일단 성공이지만 세션값 최신으로 유지되게 설정하기)
+    // 공급자 회원수정 페이지에서 회원수정 클릭할 때 (성공)
     @PostMapping("ownerInfoUpdate")
     public String ownerInfoupdate(OwnerDto ownerDto, Model model, HttpSession session) {
     	boolean b = ownerDao.ownerupdate(ownerDto);

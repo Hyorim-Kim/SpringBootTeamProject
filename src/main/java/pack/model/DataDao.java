@@ -114,9 +114,9 @@ public class DataDao {
 	    }
 		
 		public ReviewDto getreview(int cont_no){
-			System.out.println("cont_no-dao : " + cont_no);
+			//System.out.println("rating-datadao : " + rating);
 			ReviewDto list5 = dataMapper.selectreview(cont_no);  // sql문이 실행
-			logger.info("datas5 : " + list5);
+			logger.info("datas5 - cont_no: " + cont_no + ", list5: " + list5);
 			return list5;
 		}
 		/*

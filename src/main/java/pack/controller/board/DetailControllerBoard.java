@@ -10,13 +10,14 @@ import pack.model.board.BoardDaoImpl;
 
 
 @Controller
-@RequestMapping("/list")
+@RequestMapping("/board")
 public class DetailControllerBoard {
 	@Autowired
 	private BoardDaoImpl daoImpl;
 	
 	@GetMapping("detail")
-	public String detailProcess(@RequestParam("num") String num,
+	public String detailProcess(
+			@RequestParam("num") String num,
 			@RequestParam("page") String page, Model model) {
 		// 조회수 증가 선행
 		daoImpl.updateReadcnt(num);
@@ -24,6 +25,6 @@ public class DetailControllerBoard {
 		model.addAttribute("data", daoImpl.detail(num));
 		model.addAttribute("page", page);
 		
-		return "detail";
+		return "board/detail";
 	}
 }

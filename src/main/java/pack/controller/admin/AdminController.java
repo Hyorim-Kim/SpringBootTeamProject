@@ -38,7 +38,7 @@ public class AdminController {
             
         } else {
             // 로그인 실패
-            return "../templates/user/userfail"; 
+            return "../templates/admin/adminlogin"; 
         }
     }
     
