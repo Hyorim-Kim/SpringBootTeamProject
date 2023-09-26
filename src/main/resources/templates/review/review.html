@@ -105,7 +105,7 @@
 				<td th:text="${data4.cont_image}"></td>
 				<td> 
 					<a th:href="@{/goreview(cont_no=${data4.cont_no})}">[작성하기]</a> <!-- 타임리프if문 고민--><br/><br/>
-					<a th:href="'updatereview?cont_no=' + ${data4.cont_no}">[수정하기]</a>
+					<a th:href="@{/updatereview(cont_no=${data4.cont_no})}">[수정하기]</a>
 				</td>
 			</tr>
 		</th:block>

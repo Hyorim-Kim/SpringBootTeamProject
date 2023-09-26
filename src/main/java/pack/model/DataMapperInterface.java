@@ -45,13 +45,15 @@ public interface DataMapperInterface {
 	@Select("select * from container")
 	List<ContainerDto> selectAll4();
 
-	// user가 작성한 별점과 내용이 rv table에 insert 
+	// user가 작성한 별점과 내용이 rv에 추가
 	@Insert("INSERT INTO rv (rating, content,user_id,cont_no) VALUES (#{rating}, #{content}, #{user_id}, #{cont_no})")
 	int insertReview(ReviewDto reviewDto);
 	
-	@Select("select * from rv")
-	List<ReviewDto> selectAll5();
+	// 작성한 후기 화면에 출력하기
+	@Select("SELECT rating, content FROM rv WHERE cont_no=#{cont_no} LIMIT 1")
+	ReviewDto selectreview(int cont_no);  
 	
+	/*
 	@Select("select * from container")
 	List<ContainerDto> selectAll6();
 	

@@ -30,13 +30,13 @@ public class DataDao {
 	}
 	
 	// User 정보 출력하기-------------------------------------------------------------
-	public List<UserDto> getDataAll(){
+	public List<UserDto> getUserAll(){
 		List<UserDto> list = dataMapper.selectAll();  // sql문이 실행
-		logger.info("datas : " + list.size() + "개");
+		logger.info("datas1 : " + list.size() + "개");
 		return list;
 	}
 	// User에서 원하는 정보 검색하기 
-	public List<UserDto> getDataSearch(FormBean bean){   // 검색용
+	public List<UserDto> getUserSearch(FormBean bean){   // 검색용
 		List<UserDto> list = (List<UserDto>)dataMapper.selectSearch(bean); // sql문이 실행
 		logger.info("search datas : " + list.size() + "개");
 		return list;
@@ -48,32 +48,32 @@ public class DataDao {
 	}
 	*/
 	// Owner 정보 출력 및 검색하기-------------------------------------------------------------
-	public List<OwnerDto> getDataAll2(){
+	public List<OwnerDto> getOwnerAll(){
 		List<OwnerDto> list2 = dataMapper.selectAll2();  // sql문이 실행
-		logger.info("datas : " + list2.size() + "개");
+		logger.info("datas2 : " + list2.size() + "개");
 		return list2;
 	}
 	
-	public List<OwnerDto> getDataSearch2(FormBean bean){   // 검색용
+	public List<OwnerDto> getOwnerSearch(FormBean bean){   // 검색용
 		List<OwnerDto> list = (List<OwnerDto>)dataMapper.selectSearch2(bean); // sql문이 실행
 		logger.info("search datas : " + list.size() + "개");
 		return list;
 	}
-	
+	/*
 	public List<OwnerDto> search2(FormBean bean){
 		List<OwnerDto> slist = dataMapper.selectSearch2(bean);
 		return slist;
 	}
-	
+	*/
 	// Container 정보 출력 및 검색하기-------------------------------------------------------------
-	public List<ContainerDto> getDataAll3(){
+	public List<ContainerDto> getConAll(){
 		List<ContainerDto> list3 = dataMapper.selectAll3();  // sql문이 실행
-		logger.info("datas : " + list3.size() + "개");
+		logger.info("datas3 : " + list3.size() + "개");
 		return list3;
 	}
 	
 	// Cotainer 세부정보 보기 및 수정 삭제하기
-	public ContainerDto detail(String cont_no) {  // 상세보기용
+	public ContainerDto condetail(String cont_no) {  // 상세보기용
 		
 	    ContainerDto containerDto = dataMapper.selectOne(cont_no);
 	    return containerDto;
@@ -81,7 +81,7 @@ public class DataDao {
 
 	
 	@Transactional  // detail.html에서 삭제버튼 누르면 삭제하도록 하기
-	   public boolean delete(String cont_no) {
+	   public boolean condelete(String cont_no) {
 	      boolean b = false;
 	      int re = dataMapper.delete(cont_no);
 	      if (re > 0)
@@ -91,9 +91,9 @@ public class DataDao {
 	   }
 	
 	// 사용한 창고 정보 출력 및 검색하기-------------------------------------------------------------
-		public List<ContainerDto> getDataAll4(){
+		public List<ContainerDto> getUserCon(){
 			List<ContainerDto> list4 = dataMapper.selectAll4();  // sql문이 실행
-			logger.info("datas : " + list4.size() + "개");
+			logger.info("datas4 : " + list4.size() + "개");
 			return list4;
 		}
 		
@@ -108,22 +108,24 @@ public class DataDao {
 	        } catch (Exception e) {
 	            // 예외 처리
 	            logger.error("saveReview err : " + e.getMessage());
-	        }
+	        } 
 	        
 	        return success;
 	    }
 		
-		public List<ReviewDto> getreview(){
-			List<ReviewDto> list5 = dataMapper.selectAll5();  // sql문이 실행
-			logger.info("datas : " + list5.size() + "개");
+		public ReviewDto getreview(int cont_no){
+			System.out.println("cont_no-dao : " + cont_no);
+			ReviewDto list5 = dataMapper.selectreview(cont_no);  // sql문이 실행
+			logger.info("datas5 : " + list5);
 			return list5;
 		}
-		
+		/*
 		public List<ContainerDto> getreviews(){
 			List<ContainerDto> list6 = dataMapper.selectAll6();  // sql문이 실행
-			logger.info("datas : " + list6.size() + "개");
+			logger.info("datas6 : " + list6.size() + "개");
 			return list6;
 		}
+		*/
 		
 		/*
 		// ajax

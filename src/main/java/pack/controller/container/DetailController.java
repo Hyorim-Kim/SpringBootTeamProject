@@ -18,7 +18,7 @@ public class DetailController {
 	
 	@GetMapping("detail")
 	public String detail(@RequestParam("cont_no")String cont_no, Model model) {
-		ContainerDto containerDto = dataDao.detail(cont_no);
+		ContainerDto containerDto = dataDao.condetail(cont_no);
 		model.addAttribute("containerDto",containerDto);
 		return "../templates/container/detail";
 	}

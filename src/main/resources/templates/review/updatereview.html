@@ -1,35 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>후기 수정</title>
 <link href="/css/star.css" rel="stylesheet" />
 </head>
 <body>
-<form action="rvinsert" class="mb-3" name="mystar" id="mystar" method="post">
-	<fieldset>
-		<span class="text-bold">별점을 선택해주세요</span>
-		<input type="radio" name="reviewStar" value="5" id="rate1" th:checked="${session.user_rating == 5}"><label
-			for="rate1">★</label>  									<!-- value값과 checked의 숫자가 같으면 이전에 선택한 별점이 체크되서 화면에 출력됨 -->
-		<input type="radio" name="reviewStar" value="4" id="rate2" th:checked="${session.user_rating == 4}"><label
-			for="rate2">★</label>
-		<input type="radio" name="reviewStar" value="3" id="rate3" th:checked="${session.user_rating == 3}"><label
-			for="rate3">★</label>
-		<input type="radio" name="reviewStar" value="2" id="rate4" th:checked="${session.user_rating == 2}"><label
-			for="rate4">★</label>
-		<input type="radio" name="reviewStar" value="1" id="rate5" th:checked="${session.user_rating == 1}"><label
-			for="rate5">★</label>
-	</fieldset>
-	<div>
-		 <input type="hidden" name="cont_no" th:value="${cont_no}" required />
-		 <input type="hidden" name="user_id" th:value="${session.user_id}" />
+	<form action="rvupdate" class="mb-3" name="mystar" id="mystar" method="post" >
+		<fieldset>
+			<span class="text-bold">별점을 선택해주세요</span>
+			<input type="radio" name="reviewStar" value="5" id="rate1" ><label for="rate1">★</label>
+			<input type="radio" name="reviewStar" value="4" id="rate2" ><label for="rate2">★</label>
+			<input type="radio" name="reviewStar" value="3" id="rate3" ><label for="rate3">★</label>
+			<input type="radio" name="reviewStar" value="2" id="rate4" ><label for="rate4">★</label>
+			<input type="radio" name="reviewStar" value="1" id="rate5" ><label for="rate5">★</label>
+		</fieldset>
+		<div>
+			<input type="text" name="cont_no" th:value="${cont_no}"/>
+			<input type="hidden" name="user_id" th:value="${session.user_id}" />
 
-		<textarea 
-				  class="col-auto form-control" type="text" name="reviewContents" id="reviewContents"
-				  placeholder="창고 사용에 대한 후기를 작성해주시면 감사하겠습니다" th:text="${session.user_content}"><!--th:text : 사용자의 이전 후기 내용을 표시하기 위해 -->
-		</textarea>
-	</div>
-	<input type="submit" value="수정하기">
-</form>
+			<textarea class="col-auto form-control"
+			 		  type="text" name="reviewContents" id="reviewContents">
+            </textarea>
+		</div>
+		<input type="submit" value="작성하기">
+	</form>
 </body>
 </html>
