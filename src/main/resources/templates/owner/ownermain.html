@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -32,13 +32,14 @@
 </head>
 
 <body>
+<div th:if="${session.owner != null}">
   <!-- header 파일 따로 만들어서 삽입 -->
   
   <!-- ======= Header ======= -->
   <header id="header" class="header d-flex align-items-center">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="/ownermypageback" class="logo d-flex align-items-center">
         <h1>Acorn<span>.</span></h1>
       </a>
 
@@ -46,7 +47,7 @@
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="/ownermypageback" class="active">Home</a></li>
           <li><a href="services.html">서비스소개</a></li>
           <li class="dropdown"><a href="#"><span>예약/결제</span> <i
                 class="bi bi-chevron-down dropdown-indicator"></i></a>
@@ -853,5 +854,6 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+</div>
 </body>
 </html>

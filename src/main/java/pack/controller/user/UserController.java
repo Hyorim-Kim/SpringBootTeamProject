@@ -66,6 +66,8 @@ public class UserController {
         UserDto user = userDao.userLoginProcess(user_id, user_pwd);
         
         if (user != null) { // 사용자 정보가 있는 경우 로그인 성공
+            // 세션 최대 유지 시간을 30분(1800초)으로 설정
+            session.setMaxInactiveInterval(1800);
             // 로그인 성공과 동시에 세션에 사용자 정보 저장
         	session.setAttribute("user", user); 
         	session.setAttribute("user_name", user.getUser_name());
