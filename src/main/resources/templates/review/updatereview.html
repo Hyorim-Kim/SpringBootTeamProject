@@ -6,6 +6,7 @@
 <link href="/css/star.css" rel="stylesheet" />
 </head>
 <body>
+
    <form action="rvupdate" class="mb-3" name="mystar" id="mystar" method="post" th:object="${cont_no}">
       <fieldset>
          <span class="text-bold">별점을 선택해주세요</span>
@@ -25,5 +26,17 @@
       </div>
       <input type="submit" value="작성하기">
    </form>
+
+	<form method="post" action="/saverreview">
+    <input type="hidden" name="cont_no" value="${cont_no}">
+    <label for="rating">별점:</label>
+    <input type="number" name="rating" id="rating" min="1" max="5">
+    <br>
+    <label for="content">내용:</label>
+    <textarea name="content" id="content" rows="4" cols="50"></textarea>
+    <br>
+    <input type="submit" value="리뷰 저장">
+</form>
+
 </body>
 </html>
