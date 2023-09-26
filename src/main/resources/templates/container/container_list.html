@@ -12,7 +12,7 @@
 		<th>창고번호</th><th>창고주소</th><th>창고크기</th><th>창고상태</th><th>임대인이름</th>
 	</tr>
 	<th:block th:if="${datas.size > 0}">
-		<span type="hidden" th:text="${business_num}"></span>
+		<!--<span type="hidden" th:text="${business_num}"></span> -->
 		<tr th:each="data:${datas}"> 
 			
 			<td>[[${data.cont_no}]]</td>
