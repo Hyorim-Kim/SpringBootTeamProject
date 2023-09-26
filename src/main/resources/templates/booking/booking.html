@@ -10,7 +10,6 @@
 		 <a href="/usermypageback" class="logo d-flex align-items-center">
           <h1>Acontainer<span>.</span></h1>
         </a>
-         
 	</div>
 
 	<main id="container">
@@ -18,7 +17,7 @@
 			<h2>예약하기</h2>
 			<link rel="stylesheet" href="../css/booking.css">
 			<div>
-				<form action="/booking/bookingDo" method="post" class="cf" name="select">
+				<form action="../booking/bookingDo" method="post" class="cf" name="select">
 					<!-- 나중에 type:hidden으로 바꾸기 -->
 					<input type="hidden" name="user_id" id="userId" th:value="${session.user.user_id}" />
 					<div id="date-group">
