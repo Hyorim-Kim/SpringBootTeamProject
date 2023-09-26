@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -34,28 +34,8 @@
 </head>
 
 <body>
-    <header id="header" class="header d-flex align-items-center">
-      <div class="container-fluid container-xl d-flex align-items-center justify-content-between" style="font-family: 'Noto Sans KR'; font-weight: 700;">
-  
-        <a href="index.html" class="logo d-flex align-items-center">
-          <h1>Acorn<span>.</span></h1>
-        </a>
-  
-        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-        <nav id="navbar" class="navbar">
-          <ul>
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="about.html">서비스소개</a></li>
-            <li><a href="conajax.html">창고검색</a></li>
-            <!-- 광진 작업 영역 -->
-            <li><a href="firstLogin">로그인</a></li>  <!-- 성공 -->
-            <!-- 광진 작업 영역 -->
-            <li><a href="joinChoiceGo">회원가입</a></li> <!-- 성공 --> 
-          </ul>
-        </nav><!-- .navbar -->
-      </div>
-    </header>
+    <!-- ======= Header ======= -->
+ 	<div th:replace="~{fragments/header :: header}"></div>
 
   <main id="main">
 
@@ -306,85 +286,7 @@
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-
-    <div class="footer-content position-relative">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-4 col-md-6">
-            <div class="footer-info">
-              <h3>UpConstruction</h3>
-              <p>
-                A108 Adam Street <br>
-                NY 535022, USA<br><br>
-                <strong>Phone:</strong> +1 5589 55488 55<br>
-                <strong>Email:</strong> info@example.com<br>
-              </p>
-              <div class="social-links d-flex mt-3">
-                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-twitter"></i></a>
-                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-instagram"></i></a>
-                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-linkedin"></i></a>
-              </div>
-            </div>
-          </div><!-- End footer info column-->
-
-          <div class="col-lg-2 col-md-3 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About us</a></li>
-              <li><a href="#">Services</a></li>
-              <li><a href="#">Terms of service</a></li>
-              <li><a href="#">Privacy policy</a></li>
-            </ul>
-          </div><!-- End footer links column-->
-
-          <div class="col-lg-2 col-md-3 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li><a href="#">Web Design</a></li>
-              <li><a href="#">Web Development</a></li>
-              <li><a href="#">Product Management</a></li>
-              <li><a href="#">Marketing</a></li>
-              <li><a href="#">Graphic Design</a></li>
-            </ul>
-          </div><!-- End footer links column-->
-
-          <div class="col-lg-2 col-md-3 footer-links">
-            <h4>Hic solutasetp</h4>
-            <ul>
-              <li><a href="#">Molestiae accusamus iure</a></li>
-              <li><a href="#">Excepturi dignissimos</a></li>
-              <li><a href="#">Suscipit distinctio</a></li>
-              <li><a href="#">Dilecta</a></li>
-              <li><a href="#">Sit quas consectetur</a></li>
-            </ul>
-          </div><!-- End footer links column-->
-
-          <div class="col-lg-2 col-md-3 footer-links">
-            <h4>Nobis illum</h4>
-            <ul>
-              <li><a href="#">Ipsam</a></li>
-              <li><a href="#">Laudantium dolorum</a></li>
-              <li><a href="#">Dinera</a></li>
-              <li><a href="#">Trodelas</a></li>
-              <li><a href="#">Flexo</a></li>
-            </ul>
-          </div><!-- End footer links column-->
-
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-legal text-center position-relative">
-      <div class="container">
-      </div>
-    </div>
-
-  </footer>
-  <!-- End Footer -->
+  <div th:replace="~{fragments/footer :: footer}"></div>
 
   <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>

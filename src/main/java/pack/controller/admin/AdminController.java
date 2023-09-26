@@ -33,8 +33,9 @@ public class AdminController {
     	AdminDto admin = adminDao.adminloginProcess(admin_id, admin_pwd);
 
         if (admin != null) {
-        	session.setAttribute("admin", admin); // 세션에 관리자 정보 저장
-            return "../templates/admin/adminloginok"; // 로그인 성공 시 adminloginok.html로 이동           
+        	session.setAttribute("admin", admin); // 세션에 사용자 정보 저장
+            return "../templates/admin/adminloginok"; // 로그인 성공 시 adminloginok.html로 이동
+            
         } else {
             // 로그인 실패
             return "../templates/admin/adminlogin"; 
@@ -48,6 +49,6 @@ public class AdminController {
 	    return "redirect:/"; // 로그아웃 클릭시 메인 홈페이지로 이동 
 	}
 	
-	
+
 	
 }

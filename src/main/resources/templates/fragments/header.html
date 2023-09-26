@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <div th:fragment="header">
+		<header>
+        <div id="header" class="header d-flex align-items-center">
+			<div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+				<a href="/" class="logo d-flex align-items-center">
+					<h1>Acontainer<span>.</span></h1>
+				</a>
+				<i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+                <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+                <nav id="navbar" class="navbar">
+                    <ul>
+                        <li><a href="/" class="active">Home</a></li>
+                        <li><a href="/service">서비스소개</a></li>
+                        <li><a href="conajax.html">창고검색</a></li>
+                        <!-- 광진 작업 영역 -->
+                        <li><a href="firstLogin">로그인</a></li> <!-- 성공 -->
+                        <!-- 광진 작업 영역 -->
+                        <li><a href="/board/list?page=1">공지사항</a></li>
+                    </ul>
+                </nav><!-- .navbar -->
+            </div>
+        </div><!-- End Header -->
+    </div>
+    </header>
+  </div>
+</body>
+</html>
