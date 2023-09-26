@@ -2,52 +2,62 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <!-- kakao 주소 api -->
+    <!-- kakao 주소 api  -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="../js/userjoin.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-	$(document).ready(function () {
-		// "아이디 중복 확인" 버튼 클릭 시
-		$("#user_id_check").click(function (e) {
-			e.preventDefault(); // 폼 제출 방지
+		$(document).ready(function () {
+			// "아이디 중복 확인" 버튼 클릭 시
+			$("#user_id_check").click(function (e) {
+				e.preventDefault(); // 폼 제출 방지
 
-			let user_id = $("#user_id").val(); // 입력한 사용자 아이디 가져오기
+				let user_id = $("#user_id").val(); // 입력한 사용자 아이디 가져오기
 
-			// 입력 필드가 비어있는지 검사
-			if (user_id.trim() === "") {
-				// 아이디를 입력하라는 메시지 표시
-				$("#id_check_message").text("아이디를 입력하세요.").css("color", "red");
-				return; // 함수 종료
-			}
+				// 입력 필드가 비어있는지 검사
+				if (user_id.trim() === "") {
+					// 아이디를 입력하라는 메시지 표시
+					$("#id_check_message").text("아이디를 입력하세요.").css("color", "red");
+					return; // 함수 종료
+				}
 
-			// Ajax 요청 보내기
-			$.ajax({
-				type: "POST",
-				url: "/userIdCheck", // 컨트롤러의 경로로 해야 합니다.
-				data: {user_id: user_id}, // 사용자 아이디를 서버로 전달
-				success: function (data) {
-					let message = "";
-					let textColor = "";
+				// 아이디 정규식 패턴 (영어 4글자 이상)
+				let idPattern = /^[a-zA-Z]{4,}$/;
 
-					if (data === 0) { 
-						// 아이디 중복이 아닌 경우
-						message = "사용 가능한 아이디입니다.";
-						textColor = "blue"; // 파란 글씨 스타일
-					} else {
-						// 아이디 중복인 경우
-						message = "아이디가 중복되었습니다.";
-						textColor = "red"; // 빨간 글씨 스타일
-					}
-					// 메시지와 글씨 색상을 설정
-					$("#id_check_message").text(message).css("color", textColor);
-				},
-				error: function () {
-					alert("오류가 발생했습니다.");
-				},
+				if (!idPattern.test(user_id)) {
+					// 아이디가 정규식과 일치하지 않을 때
+					$("#id_check_message").text("영문 4글자 이상으로 입력해주세요.").css("color", "red");
+					return; // 함수 종료
+				}
+
+				// Ajax 요청 보내기
+				$.ajax({
+					type: "POST",
+					url: "/userIdCheck", // 컨트롤러의 경로로 하기
+					data: {user_id: user_id}, // 사용자 아이디를 DB 서버로 전달
+					success: function (data) {
+						// 메세지와 컬러를 초기화 
+						let message = "";
+						let textColor = "";
+
+						if (data === 0) {
+							// 아이디 중복이 아닌 경우
+							message = "사용 가능한 아이디입니다.";
+							textColor = "blue"; // 파란 글씨 스타일
+						} else {
+							// 아이디 중복인 경우
+							message = "아이디가 중복되었습니다.";
+							textColor = "red"; // 빨간 글씨 스타일
+						}
+						// 메시지와 글씨 색상을 설정
+						$("#id_check_message").text(message).css("color", textColor);
+					},
+					error: function () {
+						alert("오류가 발생했습니다.");
+					},
+				});
 			});
 		});
-	});
 	</script>
     <title>사용자 회원가입 페이지</title>
     <link rel="stylesheet" href="../css/userjoin.css">
@@ -63,6 +73,7 @@
                 <!-- 아이디 중복 메시지 출력 영역 -->
                 <input type="submit" class="userId_button" id ="user_id_check" value="아이디 중복 확인">
                 <div id="id_check_message"></div>
+                <!-- 조건에 안맞으면 경고 메세지 출력 -->
                 <div id="messageContainer">
 					<h3>비밀번호</h3>
 					<input type="password" name="user_pwd" id="user_pwd" class="text-field" placeholder="비밀번호">

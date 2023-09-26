@@ -6,27 +6,7 @@
 <link rel="stylesheet" type="text/css" href="/css/board.css">
 </head>
 <body>
-<h3>* 상세 보기 *</h3>
-<table>
-  <tr>
-  	<td>비밀번호 : [[${data.admin_pwd}]]</td>
-  	<td style="text-align: right;">
-  		<a th:href="@{/reply(num=${data.num},page=${page})}">
-  			<img src="/images/reply.gif" />
-  		</a>
-  		<a th:href="@{/update(num=${data.num},page=${page})}">
-  			<img src="/images/edit.gif" />
-  		</a>
-  		<a th:href="@{/delete(num=${data.num},page=${page})}">
-  			<img src="/images/del.gif" />
-  		</a>
-  		<a th:href="@{/list(page=${page})}">
-  			<img src="/images/list.gif" />
-  		</a>
-  	</td>
-  </tr>
-</table>
-
+<h3>공지 시항</h3>
 <table>
   <tr>
   	<td>

@@ -1,0 +1,83 @@
+/* board.css */
+
+@charset "UTF-8";
+
+.board-container {
+    /* 스타일 정의 */
+    padding: 30px; /* 상단 패딩 */
+    margin: -10px auto 30px; /* 위쪽 마진을 음수로 조절하여 위로 올림 */
+}
+
+.hr1 {
+    border: 0;
+    height: 2px;
+    background: #d3d3d3;
+}
+
+.grey {
+    color: #727272;
+}
+
+#strong {
+    font-weight: 900;
+}
+
+table {
+    width: 100%;
+    border-top: 1px solid #d3d3d3;
+    border-collapse: collapse;
+    background-color: #fff; /* 테이블 백그라운드 색상 설정 */
+    margin: 10px auto; /* 가운데 정렬 및 여백 추가 */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+    border-radius: 10px; /* 테이블 모서리를 둥글게 만듭니다. */
+}
+
+th {
+    background-color: #d3d3d3;
+    border-top: 3px solid #727272;
+}
+
+th,
+td {
+    border-bottom: 1px solid #d3d3d3;
+    padding: 10px;
+}
+
+.greylist {
+    width: 50px;
+    height: 30px;
+    font-weight: 900;
+    color: white;
+    text-align: center;
+    background: grey;
+    border: solid 2px white;
+    border-radius: 5px;
+}
+
+.gradient {
+    width: 80px;
+    height: 30px;
+    font-weight: 900;
+    color: white;
+    text-align: center;
+    background: linear-gradient(to bottom, grey, black);
+    border: solid 2px white;
+    border-radius: 5px;
+}
+
+.left {
+    text-align: left;
+}
+
+.right {
+    float: right;
+}
+
+.center {
+    text-align: center;
+}
+
+a {
+    color: black;
+    text-decoration-line: none;
+}

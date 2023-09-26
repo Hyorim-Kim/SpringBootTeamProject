@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class BoardDto {
 	private int num, readcnt, gnum, onum, nested;
-	private String admin_id, admin_pwd, mail, title, cont, bdate;
+	private String admin_id, mail, title, cont, bdate;
 }
