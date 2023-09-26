@@ -21,7 +21,7 @@ public class UserController {
 	
 	// 메인페이지에서 로그인을 클릭했을 때 수행 (성공)
 	@GetMapping("firstLogin")
-	public String loginGo() {
+	public String LoginGo() {
 		return "../templates/user/userlogin";
 	}
 	
@@ -31,16 +31,22 @@ public class UserController {
 		return "../templates/user/userjoin";
 	}
 		
-	// 사용자로그인 페이지에서 공급자로그인을 클릭했을 때 (성공)
+	// 사용자 로그인 페이지에서 공급자로그인을 클릭했을 때 (성공)
 	@GetMapping("ownerlogingo")
-	public String ownerloginGo() {
+	public String ownerLoginGo() {
 		return "../templates/owner/ownerlogin";
+	}
+	
+	// 사용자 로그인 패이지에서 아이디/비밀번호 찾기 클릭했을 때 (광진)
+	@GetMapping("userInfoFind")
+	public String userInfoFinding() {
+		return "../templates/user/useridfind";
 	}
 	
 	
 	// 사용자 회원가입에서 가입 버튼을 클릭하고 성공 했을 때 (성공)
 	@PostMapping("userJoinClick")
-	public String userloginOK(UserDto userDto) {
+	public String userLoginOK(UserDto userDto) {
 		boolean b = userDao.userInsertData(userDto);
 		
 		if(b) {
@@ -57,7 +63,7 @@ public class UserController {
             					   @RequestParam("user_pwd") String user_pwd,
             					   Model model, HttpSession session){
         // 사용자 로그인 처리
-        UserDto user = userDao.userloginProcess(user_id, user_pwd);
+        UserDto user = userDao.userLoginProcess(user_id, user_pwd);
         
         if (user != null) { // 사용자 정보가 있는 경우 로그인 성공
             // 로그인 성공과 동시에 세션에 사용자 정보 저장
@@ -85,7 +91,7 @@ public class UserController {
 	// 회원수정 페이지에서 회원수정을 클릭했을 때 (광진)
 	@PostMapping("/userInfoUpdate")
 	public String userInfoupdate(UserDto userDto, Model model, HttpSession session) {
-		boolean b = userDao.userupdate(userDto);
+		boolean b = userDao.userDataUpdate(userDto);
 		if(b) {
 			UserDto user = (UserDto) session.getAttribute("user");
 			model.addAttribute("user", user);
@@ -111,7 +117,7 @@ public class UserController {
 	// 회원삭제 페이지에서 버튼을 클릭할 때 수행 (광진)
 	@PostMapping("/userInfoDelete")
 	public String userInfoDelete(UserDto userDto, Model model, HttpSession session) {
-		boolean b = userDao.userdelete(userDto);
+		boolean b = userDao.userDataDelete(userDto);
 		if(b) {
 			UserDto user = (UserDto) session.getAttribute("user");
 			model.addAttribute("user", user);
@@ -138,6 +144,22 @@ public class UserController {
 		
 	}
 	
+	// 사용자 아이디 찾기 (광진)
+	@ResponseBody
+	@PostMapping("/userIdInfoFind")
+	public String userIdFindProcess(@RequestParam("user_name") String user_name, 
+	                                @RequestParam("user_email") String user_email, 
+	                                @RequestParam("user_jumin") String user_jumin) {
+	    
+	    UserDto user = userDao.userIdFind(user_name, user_email, user_jumin);
+	    if (user != null) {
+	        return user.getUser_id(); // 사용자 아이디를 직접 반환
+	    } else {
+	        return "not_found"; // 사용자를 찾지 못한 경우를 특별한 문자열로 표시
+	    }
+	}
+	
+		
 	// 예약페이지에서 마이페이지로 돌아가기
 	@GetMapping("/usermypageback")
 	public String userBack(HttpSession session) {
