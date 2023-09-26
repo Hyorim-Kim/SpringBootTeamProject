@@ -1,4 +1,4 @@
-package pack.controller;
+package pack.controller.admin;
 
 import java.util.ArrayList;
 
@@ -42,7 +42,7 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
 	public String listProcess3(Model model) {
 		ArrayList<ContainerDto> slist3 = (ArrayList<ContainerDto>)dataDao.getDataAll3();
 		model.addAttribute("lists3", slist3);
-		return "../templates/container/registered";
+		return "admin/cont_registered";
 	}
 	
 	@GetMapping("review") // 등록된 창고 목록 출력
