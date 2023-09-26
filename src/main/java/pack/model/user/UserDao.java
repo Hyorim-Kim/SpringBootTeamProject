@@ -2,7 +2,6 @@ package pack.model.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import pack.model.DataMapperInter;
 
 // ************ 광진 ************** // 
@@ -28,7 +27,7 @@ public class UserDao { // DAO 는 쉽게 말해서 DB 서버에 접근하여 SQL
             isEmpty(userDto.getUser_tel()) ||
             isEmpty(userDto.getUser_email()) ||
             isEmpty(userDto.getUser_addr()) ||
-            // 비밀번호가 일치하지 않거나 이름, 비밀번호, 이메일이 조건을 만족하지 않으면 유효하지 않음.
+            
             !userDto.getUser_id().matches("^[a-zA-Z\\d]{4,}$") ||
             !userDto.getUser_tel().matches("^[0-9-]+$") || 
             !userDto.getUser_jumin().matches("^\\d{6}-\\d{7}$") ||
@@ -36,11 +35,13 @@ public class UserDao { // DAO 는 쉽게 말해서 DB 서버에 접근하여 SQL
             !userDto.getUser_name().matches("^[가-힣]{2,}$") ||
             !userDto.getUser_pwd().matches("^.{4,}$") ||          
             !userDto.getUser_email().matches("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$")) { 
-            
+        	// 비밀번호가 일치하지 않거나 이름, 비밀번호, 이메일이 조건을 만족하지 않으면 유효하지 않음.
             b = false; 
         } else {
-            b = true; // 모든 필드와 정규식에 유효하고 비밀번호가 일치하면 true로 설정.
+        	// 모든 필드와 정규식에 유효하고 비밀번호가 일치하면 true로 설정.
+            b = true; 
         }
+        // 최종 반환값
         return b;
     }
 
@@ -55,7 +56,6 @@ public class UserDao { // DAO 는 쉽게 말해서 DB 서버에 접근하여 SQL
 				}
 			}
 		} catch (Exception e) {
-			// 예외 처리 코드 추가
 			e.printStackTrace(); 
 			// 예외 발생 시에도 b는 false로 유지
 		}
@@ -98,6 +98,4 @@ public class UserDao { // DAO 는 쉽게 말해서 DB 서버에 접근하여 SQL
     public UserDto userIdFind(String user_name, String user_email, String user_jumin) {
     	return dataMapperInter.userIdFind(user_name, user_email, user_jumin);
     }
-    
-
 }
