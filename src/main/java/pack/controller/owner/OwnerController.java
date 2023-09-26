@@ -80,7 +80,7 @@ public class OwnerController {
     	return "../templates/owner/ownerupdate";
     }
     
-    // 공급자 회원수정 페이지에서 회원수정 클릭할 때 (일단 성공이지만 세션값 최신으로 유지되게 설정하기)
+    // 공급자 회원수정 페이지에서 회원수정 클릭할 때 (성공)
     @PostMapping("ownerInfoUpdate")
     public String ownerInfoupdate(OwnerDto ownerDto, Model model, HttpSession session) {
     	boolean b = ownerDao.ownerupdate(ownerDto);

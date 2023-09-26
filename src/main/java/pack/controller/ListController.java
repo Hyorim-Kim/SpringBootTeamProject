@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import pack.model.DataDao;
+import pack.model.ReviewDto;
 import pack.model.container.ContainerDto;
 import pack.model.owner.OwnerDto;
 import pack.model.user.UserDto;
@@ -15,41 +17,38 @@ import pack.model.user.UserDto;
 @Controller
 public class ListController {  // 리스트 목록 보게 도와주는 컨트롤러 클래스
 	@Autowired
-	private DataDao dataDao; //model로 감
-	
+	private DataDao dataDao;
 
-	
-
-	@GetMapping("/user") //dispathcher에서 위임받은 handlemapper가 ..
+	@GetMapping("/user") 
 	public String listProcess(Model model) {
-		ArrayList<UserDto> slist = (ArrayList<UserDto>)dataDao.getDataAll();
+		ArrayList<UserDto> slist = (ArrayList<UserDto>)dataDao.getUserAll();
 		model.addAttribute("lists", slist);
 		return "../templates/user/user";
 	}
-	
-
-	
 
 	@GetMapping("/owner")
 	public String listProcess2(Model model) {
-		ArrayList<OwnerDto> slist2 = (ArrayList<OwnerDto>)dataDao.getDataAll2();
+		ArrayList<OwnerDto> slist2 = (ArrayList<OwnerDto>)dataDao.getOwnerAll();
 		model.addAttribute("lists2", slist2);
 		return "../templates/owner/owner";
 	}
 	
 
-	@GetMapping("/registered")
+	@GetMapping("/registered")  // 등록된 창고 목록 출력
 	public String listProcess3(Model model) {
-		ArrayList<ContainerDto> slist3 = (ArrayList<ContainerDto>)dataDao.getDataAll3();
+		ArrayList<ContainerDto> slist3 = (ArrayList<ContainerDto>)dataDao.getConAll();
 		model.addAttribute("lists3", slist3);
 		return "../templates/container/registered";
 	}
 	
-	@GetMapping("review") // 등록된 창고 목록 출력
+	@GetMapping("review") // 로그인된 사용자 기준 등록된 창고 목록 출력
 	public String listProcess4(Model model) {
-		ArrayList<ContainerDto> slist4 = (ArrayList<ContainerDto>)dataDao.getDataAll4();
+		ArrayList<ContainerDto> slist4 = (ArrayList<ContainerDto>)dataDao.getUserCon();
 		model.addAttribute("list4", slist4);
 		return "../templates/review/review";
 	}
+	
+	
+
 
 }

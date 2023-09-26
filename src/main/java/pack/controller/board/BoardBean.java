@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class BoardBean {
 	private int num, readcnt, gnum, onum, nested;
-	private String admin_id, admin_pwd, mail, title, cont, bdate;
+	private String admin_id, mail, title, cont, bdate;
 	private String searchName, searchValue;
 	
 	public void setBdate() {
