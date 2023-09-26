@@ -1,62 +1,68 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script src="../js/userjoin.js"></script>
-<script>
-	window.onload = function(){
-		document.querySelector("#btnList").onclick = function(){
-			//alert("a");
-			location.href="/owner/list";
-		}
-		document.querySelector("#btnUpdate").onclick = function(){
-			// alert("B");
-			if(confirm("혼또니 수정 데스까?")){
-				frm.action="update";
-				frm.method="post"
-				frm.submit();
-			}
-		}
-		document.querySelector("#btnDelete").onclick = function(){
-			// alert("C");
-			if(confirm("혼또니 사쿠제 데스까?")){
-				frm.action="delete";
-				frm.method="get"
-				frm.submit();
-			}
-		}
-	}
-	
-</script>
+   <meta charset="UTF-8">
+   <title>Insert title here</title>
+   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+   <script src="../js/userjoin.js"></script>
+   <script>
+      window.onload = function () {
+         document.querySelector("#btnList").onclick = function () {
+            //alert("a");
+            location.href = "/owner/list";
+         }
+         document.querySelector("#btnUpdate").onclick = function () {
+            // alert("B");
+            if (confirm("혼또니 수정 데스까?")) {
+               frm.action = "update";
+               frm.method = "post"
+               frm.submit();
+            }
+         }
+         document.querySelector("#btnDelete").onclick = function () {
+            // alert("C");
+            if (confirm("혼또니 사쿠제 데스까?")) {
+               frm.action = "delete";
+               frm.method = "get"
+               frm.submit();
+            }
+         }
+      }
+
+   </script>
 </head>
+
 <body>
-<h3>* 상세 보기 *</h3>
-<form name="frm" th:object="${conDto}">
-	창고 번호 : [[${conDto.cont_no}]]
-	<input type="hidden" th:field="*{cont_no}" />
-	<br/>
-	임대인이름 : <input type="text" th:field="*{owner_name}"><br/>
-	창고주소 : <input type="text" id="user_postcode" class="text-field-postcode" placeholder="우편번호">
-		<input type="button" onclick="user_execDaumPostcode()" class="button-postcode" value="우편번호 찾기"><br>
-		<input type="text" id="user_roadAddress" class="text-field-postcode" placeholder="도로명주소">
-		<input type="text" id="user_jibunAddress" class="text-field-postcode" placeholder="지번주소">
-		<span id="guide" style="color:#999;display:none"></span>
-		<input type="text" id="user_detailAddress" class="text-field-postcode" placeholder="상세주소">
-		<input type="text" id="user_extraAddress" class="text-field-postcode" placeholder="참고항목">
-		<!-- 결과를 출력할 한 줄로 된 주소 필드 -->
-		<!-- <h3>입력한 주소</h3> -->
-		<input type="text" name="cont_addr" id="user_combinedAddress" class="text-field" placeholder="입력한 주소">
-		<br />
-	창고크기 : <input type="text" th:field="*{cont_size}"><br/>
-	<!-- 대여가격 : <input type="text" th:field="*{ce}"><br/> -->
-	창고이미지 : <img th:src="@{/upload/{filename}(filename=${bean.cont_image})}" alt="Uploaded Image" />
-	<br/>
-	<input type="button" value="목록" id="btnList"/>
-	<input type="button" value="수정" id="btnUpdate"/>
-	<input type="button" value="삭제" id="btnDelete"/>
-	
-</form>
+   <h3>* 상세 보기 *</h3>
+   <form name="frm" th:object="${conDto}">
+      창고 번호 : [[${conDto.cont_no}]]
+      <input type="hidden" th:field="*{cont_no}" />
+      <br />
+      임대인이름 : <input type="text" th:field="*{owner_name}"><br />
+      창고주소 :
+      <input type="text" th:field="*{cont_addr}"><br/>
+      <br/>
+      <input type="text" id="user_postcode" class="text-field-postcode" placeholder="우편번호">
+      <input type="button" onclick="user_execDaumPostcode()" class="button-postcode" value="우편번호 찾기"><br>
+      <input type="text" id="user_roadAddress" class="text-field-postcode" placeholder="도로명주소">
+      <input type="text" id="user_jibunAddress" class="text-field-postcode" placeholder="지번주소">
+      <span id="guide" style="color:#999;display:none"></span>
+      <input type="text" id="user_detailAddress" class="text-field-postcode" placeholder="상세주소">
+      <input type="text" id="user_extraAddress" class="text-field-postcode" placeholder="참고항목">
+      <!-- 결과를 출력할 한 줄로 된 주소 필드 -->
+      <!-- <h3>입력한 주소</h3> -->
+      <input type="text" name="cont_addr" id="user_combinedAddress" class="text-field" placeholder="입력한 주소">
+      <br />
+      창고크기 : <input type="text" th:field="*{cont_size}"><br />
+      <!-- 대여가격 : <input type="text" th:field="*{ce}"><br/> -->
+      창고이미지 : <img th:src="@{/upload/cont_image}" />
+      <br />
+      <input type="button" value="목록" id="btnList" />
+      <input type="button" value="수정" id="btnUpdate" />
+      <input type="button" value="삭제" id="btnDelete" />
+
+   </form>
 </body>
+
 </html>
