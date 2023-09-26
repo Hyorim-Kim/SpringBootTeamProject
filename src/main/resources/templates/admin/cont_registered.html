@@ -30,6 +30,8 @@
 				<td th:text="${data3.cont_size}"></td>
 				<td th:text="${data3.cont_name}"></td>
 				<td th:text="${data3.owner_phone}"></td>
+				<td th:if="${data3.cont_status}" 
+				
 				<td> <a th:href="@{approve/detail(cont_no=${data3.cont_no})}" th:text="${data3.cont_status}"></a> </td>
 				<!-- <td th:text="${data3.cont_status}"></td>-->
 				<td th:text="${data3.owner_num}"></td>
