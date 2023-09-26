@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <div th:fragment="header_owner">
+        <header>
+            <div id="header" class="header d-flex align-items-center">
+                <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+                    <a href="/" class="logo d-flex align-items-center">
+                        <h1>Acontainer<span>.</span></h1>
+                    </a>
+                    <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+                    <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+                    <nav id="navbar" class="navbar">
+                        <ul>
+                            <li><a href="/" class="active">Home</a></li>
+                            <li><a href="/service">서비스소개</a></li>
+                            <li class="dropdown"><a href="#"><span>예약/결제</span> <i
+                                        class="bi bi-chevron-down dropdown-indicator"></i></a>
+                                <ul>
+                                    <li><a href="#">예약정보</a></li>
+                                    <li><a href="#">결제정보</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="#"><span>창고관리</span> <i
+                                        class="bi bi-chevron-down dropdown-indicator"></i></a>
+                                <ul>
+                                    <li><a href="/owner/list">창고관리</a></li>
+                                    <li><a href="/owner/outstanding">승인대기</a></li>
+                                    <li><a href="/owner/paid">결제창고관리</a></li>
+                                    <li><a href="/owner/reserve">예약창고관리</a></li>
+                                    <li><a href="/owner/register">창고등록</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="#"><span>마이페이지</span> <i
+                                        class="bi bi-chevron-down dropdown-indicator"></i></a>
+                                <ul>
+                                    <li><a href="#">결제/예약정보</a></li>
+                                    <li><a href="#">문의내역</a></li>
+                                    <li><a href="#">리뷰보기</a></li>
+                                    <li><a href="/ownerupdate">회원수정</a></li>
+                                    <li><a href="/ownerdelete">회원탈퇴</a></li>
+                                    <li><a href="/ownerlogoutgo">로그아웃</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="contact.html">문의하기</a></li>
+                        </ul>
+                    </nav><!-- .navbar -->
+                </div>
+            </div><!-- End Header -->
+        </header>
+    </div>
+</body>
+
+</html>
