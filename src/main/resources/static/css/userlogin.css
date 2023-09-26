@@ -1,132 +1,108 @@
-@charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
-* {
-  margin: 0;
-  padding: 0;
+* {margin: 0; padding: 0; box-sizing: border-box;}
+
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url("../images/userloginimg.jpg") no-repeat center;
+    background-size: cover;
+
 }
 
-body {
-  font-family: 'Noto Sans KR', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  flex-direction: column; /* 추가 */
+body::before{
+    content: "";
+    position: absolute; z-index: 1;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background-color: rgb(0, 0, 0,.6);
 }
 
-/* 추가된 메뉴 바 스타일 */
-nav {
-  background-color: #166caa; /* 배경 색상 설정 */
-  padding: 10px 0; /* 상하 여백 추가 */
-  width: 35%;
-  position: fixed; /* 고정 위치 설정 */
-  top: 0; /* 화면 상단에 고정 */
+.login-form{
+    position: relative; z-index: 2;
 }
 
-.menu {
-  list-style: none;
-  text-align: center;
-  margin: 0 auto; /* 가운데 정렬 */
-  max-width: 800px; /* 원하는 너비 설정 */
-  background-color: transparent; /* 배경 색상을 투명하게 설정 */
+.login-form h1{
+    font-size: 32px; color: #fff;
+    text-align: center;
+    margin-bottom: 60px;
 }
 
-.menu li {
-  display: inline;
-  margin-right: 20px;
-}
-
-.menu a {
-  text-decoration: none;
-  color: whitesmoke;
-  font-size: 18px;
-}
-
-.login-form {
-  background-color: whitesmoke; /* 로그인 폼 배경 색상 설정 */
-  padding: 60px; /* 내부 여백 추가 */
-  border-radius: 10px; /* 모서리 둥글게 설정 */
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
-  margin-top: 80px; /* 메뉴 바 높이만큼 여백 추가 */
-}
-
-.login-form h1 {
-  font-size: 32px;
-  text-align: center;
-  margin-bottom: 50px;
-}
-.int-area {
-  width: 400px;
-  position: relative;
-  margin-top: 20px;
+ .int-area {
+    width: 400px;
+    position: relative;
+    margin-top: 20px;
 }
 
 .int-area:first-child {
-  margin-top: 0;
+    margin-top: 0;
 }
 
 .int-area input {
-  width: 100%;
-  padding: 20px 10px 10px;
-  background-color: transparent;
-  border: none;
-  border-bottom: 1px solid black;
-  font-size: 18px;
-  outline: none;
+    width: 100%;
+    padding: 20px 10px 10px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid  #999;
+    font-size: 18px; color: #fff;
+    outline: none;
 }
 
 .int-area label {
-  position: absolute;
-  left: 10px;
-  top: 15px;
-  font-size: 18px;
-  transition: top 0.5s ease;
+    position: absolute; left: 10px; top: 15px;
+    font-size: 18px; color: #999;
+} 
+
+/* 텍스트 필드를 클릭하면 user name이 올라감 */
+.int-area input:focus + label,
+.int-area input:valid + label{
+    top:0;
+    font-size: 13px; color: #166cea;
 }
 
 .int-area label.warning {
-  color: red !important;
-  animation: warning 0.3s ease;
-  animation-iteration-count: 3;
+    color: red !important;
+    animation: warning .3s ease;
+    animation-iteration-count: 3;
 }
 
 @keyframes warning {
-  0% {
-    transform: translateX(-8px);
-  }
-  25% {
-    transform: translateX(8px);
-  }
-  50% {
-    transform: translateX(-8px);
-  }
-  75% {
-    transform: translateX(8px);
-  }
+    0% {transform: translateX(-8px);}
+    25% {transform: translateX(8px);}
+    50% {transform: translateX(-8px);}
+    75% {transform: translateX(8px);}
 }
 
-.int-area input:focus + label,
-.int-area input:valid + label {
-  top: -2px;
-  font-size: 13px;
-  color: #166caa;
-}
-
+/* 로그인 버튼 */
 .btn-area {
-  margin-top: 30px;
+    margin-top: 30px;
 }
 
 .btn-area button {
-  width: 100%;
-  height: 50px;
-  margin: 0px 10px;
-  color: #fff;
-  background: #166caa;
-  border: none;
-  border-radius: 5px;
-  font-size: 20px;
-  cursor: pointer;
+    width: 100%;
+    height: 50px;
+    background: burlywood;
+    color: #fff;
+    font-size: 20px;
+    border: none;
+    border-radius: 25px;
+    margin-bottom: 10px; /* 버튼 사이의 간격 조절 */
 }
+
+/*.caption {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.caption a {
+    display: block;  링크를 블록 요소로 변경하여 한 줄에 하나의 링크가 오도록 함 
+    margin-bottom: 10px;  간격을 조절할 크기를 지정 (원하는 만큼 조절 가능) 
+    font-size: 17px;
+    color: #999;
+    text-decoration: none;
+}*/
 
 .caption {
   margin-top: 20px;
@@ -136,6 +112,8 @@ nav {
 .caption a {
   margin: 0 20px;
   font-size: 15px;
-  color: blue;
+  color: burlywood;
   text-decoration: none;
 }
+
+

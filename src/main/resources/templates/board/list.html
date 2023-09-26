@@ -1,71 +1,228 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" th:href="@{/css/board.css}">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>에이콘테이너</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/assets/img/favicon.png" rel="icon">
+  <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/assets/css/main.css" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/board.css}">
+  
+
 </head>
+
 <body>
-<h3>* 공지사항 *</h3>
-<table>
-  <tr>
-  	<td>
-  	[<a th:href="@{/list}">최근목록</a>]&nbsp;  
-  	[<a th:href="@{/insert}">글쓰기</a>]
-  	</td>
-  </tr>
-</table>
+	  <!-- ======= Header ======= -->
+ 
+  <!-- End Header -->
 
-<table>
-	<tr style="background-color: silver;">
-	  <th>번호</th><th>제 목</th><th>작성자</th><th>작성일</th><th>조회수</th>
-	</tr>
-	<!-- isEmpty()는 들어온 값이 null 이거나 빈 문자열일 때 true를 반환. 체크 전에 trim()을 적용하기 때문에 빈 줄이나 공백도 같이 걸러진다 -->
-	<th:block th:if="${not #strings.isEmpty(data)}">  <!-- th:if="${data != null}" -->
-	<tr th:each="b:${data}">
-		<td>[[${b.num}]]</td>
-		<td>
-			<!-- 댓글 들여쓰기 준비 -->
-			<th:block th:each="count : ${#numbers.sequence(0, b.nested)}">  <!-- 0부터 nested 만큼 반복 -->
-				<th:with var="tab">&nbsp;</th:with>
-			</th:block>
-			[[${tab}]]<a th:href="@{/detail(num=${b.num},page=${page})}" th:text="${b.title}"></a>
-		</td>
-		<td>[[${b.admin_id}]]</td>
-		<td>[[${b.bdate}]]</td>
-		<td>[[${b.readcnt}]]</td>
-	</tr>
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('/assets/img/breadcrumbs-bg.jpg');">
+      <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+
+        <h2 style="font-family: 'Noto Sans KR';">공지사항</h2>
+        <ol>
+          <li><a href="/index.html">Home</a></li>
+          <li>게시판</li>
+        </ol>
+
+      </div>
+    </div><!-- End Breadcrumbs -->
+
+	<section class="sample-page">
+		<div class="board-container">
+			<table>
+				<tr>
+					<td>
+						[<a th:href="@{/board/insert}">글쓰기</a>]
+					</td>
+				</tr>
+			</table>
 	
-	<!-- paging -->
- 	<tr style="text-align: center;">
-		<td colspan="5">
-		<th:block th:each="num : ${#numbers.sequence(1, pagesu)}">
-			<th:span th:if="${num} == ${page}">
-				<b th:text=${num}>num 표시(현재 페이지는 링크를 걸지 않음)</b>
-			</th:span>
-			<th:span th:if="${num} != ${page}">
-				<a th:href="@{list(page=${num})}" th:text="${num}">num 표시</a>
-			</th:span>
-		</th:block>	
-		</td>
-	</tr>
-	</th:block>
+			<table>
+				<tr style="background-color: silver;">
+					<th>번호</th>
+					<th style="width: 50%; text-align: center;">제 목</th>
+					<th>작성자</th>
+					<th>조회수</th>
+					<th>작성일</th>
+					<th>수정</th>
+					<th>삭제</th>
+				</tr>
+				<!-- isEmpty()는 들어온 값이 null 이거나 빈 문자열일 때 true를 반환. 체크 전에 trim()을 적용하기 때문에 빈 줄이나 공백도 같이 걸러진다 -->
+				<th:block th:if="${not #strings.isEmpty(data)}"> <!-- th:if="${data != null}" -->
+					<tr th:each="b:${data}">
+						<!--<td>[[${b.num}]]</td>-->
+						<td>공지</td>
+						<td>
+							<!-- 댓글 들여쓰기 준비 -->
+							<th:block th:each="count : ${#numbers.sequence(0, b.nested)}"> <!-- 0부터 nested 만큼 반복 -->
+								<th:with var="tab">&nbsp;</th:with>
+							</th:block>
+							<a th:href="@{/board/detail(num=${b.num},page=${page})}" th:text="${b.title}" style="color: darkslategrey; font-weight: bold;">[[${tab}]]</a>
+						</td>
+						<td>관리자</td>
+						<td>[[${b.readcnt}]]</td>
+						<td>[[${b.bdate}]]</td>
+						<td><button class="edit-button" data-id="1">수정</button></td>
+       					<td><button class="delete-button" data-id="1">삭제</button></td>
+					</tr>
+	
+					<!-- paging -->
+					<tr style="text-align: center;">
+						<td colspan="5">
+							<th:block th:each="num : ${#numbers.sequence(1, pagesu)}">
+								<th:span th:if="${num} == ${page}">
+									<b th:text=${num}>num 표시(현재 페이지는 링크를 걸지 않음)</b>
+								</th:span>
+								<th:span th:if="${num} != ${page}">
+									<a th:href="@{list(page=${num})}" th:text="${num}">num 표시</a>
+								</th:span>
+							</th:block>
+						</td>
+					</tr>
+				</th:block>
+	
+				<!-- 검색 작업 추가 -->
+				<tr style="text-align: center;">
+					<td colspan="5">
+						<br />
+						<form action="board/search" method="post">
+							검색 대상 :
+							<select name="searchName">
+								<option value='title' selected>글제목</option>
+							</select>
+							<input type="text" name="searchValue">
+							<input type="submit" value="검 색">
+						</form>					
+					</td>
+				</tr>
+			</table>
+		</div>
+	</section>
 
-	<!-- 검색 작업 추가 -->
-	<tr style="text-align: center;">
-		<td colspan="5">
-		<br/>
-		<form action="/search" method="get">
-		  검색 대상 : 
-		  <select name="searchName">
-			<option value='admin_id' selected>작성자</option>
-			<option value='title'>글제목</option>
-		  </select>
-		  <input type="text" name="searchValue">
-		  <input type="submit" value="검 색">
-		</form>
-		</td>
-	</tr>
-</table>
+  </main><!-- End #main -->
+  
+    <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+
+    <div class="footer-content position-relative">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="footer-info">
+              <h3>UpConstruction</h3>
+              <p>
+                A108 Adam Street <br>
+                NY 535022, USA<br><br>
+                <strong>Phone:</strong> +1 5589 55488 55<br>
+                <strong>Email:</strong> info@example.com<br>
+              </p>
+              <div class="social-links d-flex mt-3">
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div><!-- End footer info column-->
+
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About us</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Terms of service</a></li>
+              <li><a href="#">Privacy policy</a></li>
+            </ul>
+          </div><!-- End footer links column-->
+
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><a href="#">Web Design</a></li>
+              <li><a href="#">Web Development</a></li>
+              <li><a href="#">Product Management</a></li>
+              <li><a href="#">Marketing</a></li>
+              <li><a href="#">Graphic Design</a></li>
+            </ul>
+          </div><!-- End footer links column-->
+
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Hic solutasetp</h4>
+            <ul>
+              <li><a href="#">Molestiae accusamus iure</a></li>
+              <li><a href="#">Excepturi dignissimos</a></li>
+              <li><a href="#">Suscipit distinctio</a></li>
+              <li><a href="#">Dilecta</a></li>
+              <li><a href="#">Sit quas consectetur</a></li>
+            </ul>
+          </div><!-- End footer links column-->
+
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Nobis illum</h4>
+            <ul>
+              <li><a href="#">Ipsam</a></li>
+              <li><a href="#">Laudantium dolorum</a></li>
+              <li><a href="#">Dinera</a></li>
+              <li><a href="#">Trodelas</a></li>
+              <li><a href="#">Flexo</a></li>
+            </ul>
+          </div><!-- End footer links column-->
+
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer -->
+
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/vendor/aos/aos.js"></script>
+  <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/assets/js/main.js"></script>
+
 </body>
+
 </html>

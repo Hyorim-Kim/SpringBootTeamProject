@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -12,6 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import pack.model.board.BoardDaoImpl;
 
 @Controller
+@RequestMapping("/board")
 public class ReplyController {
 	@Autowired
 	private BoardDaoImpl daoImpl;
@@ -22,7 +24,7 @@ public class ReplyController {
 			Model model) {
 		model.addAttribute("data", daoImpl.detail(num));
 		model.addAttribute("page", page);
-		return "reply";
+		return "board/reply";
 	}
 	
 	@PostMapping("reply")

@@ -8,14 +8,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pack.model.board.BoardDaoImpl;
 
 @Controller
-@RequestMapping("/list")
+@RequestMapping("/board")
 public class DeleteControllerBoard {
 	@Autowired
 	private BoardDaoImpl daoImpl;
-	
-	
-	
-	
+		
 	@GetMapping("delete")
 	public String del(@RequestParam("num")String num,
 			@RequestParam("page")String page) {

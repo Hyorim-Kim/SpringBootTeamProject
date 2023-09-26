@@ -35,9 +35,11 @@ public class bookingController implements userLoginSession{
 	//예약하기
 	@PostMapping("bookingDo")
 	public String bookingDo(HttpSession session, bookingDTO bookingDto) {
+		
 		dao.bookingDo(bookingDto); 
 		return "redirect:/bookingInfo";
 	}
+
 	
 
 	@GetMapping("bookingList")
