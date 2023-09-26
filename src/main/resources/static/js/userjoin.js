@@ -1,24 +1,68 @@
 // ***** 회원 가입 (사용자) 수정 *****
 window.onload = function () {
-	let pw1 = document.querySelector('#user_pwd');
-	let pw2 = document.querySelector('#user_repwd');
-	let name = document.querySelector('#user_name');
-	let email = document.querySelector('#user_email');
-	let tel = document.querySelector('#user_tel');
-	let jumin = document.querySelector('#user_jumin');
+    let pw1 = document.querySelector('#user_pwd');
+    let pw2 = document.querySelector('#user_repwd');
+    let name = document.querySelector('#user_name');
+    let email = document.querySelector('#user_email');
+    let tel = document.querySelector('#user_tel');
+    let jumin = document.querySelector('#user_jumin');
+    let submitBtn = document.querySelector('#btnUserJoin'); // 추가: submit 버튼
 
-	/* 이벤트 핸들러 연결하기 */
-	pw1.addEventListener("focusout", checkPw);
-	pw2.addEventListener("focusout", check2Pw);
-	name.addEventListener("focusout", checkName);
-	email.addEventListener("focusout", checkEmail);
-	tel.addEventListener("focusout", checkTel);
-	jumin.addEventListener("focusout", checkJumin);
+    /* 이벤트 핸들러 연결하기 */
+    pw1.addEventListener("focusout", checkPw);
+    pw2.addEventListener("focusout", check2Pw);
+    name.addEventListener("focusout", checkName);
+    email.addEventListener("focusout", checkEmail);
+    tel.addEventListener("focusout", checkTel);
+    jumin.addEventListener("focusout", checkJumin);
 
-	/* 콜백 함수 */
+    // 추가: submit 버튼 클릭 시 전체 필드 검사
+    submitBtn.addEventListener("click", function (event) {
+        event.preventDefault(); // 기본 submit 동작 방지
+        if (checkAllFields()) {
+            // 모든 필드가 유효한 경우 서버로 전송
+            document.querySelector('form').submit();
+        } else {
+            // 모든 필드가 유효하지 않은 경우 경고 메시지 표시
+            // showMessage('모든 필드를 올바르게 입력해주세요.');
+        }
+    });
+    
+    	// 추가: 모든 필드 유효성 검사 함수
+    function checkAllFields() {
+        let isValid = true;
+
+        // 각 필드별로 유효성 검사 수행
+        if (!checkField(pw1)) isValid = false;
+        if (!checkField(pw2)) isValid = false;
+        if (!checkField(name)) isValid = false;
+        if (!checkField(email)) isValid = false;
+        if (!checkField(tel)) isValid = false;
+        if (!checkField(jumin)) isValid = false;
+
+        return isValid;
+    }
+
+    // 추가: 개별 필드 유효성 검사 함수
+    function checkField(field) {
+        let isValid = true;
+        const value = field.value.trim(); // 앞뒤 공백 제거
+
+        if (value === "") { // 공백일 때
+            setErrorStyle(field.id);
+            isValid = false;
+        } else {
+            resetErrorStyle(field.id);
+        }
+
+        return isValid;
+    }
+
+
+	
 	function checkPw() {
-		let pwPattern = /^.{4,}$/;
-		if (pw1.value === "") {
+		let pwPattern = /^.{4,}$/; // 정규식 패턴
+		if (pw1.value === "") { // 공백일 때 
 			setErrorStyle('user_pwd');
 		} else if (!pwPattern.test(pw1.value)) {
 			setErrorStyle('user_pwd');
@@ -82,14 +126,14 @@ window.onload = function () {
 			resetErrorStyle('user_jumin');
 		}
 	}
-
+	
 
 	/* 메시지 표시 함수 */
 	function showMessage(message) {
 		const messageDiv = document.createElement('div');
 		messageDiv.className = 'message';
 		messageDiv.textContent = message;
-		// 메세지를 표시할 위치의 id를 설정해주세요.
+		// 메세지를 표시할 위치의 id를 설정
 		const messageContainer = document.getElementById('messageContainer'); // 수정 필요
 		messageContainer.appendChild(messageDiv);
 	}
