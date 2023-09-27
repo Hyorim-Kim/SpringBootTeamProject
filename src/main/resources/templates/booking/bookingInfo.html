@@ -2,20 +2,57 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>예약정보확인</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Favicons -->
+	<link href="../assets/img/favicon.png" rel="icon">
+	<link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+		rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+	<!-- Vendor CSS Files -->
+	<link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+	<link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+	<link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+	<link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+	<link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+	<link href="../assets/css/main.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/booking.css">
 </head>
 <body>
-<div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-		 <a href="/usermypageback" class="logo d-flex align-items-center">
-          <h1>Acontainer<span>.</span></h1>
-        </a>
-	</div>
+
+	<!-- ======= Header ======= -->
+ 	<div th:replace="~{fragments/header_user :: header}"></div>
+
+  <main id="container">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('../assets/img/breadcrumbs-bg.jpg');">
+      <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+
+        <h2 style="font-family: 'Noto Sans KR'; font-weight: 700;">Service</h2>
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li>서비스소개</li>
+          <li>이용안내</li>
+        </ol>
+
+      </div>
+    </div><!-- End Breadcrumbs -->
+
 	<div>
         <h1>예약 정보</h1>
         <div id="booking-info">
@@ -23,7 +60,7 @@
         </div>
     </div>
 
-    <script>
+ <!--   <script>
         // 페이지가 로드될 때 세션 정보를 가져오는 함수
         $(document).ready(function() {
             $.ajax({
@@ -49,8 +86,8 @@
                 }
             });
         });
-    </script>
-	<!--<main id="container">
+    </script>-->
+<main id="container">
 		<div class="booking-box">
 			<h2>나의 예약정보</h2>
 			<div>
@@ -90,7 +127,7 @@
 				</table>
 				<c:if test="${booking.bookingId !=null }">
 					<button type="button" id="cancel-btn"
-						onclick="location.href='${contextPath }/booking/bookDelete?bookingId=${booking.bookingId }'">취소하기</button>
+						onclick="location.href='/booking/bookDelete?bookingId=${booking.bookingId }'">취소하기</button>
 				</c:if>
 				<button type="button" id="main-btn"
 					onClick="location.href='${contextPath}/index'">메인으로 돌아가기</button>
@@ -100,7 +137,10 @@
 				</c:if>
 			</div>
 		</div>
-	</main>-->
+	</main>
 	<script src="../js/bookingInfo.js"></script>
+	  <!-- ======= Footer ======= -->
+  <div th:replace="~{fragments/footer :: footer}"></div>
+
 </body>
 </html>
