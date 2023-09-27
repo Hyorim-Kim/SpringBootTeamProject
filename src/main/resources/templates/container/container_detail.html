@@ -56,7 +56,9 @@
       <br />
       창고크기 : <input type="text" th:field="*{cont_size}"><br />
       <!-- 대여가격 : <input type="text" th:field="*{ce}"><br/> -->
-      창고이미지 : <img th:src="@{/upload/cont_image}" />
+       창고이미지 : <img th:src="@{/upload/cont_image}" /> 
+      <!--창고이미지 : <img th:src="@{/upload/}+${list.cont_image}" />-->
+      <!-- th:src="@{upload/} + ${list.filename}" -->
       <br />
       <input type="button" value="목록" id="btnList" />
       <input type="button" value="수정" id="btnUpdate" />
