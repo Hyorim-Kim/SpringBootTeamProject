@@ -1,6 +1,21 @@
  /*DOMContentLoaded 이벤트를 기다리고, 페이지가 로드되면 다양한 작업을 수행*/
 document.addEventListener('DOMContentLoaded', () => {
-  "use strict";
+  "use strict"; /*코드를 더 엄격하게 해석하고 오류를 방지하기 위해 사용*/
+
+  // 스크롤 이벤트 감지 - 스크롤 해도 헤더가 항상 어두운 색으로 유지되도록 하는 기능
+window.addEventListener('scroll', function() {
+    var header = document.getElementById('header');
+    
+    // 스크롤 위치를 확인하여 어두운 색으로 설정
+    if (window.scrollY > 0) {
+        header.style.backgroundColor = 'rgba(51, 51, 51, 0.8)'; // 항상 어두운 색상으로 변경하고 투명도를 0.8로 설정
+    } else {
+        header.style.backgroundColor = 'transparent'; // 스크롤이 상단에 있으면 투명한 배경으로 설정
+    }
+});
+
+
+
 
   /*Preloader : 페이지가 로딩 중일 때 사용자에게 로딩 중임을 시각적으로 알려주는 기능*/
   /* #preloader라는 ID를 가진 요소를 찾고 해당 요소가 존재하면,

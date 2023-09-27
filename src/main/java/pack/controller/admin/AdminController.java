@@ -33,7 +33,9 @@ public class AdminController {
     	AdminDto admin = adminDao.adminloginProcess(admin_id, admin_pwd);
 
         if (admin != null) {
-        	session.setAttribute("admin", admin); // 세션에 사용자 정보 저장
+        	session.setAttribute("admin", admin); // 세션에 관리자 정보 저장
+        	System.out.println(admin); // 꺼진 불도 다시 보자 (세션 잘 들어 갔나 확인용)
+
             return "../templates/admin/adminloginok"; // 로그인 성공 시 adminloginok.html로 이동
             
         } else {
@@ -47,6 +49,14 @@ public class AdminController {
 	public String userLogoutProcess(HttpSession session) {
 	    session.removeAttribute("admin"); // 세션 유지 종료
 	    return "redirect:/"; // 로그아웃 클릭시 메인 홈페이지로 이동 
+	}
+	
+	// Home, Acron 마크 클릭했을때 세션값 유지하게 하기
+	@GetMapping("/adminmypageback")
+	public String userBack(HttpSession session) {
+	    AdminDto admin = (AdminDto) session.getAttribute("admin");
+	    System.out.println(admin);
+	    return "../templates/admin/adminloginok";
 	}
 	
 

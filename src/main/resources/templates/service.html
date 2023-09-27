@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>에이콘테이너</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- ======= Header ======= -->
+ 	<div th:replace="~{fragments/header :: header}"></div>
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('assets/img/breadcrumbs-bg.jpg');">
+      <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+
+        <h2 style="font-family: 'Noto Sans KR'; font-weight: 700;">Service</h2>
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li>서비스소개</li>
+          <li>이용안내</li>
+        </ol>
+
+      </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row position-relative">
+
+          <div class="col-lg-7 about-img" style="background-image: url(assets/img/about.jpg);"></div>
+
+          <div class="col-lg-7">
+            <h2>Acontainer
+            <span style="color: #ffc732;">.</span></h2>
+            <div class="our-story">
+              <h4>Est 2023</h4>
+              <h3>쉽고 간편하게 보관하세요</h3>
+			<p style="font-size: 18px;">에이콘테이너 위치 기반 검색을 통해<br> 원하는 곳에 위치한 물류 창고를 쉽게 찾아<br> 비대면으로 예약까지 한 번에 진행 가능합니다.</p>
+              <ul>
+                <li><i class="bi bi-check-circle"></i> <span>위치 기반 검색</span></li>
+                <li><i class="bi bi-check-circle"></i> <span>간편 예약 결제</span></li>
+                <li><i class="bi bi-check-circle"></i> <span>관리자 1:1 문의</span></li>
+              </ul>
+              <p>에이콘테이너는 고객의 물류 서비스 혁신에 이바지할 것이며,<br>
+                축적된 물류 운영 Know-how를 바탕으로 내·외부 고객과 함께<br> ‘같이’의 가치를 실현하는 물류 기업이 되겠습니다.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+    <!-- End About Section -->
+    
+    <!-- ======= Stats Counter Section : 사용자, 창고수, 직원수 등의 통계 정보 표시 ======= -->
+    <section id="stats-counter" class="stats-counter section-bg">
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item d-flex align-items-center w-100 h-100">
+              <i class="bi bi-emoji-smile color-blue flex-shrink-0"></i>
+              <div>
+                <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1"
+                  class="purecounter"></span>
+                <p>Happy Clients</p>
+              </div>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item d-flex align-items-center w-100 h-100">
+              <i class="bi bi-journal-richtext color-orange flex-shrink-0"></i>
+              <div>
+                <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1"
+                  class="purecounter"></span>
+                <p>Projects</p>
+              </div>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item d-flex align-items-center w-100 h-100">
+              <i class="bi bi-headset color-green flex-shrink-0"></i>
+              <div>
+                <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1"
+                  class="purecounter"></span>
+                <p>Hours Of Support</p>
+              </div>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item d-flex align-items-center w-100 h-100">
+              <i class="bi bi-people color-pink flex-shrink-0"></i>
+              <div>
+                <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1"
+                  class="purecounter"></span>
+                <p>Hard Workers</p>
+              </div>
+            </div>
+          </div><!-- End Stats Item -->
+
+        </div>
+
+      </div>
+    </section><!-- End Stats Counter Section -->
+
+    
+    <!-- ======= 서비스 이용안내 ======= -->
+    <section id="team" class="team">
+      <div id="team-container" class="container" data-aos="fade-up">
+
+        <div class="section-header">
+          <h2>서비스 이용 안내</h2><br/>
+          <h5 style="font-family: 'Noto Sans KR';">창고 대여가 처음이라도 어렵지 않아요</h6>
+        </div>
+
+        <div class="row gy-5">
+
+          <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="100">
+			<a href="conajax.html"> <!--지역검색 링크 이동-->
+            <div class="member-img">
+              <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="">
+            </div>
+            </a>
+            <div class="member-info text-center">
+              <h4>1. 지역 검색</h4>
+              <p>짐을 맡길 지역을 검색하세요
+              </p>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="200">
+			<a href="#"> <!--창고선택 링크 이동-->
+            <div class="member-img">
+              <img src="assets/img/team/team-2.jpg" class="img-fluid" alt="">
+            </div>
+            </a>
+            <div class="member-info text-center">
+              <h4>2. 창고 선택</h4>
+              <p>짐에 맞는 창고를 선택하세요
+              </p>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="300">
+			<a href="#"> <!--일정선택 링크 이동-->
+            <div class="member-img">
+              <img src="assets/img/team/team-3.jpg" class="img-fluid" alt="">
+            </div>
+            </a>
+            <div class="member-info text-center">
+              <h4>3. 일정 선택</h4>
+              <p>사용할 일정을 선택하세요
+			  </p>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="400">
+			<a href="#"> <!--예약 링크 이동-->
+            <div class="member-img">
+              <img src="assets/img/team/team-4.jpg" class="img-fluid" alt="">
+            </div>
+            </a>
+            <div class="member-info text-center">
+              <h4>4. 창고 예약</h4>
+              <p>위치와 일정 등 예약 내역을 확인하세요
+			  </p>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="500">
+			<a href="#"> <!--결제 링크 이동-->
+            <div class="member-img">
+              <img src="assets/img/team/team-5.jpg" class="img-fluid" alt="">
+            </div>
+            </a>
+            <div class="member-info text-center">
+              <h4>5. 결제</h4>
+              <p>금액을 확인한 후 결제하세요
+			  </p>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="600">
+			<a href="#"> <!--예약완료 링크 이동-->
+            <div class="member-img">
+              <img src="assets/img/team/team-6.jpg" class="img-fluid" alt="">
+            </div>
+            </a>
+            <div class="member-info text-center">
+              <h4>6. 예약 완료</h4>
+              <p>예약 완료 후 일정에 맞춰 창고를 이용합니다
+              </p>
+            </div>
+          </div><!-- End Team Member -->
+        </div>
+      </divid="team-container" >
+    </section>
+ 	<!-- 서비스 이용안내 -->
+
+    <!-- ======= Alt Services Section 2 ======= -->
+    <section id="alt-services-2" class="alt-services section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row justify-content-around gy-4">
+          <div class="col-lg-5 d-flex flex-column justify-content-center">
+            <h3>에이콘테이너가 처음이신가요?</h3>
+            <p>이미 많은 업체가 에이콘테이너에 물류 보관 서비스를 등록하고 있습니다</p>
+
+            <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="100">
+              <i class="bi bi-easel flex-shrink-0"></i>
+              <div>
+                <h4><a href="#" class="stretched-link">궁금한 점이 있으신가요?</a></h4>
+                <p>FAQ / 1:1 문의 바로가기</p>
+              </div>
+            </div><!-- End Icon Box -->
+
+            <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="200">
+              <i class="bi bi-patch-check flex-shrink-0"></i>
+              <div>
+                <h4><a href="conajax.html" class="stretched-link">창고 검색하기</a></h4>
+                <p>지역별 창고 검색 바로가기</p>
+              </div>
+            </div><!-- End Icon Box -->
+
+            <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="300">
+              <i class="bi bi-brightness-high flex-shrink-0"></i>
+              <div>
+                <h4><a href="" class="stretched-link">찜한 창고</a></h4>
+                <p>내가 찜한 창고 바로가기</p>
+              </div>
+            </div><!-- End Icon Box -->
+
+            <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="400">
+              <i class="bi bi-brightness-high flex-shrink-0"></i>
+              <div>
+                <h4><a href="" class="stretched-link">예약/결제 창고</a></h4>
+                <p>창고 예약/결제 바로가기</p>
+              </div>
+            </div><!-- End Icon Box -->
+          </div>
+
+          <div class="col-lg-6 img-bg" style="background-image: url(assets/img/alt-services-2.jpg);" data-aos="zoom-in"
+            data-aos-delay="100"></div>
+        </div>
+
+      </div>
+    </section><!-- End Alt Services Section2 -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <div th:replace="~{fragments/footer :: footer}"></div>
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

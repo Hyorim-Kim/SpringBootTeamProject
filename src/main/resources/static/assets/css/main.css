@@ -236,17 +236,16 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Header (헤더 스타일)
+# Header (헤더 스타일),  헤더 설정 - main.js (scroll function)
 --------------------------------------------------------------*/
 .header {
-  z-index: 997; /*Header의 층위를 설정하여 다른 요소 위에 레이어함*/
-  position: absolute; /*Header를 페이지 상단에 고정*/
+  z-index: 999; /*Header의 층위를 설정하여 다른 요소 위에 레이어함*/
+  position: fixed; /*Header를 페이지 상단에 고정*/
   padding: 30px 0;
   top: 0; /*화면의 상단에 정렬*/
   left: 0;
   right: 0;
   font-family: "Noto Sans KR", sans-serif;
-  font-weight: 700;
 }
 
 .header .logo img { /*로고 이미지 크기와 여백을 조정*/
