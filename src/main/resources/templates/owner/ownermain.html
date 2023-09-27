@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -32,9 +32,10 @@
 </head>
 
 <body>
+<div th:if="${session.owner != null}">
+  <!-- header 파일 따로 만들어서 삽입 -->
   <!-- ======= Header ======= -->
   <div th:replace="~{fragments/header_owner :: header}"></div>
-  
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="hero">
 
@@ -99,5 +100,6 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+</div>
 </body>
 </html>
