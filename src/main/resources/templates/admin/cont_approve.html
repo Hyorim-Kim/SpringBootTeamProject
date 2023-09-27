@@ -6,9 +6,27 @@
 	<title>Insert title here</title>
 	<script>
 		window.onload = function () {
+			document.querySelector("#btnApprove").onclick = function () {
+				// alert("B");
+				if (confirm("승인 하시겠습니까?")) {
+					frm.action = "apprProcess";
+					frm.method = "post"
+					frm.submit();
+				}
+			}
+			
+			document.querySelector("#btnDeny").onclick = function () {
+				// alert("B");
+				if (confirm("거절 하시겠습니까?")) {
+					frm.action = "denyProcess";
+					frm.method = "post"
+					frm.submit();
+				}
+			}
+
 			document.querySelector("#btnList").onclick = function () {
 				//alert("a");
-				location.href = "registered";
+				location.href = "/registered";
 			}
 			// 목록으로 돌아가는 기능과 삭제하는 기능만 구현... (ex.창고주소지가 바껴 수정해야 하는 경우는 창고를 삭제하고 다시 등록하기)
 			document.querySelector("#btnDelete").onclick = function () {
@@ -44,26 +62,26 @@
 		<br />
 		<div class="container-box">
 			<div>
-				창고번호 : [[${containerDto.cont_no}]]<br /></div>
+			창고번호 : [[${containerDto.cont_no}]]<br /></div>
 			주소 : [[${containerDto.cont_addr}]]<br />
 			위도 : [[${containerDto.cont_we}]]<br />
 			경도 : [[${containerDto.cont_kyung}]]<br />
 			면적 : [[${containerDto.cont_size}]]<br />
 			회사이름 : [[${containerDto.cont_name}]]<br />
 			소유주 전화번호 : [[${containerDto.owner_phone}]]<br />
-
 			창고 사진 : [[${containerDto.cont_image}]]<br />
 			사업자번호 : [[${containerDto.owner_num}]]<br />
 		</div>
 		<hr />
 		<div>
-			현재 상태 : [[${containerDto.cont_status}]]<br/>
+			현재 상태 : [[${containerDto.cont_status}]]<br />
 
 		</div>
 		<br />
 		<input type="button" value="목록" id="btnList" />
 		<input type="button" value="삭제" id="btnDelete" />
 		<input type="button" value="승인" id="btnApprove" />
+		<input type="button" value="거절" id="btnDeny" />
 	</form>
 </body>
 
