@@ -37,9 +37,9 @@ public class bookingController {
 	public String bookingDo(bookingDTO bookingdto) {
 		boolean b = dao.bookingInsert(bookingdto);
 		if(b) {
-			return "../templates/booking/bookingInfo";			
+			return "booking/bookingInfo";			
 		} else {
-			return "../templates/booking/booking";
+			return "/booking/booking";
 		}	
 	}
 	
@@ -59,9 +59,9 @@ public class bookingController {
 	    public ModelAndView bookingCheck(HttpSession session) {
 	        ModelAndView modelAndView = new ModelAndView();
 
+	        bookingDTO bookingList = (bookingDTO) session.getAttribute("bookingList");
 	        try {
 	            // 세션에서 예약 정보를 가져오는 로직
-	            bookingDTO bookingList = (bookingDTO) session.getAttribute("booking");
 
 	            if (bookingList != null) {
 	                modelAndView.addObject("booking", bookingList);

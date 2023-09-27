@@ -60,46 +60,15 @@
         </div>
     </div>
 
- <!--   <script>
-        // 페이지가 로드될 때 세션 정보를 가져오는 함수
-        $(document).ready(function() {
-            $.ajax({
-                url: '/bookingList', // 해당 URL은 실제로 사용 중인 엔드포인트로 변경해야 합니다.
-                type: 'GET',
-                dataType: 'json', // 서버가 JSON 형식으로 응답해야 합니다.
-                success: function(data) {
-                    // 세션에서 가져온 예약 정보를 HTML에 표시
-                    if (data) {
-                        var bookingInfo = data;
-                        var html = '<p>예약자: ' + bookingInfo.user_name + '</p>';
-                        html += '<p>예약날짜: ' + bookingInfo.booking_date_start + '</p>';
-                        html += '<p>지점명: ' + bookingInfo.stringCity + '</p>';
-                        html += '<p>사이즈: ' + bookingInfo.stringsize + '</p>';
-                        html += '<p>이용요금: ' + bookingInfo.intmoney + '</p>';
-                        $('#booking-info').html(html);
-                    } else {
-                        $('#booking-info').html('<p>예약 정보가 없습니다.</p>');
-                    }
-                },
-                error: function() {
-                    $('#booking-info').html('<p>예약 정보를 가져오는 동안 오류가 발생했습니다.</p>');
-                }
-            });
-        });
-    </script>-->
 <main id="container">
 		<div class="booking-box">
 			<h2>나의 예약정보</h2>
 			<div>
-				<input type="hidden" th:value="${session.user.user_id}" readonly="readonly">
+				<input type="text" th:value="${session.booking.user_id}" readonly="readonly">
 			</div>
 			<div>
 				<table class="booking-check">
-					<c:choose>
-						<c:when test="${empty booking}">
-  								예약 정보가 없습니다.
-  						</c:when>
-						<c:otherwise>
+					
 							<th>
 								<tr> 
 									<th scope="row">예약자</th>
@@ -122,19 +91,17 @@
 									<td>${booking.intmoney }</td>
 								</tr>
 							</th>
-						</c:otherwise>
-					</c:choose>
+						
 				</table>
-				<c:if test="${booking.bookingId !=null }">
+				
 					<button type="button" id="cancel-btn"
 						onclick="location.href='/booking/bookDelete?bookingId=${booking.bookingId }'">취소하기</button>
-				</c:if>
+				
 				<button type="button" id="main-btn"
 					onClick="location.href='${contextPath}/index'">메인으로 돌아가기</button>
 			</div>
 			<div>
-				<c:if test="${booking.bookingId !=null }">
-				</c:if>
+				
 			</div>
 		</div>
 	</main>
