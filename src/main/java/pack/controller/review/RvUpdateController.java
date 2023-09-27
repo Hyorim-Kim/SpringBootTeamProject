@@ -17,18 +17,8 @@ public class RvUpdateController {
 	
 	@GetMapping("updatereview")
 	public String updatereview(@RequestParam("cont_no") int cont_no, Model model) {
-		
-		ReviewDto reviewDto = new ReviewDto();
-		
-		
-		
-		model.addAttribute("cont_no", cont_no);
-		System.out.println("cont_no컨트롤러 : " + cont_no);
-		
-		
-		
-		dataDao.getreview(reviewDto, cont_no);
-		
+		ReviewDto reviewDto = dataDao.getreview(cont_no);
+		model.addAttribute("cont_no", reviewDto);
 		return "../templates/review/updatereview";
 	}
 }
