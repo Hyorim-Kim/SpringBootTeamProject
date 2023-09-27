@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.servlet.http.HttpSession;
 import pack.model.admin.AdminDao;
 import pack.model.admin.AdminDto;
-import pack.model.owner.OwnerDto;
 
 @Controller
 public class AdminController {
@@ -36,11 +35,12 @@ public class AdminController {
         if (admin != null) {
         	session.setAttribute("admin", admin); // 세션에 관리자 정보 저장
         	System.out.println(admin); // 꺼진 불도 다시 보자 (세션 잘 들어 갔나 확인용)
+
             return "../templates/admin/adminloginok"; // 로그인 성공 시 adminloginok.html로 이동
             
         } else {
             // 로그인 실패
-            return "../templates/admin/adminlogin"; 
+            return "../templates/user/userfail"; 
         }
     }
     
