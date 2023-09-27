@@ -13,9 +13,7 @@ window.addEventListener('scroll', function() {
         header.style.backgroundColor = 'transparent'; // 스크롤이 상단에 있으면 투명한 배경으로 설정
     }
 });
-
-
-
+ 
 
   /*Preloader : 페이지가 로딩 중일 때 사용자에게 로딩 중임을 시각적으로 알려주는 기능*/
   /* #preloader라는 ID를 가진 요소를 찾고 해당 요소가 존재하면,

@@ -20,6 +20,67 @@
 /*--------------------------------------------------------------
 # 전반적인 스타일 설정
 --------------------------------------------------------------*/
+.company_inner {
+    max-width: 1900px;
+    margin: 0 auto;
+}
+ul, ol {
+    list-style: none;
+    list-style-image: none;
+}
+
+*, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+user agent stylesheet
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+html, body {
+    color: #333;
+    height: 100%;
+    font-size: 15px;
+    -webkit-text-size-adjust: none;
+    font-family: "Play","NotoSansKR","Dotum","NanumSquare","sans-serif";
+    word-break: keep-all;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    line-height: 1.5;
+}
+
+
+html {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -ms-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+}
+*, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+*, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+
 
 body { /*body 요소*/
   font-family: var(--font-default); /*기본 글꼴 설정 : "Noto Sans KR"*/
@@ -1321,4 +1382,137 @@ th {
 .footer .footer-legal .copyright {
   padding-top: 30px;
   border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+
+
+
+html {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -ms-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+}
+*, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.company_inner {
+	max-width: 1900px;
+	margin: 0 auto
+}
+
+.company_inner li {
+	float: left;
+	width: 50%
+}
+
+.company_inner:hover li {
+	width: 45%
+}
+
+.company_inner li:hover {
+	width: 55%
+}
+
+.company_inner li div {
+	height: 264px;
+	background-size: 100%
+}
+
+.company_inner li div strong {
+	font-size: 40px
+}
+
+.company_inner li div a {
+	padding-right: 44px;
+	opacity: 0.7;
+	display: inline-block;
+	margin-top: 9px
+}
+
+.company_inner li div a:hover,
+.company_inner li div a:focus {
+	color: #ffd81a
+}
+
+.company_inner li .company {
+	background: #132440 url(../img/sub_bg02.png) no-repeat;
+	padding: 55px 247px 55px 10px;
+	transition: all 1s cubic-bezier(0, 0, 0, 1.01) 0s;
+	color: #fff;
+	text-align: right;
+	position: relative
+}
+
+.company_inner li .company img {
+	width: auto;
+	position: absolute;
+	right: 40px;
+	top: 50%;
+	margin-top: -60px
+}
+
+.company_inner li .download {
+	background: #ff4155 url(../img/sub_bg03.png) no-repeat;
+	padding: 55px 32px;
+	transition: all 1s cubic-bezier(0, 0, 0, 1.01) 0s;
+	color: #fff;
+	text-align: left;
+	position: relative
+}
+
+.company_wrap {
+	position: relative;
+	overflow: hidden;
+}
+
+.company_inner {
+	list-style: none;
+	padding: 0;
+}
+
+.company_inner li {
+	float: left;
+	width: 50%;
+	position: relative;
+}
+
+.company {
+	padding: 55px 30px 55px 10px;
+	color: #fff;
+	text-align: right;
+	position: relative;
+	background-image: url('../static/assets/img/sub_bg02.png');
+	background-repeat: no-repeat;
+	background-position: -12.6194px 100%;
+	transition: background-position 1s cubic-bezier(0, 0, 0, 1.01);
+}
+
+.download {
+	padding: 55px 32px;
+	color: #fff;
+	text-align: left;
+	position: relative;
+	background-image: url('../static/assets/img/sub_bg03.png');
+	background-repeat: no-repeat;
+	background-position: 170px 100%;
+	transition: background-position 1s cubic-bezier(0, 0, 0, 1.01);
+}
+
+/* 추가한 스타일: 커서를 올렸을 때 전환 효과 */
+.transition-effect {
+    transition: transform 0.3s ease;
+}
+
+.transition-effect:hover {
+    transform: scale(1.05);
 }
