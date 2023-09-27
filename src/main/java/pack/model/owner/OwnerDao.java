@@ -49,7 +49,7 @@ public class OwnerDao {
 	public boolean ownerinsertData(OwnerDto ownerDto) {
 	    boolean b = false;
 	    if (joinOwnerData(ownerDto)) {
-	        int re = dataMapperInter.ownerinsertData(ownerDto);
+	        int re = dataMapperInter.ownerInsertData(ownerDto);
 	        if (re > 0) {
 	            b = true;
 	        }
@@ -59,13 +59,13 @@ public class OwnerDao {
 	
 	// 공급자 로그인 사용 여부 메서드
     public OwnerDto ownerloginProcess(String business_num, String owner_pwd) {
-        return dataMapperInter.ownerloginProcess(business_num, owner_pwd);
+        return dataMapperInter.ownerLoginProcess(business_num, owner_pwd);
     }
   
     // 공급자 회원수정 여부 메서드
     public boolean ownerupdate(OwnerDto ownerDto) {
     	boolean b = false;
-    	int re = dataMapperInter.ownerupdate(ownerDto);
+    	int re = dataMapperInter.ownerUpdate(ownerDto);
 		if(re > 0) b = true;
 		return b;
     }
@@ -73,7 +73,7 @@ public class OwnerDao {
     // 공급자 회원탈퇴 여부 메서드
     public boolean ownerdelete(OwnerDto ownerDto) {
     	boolean b = false;
-    	int re = dataMapperInter.ownerdelete(ownerDto);
+    	int re = dataMapperInter.ownerDelete(ownerDto);
 		if(re >= 0) b = true;
 		return b;
     }

@@ -11,7 +11,6 @@ import pack.model.ReviewDto;
 
 @Controller
 public class RvUpdateController {
-
    @Autowired
    private DataDao dataDao;
    
@@ -21,4 +20,5 @@ public class RvUpdateController {
       model.addAttribute("cont_no", reviewDto);
       return "../templates/review/updatereview";
    }
+
 }

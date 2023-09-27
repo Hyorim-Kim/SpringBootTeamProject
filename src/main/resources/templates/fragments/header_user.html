@@ -2,11 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <body>
+<div th:if="${session.user != null}">
 	<div th:fragment="header_admin">
 		<header> 
 			<div id="header" class="header d-flex align-items-center">
 				<div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-					<a href="/" class="logo d-flex align-items-center">
+					<a href="/usermypageback" class="logo d-flex align-items-center">
 						<h1>Acontainer<span>.</span></h1>
 					</a>
 					<i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
@@ -40,6 +41,7 @@
 			</div><!-- End Header -->
 		</header>
 	</div>
+</div>
 </body>
 
 </html>

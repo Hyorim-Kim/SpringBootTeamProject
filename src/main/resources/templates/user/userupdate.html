@@ -10,17 +10,17 @@
 </head>
 <body>
 	<div th:if="${session.user != null}">	
-		<h3 style="text-align: center; line-height: 2;"><span th:text="${user.user_name}"></span>님의 회원수정</h3>
+		<h3 style="text-align: center; line-height: 2;"><span th:text="${session.user.user_name}"></span>님의 회원수정</h3>
 		<div class="join-form">
 			<div class="content">
 				<!-- ********** 광진 ********** -->
 				<form action="/userInfoUpdate" name="userUpdate" method="POST">
 					<h3>아이디</h3>
-					<input type="text" name="user_id" id="user_id" class="text-field" th:value="${user.user_id}">
+					<input type="text" name="user_id" id="user_id" class="text-field" th:value="${session.user.user_id}">
 					<div id="messageContainer">
 					<h3>비밀번호</h3>
 					<!-- 정보 수정이여서 굳이 type은 password로 해야 하나요..?-->
-					<input type="text" name="user_pwd" id="user_pwd" class="text-field" th:value="${user.user_pwd}" placeholder="비밀번호">
+					<input type="text" name="user_pwd" id="user_pwd" class="text-field" th:value="${session.user.user_pwd}" placeholder="비밀번호">
 					<div id="user_pwdMessage"></div>
 					
 					<h3>비밀번호 확인</h3>
@@ -28,11 +28,11 @@
 					<div id="user_repwdMessage"></div>
 					
 					<h3>이름</h3>
-					<input type="text" name="user_name" id="user_name" class="text-field" th:value="${user.user_name}" placeholder="이름">
+					<input type="text" name="user_name" id="user_name" class="text-field" th:value="${session.user.user_name}" placeholder="이름">
 					<div id="user_nameMessage"></div>
 					
 					<h3>전화번호</h3>
-					<input type="tel" name="user_tel" id="user_tel" class="text-field" th:value="${user.user_tel}" placeholder="전화번호">
+					<input type="tel" name="user_tel" id="user_tel" class="text-field" th:value="${session.user.user_tel}" placeholder="전화번호">
 					<div id="user_telMessage"></div>
 					
 					<h3>이메일</h3>
@@ -52,11 +52,11 @@
 					<!-- 결과를 출력할 한 줄로 된 주소 필드 -->
 					<h3>입력한 주소</h3>
 					<input type="text" name="user_addr" id="user_combinedAddress" class="text-field"
-						th:value="${user.user_addr}" >
+						th:value="${session.user.user_addr}" >
 		
 					<h3>주민등록번호</h3>				
 					<input type="tel" name="user_jumin" id="user_jumin" class="text-field" th:value="${user.user_jumin}" placeholder="주민번호">
-					<div id="user_juminMessage"></div>
+					<div id="session.user_juminMessage"></div>
 					</div>
 					<!-- 버튼 -->
 					<input type="submit" class="submit-btn" value="수정하기">
