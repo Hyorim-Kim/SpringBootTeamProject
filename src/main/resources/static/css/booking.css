@@ -27,7 +27,7 @@ body, a {
 	font-weight: bold;
 }
 
-header {
+/*header {
 	width: 100%;
 	height: 80px;
 	background: #ffffff;
@@ -44,7 +44,7 @@ header {
 	margin: 0 auto;
 	position: relative;
 	display: flex;
-}
+}*/
 
 h1 {
 	display: flex;
@@ -55,7 +55,7 @@ h1 img {
 	width: 6.5rem;
 }
 
-nav {
+/*nav {
 	position: absolute;
 	right: 0;
 	width: 50%;
@@ -77,9 +77,9 @@ nav ul li a {
 nav li a:hover {
 	color: #3781E3;
 	font-weight: bold;
-}
+}*/
 
-.mypage {
+/*.mypage {
 	position: relative;
 }
 
@@ -95,16 +95,16 @@ nav li a:hover {
 	margin: 0;
 	background: #fafafa;
 }
-
-.mypage-sub li a {
+*/
+/*.mypage-sub li a {
 	display: block;
 }
 
 .mypage:hover ul {
 	display: block;
-}
+}*/
 
-/* 예약하기 창 */
+ 예약하기 창 
 main {
 	margin-top: 13rem;
 	height: 100vh;
@@ -182,7 +182,7 @@ select, #book-name, #intmoney {
 	margin-left: 12px;
 }
 
-/* footer 부분 */
+/* footer 부분 
 footer {
 	width: 100%;
 	height: 40vh;
@@ -237,4 +237,4 @@ footer li, footer a {
 
 .footer-right li:last-child {
 	font-size: 1rem;
-}
+}*/

@@ -18,7 +18,7 @@ public class AdminDao {
 	
 	/*******광진  관리자 로그인 여부  *******/
     public AdminDto adminloginProcess(String admin_id, String admin_pwd) {
-        return dataMapperInter.adminloginProcess(admin_id, admin_pwd);
+        return dataMapperInter.adminLoginProcess(admin_id, admin_pwd);
     }
     
     

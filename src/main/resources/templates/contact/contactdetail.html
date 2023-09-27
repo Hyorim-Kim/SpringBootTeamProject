@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	window.onload = function(){
+		
+		document.querySelector("#btnList").onclick = function(){
+			window.history.back();
+
+		}
+		
+		document.querySelector("#btnUpdate").onclick = function(){
+			if(confirm("정말 수정 할까요?")){
+				event.preventDefault(); // submit 이벤트를 취소
+				frm.action="contactupdate";
+				frm.method="post";
+				frm.submit();
+			}
+		}
+			
+		document.querySelector("#btnDelete").onclick = function(){
+			if(confirm("정말 삭제 할까요?")){
+				event.preventDefault();
+				frm.action="contactdelete";
+				frm.method="get";
+				frm.submit();
+			}
+		}
+	}
+</script>
+</head>
+<body>
+<h3>* 상세 보기 *</h3>
+<form name="frm" th:object="${detail}">
+	작성자 : [[${detail.contact_name}]]<br>
+	이메일 : [[${detail.contact_email}]]<br> <!-- th:field : id="author" name="author" value="가나다" -->
+	<input type="hidden" name="contact_no" th:value="${detail.contact_no}">
+	제 목 : [[${detail.contact_title}]]<br>
+	내 용 : [[${detail.contact_message}]]<br>
+	작성일 : [[${detail.contact_date}]]<br>
+	처리상태 :
+    <select name="contact_status" th:field="*{contact_status}">
+        <option value="답변대기">답변대기</option>
+        <option value="답변완료">답변완료</option>
+    </select><br>
+	<input type="button" value="수정" id="btnUpdate">
+	<input type="button" value="삭제" id="btnDelete">
+	<input type="button" value="목록" id="btnList">
+</form>
+</body>
+</html>
