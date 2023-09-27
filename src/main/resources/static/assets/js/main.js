@@ -2,26 +2,19 @@
 document.addEventListener('DOMContentLoaded', () => {
   "use strict"; /*코드를 더 엄격하게 해석하고 오류를 방지하기 위해 사용*/
 
-  // 스크롤 이벤트 감지 - 스크롤 해도 헤더가 사라지지 않고 어두운 색으로 바뀌게 하는 기능
-  window.addEventListener('scroll', function() {
+  // 스크롤 이벤트 감지 - 스크롤 해도 헤더가 항상 어두운 색으로 유지되도록 하는 기능
+window.addEventListener('scroll', function() {
     var header = document.getElementById('header');
-    var heroSection = document.getElementById('hero');
-    var breadcrumbsSection = document.getElementById('breadcrumbs'); // 다른 페이지의 섹션
-    var headerHeight = header.clientHeight;
-    var heroHeight = heroSection.clientHeight;
     
-    // 헤더의 아랫부분 위치 계산
-    var headerBottom = heroHeight - headerHeight;
-
-    // 스크롤 위치를 확인
-    if (window.scrollY > headerBottom && heroSection) {
-        header.style.backgroundColor = 'rgba(51, 51, 51, 0.8)'; // 홈 페이지: 배경색을 어두운 색상으로 변경하고 투명도를 0.8로 설정
-    } else if (window.scrollY > breadcrumbsSection) {
-        header.style.backgroundColor = 'rgba(51, 51, 51, 0.8)'; // 다른 페이지: breadcrumbs 섹션을 지나면 배경색을 어두운 색상으로 변경하고 투명도를 0.8로 설정
+    // 스크롤 위치를 확인하여 어두운 색으로 설정
+    if (window.scrollY > 0) {
+        header.style.backgroundColor = 'rgba(51, 51, 51, 0.8)'; // 항상 어두운 색상으로 변경하고 투명도를 0.8로 설정
     } else {
-        header.style.backgroundColor = 'transparent'; // 아직 헤더 영역 내에 있으면 투명한 배경으로 설정
+        header.style.backgroundColor = 'transparent'; // 스크롤이 상단에 있으면 투명한 배경으로 설정
     }
-  });
+});
+
+
 
 
   /*Preloader : 페이지가 로딩 중일 때 사용자에게 로딩 중임을 시각적으로 알려주는 기능*/
