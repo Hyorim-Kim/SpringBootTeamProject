@@ -1,6 +1,6 @@
 package pack.controller.owner;
 
-import java.util.ArrayList;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.servlet.http.HttpSession;
 import pack.model.owner.OwnerDao;
 import pack.model.owner.OwnerDto;
-import pack.model.user.UserDto;
+
 
 
 //**** 광진 ****//
@@ -127,9 +127,7 @@ public class OwnerController {
 	@GetMapping("/ownermypageback")
 	public String userBack(HttpSession session) {
 	    OwnerDto owner = (OwnerDto) session.getAttribute("owner");
-	    System.out.println(owner);
-	    
-	    // owner 변수를 이용하여 다양한 작업을 수행할 수 있습니다.
+	    System.out.println("공급자 사업자번호 : " + owner.getBusiness_num() + " " + "공급자 비번 : " + owner.getOwner_pwd());
 	    return "../templates/owner/ownermain";
 	}
 

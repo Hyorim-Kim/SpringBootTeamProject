@@ -71,10 +71,10 @@ public class UserController {
             // 로그인 성공과 동시에 세션에 사용자 정보 저장
         	session.setAttribute("user", user); 
         	session.setAttribute("user_name", user.getUser_name());
-            return "../templates/user/usermypage"; // 로그인 성공 시 usermypage.html로 이동.
+        	return "user/usermypage"; // 로그인 성공 시 usermypage.html로 이동.
             
         } else { // 사용자 정보가 DB에 없는 경우 즉, 아이디와 비밀번호가 없는 경우 
-            return "../templates/user/userlogin"; // 로그인 실패 시 userlogin.html로 이동.
+            return "user/userlogin"; // 로그인 실패 시 userlogin.html로 이동.
         }
     }
     
@@ -87,7 +87,7 @@ public class UserController {
 		UserDto user = (UserDto) session.getAttribute("user");
 		model.addAttribute("user", user);
 
-		return "../templates/user/userupdate"; // 회원 수정 페이지로 이동
+		return "user/userupdate"; // 회원 수정 페이지로 이동
 	}
 	
 	// 회원수정 페이지에서 회원수정을 클릭했을 때 (광진)
@@ -95,11 +95,11 @@ public class UserController {
 	public String userInfoupdate(UserDto userDto, Model model, HttpSession session) {
 		boolean b = userDao.userDataUpdate(userDto);
 		if(b) {
-			UserDto user = (UserDto) session.getAttribute("user");
-			model.addAttribute("user", user);
-			return "../templates/user/userlogin";  
+			UserDto user = (UserDto) session.getAttribute("user"); 
+			model.addAttribute("user", user); // 세션에 담겨져 있는 정보를 출력하기 위해 사용
+			return "user/userlogin";  
 		} else {
-			return "../templates/user/usermypage";  
+			return "user/usermypage";  
 		}
 	}
 	
@@ -113,7 +113,7 @@ public class UserController {
 		UserDto user = (UserDto) session.getAttribute("user");
 		model.addAttribute("user", user);
 
-		return "../templates/user/userdelete"; // 회원 수정 페이지로 이동
+		return "user/userdelete"; // 회원 수정 페이지로 이동
 	}
 	
 	// 회원삭제 페이지에서 버튼을 클릭할 때 수행 (광진)
@@ -123,9 +123,9 @@ public class UserController {
 		if(b) {
 			UserDto user = (UserDto) session.getAttribute("user");
 			model.addAttribute("user", user);
-			return "../templates/user/userlogin";  
+			return "user/userlogin";  
 		} else {
-			return "../templates/user/userdelete";  
+			return "user/userdelete";  
 		}
 	}
 	
@@ -165,7 +165,13 @@ public class UserController {
 	// 예약페이지에서 마이페이지로 돌아가기
 	@GetMapping("/usermypageback")
 	public String userBack(HttpSession session) {
-		session.getAttribute("user");
-		return "../templates/user/usermypage";
-	}	
+	    // 세션에서 사용자 정보를 가져온다.
+	    UserDto user = (UserDto) session.getAttribute("user");
+	    // 찍어보자
+	    System.out.println("사용자 아이디 : " + user.getUser_id() + " " + "사용자 비번 : " + user.getUser_pwd());
+
+	    // 사용자 정보를 유지한 상태에서 마이페이지로 이동.
+	    return "user/usermypage";
+	}
+
 }
