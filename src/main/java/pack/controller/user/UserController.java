@@ -1,5 +1,8 @@
 package pack.controller.user;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import pack.model.user.UserDao;
 import pack.model.user.UserDto;
@@ -61,7 +65,7 @@ public class UserController {
     @PostMapping("/userLogSuccess")
     public String processLoginForm(@RequestParam("user_id") String user_id,
             					   @RequestParam("user_pwd") String user_pwd,
-            					   Model model, HttpSession session){
+            					   Model model, HttpSession session, HttpServletResponse response){
         // 사용자 로그인 처리
         UserDto user = userDao.userLoginProcess(user_id, user_pwd);
         
@@ -71,13 +75,18 @@ public class UserController {
             // 로그인 성공과 동시에 세션에 사용자 정보 저장
         	session.setAttribute("user", user); 
         	session.setAttribute("user_name", user.getUser_name());
+        	System.out.println("사용자 ID : " + user.getUser_id() + " " + "사용자 pwd : " + user.getUser_pwd());
         	return "user/usermypage"; // 로그인 성공 시 usermypage.html로 이동.
+        	
             
         } else { // 사용자 정보가 DB에 없는 경우 즉, 아이디와 비밀번호가 없는 경우 
+        	System.out.println("제대로 입력해라");
             return "user/userlogin"; // 로그인 실패 시 userlogin.html로 이동.
         }
     }
     
+
+       
     /*** 9/15일 추가 작업 (회원수정) 광진 ***/
     
     // 사용자 마이페이지에서 회원수정을 클릭했을 때 (성공)
@@ -86,6 +95,7 @@ public class UserController {
 		// 세션에서 회원 정보를 가져와서 모델에 추가
 		UserDto user = (UserDto) session.getAttribute("user");
 		model.addAttribute("user", user);
+		System.out.println("사용자 ID : " + user.getUser_id() + " " + "사용자 pwd : " + user.getUser_pwd());
 
 		return "user/userupdate"; // 회원 수정 페이지로 이동
 	}
@@ -168,7 +178,7 @@ public class UserController {
 	    // 세션에서 사용자 정보를 가져온다.
 	    UserDto user = (UserDto) session.getAttribute("user");
 	    // 찍어보자
-	    System.out.println("사용자 아이디 : " + user.getUser_id() + " " + "사용자 비번 : " + user.getUser_pwd());
+	    System.out.println("사용자 ID : " + user.getUser_id() + " " + "사용자 pwd : " + user.getUser_pwd());
 
 	    // 사용자 정보를 유지한 상태에서 마이페이지로 이동.
 	    return "user/usermypage";

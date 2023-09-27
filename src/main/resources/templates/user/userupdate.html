@@ -16,7 +16,7 @@
 				<!-- ********** 광진 ********** -->
 				<form action="/userInfoUpdate" name="userUpdate" method="POST">
 					<h3>아이디</h3>
-					<input type="text" name="user_id" id="user_id" class="text-field" th:value="${session.user.user_id}">
+					<input type="text" name="user_id" id="user_id" class="text-field" th:value="${user.user_id}">
 					<div id="messageContainer">
 					<h3>비밀번호</h3>
 					<!-- 정보 수정이여서 굳이 type은 password로 해야 하나요..?-->

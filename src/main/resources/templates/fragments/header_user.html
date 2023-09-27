@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <body>
-<div th:if="${session.user != null}">
 	<div th:fragment="header_admin">
+		<div th:if="${session.user != null}">
 		<header> 
 			<div id="header" class="header d-flex align-items-center">
 				<div class="container-fluid container-xl d-flex align-items-center justify-content-between">
@@ -40,8 +40,8 @@
 				</div>
 			</div><!-- End Header -->
 		</header>
+		</div>
 	</div>
-</div>
 </body>
 
 </html>
