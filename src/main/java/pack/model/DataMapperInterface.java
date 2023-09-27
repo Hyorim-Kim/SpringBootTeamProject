@@ -45,6 +45,7 @@ public interface DataMapperInterface {
    @Select("select * from container")
    List<ContainerDto> selectAll4();
 
+
 	/*
 	@Select("select * from container")
 	List<ContainerDto> selectAll6();
@@ -61,6 +62,30 @@ public interface DataMapperInterface {
 	*/
 }
 
+/*
+	// user가 작성한 별점과 내용이 rv에 추가
+	@Insert("INSERT INTO rv (rating, content,user_id,cont_no) VALUES (#{rating}, #{content}, #{user_id}, #{cont_no})")
+	int insertReview(ReviewDto reviewDto);
+	
+	// 작성한 후기 화면에 출력하기
+	@Select("SELECT cont_no,rating, content FROM rv WHERE cont_no=#{cont_no} LIMIT 1")
+	ReviewDto selectreview(int cont_no);  
+	*/
+	/*
+	@Select("select * from container")
+	List<ContainerDto> selectAll6();
+	
+	/*
+	// Ajax
+	@Insert("INSERT INTO rv (rating, content, cont_no, user_id) VALUES (#{rating}, #{content}, #{cont_no}, #{user_id})\r\n"
+			+ "")
+	void insertReviewAjax(ReviewDto reviewDto);
+	
+	// db에 저장된 후기
+	@Select("SELECT * FROM rv")
+	List<ReviewDto> selectAllReviews();
+	*/
+
    /*
    @Select("select * from container")
    List<ContainerDto> selectAll6();
@@ -75,5 +100,3 @@ public interface DataMapperInterface {
    @Select("SELECT * FROM rv")
    List<ReviewDto> selectAllReviews();
    */
-
-

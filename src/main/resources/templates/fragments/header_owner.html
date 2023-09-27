@@ -2,18 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <body>
+<div th:if="${session.owner != null}">
     <div th:fragment="header_owner"> 
         <header> 
             <div id="header" class="header d-flex align-items-center">
                 <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-                    <a href="/" class="logo d-flex align-items-center">
+                    <a href="/ownermypageback" class="logo d-flex align-items-center">
                         <h1>Acontainer<span>.</span></h1>
                     </a>
                     <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
                     <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
                     <nav id="navbar" class="navbar">
                         <ul>
-                            <li><a href="/" class="active">Home</a></li>
+                            <li><a href="/ownermypageback" class="active">Home</a></li>
                             <li><a href="/service">서비스소개</a></li>
                             <li class="dropdown"><a href="#"><span>예약/결제</span> <i
                                         class="bi bi-chevron-down dropdown-indicator"></i></a>
@@ -43,13 +44,19 @@
                                     <li><a href="/ownerlogoutgo">로그아웃</a></li>
                                 </ul>
                             </li>
-                            <li><a href="contact.html">문의하기</a></li>
+                             <li class="dropdown"><a href="contact.html"><span>문의하기</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+				              <ul>
+				                <li><a href="contactmain">1:1문의</a></li>
+				                <li><a href="faq?page=1">FAQ</a></li>
+				              </ul>
+                            </li>
                         </ul>
                     </nav><!-- .navbar -->
                 </div>
             </div><!-- End Header -->
         </header>
     </div>
+</div>
 </body>
 
 </html>

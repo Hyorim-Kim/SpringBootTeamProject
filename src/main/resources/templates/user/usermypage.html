@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -32,10 +32,10 @@
 </head>
 
 <body>
-	  
-  <!-- ======= Header ======= -->
+<div th:if="${session.user != null}">
+  <!-- header 파일 따로 만들어서 삽입 -->
+
   <div th:replace="~{fragments/header_user :: header}"></div>
-  
 
     <!-- ======= Header ======= -->
     <header id="header" class="header d-flex align-items-center">
@@ -82,7 +82,6 @@
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="hero">
-
     <div class="info d-flex align-items-center">
       <div class="container">
         <div class="row justify-content-center">
@@ -144,5 +143,6 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+</div>
 </body>
 </html>

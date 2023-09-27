@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <!-- 재민 -->
 <head>
    <meta charset="utf-8">
@@ -73,30 +73,7 @@
 
 <body>
    <!-- ======= Header ======= -->
-   <header id="header" class="header d-flex align-items-center">
-      <div class="container-fluid container-xl d-flex align-items-center justify-content-between"
-         style="font-family: 'Noto Sans KR'; font-weight: 700;">
-
-         <a href="index.html" class="logo d-flex align-items-center">
-            <h1>Acorn<span>.</span></h1>
-         </a>
-
-         <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-         <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-         <nav id="navbar" class="navbar">
-            <ul>
-               <li><a href="index.html" class="active">Home</a></li>
-               <li><a href="about.html">서비스소개</a></li>
-               <li><a href="conajax.html">창고검색</a></li>
-               <!-- 광진 작업 영역 -->
-               <li><a href="firstLogin">로그인</a></li> <!-- 성공 -->
-               <!-- 광진 작업 영역 -->
-               <li><a href="joinChoiceGo">회원가입</a></li> <!-- 성공 -->
-               <li><a href="/board/list?page=1">공지사항</a></li>
-            </ul>
-         </nav><!-- .navbar -->
-      </div>
-   </header><!-- End Header -->
+   <div th:replace="~{fragments/header :: header}"></div>
 
    <section id="hero" class="hero">
       <div class="carousel-item active" style="background-image: url(assets/img/hero-carousel/hero-carousel-1.jpg)">
