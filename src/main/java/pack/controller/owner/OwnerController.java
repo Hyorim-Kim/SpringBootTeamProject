@@ -52,30 +52,34 @@ public class OwnerController {
     public String processLoginForm(@RequestParam("business_num") String business_num,
             					   @RequestParam("owner_pwd") String owner_pwd,
                                    Model model, HttpSession session){
-        // 사용자 로그인 처리
+        // 공급자 로그인 처리
     	OwnerDto owner = ownerDao.ownerloginProcess(business_num, owner_pwd);
 
         if (owner != null) {
             // 세션 최대 유지 시간을 30분(1800초)으로 설정
             session.setMaxInactiveInterval(1800);
-        	session.setAttribute("owner", owner);
+            // 로그인 성공과 동시에 세션에 사용자 정보 설정
+            // 여기서도 userController와 같이 가독성을 위해 공급자 세션 키의 이름은 ownerSession으로 변경 하였고 값 이름은 그래도 owner로 유지.
+            // owner는 앞서 공급자가 입력한 사업자번호와 비밀번호를 담고 있음 그거를 세션에 담는거라 생각하시면 됩니다.
+        	session.setAttribute("ownerSession", owner);
         	session.setAttribute("business_num", owner.getBusiness_num());
         	session.setAttribute("owner_name", owner.getOwner_name());
-            return "../templates/owner/ownermain"; // 로그인 성공 시 ownermain.html로 이동
+        	System.out.println("공급자 사업자번호 : " + owner.getBusiness_num() + " " + "공급자 비번 : " + owner.getOwner_pwd());
+            return "owner/ownermain"; // 로그인 성공 시 ownermain.html로 이동
         } else {
             // 로그인 실패
-            return "../templates/owner/ownerlogin"; 
+            return "owner/ownerlogin"; 
         }
     }
     
     // 공급자 마이페이지 에서 회원수정 클릭할 때 (성공)
     @GetMapping("/ownerupdate")
     public String ownerUpdatePage (Model model, HttpSession session) {
-    	OwnerDto owner = (OwnerDto) session.getAttribute("owner");
-    	System.out.println("owner : " + owner);
-    	model.addAttribute("owner", owner);
+    	OwnerDto owner = (OwnerDto) session.getAttribute("ownerSession");
+    	System.out.println("공급자 사업자번호 : " + owner.getBusiness_num() + " " + "공급자 비번 : " + owner.getOwner_pwd());
+    	model.addAttribute("ownerSession", owner);
     	
-    	return "../templates/owner/ownerupdate";
+    	return "owner/ownerupdate";
     }
     
     // 공급자 회원수정 페이지에서 회원수정 클릭할 때 (성공)
@@ -83,11 +87,12 @@ public class OwnerController {
     public String ownerInfoupdate(OwnerDto ownerDto, Model model, HttpSession session) {
     	boolean b = ownerDao.ownerupdate(ownerDto);
 		if(b) {
-			OwnerDto owner = (OwnerDto) session.getAttribute("owner");
-			model.addAttribute("owner", owner);
-			return "../templates/owner/ownerlogin";  
+			OwnerDto owner = (OwnerDto) session.getAttribute("ownerSession");
+			model.addAttribute("ownerSession", owner);
+			System.out.println("공급자 사업자번호 : " + owner.getBusiness_num() + " " + "공급자 비번 : " + owner.getOwner_pwd());
+			return "owner/ownerlogin";  
 		} else {
-			return "../templates/owner/ownerupdate";  
+			return "owner/ownerupdate";  
 		}
     }
     
@@ -97,10 +102,10 @@ public class OwnerController {
     @GetMapping("/ownerdelete")
     public String ownerDeletePage(Model model, HttpSession session) {
 		// 세션에서 회원 정보를 가져와서 모델에 추가
-		OwnerDto owner = (OwnerDto) session.getAttribute("owner");
-		model.addAttribute("owner", owner);
-
-		return "../templates/owner/ownerdelete"; // 회원 수정 페이지로 이동  
+		OwnerDto owner = (OwnerDto) session.getAttribute("ownerSession");
+		model.addAttribute("ownerSession", owner);
+		System.out.println("공급자 사업자번호 : " + owner.getBusiness_num() + " " + "공급자 비번 : " + owner.getOwner_pwd());
+		return "owner/ownerdelete"; // 회원 수정 페이지로 이동  
     }
     
     // 공급자 회원탈퇴 페이지 에서 회원탈퇴 버튼을 클릭할 때
@@ -108,29 +113,32 @@ public class OwnerController {
     public String ownerInfoDelete(OwnerDto ownerDto, Model model, HttpSession session) {
     	boolean b = ownerDao.ownerdelete(ownerDto);
 		if(b) {
-			OwnerDto owner = (OwnerDto) session.getAttribute("owner");
-			model.addAttribute("owner", owner);
-			return "../templates/owner/ownerlogin";  
+			// 탈퇴니까 세션 유지 코드가 있을 필요가 없어서 코드 삭제
+			return "owner/ownerlogin";  
 		} else {
-			return "../templates/owner/ownerdelete";  
+			return "owner/ownerdelete";  
 		}
     }
     
 	/*** 9/19일 추가 작업 공급자 마이페이지에서 로그아웃 하기 (광진) ***/
 	@GetMapping("/ownerlogoutgo")
 	public String ownerLogoutProcess(HttpSession session) {
-	    session.removeAttribute("owner"); // 세션 유지 종료
+	    session.removeAttribute("ownerSession"); // 세션 유지 종료
 	    return "redirect:/"; // 로그아웃 클릭시 메인 홈페이지로 이동 
 	}
 	
-	// Home, Acron 마크 클릭했을때 세션값 유지하게 하기
-	@GetMapping("/ownermypageback")
-	public String userBack(HttpSession session) {
-	    OwnerDto owner = (OwnerDto) session.getAttribute("owner");
-	    System.out.println("공급자 사업자번호 : " + owner.getBusiness_num() + " " + "공급자 비번 : " + owner.getOwner_pwd());
-	    return "../templates/owner/ownermain";
-	}
-
-    
-      
+	// 세션값 유지하게 하기
+	@GetMapping("/ownersessionkeep")
+	public String ownerSessionKeep(HttpSession session) {
+	    OwnerDto ownerSession = (OwnerDto) session.getAttribute("ownerSession");
+	    if (ownerSession != null) {
+	        // 세션에 ownerSession값이 존재할 경우 ownermain.html 페이지로 이동
+	        System.out.println("공급자 사업자번호 : " + ownerSession.getBusiness_num() + " " + "공급자 비번 : " + ownerSession.getOwner_pwd());
+	        // 이동 경로를 상대 경로로 지정
+	        return "owner/ownermain"; 
+	    } else {
+	    	// 세션값이 없을 경우
+	    	return "../templates/index";
+	    }
+	}      
 }

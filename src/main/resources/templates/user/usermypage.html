@@ -32,7 +32,7 @@
 </head>
 
 <body>
-<div th:if="${session.user != null}">
+<div th:if="${session.userSession != null}">
   <!-- header 파일 따로 만들어서 삽입 -->
 
   <div th:replace="~{fragments/header_user :: header}"></div>
@@ -90,7 +90,7 @@
             <span style="color: #ffc732;">.</span></h2>
             <!--회원 페이지에서는 . 눌러도 관리자 페이지로 이동하지 않음-->
             <p data-aos="fade-up" style="font-size: 20px;">
-            <span style="color: #ffffff"><strong><span th:text="${session.user.user_name}"></strong></span> 고객님 환영합니다</p>
+            <span style="color: #ffffff"><strong><span th:text="${session.userSession.user_name}"></strong></span> 고객님 환영합니다</p>
             <a data-aos="fade-up" data-aos-delay="200" href="#get-started" class="btn-get-started">Get Started</a>
           </div>
         </div>
