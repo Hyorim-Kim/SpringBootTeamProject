@@ -1,13 +1,16 @@
 package pack.controller.admin;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import pack.controller.FormBean;
 import pack.model.DataDao;
 import pack.model.container.ContainerDto;
 import pack.model.owner.OwnerDto;
@@ -19,30 +22,163 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
 	@Autowired
 	private DataDao dataDao; //model로 감
 	
-
+	private int tot;        // 전체 FAQ 레코드 수를 저장하는 멤버 변수, 이 변수는 페이지 수 계산을 위해 사용
+	private int plist = 10;  //  페이지당 행 수를 나타내는 멤버 변수로, 한 페이지에 몇 개의 FAQ 항목을 표시할지를 결정
 	
+	public ArrayList<UserDto> getuserListData(ArrayList<UserDto> list, int page){ // 페이지 번호(page)와 FAQ 목록(list)을 받아와서 해당 페이지에 표시할 FAQ 항목을 추출하여 반환하는 메서드, 페이징 처리를 위해 사용
+	      ArrayList<UserDto> result = new ArrayList<UserDto>();
+	      
+	      int start = (page - 1) * plist;   // 현재 페이지에서 표시할 FAQ 항목의 시작 인덱스를 계산
+	      int end = Math.min(start + plist, list.size());  // 페이지에 표시할 FAQ 항목의 끝 인덱스를 계산하며, 리스트 크기를 초과하지 않도록 조정
+	      
+	      for (int i = start; i < end; i++) {
+	         result.add(list.get(i));
+	      }
+	      return result; // 페이지에 표시할 FAQ 항목을 담을 ArrayList를 초기화하고, 해당 페이지의 FAQ 항목을 복사하여 반환
+	   }
+	   
+	   public int getuserPageSu() { // 총 페이지 수 얻기
+	      tot = dataDao.totalUser();
+	      int pagesu = tot / plist;
+	      if(tot % plist > 0) pagesu += 1;
+	      // FAQ 데이터베이스에 있는 전체 FAQ 레코드 수를 조회하고, 페이지당 행 수(plist)로 나눈 후 나머지가 있으면 페이지 수를 1 증가시켜 반환
+	      return pagesu;
+	   }
 
 	@GetMapping("/user") 
-	public String listProcess(Model model) {
+	public String userlist(@RequestParam("page")int page, Model model) {
+		int spage = page;
+	    if (page <= 0) spage = 1;
+	    
 		ArrayList<UserDto> slist = (ArrayList<UserDto>)dataDao.getUserAll();
-		model.addAttribute("lists", slist);
+		ArrayList<UserDto> result = getuserListData(slist, spage);
+		
+		model.addAttribute("lists", result);
+		model.addAttribute("pagesu", getuserPageSu());
+	    model.addAttribute("page", spage);
+
 		return "../templates/user/user";
 	}
+	
+	@PostMapping("usersearch")
+	public String usersearch(@RequestParam(name = "page", required = false, defaultValue = "1")int page,FormBean bean, Model model) {  //넘어가니까 Model 사용
+		int spage = page;
+	    if (page <= 0) spage = 1 ;
+		ArrayList<UserDto> userlist = (ArrayList<UserDto>)dataDao.getUserSearch(bean);
+		ArrayList<UserDto> userresult = getuserListData(userlist, spage);
+		
+		model.addAttribute("lists", userresult);
+		model.addAttribute("pagesu", getuserPageSu());
+	    model.addAttribute("page", spage);
+		return "../templates/user/user";
+	}
+	
+
+	public ArrayList<OwnerDto> getownerListData(ArrayList<OwnerDto> list, int page){ // 페이지 번호(page)와 FAQ 목록(list)을 받아와서 해당 페이지에 표시할 FAQ 항목을 추출하여 반환하는 메서드, 페이징 처리를 위해 사용
+	      ArrayList<OwnerDto> ownresult = new ArrayList<OwnerDto>();
+	      
+	      int start = (page - 1) * plist;   // 현재 페이지에서 표시할 FAQ 항목의 시작 인덱스를 계산
+	      int end = Math.min(start + plist, list.size());  // 페이지에 표시할 FAQ 항목의 끝 인덱스를 계산하며, 리스트 크기를 초과하지 않도록 조정
+	      
+	      for (int i = start; i < end; i++) {
+	    	  ownresult.add(list.get(i));
+	      }
+	      return ownresult; // 페이지에 표시할 FAQ 항목을 담을 ArrayList를 초기화하고, 해당 페이지의 FAQ 항목을 복사하여 반환
+	   }
+	   
+	   public int getownerPageSu() { // 총 페이지 수 얻기
+	      tot = dataDao.totalOwner();
+	      int pagesu = tot / plist;
+	      if(tot % plist > 0) pagesu += 1;
+	      // FAQ 데이터베이스에 있는 전체 FAQ 레코드 수를 조회하고, 페이지당 행 수(plist)로 나눈 후 나머지가 있으면 페이지 수를 1 증가시켜 반환
+	      return pagesu;
+	   }
+	
 
 	@GetMapping("/owner")
-	public String listProcess2(Model model) {
-		ArrayList<OwnerDto> slist2 = (ArrayList<OwnerDto>)dataDao.getOwnerAll();
-		model.addAttribute("lists2", slist2);
+	public String ownerlist(@RequestParam("page")int page, Model model) {
+		int spage = page;
+	    if (page <= 0) spage = 1;
+		
+		ArrayList<OwnerDto> ownerlist = (ArrayList<OwnerDto>)dataDao.getOwnerAll();
+		ArrayList<OwnerDto> ownerresult = getownerListData(ownerlist, spage);
+		
+		model.addAttribute("lists2", ownerresult);
+		model.addAttribute("pagesu", getownerPageSu());
+		model.addAttribute("page", spage);
+
+		return "../templates/owner/owner";
+	}
+	
+	@PostMapping("ownersearch")
+	public String ownersearch(@RequestParam(name = "page", required = false, defaultValue = "1")int page, FormBean bean, Model model) {  //넘어가니까 Model 사용
+		int spage = page;
+	    if (page <= 0) spage = 1 ;
+		
+		ArrayList<OwnerDto> slist2 = (ArrayList<OwnerDto>)dataDao.getOwnerSearch(bean);
+		ArrayList<OwnerDto> result = getownerListData(slist2, spage);
+		
+		model.addAttribute("lists2", result);
+		model.addAttribute("pagesu", getownerPageSu());
+		model.addAttribute("page", spage);
+		
 		return "../templates/owner/owner";
 	}
 	
 
+
+
+	public ArrayList<ContainerDto> getregisteredListData(ArrayList<ContainerDto> list, int page){ // 페이지 번호(page)와 FAQ 목록(list)을 받아와서 해당 페이지에 표시할 FAQ 항목을 추출하여 반환하는 메서드, 페이징 처리를 위해 사용
+	      ArrayList<ContainerDto> regresult = new ArrayList<ContainerDto>();
+	      
+	      int start = (page - 1) * plist;   // 현재 페이지에서 표시할 FAQ 항목의 시작 인덱스를 계산
+	      int end = Math.min(start + plist, list.size());  // 페이지에 표시할 FAQ 항목의 끝 인덱스를 계산하며, 리스트 크기를 초과하지 않도록 조정
+	      
+	      for (int i = start; i < end; i++) {
+	    	  regresult.add(list.get(i));
+	      }
+	      return regresult; // 페이지에 표시할 FAQ 항목을 담을 ArrayList를 초기화하고, 해당 페이지의 FAQ 항목을 복사하여 반환
+	   }
+	   
+	   public int getregisteredPageSu() { // 총 페이지 수 얻기
+	      tot = dataDao.totalRegistered();
+	      int pagesu = tot / plist;
+	      if(tot % plist > 0) pagesu += 1;
+	      // FAQ 데이터베이스에 있는 전체 FAQ 레코드 수를 조회하고, 페이지당 행 수(plist)로 나눈 후 나머지가 있으면 페이지 수를 1 증가시켜 반환
+	      return pagesu;
+	   }
+	
+	
 	@GetMapping("/registered")  // 등록된 창고 목록 출력
-	public String listProcess3(Model model) {
+	public String registeredlist(@RequestParam(name = "page", required = false, defaultValue = "1") int page,Model model) {
+		int spage = page;
+	    if (page <= 0) spage = 1;
+	    
 		ArrayList<ContainerDto> slist3 = (ArrayList<ContainerDto>)dataDao.getConAll();
-		model.addAttribute("lists3", slist3);
+		ArrayList<ContainerDto> result = getregisteredListData(slist3, spage);
+		
+		model.addAttribute("lists3", result);
+		model.addAttribute("pagesu", getregisteredPageSu());
+	    model.addAttribute("page", spage);
 		return "../templates/admin/cont_registered";
 	}
 	
+	@PostMapping("regsearch")
+	public String regsearch(@RequestParam(name="page", required = false, defaultValue = "1")int page, FormBean bean, Model model) {
+		int spage = page;
+		if(page <= 0) spage = 1;
+		
+		ArrayList<ContainerDto> slist3 = (ArrayList<ContainerDto>)dataDao.getRegSearch(bean);
+		ArrayList<ContainerDto> result = getregisteredListData(slist3, spage);
+		
+		model.addAttribute("lists3", result);
+		model.addAttribute("pagesu", getregisteredPageSu());
+	    model.addAttribute("page", spage);
+		
+		return "../templates/admin/cont_registered";
+	}
 
 }
+
+
+

@@ -1,4 +1,3 @@
-@charset "UTF-8";
 table {
     width: 90%;
     margin: 0 auto; /* 수평 가운데 정렬 */
@@ -16,6 +15,29 @@ select, input[type="text"], input[type="submit"] {
     padding: 5px;
     margin-right: 10px;
 }
-center-button{
+
+/* 행 간의 간격을 조절합니다. */
+tr {
+    margin-bottom: 10px; /* 원하는 간격으로 조절하세요. */
+}
+
+/* center-button 클래스에 텍스트 가운데 정렬을 적용합니다. */
+.center-button {
     text-align: center;
-}	
+}
+table {
+    width: 90%;
+    border-collapse: collapse;
+}
+
+table th,
+table td {
+    border-bottom: 1px solid #000; /* 하단에만 선을 그립니다. */
+    border-left: none; /* 왼쪽 경계선을 제거합니다. */
+    border-right: none; /* 오른쪽 경계선을 제거합니다. */
+}
+
+/* Optional: 헤더 행에만 선을 그리려면 다음과 같이 선택자를 사용할 수 있습니다. */
+table th {
+    border-bottom: 2px solid #000; /* 헤더 행에 두꺼운 선을 그립니다. */
+}

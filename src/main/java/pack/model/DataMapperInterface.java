@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import pack.controller.FormBean;
@@ -21,17 +22,28 @@ public interface DataMapperInterface {
    @Select("SELECT * FROM user WHERE user_name LIKE CONCAT('%', #{searchValue}, '%') OR user_id LIKE CONCAT('%', #{searchValue}, '%')")
    List<UserDto> selectSearch(FormBean bean);
    
+   @Select("select count(*) from user ")
+   int totalUser();
+   
    // owner sql문들-------------------------------------------------
    @Select("select * from owner")
    List<OwnerDto> selectAll2();
    
    @Select("SELECT * FROM owner WHERE business_num LIKE CONCAT('%', #{searchValue}, '%')")
    List<OwnerDto> selectSearch2(FormBean bean);
+
+   @Select("select count(*) from owner ")
+   int totalOwner();
    
    // Container sql문들-------------------------------------------------
    @Select("select * from container")
    List<ContainerDto> selectAll3();
    
+   @Select("select count(*) from container")
+   int totalContainer();
+   
+   @Select("SELECT * FROM container WHERE cont_name LIKE CONCAT('%', #{searchValue}, '%')")
+   List<ContainerDto> selectSearch3(FormBean bean);
    
    @Select("select * from container where cont_no=#{cont_no}")  // 세부정보 보기
    ContainerDto selectOne(String cont_no);

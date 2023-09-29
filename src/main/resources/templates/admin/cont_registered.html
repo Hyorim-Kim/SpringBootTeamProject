@@ -4,10 +4,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/member.css" />
+
 </head>
 <body>
 <h2>등록된 창고 관리하기</h2>
-
+<form action="/regsearch" method="post">
+        검색 대상:
+        <select name="searchName">
+            <option value="cont_name" selected>회사이름</option>
+        </select>
+        <input type="text" name="searchValue">
+        <input type="submit" value="검 색">
+</form>
 <table style="width:90%">
 
 	<tr>
@@ -44,6 +52,20 @@
 			</tr>
 	</th:block>
 
+</table>
+<table style="margin-top: 20px;">
+        <tr style="text-align: center;">
+            <td colspan="5">
+                <th:block th:each="num : ${#numbers.sequence(1, pagesu)}">
+                    <th:span th:if="${num == page}">
+                        <b th:text="${num}">num 표시(현재 페이지는 링크를 걸지 않음)</b>
+                    </th:span>
+                    <th:span th:if="${num != page}">
+                        <a th:href="@{/registered(page=${num})}" th:text="${num}">num 표시</a>
+                    </th:span>
+                </th:block>
+            </td>
+        </tr>
 </table>
 </body>
 </html>

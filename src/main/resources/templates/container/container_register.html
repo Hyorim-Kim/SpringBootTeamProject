@@ -3,6 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
+
 	<title>Insert title here</title>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="../js/userjoin.js"></script>
@@ -10,35 +11,37 @@
 
 <body>
 
-<div th:if="${session.owner != null}">
-	** 창고 등록 **<br />
-	<form action="insert" method="post" enctype="multipart/form-data">
-		창고주소 : <input type="text" id="user_postcode" class="text-field-postcode" placeholder="우편번호">
-		<input type="button" onclick="user_execDaumPostcode()" class="button-postcode" value="우편번호 찾기"><br>
-		<input type="text" id="user_roadAddress" class="text-field-postcode" placeholder="도로명주소">
-		<input type="text" id="user_jibunAddress" class="text-field-postcode" placeholder="지번주소">
-		<span id="guide" style="color:#999;display:none"></span>
-		<input type="text" id="user_detailAddress" class="text-field-postcode" placeholder="상세주소">
-		<input type="text" id="user_extraAddress" class="text-field-postcode" placeholder="참고항목">
-		<br />
-		<!-- 결과를 출력할 한 줄로 된 주소 필드 -->
-		<!-- <h3>입력한 주소</h3> -->
-		<input type="text" name="cont_addr" id="user_combinedAddress" class="text-field" placeholder="입력한 주소"><br />
-		창고크기 : <input type="text" name="cont_size" /><br />
-		<!-- 대여가격 : <input type="text" name="cont_price" /><br/> -->
-		창고설명 :
-		<textarea rows="5" cols="50" name="content"></textarea><br />
+	<div th:if="${session.owner != null}">
+		** 창고 등록 **<br />
+		<form action="insert" method="post" enctype="multipart/form-data">
+			창고주소 : <input type="text" id="user_postcode" class="text-field-postcode" placeholder="우편번호">
+			<input type="button" onclick="user_execDaumPostcode()" class="button-postcode" value="우편번호 찾기"><br>
+			<input type="text" id="user_roadAddress" class="text-field-postcode" placeholder="도로명주소">
+			<input type="text" id="user_jibunAddress" class="text-field-postcode" placeholder="지번주소">
+			<span id="guide" style="color:#999;display:none"></span>
+			<input type="text" id="user_detailAddress" class="text-field-postcode" placeholder="상세주소">
+			<input type="text" id="user_extraAddress" class="text-field-postcode" placeholder="참고항목">
+			<br />
+			<!-- 결과를 출력할 한 줄로 된 주소 필드 -->
+			<!-- <h3>입력한 주소</h3> -->
+			<input type="text" name="cont_addr" id="user_combinedAddress" class="text-field" placeholder="입력한 주소"><br />
+			창고크기 : <input type="text" name="cont_size" /><br />
+			<!-- 대여가격 : <input type="text" name="cont_price" /><br/> -->
+			창고설명 :
+			<textarea rows="5" cols="50" name="content"></textarea><br />
 
-		사업자번호 : <input type="text" th:placeholder="${session.owner.business_num}" th:value="${session.owner.business_num}" name="owner_num" />
-		<br />
-		이미지 : <input multiple="multiple" type="file" /><br />
-		<br />
-		<br />
-		<input type="submit" value="저장">
-	</form>
+			사업자번호 : <input type="text" th:placeholder="${session.owner.business_num}"
+				th:value="${session.owner.business_num}" name="owner_num" />
+			<br />
+			이미지 : <input multiple="multiple" type="file" /><br />
+			<br />
+			<br />
+			<input type="submit" value="저장">
+		</form>
 
-	</br>
-</div>
+		</br>
+	</div>
+	
 </body>
 
 </html>
