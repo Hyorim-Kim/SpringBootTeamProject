@@ -10,28 +10,20 @@ window.onload = function(){
 }
 
 function chkUpData(){
-	//입력자료 오류 검사 생략...
-	
-	if(confirm("정말 수정할까요?")){
-		upFrm.submit();
-	}
+    // 입력자료 오류 검사 생략...
+
+    if(confirm("정말 수정할까요?")){
+        upFrm.submit();
+    }
 }
 </script>
 </head>
 <body>
 <h3>* 글 수정 *</h3>
 <form action="update" method="post" name="upFrm" th:object="${data}">
-	<input type="hidden" th:field="*{num}">
+    <input type="hidden" th:field="*{num}">
 	<input type="hidden" name="page" th:value="${page}">
 	<table border="1" style="width: 80%">
-		<tr>
-			<td>이름</td>
-			<td><input type="text" th:field="*{name}"></td>
-		</tr>
-		<tr>
-			<td>이메일</td>
-			<td><input type="text" th:field="*{mail}"></td>
-		</tr>
 		<tr>
 			<td>제목</td>
 			<td><input type="text"  style="width: 99%" th:field="*{title}"></td>

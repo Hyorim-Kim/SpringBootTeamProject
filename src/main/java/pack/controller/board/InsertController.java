@@ -35,9 +35,9 @@ public class InsertController {
 		
 		boolean b = daoImpl.insert(bean);
 		if(b) {
-			return "redirect:/board/list?page=1";  // 추가 후 목록 보기
+			return "redirect:listAdmin?page=1";  // 추가 후 목록 보기
 		}else {
-			return "redirect:/board/error";
+			return "redirect:error";
 		}
 	}
 }

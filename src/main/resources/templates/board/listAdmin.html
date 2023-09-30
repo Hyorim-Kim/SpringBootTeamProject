@@ -56,7 +56,13 @@
 					<li>FAQ</li>
 				</ul>
 			</div>
-
+			<table>
+				<tr>
+					<td>
+						[<a th:href="@{/board/insert}">글쓰기</a>]
+					</td>
+				</tr>
+			</table>
 			<table>
 				<tr style="background-color: silver;">
 					<th>번호</th>
@@ -75,7 +81,7 @@
 							<th:block th:each="count : ${#numbers.sequence(0, b.nested)}"> <!-- 0부터 nested 만큼 반복 -->
 								<th:with var="tab">&nbsp;</th:with>
 							</th:block>
-							<a th:href="@{/board/detail(num=${b.num},page=${page})}" th:text="${b.title}" style="color: darkslategrey; font-weight: bold;">[[${tab}]]</a>
+							<a th:href="@{/board/detailAdmin(num=${b.num},page=${page})}" th:text="${b.title}" style="color: darkslategrey; font-weight: bold;">[[${tab}]]</a>
 						</td>
 						<td>관리자</td>
 						<td>[[${b.readcnt}]]</td>
