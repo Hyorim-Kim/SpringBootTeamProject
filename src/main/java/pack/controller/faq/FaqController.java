@@ -51,33 +51,80 @@ public class FaqController {
 		return pagesu;
 	}
 
-	@PostMapping("searchfaq")
-	public String search(@RequestParam("searchpage")int searchpage, FaqBean bean, Model model) {
-		// @RequestParam("searchpage") int searchpage: 요청 파라미터 중 "searchpage"를 받아와서 searchpage 변수에 저장, 이 변수는 검색 결과 페이지의 번호를 나타낸다
-		int spage = searchpage;
-		if (searchpage <= 0) spage = 1;
-		ArrayList<FaqDto> slist = (ArrayList<FaqDto>)faqDao.searchFaq(bean); // 검색 조건에 따라 FAQ를 검색하고 결과를 slist에 저장
-		ArrayList<FaqDto> sresult = getListData(slist, spage); // 검색 결과를 페이지별로 나누어 표시하기 위해 getListData 메서드를 사용하여 sresult에 해당 페이지의 FAQ 목록을 저장
-		model.addAttribute("faq", sresult); // 검색 결과 FAQ 목록을 추가
-		model.addAttribute("pagesu", getSearchPageSu(bean)); // 검색 결과의 총 페이지 수를 추가
-		model.addAttribute("page", spage); // 모델에 현재 페이지 번호를 추가
-		return "../templates/faq/faq";
+	@GetMapping("searchfaquser")
+	public String searchUser(@RequestParam(value = "searchpage", defaultValue = "1" ) int searchpage, // 요청 파라미터 중 searchpage 값을 읽어와서 searchpage 변수에 저장, defaultValue 속성을 사용하여 파라미터가 전달되지 않을 경우 기본값으로 1을 설정
+				            @RequestParam(name = "searchName", required = false) String searchName,
+				            @RequestParam(name = "searchValue", required = false) String searchValue,
+				            // searchName 및 searchValue라는 두 개의 요청 파라미터를 읽고, required = false로 설정되어 있어, 이 파라미터들이 요청에 없을 경우에도 오류가 발생하지 않음. 즉, 선택적인 파라미터
+				            Model model) { //  Model 객체를 메서드 파라미터로 받아서 사용, Model 객체를 사용하여 뷰에 데이터를 전달
+		int spage = searchpage; // 검색 페이지 번호를 저장할 spage 변수를 선언하고, 요청에서 받은 searchpage 값을 할당
+	    if (searchpage <= 0) spage = 1; // 페이지 번호가 0 이하인 경우 1로 설정
+	    FaqBean bean = new FaqBean(); //  FaqBean 객체를 생성 및 검색 조건 설정
+	    bean.setSearchName(searchName);
+	    bean.setSearchValue(searchValue);
+	    // 사용자가 입력한 검색 조건과 검색어를 FaqBean 객체에 설정
+	    
+	    ArrayList<FaqDto> slist = (ArrayList<FaqDto>) faqDao.searchFaq(bean); // faqDao를 사용하여 FaqBean을 기반으로 FAQ를 검색하고, 결과를 slist에 저장, FaqDto는 FAQ 데이터를 담는 데이터 전송 객체
+	    ArrayList<FaqDto> sresult = getListData(slist, spage); // 검색된 FAQ 목록(slist)과 현재 페이지 번호(spage)를 사용하여 페이지에 표시할 FAQ 목록을 계산하여 sresult에 저장, 페이지네이션 기능을 구현하는 함수
+	    
+	    model.addAttribute("searchName", searchName);
+	    model.addAttribute("searchValue", searchValue);
+	    model.addAttribute("faq", sresult);
+	    model.addAttribute("pagesu", getSearchPageSu(bean));
+	    model.addAttribute("page", spage);
+	    // 검색 조건, 검색 결과, 페이지 정보 등을 모델에 추가, 이렇게 모델에 추가한 데이터는 뷰 템플릿에서 사용
+	    
+		return "../templates/faq/faqusersearch";
 	}
 	
-	@PostMapping("searchadmin")
-	public String searchadmin(@RequestParam("searchpage")int searchpage, FaqBean bean, Model model) {
-		int spage = searchpage;
-		if (searchpage <= 0) spage = 1;
-		ArrayList<FaqDto> slist = (ArrayList<FaqDto>)faqDao.searchFaq(bean);
-		ArrayList<FaqDto> sresult = getListData(slist, spage);
-		model.addAttribute("faqadmin", sresult);
-		model.addAttribute("pagesu", getSearchPageSu(bean));
-		model.addAttribute("page", spage);
-		return "../templates/faq/faqadmin";
+	@GetMapping("/searchfaqowner")
+	public String searchOwner(@RequestParam(value = "searchpage") int searchpage,
+	                         @RequestParam(name = "searchName", required = false) String searchName,
+	                         @RequestParam(name = "searchValue", required = false) String searchValue,
+	                         Model model) {
+	    int spage = searchpage;
+	    if (searchpage <= 0) spage = 1;
+	    FaqBean bean = new FaqBean(); // FaqBean 생성 및 검색 조건 설정
+	    bean.setSearchName(searchName);
+	    bean.setSearchValue(searchValue);
+	    
+	    ArrayList<FaqDto> slist = (ArrayList<FaqDto>) faqDao.searchFaq(bean);
+	    ArrayList<FaqDto> sresult = getListData(slist, spage);
+	    
+	    model.addAttribute("searchName", searchName);
+	    model.addAttribute("searchValue", searchValue);
+	    model.addAttribute("faq", sresult);
+	    model.addAttribute("pagesu", getSearchPageSu(bean));
+	    model.addAttribute("page", spage);
+	    
+	    return "../templates/faq/faqownersearch";
 	}
 	
-	@GetMapping("faq")
-	public String listProcess(@RequestParam("page")int page, Model model) {
+	@GetMapping("searchfaqadmin")
+	public String searchadmin(@RequestParam(value = "searchpage", defaultValue = "1" ) int searchpage,
+				            @RequestParam(name = "searchName", required = false) String searchName,
+				            @RequestParam(name = "searchValue", required = false) String searchValue,
+				            Model model) {
+		
+		int spage = searchpage;
+	    if (searchpage <= 0) spage = 1;
+	    FaqBean bean = new FaqBean(); // FaqBean 생성 및 검색 조건 설정
+	    bean.setSearchName(searchName);
+	    bean.setSearchValue(searchValue);
+	    
+	    ArrayList<FaqDto> slist = (ArrayList<FaqDto>) faqDao.searchFaq(bean);
+	    ArrayList<FaqDto> sresult = getListData(slist, spage);
+	    
+	    model.addAttribute("searchName", searchName);
+	    model.addAttribute("searchValue", searchValue);
+	    model.addAttribute("faqadmin", sresult);
+	    model.addAttribute("pagesu", getSearchPageSu(bean));
+	    model.addAttribute("page", spage);
+		return "../templates/faq/faqadminsearch";
+	}
+	
+	@GetMapping("faquser")
+	public String listProcessUser(@RequestParam("page")int page, Model model) {
 		int spage = page;
 		if (page <= 0) spage = 1;
 		
@@ -88,7 +135,22 @@ public class FaqController {
 		model.addAttribute("pagesu", getPageSu());
 		model.addAttribute("page", spage);
 		
-		return "../templates/faq/faq";
+		return "../templates/faq/faquser";
+	}
+	
+	@GetMapping("faqowner")
+	public String listProcessOwner(@RequestParam("page")int page, Model model) {
+		int spage = page;
+		if (page <= 0) spage = 1;
+		
+		ArrayList<FaqDto> list = (ArrayList<FaqDto>)faqDao.listFaq();
+		ArrayList<FaqDto> result = getListData(list, spage);
+		
+		model.addAttribute("faq", result);
+		model.addAttribute("pagesu", getPageSu());
+		model.addAttribute("page", spage);
+		
+		return "../templates/faq/faqowner";
 	}
 	
 	@GetMapping("faqadmin")

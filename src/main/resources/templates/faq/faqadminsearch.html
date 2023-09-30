@@ -101,7 +101,7 @@
                         <b th:text="${num}">num 표시(현재 페이지는 링크를 걸지 않음)</b>
                     </th:span>
                     <th:span th:if="${num != page}">
-                        <a th:href="@{/faqadmin(page=${num})}" th:text="${num}">num 표시</a>
+                       <a th:href="@{/searchfaqadmin(searchpage=${num}, searchName=${searchName}, searchValue=${searchValue})}" th:text="${num}">num 표시</a>
                     </th:span>
                 </th:block>
             </td>
