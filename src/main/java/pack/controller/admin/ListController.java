@@ -52,9 +52,10 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
 	    
 		ArrayList<UserDto> slist = (ArrayList<UserDto>)dataDao.getUserAll();
 		ArrayList<UserDto> result = getuserListData(slist, spage);
+
 		
 		int user_records = dataDao.usercount(); // user 전체 레코드 수
-		
+
 		model.addAttribute("lists", result);
 		model.addAttribute("pagesu", getuserPageSu());
 	    model.addAttribute("page", spage);

@@ -59,7 +59,6 @@ public class DataDao {
        return dataMapper.usercount();
    }
 
-
    // Owner 정보 출력 및 검색하기-------------------------------------------------------------
    public List<OwnerDto> getOwnerAll(){
       List<OwnerDto> list2 = dataMapper.selectAll2();  // sql문이 실행

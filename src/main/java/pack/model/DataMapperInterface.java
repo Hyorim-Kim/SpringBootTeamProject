@@ -22,6 +22,7 @@ public interface DataMapperInterface {
    @Select("SELECT * FROM user WHERE user_name LIKE CONCAT('%', #{searchValue}, '%') OR user_id LIKE CONCAT('%', #{searchValue}, '%')")
    List<UserDto> selectSearch(FormBean bean);
 
+
    @Select("select count(*) from user ")
    int totalUser();
    
