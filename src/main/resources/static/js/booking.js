@@ -19,10 +19,10 @@ function checkPrice() {
 	const dateDiff = Math.abs((da2 - da1) / (24 * 60 * 60 * 1000));
 
 	if (startDay && endDay) {
-		intMoney.value = ((dateDiff * 2) * stringSize.value).toLocaleString() + '원';
+		intMoney.value = ((dateDiff * 2) * stringSize.value).toLocaleString() + "원";
 	}
 	if (startDay && endDay && dateDiff == 0) {
-		intMoney.value = (stringSize.value).toLocaleString() + '원';
+		intMoney.value = (stringSize.value).toLocaleString() + "원";
 	}
 }
 
@@ -59,7 +59,6 @@ nextBtn.addEventListener("click", () => {
 		return false;
 	} else if (confirm("예약하시겠습니까?")) {
 		alert("예약되었습니다.");
-		window.location.href = "bookingInfo.html";
 	} else {
 		alert('예약을 취소합니다.');
 		return false;
