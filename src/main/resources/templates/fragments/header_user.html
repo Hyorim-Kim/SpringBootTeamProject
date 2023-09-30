@@ -2,20 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <body>
-<<<<<<< HEAD
 <div th:if="${session.user != null}">
 	<div th:fragment="header_admin">
 		<header> 
 			<div id="header" class="header d-flex align-items-center">
 				<div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-					<a href="/usermypageback" class="logo d-flex align-items-center">
+					<a href="/usersessionkeep" class="logo d-flex align-items-center">
 						<h1>Acontainer<span>.</span></h1>
 					</a>
 					<i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
 					<i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 					<nav id="navbar" class="navbar">
 						<ul>
-							<li><a href="/usermypageback" class="active">Home</a></li>
+							<li><a href="/usersessionkeep" class="active">Home</a></li>
 							<li><a href="/service">서비스 소개</a></li>
 							<li><a href="/conajax">창고 검색</a></li>
 							<li class="dropdown"><a href="#"><span>마이페이지</span> <i
@@ -40,46 +39,6 @@
 			</div><!-- End Header -->
 		</header>
 	</div>
-=======
-<div th:if="${session.userSession != null}">
-   <div th:fragment="header_admin">
-      <header> 
-         <div id="header" class="header d-flex align-items-center">
-            <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-               <a href="/usersessionkeep" class="logo d-flex align-items-center">
-                  <h1>Acontainer<span>.</span></h1>
-               </a>
-               <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-               <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-               <nav id="navbar" class="navbar">
-                  <ul>
-                     <li><a href="/usersessionkeep" class="active">Home</a></li>
-                     <li><a href="/service">서비스소개</a></li>
-                     <li><a href="/conajax">창고검색</a></li>
-                     <li class="dropdown"><a href="#"><span>마이페이지</span> <i
-                              class="bi bi-chevron-down dropdown-indicator"></i></a>
-                        <ul>
-                           <!--<li><a href="/booking/booking">결제/예약정보</a></li>-->
-                           <li><a href="/booking/booking">결제/예약정보</a></li>
-                           <li><a href="#">문의내역</a></li>
-                           <li><a href="#">리뷰/평가</a></li>
-                           <li><a href="/userupdate">회원수정</a></li>
-                           <li><a href="/userdelete">회원탈퇴</a></li>
-                           <li><a href="/userlogoutgo">로그아웃</a></li>
-                        </ul>
-                     </li>
-                       <li class="dropdown"><a href="contact.html"><span>문의하기</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                          <ul>
-                            <li><a href="contactmain">1:1문의</a></li>
-                            <li><a href="faq?page=1">FAQ</a></li>
-                          </ul>
-                     <li><a href="/board/list?page=1">공지사항</a></li>
-               </nav><!-- .navbar -->
-            </div>
-         </div><!-- End Header -->
-      </header>
-   </div>
->>>>>>> branch 'master' of https://github.com/Hyorim-Kim/Team.git
 </div>
 </body>
 
