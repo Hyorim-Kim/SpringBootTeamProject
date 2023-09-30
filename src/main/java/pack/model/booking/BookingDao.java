@@ -33,13 +33,17 @@ public class BookingDao {
 		}
 		return b;
 	}
-	
+	public ArrayList<bookingDTO> bookingListAll(){
+		ArrayList<bookingDTO> blist = (ArrayList<bookingDTO>)bookingMapperInter.bookingList();
+		return blist;
+	}
+	/*
 	public boolean bookingList(bookingDTO dto) {
 		boolean b = false;
 		int re = bookingMapperInter.bookingList(dto);  
 		if(re >= 0) b = true;
 		return b;
 	}
-
+*/
 	
 }

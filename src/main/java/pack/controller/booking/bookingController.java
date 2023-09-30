@@ -4,10 +4,11 @@ package pack.controller.booking;
 
 import jakarta.servlet.http.HttpSession;
 
-
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,30 +55,13 @@ public class bookingController {
 		//return "bookingInfo";
 	//}
 
-	  @GetMapping("/bookingList")
-	    @ResponseBody
-	    public ModelAndView bookingCheck(HttpSession session) {
-	        ModelAndView modelAndView = new ModelAndView();
+	   @GetMapping("/bookingList")
+	    public String bookingProcess(HttpSession session, Model model) {
+		   ArrayList<bookingDTO> bookingdto = dao.bookingListAll();
+	      session.setAttribute("bookList", bookingdto);
+	      model.addAttribute("bList", bookingdto);
 
-	        bookingDTO bookingList = (bookingDTO) session.getAttribute("bookingList");
-	        try {
-	            // 세션에서 예약 정보를 가져오는 로직
-
-	            if (bookingList != null) {
-	                modelAndView.addObject("booking", bookingList);
-	            } else {
-	                // 세션에 예약 정보가 없는 경우
-	                modelAndView.addObject("booking", null);
-	            }
-	            modelAndView.setViewName("bookingInfo");
-	        } catch (Exception e) {
-	            // 예외 처리: 세션에서 예약 정보를 가져오는 동안 오류 발생
-	            e.printStackTrace(); // 에러 로그 출력 (실제로는 로그 파일에 기록해야 함)
-	            modelAndView.addObject("error", "예약 정보를 가져오는 동안 오류가 발생했습니다.");
-	            modelAndView.setViewName("errorPage"); // 오류 페이지로 이동
-	        }
-
-	        return modelAndView;
+	        return "bookingInfo";
 	    }
 
 //	//예약삭제

@@ -31,6 +31,7 @@ header{
 }
 
 h1 {
+	color: #ffffff;
     display: flex;
     align-items: center;
 }
@@ -50,9 +51,15 @@ body {
     background-size: cover;
     position: relative;
     z-index: 1;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgb(0, 0, 0,.6);
 }
-
+/*
+body::before{
+    content: "";
+    position: absolute; z-index: 1;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background-color: rgb(0, 0, 0,.6);
+}*/
 main {
     margin-top: 13rem;
     flex: 1; /* 메인 콘텐츠가 가능한 최대 높이를 가지도록 설정 */

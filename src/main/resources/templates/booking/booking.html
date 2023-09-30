@@ -35,22 +35,6 @@
  	<div th:replace="~{fragments/header_user :: header}"></div>
 
   <main id="container">
-
-    <!-- ======= Breadcrumbs ======= 
-    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('../assets/img/breadcrumbs-bg.jpg');">
-      <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
-
-        <h2 style="font-family: 'Noto Sans KR'; font-weight: 700;">Service</h2>
-        <ol>
-          <li><a href="/">Home</a></li>
-          <li>서비스소개</li>
-          <li>이용안내</li>
-        </ol>
-
-      </div>
-    </div>End Breadcrumbs -->
-
-	<!--<main id="container">-->
 		<div class="booking-box">
 			<h2>예약하기</h2>
 			
@@ -58,7 +42,7 @@
 				<form action="../booking/bookingDo" method="post" class="cf" name="select">
 					<!-- 나중에 type:hidden으로 바꾸기 -->
 					
-					<input type="hidden" name="user_id" id="userId" th:value="${session.user.user_id}" />
+					<input type="hidden" name="user_id" id="userId" th:value="${session.userSession.user_id}"/>
 					
 					<div id="date-group">
 						<div id="start-date">
@@ -86,7 +70,7 @@
 					<div class="btn-div">
 
 						<!--<button type="button" id="money-btn">결제하기</button>-->
-						<button type="submit" id="next-btn" onclick="insertOpt()" >예약하기</button>
+						<button type="submit" id="next-btn" onclick="insertOpt()" style="color: #3781E3;">예약하기</button>
 					</div>
 				</form>
 			</div>

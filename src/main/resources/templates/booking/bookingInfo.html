@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>예약정보확인</title>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript"
-	src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<title>예약정보확인</title>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Favicons -->
 	<link href="../assets/img/favicon.png" rel="icon">
 	<link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -32,82 +32,66 @@
 	<link href="../assets/css/main.css" rel="stylesheet">
 	<link rel="stylesheet" href="../css/booking.css">
 </head>
+
 <body>
 
 	<!-- ======= Header ======= -->
- 	<div th:replace="~{fragments/header_user :: header}"></div>
+	<div th:replace="~{fragments/header_user :: header}"></div>
 
-  <main id="container">
-
-    <!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('../assets/img/breadcrumbs-bg.jpg');">
-      <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
-
-        <h2 style="font-family: 'Noto Sans KR'; font-weight: 700;">Service</h2>
-        <ol>
-          <li><a href="/">Home</a></li>
-          <li>서비스소개</li>
-          <li>이용안내</li>
-        </ol>
-
-      </div>
-    </div><!-- End Breadcrumbs -->
-
-	<div>
-        <h1>예약 정보</h1>
-        <div id="booking-info">
-            <!-- 여기에 예약 정보를 표시할 HTML 요소를 추가하세요 -->
-        </div>
-    </div>
-
-<main id="container">
-		<div class="booking-box">
-			<h2>나의 예약정보</h2>
-			<div>
-				<input type="text" th:value="${session.booking.user_id}" readonly="readonly">
-			</div>
-			<div>
-				<table class="booking-check">
-					
-							<th>
-								<tr> 
-									<th scope="row">예약자</th>
-									<td>${booking.user_name}</td>
-								</tr>
-								<tr>
-									<th scope="row">예약날짜</th>
-									<td>${booking.booking_date_start}</td>
-								</tr>
-								<tr>
-									<th scope="row">지점명</th>
-									<td>${booking.stringCity}</td>
-								</tr>
-								<tr>
-									<th scope="row">사이즈</th>
-									<td>${booking.stringsize }</td>
-								</tr>
-								<tr>
-									<th scope="row">이용요금</th>
-									<td>${booking.intmoney }</td>
-								</tr>
-							</th>
-						
-				</table>
-				
-					<button type="button" id="cancel-btn"
-						onclick="location.href='/booking/bookDelete?bookingId=${booking.bookingId }'">취소하기</button>
-				
-				<button type="button" id="main-btn"
-					onClick="location.href='${contextPath}/index'">메인으로 돌아가기</button>
-			</div>
-			<div>
-				
+	<main id="container">
+		<div>
+			<h1>예약 정보</h1>
+			<div id="booking-info">
+				<!-- 여기에 예약 정보를 표시할 HTML 요소를 추가하세요 -->
 			</div>
 		</div>
-	</main>
-	<script src="../js/bookingInfo.js"></script>
-	  <!-- ======= Footer ======= -->
-  <div th:replace="~{fragments/footer :: footer}"></div>
+
+		<main id="container">
+			<div class="booking-box">
+				<h2>나의 예약정보</h2>
+				<div>
+					<input type="hidden" th:value="${session.userSession.user_id}" readonly="readonly">
+				</div>
+				<div>
+					<table class="booking-check">
+						<th:block>
+							<tr>
+								<th scope="row">예약자</th>
+								<td>[[${session.userSession.user_name}]]</td>
+							</tr>
+							<tr th:each="b:${bList}">
+								<th scope="row">예약날짜</th>
+								<td>[[${b.booking_date_start}]]</td>
+							</tr>
+
+							<tr th:each="b:${bList}">
+								<th scope="row">지점명</th>
+								<td>[[${b.stringCity}]]</td>
+							</tr>
+							<tr th:each="bList:${bookList}">
+								<th scope="row">사이즈</th>
+								<td>[[${bList.stringsize }]]</td>
+							</tr>
+							<tr th:each="bList:${bookList}">
+								<th scope="row">이용요금</th>
+								<td>[[${bList.intmoney }]]</td>
+							</tr>
+							</th:block>
+					</table>
+
+					<button type="button" id="cancel-btn"
+						onclick="location.href='booking'">취소하기</button>
+
+					<button type="button" id="main-btn" onClick="location.href='/usersessionkeep'">메인으로
+						돌아가기</button>
+				</div>
+				<div>
+
+				</div>
+			</div>
+		</main>
+		<script src="../js/bookingInfo.js"></script>
 
 </body>
+
 </html>

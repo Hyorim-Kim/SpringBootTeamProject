@@ -19,7 +19,7 @@ public interface BookingMapperInter {
 	
 	
 	@Select("select * from booking_board where user_name =#{user_name}")
-	int bookingList(bookingDTO dto);
+	List<bookingDTO> bookingList();
 	 
 	
 	@Delete("delete from booking_board where booking_id=#{bookingid}")
