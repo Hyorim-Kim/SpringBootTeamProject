@@ -37,7 +37,7 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
 	      return result; // 페이지에 표시할 FAQ 항목을 담을 ArrayList를 초기화하고, 해당 페이지의 FAQ 항목을 복사하여 반환
 	   }
 	   
-	   public int getuserPageSu() { // 총 페이지 수 얻기
+	   public int getuserPageSu() { // 총 user 페이지 수 얻기
 	      tot = dataDao.totalUser();
 	      int pagesu = tot / plist;
 	      if(tot % plist > 0) pagesu += 1;
@@ -45,7 +45,7 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
 	      return pagesu;
 	   }
 
-	@GetMapping("/user") 
+	@GetMapping("/user")   // user 페이지로 이동
 	public String userlist(@RequestParam("page")int page, Model model) {
 		int spage = page;
 	    if (page <= 0) spage = 1;
@@ -53,14 +53,17 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
 		ArrayList<UserDto> slist = (ArrayList<UserDto>)dataDao.getUserAll();
 		ArrayList<UserDto> result = getuserListData(slist, spage);
 		
+		int user_records = dataDao.usercount(); // user 전체 레코드 수
+		
 		model.addAttribute("lists", result);
 		model.addAttribute("pagesu", getuserPageSu());
 	    model.addAttribute("page", spage);
-
+	    model.addAttribute("user_records", user_records);
+	    
 		return "../templates/user/user";
 	}
 	
-	@PostMapping("usersearch")
+	@PostMapping("usersearch")  // user에서 검색하기
 	public String usersearch(@RequestParam(name = "page", required = false, defaultValue = "1")int page,FormBean bean, Model model) {  //넘어가니까 Model 사용
 		int spage = page;
 	    if (page <= 0) spage = 1 ;
@@ -73,7 +76,7 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
 		return "../templates/user/user";
 	}
 	
-	@PostMapping("userdelete")
+	@PostMapping("userdelete")  // user에서 삭제하기
 	public String userdel(@RequestParam("user_id")String user_id,
 			@RequestParam(name = "page", defaultValue = "1") int page) {
 		if(dataDao.userdelete(user_id))
@@ -94,7 +97,7 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
 	      return ownresult; // 페이지에 표시할 FAQ 항목을 담을 ArrayList를 초기화하고, 해당 페이지의 FAQ 항목을 복사하여 반환
 	   }
 	   
-	   public int getownerPageSu() { // 총 페이지 수 얻기
+	   public int getownerPageSu() { // 총 owner 페이지 수 얻기
 	      tot = dataDao.totalOwner();
 	      int pagesu = tot / plist;
 	      if(tot % plist > 0) pagesu += 1;
@@ -103,7 +106,7 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
 	   }
 	
 
-	@GetMapping("/owner")
+	@GetMapping("/owner")  // owner 페이지로 이동
 	public String ownerlist(@RequestParam("page")int page, Model model) {
 		int spage = page;
 	    if (page <= 0) spage = 1;
@@ -111,14 +114,16 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
 		ArrayList<OwnerDto> ownerlist = (ArrayList<OwnerDto>)dataDao.getOwnerAll();
 		ArrayList<OwnerDto> ownerresult = getownerListData(ownerlist, spage);
 		
+		int owner_records = dataDao.getownerrecords(); // 전체 레코드 수
+		
 		model.addAttribute("lists2", ownerresult);
 		model.addAttribute("pagesu", getownerPageSu());
 		model.addAttribute("page", spage);
-
+		model.addAttribute("owner_records",owner_records);
 		return "../templates/owner/owner";
 	}
 	
-	@PostMapping("ownersearch")
+	@PostMapping("ownersearch")  // owner에서 검색하기
 	public String ownersearch(@RequestParam(name = "page", required = false, defaultValue = "1")int page, FormBean bean, Model model) {  //넘어가니까 Model 사용
 		int spage = page;
 	    if (page <= 0) spage = 1 ;
@@ -133,7 +138,7 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
 		return "../templates/owner/owner";
 	}
 	
-	@PostMapping("ownerdelete")
+	@PostMapping("ownerdelete")  // owner에서 삭제하기
 	public String ownerdel(@RequestParam("business_num")String business_num,
 			@RequestParam(name = "page", defaultValue = "1") int page) {
 		if(dataDao.userdelete(business_num))
@@ -155,7 +160,7 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
 	      return regresult; // 페이지에 표시할 FAQ 항목을 담을 ArrayList를 초기화하고, 해당 페이지의 FAQ 항목을 복사하여 반환
 	   }
 	   
-	   public int getregisteredPageSu() { // 총 페이지 수 얻기
+	   public int getregisteredPageSu() { // 총 registered 페이지 수 얻기
 	      tot = dataDao.totalRegistered();
 	      int pagesu = tot / plist;
 	      if(tot % plist > 0) pagesu += 1;
@@ -178,7 +183,7 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
 		return "../templates/admin/cont_registered";
 	}
 	
-	@PostMapping("regsearch")
+	@PostMapping("regsearch")  // registered에서 검색하기
 	public String regsearch(@RequestParam(name="page", required = false, defaultValue = "1")int page, FormBean bean, Model model) {
 		int spage = page;
 		if(page <= 0) spage = 1;

@@ -21,12 +21,15 @@ public interface DataMapperInterface {
 
    @Select("SELECT * FROM user WHERE user_name LIKE CONCAT('%', #{searchValue}, '%') OR user_id LIKE CONCAT('%', #{searchValue}, '%')")
    List<UserDto> selectSearch(FormBean bean);
-   
+
    @Select("select count(*) from user ")
    int totalUser();
    
    @Delete("delete from user where user_id=#{user_id}")
    int userdeleteData(String user_id);
+   
+   @Select("SELECT COUNT(*) FROM user")  // 사용자 테이블에 대한 SQL 쿼리
+   int usercount();
    
    // owner sql문들-------------------------------------------------
    @Select("select * from owner")
@@ -35,10 +38,10 @@ public interface DataMapperInterface {
    @Select("SELECT * FROM owner WHERE business_num LIKE CONCAT('%', #{searchValue}, '%')")
    List<OwnerDto> selectSearch2(FormBean bean);
 
-   @Select("select count(*) from owner ")
-   int totalOwner();
+   @Select("select count(*) from owner")
+   int ownerrecords();
    
-   @Delete("delete from owner where user_id=#{user_id}")
+   @Delete("delete from owner where business_num=#{business_num}")
    int ownerdeleteData(String business_num);
    
    // Container sql문들-------------------------------------------------

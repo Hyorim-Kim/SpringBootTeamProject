@@ -50,18 +50,8 @@
 
 			</div>
 		</div><!-- End Breadcrumbs --><br/>
-		<h2 style="text-align: center;">제공자 회원 정보 확인</h2><br/><br/>
-		<div style="text-align: right; margin-left: 300px;">
-			<form action="/ownersearch" method="post" >
-			<!--<form action="/ownersearch?page=1" method="post">-->
-			검색 대상:
-			<select name="searchName" style="width: 130px;">
-				<option value="business_num" selected>사업자번호</option>
-			</select>
-			<input type="text" name="searchValue" style="width: 200px;">
-			<input type="submit" value="검 색" style="width: 80px;">
-		</form>
-		</div>
+		<h2 style="text-align: center;">제공자 회원 정보 확인(<span th:text="${owner_records}"></span>명)</h2><br/><br/>
+		
 		
 
 		<table style="width: 90%">
@@ -91,7 +81,18 @@
 					</td>
 				</tr>
 			</th:block>
-		</table>
+		</table><br/><br/>
+		<div style="text-align: center;">
+			<form action="/ownersearch" method="post" >
+			<!--<form action="/ownersearch?page=1" method="post">-->
+			검색 대상:
+			<select name="searchName" style="width: 130px;">
+				<option value="business_num" selected>사업자번호</option>
+			</select>
+			<input type="text" name="searchValue" >
+			<input type="submit" value="검 색" >
+		</form>
+		</div>
 		<table style="margin-top: 20px;">
 			<tr style="text-align: center;">
 				<td colspan="5">

@@ -8,14 +8,7 @@
 </head>
 <body>
 <h2>등록된 창고 관리하기</h2>
-<form action="/regsearch" method="post">
-        검색 대상:
-        <select name="searchName">
-            <option value="cont_name" selected>회사이름</option>
-        </select>
-        <input type="text" name="searchValue">
-        <input type="submit" value="검 색">
-</form>
+
 <table style="width:90%">
 
 	<tr>
@@ -52,7 +45,15 @@
 			</tr>
 	</th:block>
 
-</table>
+</table><br/><br/>
+<form action="/regsearch" method="post" style="text-align: center;">
+        검색 대상:
+        <select name="searchName">
+            <option value="cont_name" selected>회사이름</option>
+        </select>
+        <input type="text" name="searchValue">
+        <input type="submit" value="검 색">
+</form>
 <table style="margin-top: 20px;">
         <tr style="text-align: center;">
             <td colspan="5">

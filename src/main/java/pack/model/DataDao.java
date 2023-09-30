@@ -53,6 +53,12 @@ public class DataDao {
 			b = true;
 		return b;
 	}
+   
+   public int usercount() {
+       
+       return dataMapper.usercount();
+   }
+
 
    // Owner 정보 출력 및 검색하기-------------------------------------------------------------
    public List<OwnerDto> getOwnerAll(){
@@ -68,7 +74,7 @@ public class DataDao {
    }
    
    public int totalOwner() {
-	      return dataMapper.totalOwner();
+	      return dataMapper.ownerrecords();
    }
    
    public boolean ownerdelete(String business_num) {
@@ -78,6 +84,11 @@ public class DataDao {
 			b = true;
 		return b;
 	}
+   
+   public int getownerrecords() {
+       
+       return dataMapper.ownerrecords();
+   }
   
    // Container 정보 출력 및 검색하기-------------------------------------------------------------
    public List<ContainerDto> getConAll(){
