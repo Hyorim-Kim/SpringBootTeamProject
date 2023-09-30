@@ -65,7 +65,8 @@ public class UserController {
     public String processLoginForm(@RequestParam("user_id") String user_id,
             					   @RequestParam("user_pwd") String user_pwd,
             					   Model model, HttpSession session) {
-        // 사용자 로그인 처리
+        // 사용자가 입력한 아이디(user_id)와 비밀번호(user_pwd)를 사용하여 데이터베이스에서 해당 사용자를 찾아오는 코딩
+    	// userDao 객체를 사용하여 데이터베이스와 연결하고, 데이터베이스에서 찾은 사용자 정보를 UserDto 객체에 저장
         UserDto user = userDao.userLoginProcess(user_id, user_pwd);
         
         if (user != null) { // 사용자 정보가 있는 경우 로그인 성공
@@ -83,16 +84,16 @@ public class UserController {
 			return "user/userlogin"; // 로그인 실패 시 userlogin.html로 이동.
 		}
     }
-    
-
-       
+           
     /*** 9/15일 추가 작업 (회원수정) 광진 ***/
     
     // 사용자 마이페이지에서 회원수정을 클릭했을 때 (성공)
 	@GetMapping("/userupdate")
 	public String userUpdatePage(Model model, HttpSession session) {
-		// 세션에서 회원 정보를 가져와서 모델에 추가
+		// 반환되는 값은 Object 타입이니 "userSession"이라는 이름으로 저장된 객체를 UserDto 타입으로 형변환하여 사용자 정보를 가져온다.
+		// 세션에서 가져온 사용자 정보를 UserDto 객체로 다시 사용할 수 있다.
 		UserDto user = (UserDto) session.getAttribute("userSession");
+		// 세션에서 회원 정보를 가져와서 모델에 추가
 		model.addAttribute("userSession", user);
 		System.out.println("사용자 ID : " + user.getUser_id() + " " + "사용자 pwd : " + user.getUser_pwd());
 
