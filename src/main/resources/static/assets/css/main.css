@@ -20,6 +20,67 @@
 /*--------------------------------------------------------------
 # 전반적인 스타일 설정
 --------------------------------------------------------------*/
+.company_inner {
+    max-width: 1900px;
+    margin: 0 auto;
+}
+ul, ol {
+    list-style: none;
+    list-style-image: none;
+}
+
+*, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+user agent stylesheet
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+html, body {
+    color: #333;
+    height: 100%;
+    font-size: 15px;
+    -webkit-text-size-adjust: none;
+    font-family: "Play","NotoSansKR","Dotum","NanumSquare","sans-serif";
+    word-break: keep-all;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    line-height: 1.5;
+}
+
+
+html {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -ms-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+}
+*, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+*, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+
 
 body { /*body 요소*/
   font-family: var(--font-default); /*기본 글꼴 설정 : "Noto Sans KR"*/
@@ -61,11 +122,9 @@ section {
 
 .section-header {
   text-align: center;
-  padding-bottom: 50px;
 }
 
 .section-header h2 {
-  font-family: 'Noto Sans KR';
   font-size: 33px;
   font-weight: 900;
   position: relative;
@@ -161,27 +220,28 @@ section {
 --------------------------------------------------------------*/
 .scroll-top {
   position: fixed;
-  visibility: hidden;
-  opacity: 0;
-  right: 15px;
-  bottom: 15px;
-  z-index: 99999;
-  background: var(--color-primary);
-  width: 40px;
-  height: 40px;
-  border-radius: 4px;
+  right: 20px;
+  bottom: 20px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.4s;
+  border: 1px solid lightgray;
 }
 
-.scroll-top i {
-  font-size: 24px;
-  color: var(--color-secondary);
-  line-height: 0;
+.scroll-top i::before {
+  content: "↑";
+  font-size: 20px;
+  color: lightgray; /* 텍스트의 색상, 여기서는 회색 */
+  font-family: 'Arial', sans-serif;
 }
 
 .scroll-top:hover {
-  background: #ffc732;
-  color: #fff;
+  background: rgba(255, 255, 255, 0.8);
+  border-color: #52565e; /* 어두운색 테두리로 변경 */
 }
 
 .scroll-top.active {
@@ -190,7 +250,7 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Preloader : 웹 페이지가 로딩 중일 때 사용자에게 로딩 중임을 시각적으로 알려주는 기능
+# Preloader : 웹 페이지가 로딩 중일 때 사용자에게 로딩 중임을 시각적으로 알려줌
 --------------------------------------------------------------*/
 #preloader {
   position: fixed;
@@ -241,20 +301,21 @@ section {
 .header {
   z-index: 999; /*Header의 층위를 설정하여 다른 요소 위에 레이어함*/
   position: fixed; /*Header를 페이지 상단에 고정*/
-  padding: 30px 0;
+  padding: 18px 0;
   top: 0; /*화면의 상단에 정렬*/
   left: 0;
   right: 0;
-  font-family: "Noto Sans KR", sans-serif;
+  text-shadow: 1px 1px 1px #000;
 }
 
 .header .logo img { /*로고 이미지 크기와 여백을 조정*/
-  max-height: 40px;
+  background-image: url('../img/logo.png');
+  max-height: 30px;
   margin-right: 6px;
 }
 
 .header .logo h1 { /*로고의 텍스트를 스타일링*/
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 700;
   color: #fff;
   margin-bottom: 0;
@@ -263,6 +324,12 @@ section {
 
 .header .logo h1 span { /*로고 텍스트 중 일부를 스타일링 : 색상 지정*/
   color: var(--color-primary);
+}
+
+.header ul li a { /*헤더 메뉴바의 글씨 크기, 색 지정*/
+  font-size: 17px;
+  font-weight: bold;
+  color: #fff;
 }
 
 /*--------------------------------------------------------------
@@ -636,7 +703,6 @@ section {
 }
 
 .alt-services h3 {
-  font-family: 'Noto Sans KR';
   font-size: 28px;
   font-weight: 700;
   color: var(--color-secondary);
@@ -737,7 +803,6 @@ section {
 }
 
 .about .our-story h3 {
-  font-family: 'Noto Sans KR';
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 20px;
@@ -1093,6 +1158,7 @@ th {
 .hero {
   overflow-x: hidden;
   padding: 0;
+  text-shadow: 1px 1px 1px #000;
 }
 
 .hero .carousel {
@@ -1116,16 +1182,16 @@ th {
 
 .hero .carousel-item::before { /*배경 이미지 위에 어두운 페이지 추가*/
   content: "";
-  background-color: rgba(0, 0, 0, 0.5); /*투명도 설정*/
+  background-color: rgba(0, 0, 0, 0.2); /*투명도 설정*/
   position: absolute;
   inset: 0;
 }
 
 .hero .info { /*Hero 섹션의 정보 요소를 스타일링*/
   position: absolute;
-  /*margin-top: -130px;*/
   inset: 0;
   z-index: 2; /*텍스트가 배경 이미지 위에 나타나도록*/
+  margin-top: 5%;
 }
 
 @media (max-width: 768px) {
@@ -1136,24 +1202,11 @@ th {
 
 .hero .info h2 { /*제목 텍스트*/
   color: #fff;
-  margin-bottom: 30px;
-  padding-bottom: 30px;
+  margin-bottom: 0px;
+  padding-bottom: 10px;
   font-size: 70px;
-  font-weight: 700;
+  font-weight: bold;
   position: relative;
-}
-
-.hero .info h2:after { /*밑줄을 추가*/
-  content: "";
-  position: absolute;
-  display: block;
-  width: 80px;
-  height: 4px;
-  background: var(--color-primary);
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
 }
 
 @media (max-width: 768px) {
@@ -1163,26 +1216,24 @@ th {
 }
 
 .hero .info p { /*부가 설명 텍스트*/
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 18px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 23px;
 }
 
-.hero .info .btn-get-started { /* 시작 버튼 : 창고검색(지도)페이지로 이동함 */
-  font-family: var(--font-primary); /*버튼 텍스트*/
+.hero .info .btn-get-started {
   font-weight: 500;
-  font-size: 16px;
-  letter-spacing: 1px;
+  font-size: 18px;
   display: inline-block;
-  padding: 12px 40px; /*버튼의 모양*/
+  padding: 7px 40px; /*버튼의 모양*/
   border-radius: 50px;
   transition: 0.5s;
   margin: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
-  border: 2px solid var(--color-primary);
 }
 
 .hero .info .btn-get-started:hover {
-  background: var(--color-primary);
+  background: #000;
 }
 
 .hero .carousel-control-prev { /*배너 이미지의 이전 버튼 스타일을 설정*/
@@ -1236,6 +1287,57 @@ th {
   opacity: 0.9;
 }
 
+.hero .search-form button {
+  background-color: rgba(255, 255, 255, .8); /* 버튼 배경색 설정 */
+  border: none;
+  padding: 20px; /* 버튼 내부 여백 추가 */
+  border-radius: 50%; /* 원형 모양으로 설정 */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* 배경색 전환 효과 추가 */
+}
+
+.hero .search-form button:hover {
+  background-color: rgba(255, 255, 255, 1); /* 호버 시 밝은 흰색으로 배경색 변경 */
+}
+
+/*--------------------------------------------------------------
+# 메인페이지 - 검색바 : 지역별 창고검색
+--------------------------------------------------------------*/
+
+.hero .search-container {
+  margin-top: 15%;
+}
+
+.hero .search-form {
+    display:flex; 
+    justify-content:center; 
+    align-items:center;
+}
+
+.hero .search-input {
+   color: #000;
+   font-weight: bold;
+   font-size: medium;
+   flex-grow:1; 
+   margin-right:10px;
+   background-color: rgba(255, 255, 255, .8); /* 불투명한 흰 배경 적용 */
+   border:none; /* 외곽선 제거 */
+   padding-right:40px; /* 패딩 우측 공간 확보 (버튼 영역) */
+   box-sizing:border-box; /* 버튼이 입력 필드와 겹치지 않도록 함 */
+   border-radius: 50px; /* 둥근 모서리 적용 */
+   padding: 20px; /* 내부 여백 추가 */
+}
+
+.hero .search-form input,
+.hero .search-form button {
+  outline: none; /* 포커스 효과 제거 */
+}
+
+.hero .search-form input:focus,
+.hero .search-form button:focus {
+  border-color: var(--color-primary); /* 포커스 시 테두리 색상 설정 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 포커스 시 그림자 효과 추가 */
+}
 
 /*--------------------------------------------------------------
 # Footer
@@ -1322,3 +1424,141 @@ th {
   padding-top: 30px;
   border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
+
+
+/*--------------------------------------------------------------
+# 창고의뢰, 화물 운송 요청
+--------------------------------------------------------------*/
+
+html {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -ms-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+}
+*, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.company_inner {
+	max-width: 1900px;
+	margin: 0 auto;
+}
+
+.company_inner li {
+	float: left;
+	width: 50%;
+}
+
+.company_inner:hover li {
+	width: 45%;
+}
+
+.company_inner li:hover {
+	width: 55%;
+}
+
+.company_inner li div {
+	height: 264px;
+	background-size: 100%;
+}
+
+.company_inner li div strong {
+	font-size: 40px;
+}
+
+.company_inner li div a {
+	padding-right: 44px;
+	opacity: 0.7;
+	display: inline-block;
+	margin-top: 9px;
+}
+
+.company_inner li .company {
+	background: #132440 url(../img/sub_bg02.png) no-repeat;
+	padding: 55px 247px 55px 10px;
+	transition: all 1s cubic-bezier(0, 0, 0, 1.01) 0s;
+	color: #fff;
+	text-align: right;
+	position: relative;
+}
+
+.company_inner li .company img {
+	width: auto;
+	position: absolute;
+	right: 40px;
+	top: 50%;
+	margin-top: -60px;
+}
+
+.company_inner li .download {
+	/*background: #ff4155 url(../img/sub_bg03.png) no-repeat;*/
+	background: darkorange url(../img/sub_bg03.png) no-repeat;
+	padding: 55px 32px;
+	transition: all 1s cubic-bezier(0, 0, 0, 1.01) 0s;
+	color: #fff;
+	text-align: left;
+	position: relative;
+}
+
+.company_wrap {
+	position: relative;
+	overflow: hidden;
+}
+
+.company_inner {
+	list-style: none;
+	padding: 0;
+}
+
+.company_inner li {
+	float: left;
+	position: relative;
+}
+
+.company {
+	padding: 55px 30px 55px 10px;
+	color: #fff;
+	text-align: right;
+	position: relative;
+	background-image: url('../static/assets/img/sub_bg02.png');
+	background-repeat: no-repeat;
+	background-position: -12.6194px 100%;
+	transition: background-position 1s cubic-bezier(0, 0, 0, 1.01);
+}
+
+.download {
+	padding: 55px 32px;
+	color: #fff;
+	text-align: left;
+	position: relative;
+	background-image: url('../static/assets/img/sub_bg03.png');
+	background-repeat: no-repeat;
+	background-position: 170px 100%;
+	transition: background-position 1s cubic-bezier(0, 0, 0, 1.01);
+}
+
+#mainBottomLeftBanner,
+#mainBottomRightBanner {
+  color: white; /* 흰색으로 설정 */
+  font-size: large;
+}
+
+
+/* 추가한 스타일: 커서를 올렸을 때 전환 효과 */
+.transition-effect {
+    transition: transform 0.3s ease;
+}
+
+.transition-effect:hover {
+    transform: scale(1.05);
+}
+

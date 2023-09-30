@@ -8,6 +8,21 @@
 <body>
 <h3>공지 시항</h3>
 <table>
+  <tr>
+  	<td style="text-align: right;">
+		<a th:href="@{/board/update(num=${data.num},page=${page})}">
+			수정
+		</a>
+		<a th:href="@{/board/delete(num=${data.num},page=${page})}" onclick="return confirm('정말 삭제할까요?');">
+			삭제
+		</a>
+  		<a th:href="@{/board/listAdmin(page=${page})}">
+  			목록이동
+  		</a>
+  	</td>
+  </tr>
+</table>
+<table>
 	<tr>
 		<td>작성자 : [[${data.admin_id}]]</td>
 		<td>작성일 : [[${data.bdate}]]</td>
