@@ -30,32 +30,41 @@
 	<link rel="stylesheet" href="../css/booking.css">
 	
 	<script src="https://code.jquery.com/jquery-latest.js"></script>
-	<script>
+		<script>
 		$(document).ready(function () {
-			$(".faq").click(function () {
-				// FAQ를 클릭할 때마다 해당 데이터 가져오기
-				let answer = $(this).data("answer"); // 클릭된 FAQ 항목의 데이터 속성 중 "answer" 값을 가져와서 answer 변수에 저장, 이 데이터 속성은 FAQ 항목의 내용을 나타낸다
-
-				// 해당 FAQ에 대한 표시 영역 선택
-				let showId = $(this).data("show-id"); // 클릭된 FAQ 항목의 데이터 속성 중 "show-id" 값을 가져와서 showId 변수에 저장, 이 데이터 속성은 FAQ 내용이 표시될 영역의 HTML 요소의 ID를 나타낸다
-				let showArea = $("#" + showId); // 위에서 가져온 showId 값을 사용하여 FAQ 내용이 표시될 영역을 선택, jQuery의 $() 함수를 사용하여 해당 ID를 가진 HTML 요소를 선택
-
-				showArea.empty();
-
-				$.ajax({
-					type: "get",
-					url: "detailfaq", // Ajax 요청을 보낼 URL을 지정
-					data: {"detail": answer}, // 요청에 포함할 데이터를 지정, 여기서는 "detail" 파라미터에 answer 값을 전달
-					success: function (data) { // 서버로부터 받은 데이터를 showArea에 추가하여 FAQ 내용을 표시
-						let str = data.detail + "<br>";
-						showArea.append(str);
-					},
-					error: function () {
-						showArea.html("<b>에러 발생</b>");
-					}
-				});
-				showArea.toggle(); // 클릭할 때마다 열고 닫기 토글
-			});
+		    $(".faq").click(function () {
+		        let answer = $(this).data("answer"); // 클릭된 FAQ 항목의 데이터 속성 중 "answer" 값을 가져와서 answer 변수에 저장, 이 데이터 속성은 FAQ 항목의 내용을 나타낸다
+		        let showId = $(this).data("show-id"); // 클릭된 FAQ 항목의 데이터 속성 중 "show-id" 값을 가져와서 showId 변수에 저장, 이 데이터 속성은 FAQ 내용이 표시될 영역의 HTML 요소의 ID를 나타낸다
+		        let showArea = $("#" + showId); // 위에서 가져온 showId 값을 사용하여 FAQ 내용이 표시될 영역을 선택
+		
+		        // 현재 FAQ의 상태 확인
+		        let isOpen = showArea.is(":visible"); // FAQ 내용이 현재 보이는지 아닌지를 확인하기 위해 is(":visible") 함수를 사용하여 showArea의 가시성 상태를 확인하고 isOpen 변수에 저장
+		
+		        // 모든 FAQ를 숨김
+		        $(".faq").each(function() { // 클래스가 "faq"인 모든 FAQ 항목에 대해 반복적으로 처리하기 위한 반복문
+		            let otherShowId = $(this).data("show-id"); // 현재 FAQ 항목의 데이터 속성 중 "show-id" 값을 가져와서 otherShowId 변수에 저장, 이 변수는 다른 FAQ 항목의 표시 영역 ID를 나타낸다
+		            $("#" + otherShowId).hide(); //  otherShowId를 사용하여 다른 FAQ 항목의 표시 영역을 숨긴다. 이렇게 하면 하나의 FAQ를 열 때 다른 FAQ가 닫히게 된다
+		        });
+		
+		        showArea.empty(); // 현재 FAQ의 표시 영역을 비웁니다. 이것은 FAQ 내용을 다시 가져오기 전에 이전 내용을 지우는 역할
+		
+		        if (!isOpen) { // FAQ가 열려 있지 않은 경우에만 다시 열기 위한 조건문
+		            // FAQ가 열려 있지 않은 경우에만 다시 열기
+		            $.ajax({ // FAQ 내용을 서버에서 가져오기 위해 Ajax 요청을 보냅니다. 요청은 "detailfaq" URL로 보내지며, "detail" 파라미터에는 클릭된 FAQ 항목의 내용인 answer를 전달
+		                type: "get",
+		                url: "detailfaq",
+		                data: {"detail": answer},
+		                success: function (data) {
+		                    let str = data.detail + "<br>";
+		                    showArea.append(str);
+		                },
+		                error: function () {
+		                    showArea.html("<b>에러 발생</b>");
+		                }
+		            });
+		            showArea.show(); //  FAQ 내용을 표시하는 부분, 이렇게 하면 FAQ 내용이 보이게 된다
+		        }
+		    });
 		});
 	</script>
 </head>
@@ -116,8 +125,8 @@
 				<td th:text="${data.faq_question}" style="width: 75%; text-align: left; padding-left: 5%"></td>
 			</tr>
 			<tr>
-				<td colspan="3" style="text-align: left; padding-left: 10%">
-					<div th:id="'show' + ${data.faq_no}" style="display: none;"></div>
+				<td colspan="3" style="text-align: left; padding-left: 10%; padding-right: 20%;">
+					<div th:id="'show' + ${data.faq_no}" style="display: none; padding-top: 1cm; padding-bottom: 1cm;"></div>
 					<!-- display: none; 스타일은 해당 요소를 화면에 표시하지 않으며 숨긴 상태로 시작, FAQ 내용을 처음에는 숨긴 상태로 유지하려는 목적 -->
 				</td>
 			</tr>
