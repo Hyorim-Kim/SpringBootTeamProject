@@ -11,7 +11,6 @@
    <!-- 재민 -->
    <script>
 // 주소를 위도와 경도로 변환하고 값을 설정하는 JavaScript 함수
-// 주소를 위도와 경도로 변환하고 값을 설정하는 JavaScript 함수
 function getCoordinatesFromAddress() {
     var geocoder = new google.maps.Geocoder();
     var address = document.getElementById('user_combinedAddress').value; // 주소 입력 필드의 값을 가져옵니다.
@@ -65,7 +64,6 @@ function getCoordinatesFromAddress() {
       <!-- 대여가격 : <input type="text" name="cont_price" /><br/> -->
       창고설명 :
       <textarea rows="5" cols="50" name="content"></textarea><br />
-
       사업자번호 : <input type="text" th:placeholder="${session.ownerSession.business_num}" th:value="${session.ownerSession.business_num}" name="owner_num" />
       <br />
       이미지 : <input type="file" name="file" /><br />
@@ -74,9 +72,7 @@ function getCoordinatesFromAddress() {
             <!-- "저장" 버튼 -->
             <input type="submit" value="저장">
    </form>
-
    </br>
 </div>
 </body>
-
 </html>
