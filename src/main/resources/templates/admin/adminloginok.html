@@ -17,9 +17,10 @@
 </head>
 
 <body>
-<div th:if="${session.admin != null}">
-  <!-- ======= Header ======= -->
-  <div th:replace="~{fragments/header_admin :: header}"></div>
+<div th:if="${session.adminSession != null}">
+	<!-- ======= Header ======= -->
+	<div th:replace="~{fragments/header_admin :: header}"></div>
+
 
 	<!-- ======= Hero Section ======= -->
 	<section id="hero" class="hero">

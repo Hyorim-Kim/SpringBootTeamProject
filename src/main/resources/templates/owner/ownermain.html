@@ -56,7 +56,9 @@
 </head>
 
 <body>
-<div th:if="${session.owner != null}">
+
+<div th:if="${session.ownerSession != null}">
+  <!-- header 파일 따로 만들어서 삽입 -->
   <!-- ======= Header ======= -->
   <div th:replace="~{fragments/header_owner :: header}"></div>
   
@@ -69,6 +71,7 @@
           <div class="col-lg-6 text-center">
             <h2 data-aos="fade-down"><span>ACONTAINER</span>
             <span style="color: #ffc732;">.</span></h2>
+
             <p data-aos="fade">
 			<!--세션에서 owner 객체를 가져와서 owner_name 속성을 출력-->
             <span style="color: #ffffff;"><strong th:text="${session.owner.owner_name}">사업자 이름</strong></span> 사업자님 환영합니다</p>
@@ -80,6 +83,12 @@
 					<button type='submit' class='search-button'><i class='bx bx-search'></i></button>
 				</form>
 			</div>
+
+            <!--소유주 페이지에서는 . 눌러도 관리자 페이지로 이동하지 않음-->
+            <p data-aos="fade-up" style="font-size: 20px;">
+            <span style="color: #ffffff"><strong><span th:text="${session.ownerSession.owner_name}"></strong></span> 사업자님 환영합니다</p>
+            <a data-aos="fade-up" data-aos-delay="200" href="#get-started" class="btn-get-started">Get Started</a>
+
           </div>
         </div>
       </div>
