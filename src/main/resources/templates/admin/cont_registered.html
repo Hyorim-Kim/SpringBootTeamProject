@@ -30,9 +30,15 @@
 				<td th:text="${data3.cont_size}"></td>
 				<td th:text="${data3.cont_name}"></td>
 				<td th:text="${data3.owner_phone}"></td>
-				<td th:if="${data3.cont_status}" 
+				<td th:switch="${data3.cont_status}" >
+					<a th:case='0' th:href="@{detail(cont_no=${data3.cont_no})}">승인대기</a>
+					<a th:case='1' th:href="@{detail(cont_no=${data3.cont_no})}">사용가능</a>
+					<a th:case='2' th:href="@{detail(cont_no=${data3.cont_no})}">예약중</a>
+					<a th:case='3' th:href="@{detail(cont_no=${data3.cont_no})}">사용중</a>
+					<a th:case='4' th:href="@{detail(cont_no=${data3.cont_no})}">승인거절</a>
+				</td>
 				
-				<td> <a th:href="@{approve/detail(cont_no=${data3.cont_no})}" th:text="${data3.cont_status}"></a> </td>
+				<!-- <td> <a th:href="@{approve/detail(cont_no=${data3.cont_no})}" th:text="${data3.cont_status}"></a> </td> -->
 				<!-- <td th:text="${data3.cont_status}"></td>-->
 				<td th:text="${data3.owner_num}"></td>
 			</tr>

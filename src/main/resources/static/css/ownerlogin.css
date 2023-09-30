@@ -2,6 +2,20 @@
 
 * {margin: 0; padding: 0; box-sizing: border-box;}
 
+/* 헤더 요소 가운데 정렬 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 네비게이션을 오른쪽으로 이동 */
+.navbar {
+  margin-left: auto;
+  margin-right: 60px;/* 오른쪽 여백을 조절 */
+}
+
+
 body{
     font-family: 'Noto Sans KR', sans-serif;
     display: flex;
@@ -10,7 +24,6 @@ body{
     height: 100vh;
     background: url("../images/ownerloginimg.jpg") no-repeat center;
     background-size: cover;
-
 }
 
 body::before{

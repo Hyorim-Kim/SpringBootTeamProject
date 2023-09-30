@@ -5,7 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div th:if="${session.owner != null}">	
+<div th:if="${session.ownerSession != null}">
 <h3>창고정보(@mvc : myBatis)</h3>
 <table border="1">
 	<tr>
@@ -23,7 +23,15 @@
 			</td>
 			<td>[[${data.cont_size}]]</td>
 			<!-- <td>[[${#numbers.formatInteger(data.cont_price, 3, 'COMMA')}]]</td> -->
-			<td>[[${data.cont_status}]]</td>
+			
+			<td th:switch="${data.cont_status}" >
+					<a th:case='0'>승인대기</a>
+					<a th:case='1'>사용가능</a>
+					<a th:case='2'>예약중</a>
+					<a th:case='3'>사용중</a>
+					<a th:case='4'>승인거절</a>
+				</td>
+			<!-- <td>[[${data.cont_status}]]</td> -->
 			<td>[[${data.owner_name}]]</td>
 		</tr>
 	</th:block>

@@ -32,7 +32,7 @@
 </head>
 
 <body>
-<div th:if="${session.owner != null}">
+<div th:if="${session.ownerSession != null}">
   <!-- header 파일 따로 만들어서 삽입 -->
   <!-- ======= Header ======= -->
   <div th:replace="~{fragments/header_owner :: header}"></div>
@@ -47,7 +47,7 @@
             <span style="color: #ffc732;">.</span></h2>
             <!--소유주 페이지에서는 . 눌러도 관리자 페이지로 이동하지 않음-->
             <p data-aos="fade-up" style="font-size: 20px;">
-            <span style="color: #ffffff"><strong><span th:text="${session.owner.owner_name}"></strong></span> 사업자님 환영합니다</p>
+            <span style="color: #ffffff"><strong><span th:text="${session.ownerSession.owner_name}"></strong></span> 사업자님 환영합니다</p>
             <a data-aos="fade-up" data-aos-delay="200" href="#get-started" class="btn-get-started">Get Started</a>
           </div>
         </div>

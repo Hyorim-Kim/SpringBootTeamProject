@@ -7,21 +7,32 @@
     <script src="/js/ownerdelete.js"></script>
     <title>회원수정 페이지</title>
     <link rel="stylesheet" href="/css/ownerjoin.css">
+     <link href="../assets/css/main.css" rel="stylesheet">
 </head>
 <body>
-<div th:if="${session.owner != null}">
-    <h3 style="text-align: center; line-height: 2;"><span th:text="${owner.owner_name}"></span>님의 회원정보</h3>
+<div th:if="${session.ownerSession != null}">
+	<!-- ======= Header ======= -->
+    <header id="header" class="header d-flex align-items-center">        
+        </a>
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a href="/ownersessionkeep" class="active">Home</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <h3 style="text-align: center; line-height: 2;"><span th:text="${ownerSession.owner_name}"></span>님의 회원정보</h3>
     <div class="join-form">
         <div class="content">
             <form action="/ownerInfoDelete" method="POST">
 				<div id="messageContainer">
 	                <h3>사업자 번호</h3>
-	                <input type="text" name="business_num" id="business_num" class="text-field" th:value="${owner.business_num}" placeholder="사업자 번호">
+	                <input type="text" name="business_num" id="business_num" class="text-field" th:value="${ownerSession.business_num}" placeholder="사업자 번호">
 					<div id="business_numMessage" class="error-message"></div>
 					
 	                <h3>비밀번호</h3>
 	                <!-- 정보 수정이므로 type은 text로 유지 -->
-	                <input type="text" name="owner_pwd" id="owner_pwd" class="text-field" th:value="${owner.owner_pwd}" placeholder="비밀번호">
+	                <input type="text" name="owner_pwd" id="owner_pwd" class="text-field" th:value="${ownerSession.owner_pwd}" placeholder="비밀번호">
 					<div id="owner_pwdMessage" class="error-message"></div>
 					
 	                <h3>비밀번호 확인</h3>
@@ -29,15 +40,15 @@
 					<div id="owner_repwdMessage" class="error-message"></div>
 					
 	                <h3>이름</h3>
-	                <input type="text" name="owner_name" id="owner_name" class="text-field" th:value="${owner.owner_name}" placeholder="이름">
+	                <input type="text" name="owner_name" id="owner_name" class="text-field" th:value="${ownerSession.owner_name}" placeholder="이름">
 					<div id="owner_nameMessage" class="error-message"></div>
 					
 	                <h3>전화번호</h3>
-	                <input type="tel" name="owner_tel" id="owner_tel" class="text-field" th:value="${owner.owner_tel}" placeholder="전화번호">
+	                <input type="tel" name="owner_tel" id="owner_tel" class="text-field" th:value="${ownerSession.owner_tel}" placeholder="전화번호">
 					<div id="owner_telMessage" class="error-message"></div>
 					
 	                <h3>이메일</h3>
-	                <input type="text" name="email" id="email" class="text-field" maxlength="30" th:value="${owner.email}" placeholder="이메일">
+	                <input type="text" name="email" id="email" class="text-field" maxlength="30" th:value="${ownerSession.email}" placeholder="이메일">
                 	<div id="emailMessage" class="error-message"></div>
                 </div>
                 <!-- 버튼 -->

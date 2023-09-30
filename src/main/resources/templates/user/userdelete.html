@@ -5,22 +5,32 @@
     <!-- kakao 주소 api -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="/js/userupdate.js"></script>
-    <title>회원수정 페이지</title>
+    <title>회원탈퇴 페이지</title>
     <link rel="stylesheet" href="/css/userjoin.css">
+    <link href="../assets/css/main.css" rel="stylesheet">
 </head>
 <body>
-	<div th:if="${session.user != null}">	
-		<h3 style="text-align: center; line-height: 2;"><span th:text="${user.user_name}"></span>님의 회원수정</h3>
+	<div th:if="${session.userSession != null}">
+	<header id="header" class="header d-flex align-items-center">        
+        </a>
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a href="/usersessionkeep" class="active">Home</a></li>
+          </ul>
+        </nav><!-- .navbar -->
+      </div>
+    </header><!-- End Header -->		
+		<h3 style="text-align: center; line-height: 2;"><span th:text="${userSession.user_name}"></span>님의 회원탈퇴</h3>
 		<div class="join-form">
 			<div class="content">
 				<!-- ********** 광진 ********** -->
 				<form action="/userInfoDelete" name="userUpdate" method="POST">
 					<h3>아이디</h3>
-					<input type="text" name="user_id" id="user_id" class="text-field" th:value="${user.user_id}">
+					<input type="text" name="user_id" id="user_id" class="text-field" th:value="${userSession.user_id}">
 					<div id="messageContainer">
 					<h3>비밀번호</h3>
 					<!-- 정보 수정이여서 굳이 type은 password로 해야 하나요..?-->
-					<input type="text" name="user_pwd" id="user_pwd" class="text-field" th:value="${user.user_pwd}" placeholder="비밀번호">
+					<input type="text" name="user_pwd" id="user_pwd" class="text-field" th:value="${userSession.user_pwd}" placeholder="비밀번호">
 					<div id="user_pwdMessage"></div>
 					
 					<h3>비밀번호 확인</h3>
@@ -28,16 +38,16 @@
 					<div id="user_repwdMessage"></div>
 					
 					<h3>이름</h3>
-					<input type="text" name="user_name" id="user_name" class="text-field" th:value="${user.user_name}" placeholder="이름">
+					<input type="text" name="user_name" id="user_name" class="text-field" th:value="${userSession.user_name}" placeholder="이름">
 					<div id="user_nameMessage"></div>
 					
 					<h3>전화번호</h3>
-					<input type="tel" name="user_tel" id="user_tel" class="text-field" th:value="${user.user_tel}" placeholder="전화번호">
+					<input type="tel" name="user_tel" id="user_tel" class="text-field" th:value="${userSession.user_tel}" placeholder="전화번호">
 					<div id="user_telMessage"></div>
 					
 					<h3>이메일</h3>
 					<input type="text" name="user_email" id="user_email" class="text-field" maxlength="30"
-						th:value="${user.user_email}" placeholder="이메일">
+						th:value="${userSession.user_email}" placeholder="이메일">
 					<div id="user_emailMessage"></div>
 					
 					<h3>주소</h3>
@@ -52,10 +62,10 @@
 					<!-- 결과를 출력할 한 줄로 된 주소 필드 -->
 					<h3>입력한 주소</h3>
 					<input type="text" name="user_addr" id="user_combinedAddress" class="text-field"
-						th:value="${user.user_addr}" >
+						th:value="${userSession.user_addr}" >
 		
 					<h3>주민등록번호</h3>				
-					<input type="tel" name="user_jumin" id="user_jumin" class="text-field" th:value="${user.user_jumin}" placeholder="주민번호">
+					<input type="tel" name="user_jumin" id="user_jumin" class="text-field" th:value="${userSession.user_jumin}" placeholder="주민번호">
 					<div id="user_juminMessage"></div>
 					</div>
 					<!-- 버튼 -->

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.servlet.http.HttpSession;
 import pack.model.admin.AdminDao;
 import pack.model.admin.AdminDto;
+import pack.model.owner.OwnerDto;
 
 @Controller
 public class AdminController {
@@ -33,30 +34,36 @@ public class AdminController {
     	AdminDto admin = adminDao.adminloginProcess(admin_id, admin_pwd);
 
         if (admin != null) {
-        	session.setAttribute("admin", admin); // 세션에 관리자 정보 저장
-        	System.out.println(admin); // 꺼진 불도 다시 보자 (세션 잘 들어 갔나 확인용)
-
-            return "../templates/admin/adminloginok"; // 로그인 성공 시 adminloginok.html로 이동
+        	session.setAttribute("adminSession", admin); // 세션에 사용자 정보 저장
+        	System.out.println("관리자 Id : " + admin.getAdmin_id() + " " + "관리자 비번 : " + admin.getAdmin_pwd());
+        	return "admin/adminloginok";  // 로그인 성공 시 adminloginok.html로 이동
             
         } else {
             // 로그인 실패
-            return "../templates/user/userfail"; 
+            return "admin/adminlogin"; 
         }
     }
     
 	/*** 9/19일 추가 작업 사용자 마이페이지에서 로그아웃 하기 (광진) ***/
 	@GetMapping("/adminlogout")
 	public String userLogoutProcess(HttpSession session) {
-	    session.removeAttribute("admin"); // 세션 유지 종료
+	    session.removeAttribute("adminSession"); // 세션 유지 종료
 	    return "redirect:/"; // 로그아웃 클릭시 메인 홈페이지로 이동 
 	}
 	
-	// Home, Acron 마크 클릭했을때 세션값 유지하게 하기
-	@GetMapping("/adminmypageback")
-	public String userBack(HttpSession session) {
-	    AdminDto admin = (AdminDto) session.getAttribute("admin");
-	    System.out.println(admin);
-	    return "../templates/admin/adminloginok";
+	// 세션값 유지하게 하기
+	@GetMapping("/adminsessionkeep")
+	public String adminSessionKeep(HttpSession session) {
+		AdminDto adminSession = (AdminDto) session.getAttribute("adminSession");
+	    if (adminSession != null) {
+	        // 세션에 ownerSession값이 존재할 경우 ownermain.html 페이지로 이동
+	    	System.out.println("관리자 Id : " + adminSession.getAdmin_id() + " " + "관리자 비번 : " + adminSession.getAdmin_pwd());
+	        // 이동 경로를 상대 경로로 지정
+	        return "admin/adminloginok"; 
+	    } else {
+	    	// 세션값이 없을 경우
+	    	return "../templates/index";
+	    }
 	}
 	
 
