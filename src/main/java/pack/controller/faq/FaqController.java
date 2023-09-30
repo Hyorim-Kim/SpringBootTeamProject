@@ -74,7 +74,7 @@ public class FaqController {
 	    model.addAttribute("page", spage);
 	    // 검색 조건, 검색 결과, 페이지 정보 등을 모델에 추가, 이렇게 모델에 추가한 데이터는 뷰 템플릿에서 사용
 	    
-		return "../templates/faq/faquser";
+		return "../templates/faq/faqusersearch";
 	}
 	
 	@GetMapping("/searchfaqowner")
