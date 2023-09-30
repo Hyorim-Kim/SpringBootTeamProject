@@ -70,7 +70,7 @@
             <span style="color: #ffc732;">.</span></h2>
             <p data-aos="fade">
 			<!--Thymeleaf를 사용하여 세션에서 사용자 이름을 가져와서 화면에 출력-->
-            <span style="color: #ffffff;"><strong th:text="${session.user.user_name}">사용자 이름</strong></span> 고객님 환영합니다</p>
+            <span style="color: #ffffff;"><strong th:text="${session.userSession.user_name}">사용자 이름</strong></span> 고객님 환영합니다</p>
             <a data-aos="fade" data-aos-delay="200" href="/conajax" class="btn-get-started">바로 시작하기</a>
 			<!-- 검색바 추가 -->
 			<div class='hero search-container'>
@@ -79,10 +79,6 @@
 					<button type='submit' class='search-button'><i class='bx bx-search'></i></button>
 				</form>
 			</div>
-
-            <p data-aos="fade-up" style="font-size: 20px;">
-            <span style="color: #ffffff"><strong><span th:text="${session.userSession.user_name}"></strong></span> 고객님 환영합니다</p>
-            <a data-aos="fade-up" data-aos-delay="200" href="#get-started" class="btn-get-started">Get Started</a>
           </div>
         </div>
       </div>

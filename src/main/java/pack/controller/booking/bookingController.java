@@ -46,14 +46,14 @@ public class bookingController {
 	
 
 
-	   @GetMapping("/bookingList")
-	    public String bookingProcess(HttpSession session, Model model) {
-		   ArrayList<bookingDTO> bookingdto = dao.bookingListAll();
-	      session.setAttribute("bookList", bookingdto);
-	      model.addAttribute("bList", bookingdto);
+	@GetMapping("/bookingList")
+	public String bookingProcess(HttpSession session, Model model) {
+		ArrayList<bookingDTO> bookingdto = dao.bookingListAll();
+		session.setAttribute("bookList", bookingdto);
+		model.addAttribute("bList", bookingdto);
 
-	        return "bookingInfo";
-	    }
+		return "bookingInfo";
+	}
 
 	//예약삭제
 	@GetMapping("bookDelete")
