@@ -7,9 +7,19 @@
     <script src="/js/userupdate.js"></script>
     <title>회원수정 페이지</title>
     <link rel="stylesheet" href="/css/userjoin.css">
+    <link href="../assets/css/main.css" rel="stylesheet">
 </head>
 <body>
-	<div th:if="${session.userSession != null}">	
+	<div th:if="${session.userSession != null}">
+	<header id="header" class="header d-flex align-items-center">        
+        </a>
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a href="/usersessionkeep" class="active">Home</a></li>
+          </ul>
+        </nav><!-- .navbar -->
+      </div>
+    </header><!-- End Header -->	
 		<h3 style="text-align: center; line-height: 2;"><span th:text="${userSession.user_name}"></span>님의 회원수정</h3>
 		<div class="join-form">
 			<div class="content">
