@@ -31,24 +31,23 @@
 </head>
 
 <body>
+<div th:if="${session.adminSession != null}">
 	<!-- ======= Header ======= -->
 	<div th:replace="~{fragments/header_admin :: header}"></div>
 
 	<main id="container">
 
 		<!-- ======= Breadcrumbs ======= -->
-		<div class="breadcrumbs d-flex align-items-center"
-			style="background-image: url('../assets/img/breadcrumbs-bg.jpg');">
-			<div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
-
-				<h2 style="font-family: 'Noto Sans KR'; font-weight: 700;">Service</h2>
-				<ol>
-					<li><a href="/adminsessionkeep">Home</a></li>
-					<li>서비스소개</li>
-					<li>이용안내</li>
-				</ol>
-			</div>
-		</div><!-- End Breadcrumbs --><br/>
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('../assets/img/breadcrumbs-bg.jpg');">
+      <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+        <h2 style="font-family: 'Noto Sans KR'; font-weight: 700;">Service</h2>
+        <ol>
+          <li><a href="/adminsessionkeep">Home</a></li>
+          <li>서비스소개</li>
+          <li>이용안내</li>
+        </ol>
+      </div>
+    </div><!-- End Breadcrumbs -->
 		<h2 style="text-align: center;">제공자 회원 정보 확인(<span th:text="${owner_records}"></span>명)</h2><br/><br/>
 		
 		
@@ -108,6 +107,8 @@
 		</table>
 		<!-- ======= Footer ======= -->
 		<div th:replace="~{fragments/footer :: footer}"></div>
+	</main>
+</div>
 </body>
 
 </html>

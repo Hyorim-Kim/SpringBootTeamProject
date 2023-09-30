@@ -3,10 +3,55 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<title>Contact</title>
+	
+	<!-- Favicons -->
+	<link href="../assets/img/favicon.png" rel="icon">
+	<link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+		rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+	<!-- Vendor CSS Files -->
+	<link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+	<link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+	<link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+	<link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+	<link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+	<link href="../assets/css/main.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/booking.css">
+	
 </head>
 
 <body>
+	
+	<!-- ======= Header ======= -->
+ 	<div th:replace="~{fragments/header_admin :: header}"></div>
+
+  <main id="container">
+	
+	<!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('../assets/img/breadcrumbs-bg.jpg');">
+      <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+
+        <h2 style="font-family: 'Noto Sans KR'; font-weight: 700;">Service</h2>
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li>서비스소개</li>
+          <li>이용안내</li>
+        </ol>
+
+      </div>
+    </div><!-- End Breadcrumbs -->
+	
 	<h3>Contact 목록</h3>
 	<table border="1">
 		<tr>
@@ -39,6 +84,10 @@
 			</td>
 		</tr>
 	</table>
+	
+	<!-- ======= Footer ======= -->
+  <div th:replace="~{fragments/footer :: footer}"></div>
+	
 </body>
 
 </html>
