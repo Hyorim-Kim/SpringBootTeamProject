@@ -6,27 +6,15 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>에이콘테이너</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
+  <!-- 파비콘 -->
   <link href="/assets/img/favicon.png" rel="icon">
-  <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-    rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
   <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
@@ -54,17 +42,21 @@
 
       </div>
     </div><!-- End Breadcrumbs -->
-
+    
 	<section class="sample-page">
+		
+		
 		<div class="board-container">
-			<table>
-				<tr>
-					<td>
-						[<a th:href="@{/board/insert}">글쓰기</a>]
-					</td>
-				</tr>
-			</table>
-	
+			<!-- 고객문의 배너 -->
+			<div class="customer-inquiry-banner">
+				<p>목록</p>
+				<ul>
+					<li>공지사항</li>
+					<li>1:1문의</li>
+					<li>FAQ</li>
+				</ul>
+			</div>
+
 			<table>
 				<tr style="background-color: silver;">
 					<th>번호</th>
@@ -72,8 +64,6 @@
 					<th>작성자</th>
 					<th>조회수</th>
 					<th>작성일</th>
-					<th>수정</th>
-					<th>삭제</th>
 				</tr>
 				<!-- isEmpty()는 들어온 값이 null 이거나 빈 문자열일 때 true를 반환. 체크 전에 trim()을 적용하기 때문에 빈 줄이나 공백도 같이 걸러진다 -->
 				<th:block th:if="${not #strings.isEmpty(data)}"> <!-- th:if="${data != null}" -->
@@ -90,8 +80,6 @@
 						<td>관리자</td>
 						<td>[[${b.readcnt}]]</td>
 						<td>[[${b.bdate}]]</td>
-						<td><button class="edit-button" data-id="1">수정</button></td>
-       					<td><button class="delete-button" data-id="1">삭제</button></td>
 					</tr>
 	
 					<!-- paging -->

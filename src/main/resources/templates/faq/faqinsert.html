@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	window.onload = function(){
+		
+		document.querySelector("#btnList").onclick = function(){
+			window.history.back();
+
+		}
+		
+		document.querySelector("#btn").onclick = function(){
+			if(confirm("정말 추가 할까요?")){
+				event.preventDefault(); // submit 이벤트를 취소
+				ins.action="faqinsert";
+				ins.method="post";
+				ins.submit();
+			}
+		}
+	}
+</script>
+</head>
+<body>
+<h2>** FAQ 추가 **</h2><br><br>
+<div>
+	<form action="faqinsert" name="ins" method="post" >
+		<div>
+			<div>
+				카테고리 : <input type="text" name="faq_category" id="faq_category" required>
+			</div>
+			<div>
+				제  목 : <input type="text" name="faq_question" id="faq_question" required>
+			</div>
+			<div>
+				내  용 : <input type="text" name="faq_answer" id="faq_answer" required>
+			</div>
+			<div>
+				<input type="button" value="추가" name="btn" id="btn"></input>
+				<input type="button" value="목록" name="btnList" id="btnList">
+			</div>
+		</div>
+	</form>
+</div>
+</body>
+</html>

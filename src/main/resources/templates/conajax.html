@@ -300,5 +300,43 @@
         }
    }
 </script>
+<!-- 검색 결과를 출력할 부분에 id 부여 -->
+<div id="searchResult"></div>
+
+<!-- 검색어를 입력하는 input과 버튼 -->
+<input type="text" id="searchInput" placeholder="검색어를 입력하세요">
+<button onclick="sendSearch()">검색</button>
+
+<!-- 검색 결과를 출력하는 스크립트 -->
+<script>
+    function sendSearch() {
+        // 입력한 검색어 가져오기
+        const searchTerm = document.getElementById('searchInput').value;
+
+        // 서버로 POST 요청 보내기
+        fetch('/conajax', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ query: searchTerm }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.message);
+            console.log('받아온 검색어:', searchTerm);
+
+            // 검색 결과를 출력할 부분에 내용 변경
+            const searchResultDiv = document.getElementById('searchResult');
+            searchResultDiv.innerHTML = `받아온 검색어: ${searchTerm}`;
+
+            // 추가 작업 가능
+        })
+        .catch(error => {
+            console.error('에러 발생:', error);
+        });
+    }
+</script>
+
 </body>
 </html>

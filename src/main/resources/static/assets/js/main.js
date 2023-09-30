@@ -8,7 +8,7 @@ window.addEventListener('scroll', function() {
     
     // 스크롤 위치를 확인하여 어두운 색으로 설정
     if (window.scrollY > 0) {
-        header.style.backgroundColor = 'rgba(51, 51, 51, 0.8)'; // 항상 어두운 색상으로 변경하고 투명도를 0.8로 설정
+        header.style.backgroundColor = 'rgba(51, 51, 51, 0.6)'; // 투명도 설정
     } else {
         header.style.backgroundColor = 'transparent'; // 스크롤이 상단에 있으면 투명한 배경으로 설정
     }
