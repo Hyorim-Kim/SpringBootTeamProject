@@ -1,12 +1,11 @@
-<!DOCTYPE html>
+</body><!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
-
 <head>
-	<meta charset="UTF-8">
-	<meta content="width=device-width, initial-scale=1.0" name="viewport">
-	<title>Contact</title>
-	
-	<!-- Favicons -->
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Contact</title>
+
+<!-- Favicons -->
 	<link href="../assets/img/favicon.png" rel="icon">
 	<link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
@@ -28,17 +27,25 @@
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 	<link href="../assets/css/main.css" rel="stylesheet">
 	<link rel="stylesheet" href="../css/booking.css">
-	
-</head>
 
+<script>
+	window.onload = function(){
+		document.querySelector("#btn").onclick = function(){
+			if(!confirm("정말 작성 할까요?")){
+				event.preventDefault(); // submit 이벤트를 취소
+			}
+		}
+	}
+</script>
+</head>
 <body>
 	
 	<!-- ======= Header ======= -->
- 	<div th:replace="~{fragments/header_admin :: header}"></div>
+ 	<div th:replace="~{fragments/header_user :: header}"></div>
 
   <main id="container">
-	
-	<!-- ======= Breadcrumbs ======= -->
+
+    <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs d-flex align-items-center" style="background-image: url('../assets/img/breadcrumbs-bg.jpg');">
       <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
 
@@ -52,42 +59,34 @@
       </div>
     </div><!-- End Breadcrumbs -->
 	
-	<h3>Contact 목록</h3>
-	<table border="1">
-		<tr>
-			<th>이름</th><th>메일</th><th>주제</th><th>문의날짜</th><th>처리상태</th><th>상세보기</th>
-		</tr>
-		<th:block th:if="${contactadmin.size > 0}">
-			<tr th:each="data:${contactadmin}">
-				<td th:text="${data.contact_name }"></td>
-				<td th:text="${data.contact_email }"></td>
-				<td th:text="${data.contact_title }"></td>
-				<td th:text="${data.contact_date }"></td>
-				<td th:text="${data.contact_status }"></td>
-				<td>
-					<a th:href="@{/contactdetail(contact_no=${data.contact_no})}">상세보기</a>
-				</td>
-			</tr>
-		</th:block>
-	</table>
-	<table style="margin-top: 20px;">
-		<tr style="text-align: center;">
-			<td colspan="5">
-				<th:block th:each="num : ${#numbers.sequence(1, pagesu)}">
-					<th:span th:if="${num == page}">
-						<b th:text="${num}">num 표시(현재 페이지는 링크를 걸지 않음)</b>
-					</th:span>
-					<th:span th:if="${num != page}">
-						<a th:href="@{/contactadmin(page=${num})}" th:text="${num}">num 표시</a>
-					</th:span>
-				</th:block>
-			</td>
-		</tr>
-	</table>
+<h3>Contact 목록</h3>
+<div>
+	<form action="insertcontact" name="ins" method="post">
+		<div>
+			<div>
+				<input type="text" name="contact_name" id="contact_name" placeholder="Your Name" required>
+			</div>
+			<div>
+				<input type="email" name="contact_email" id="contact_email" placeholder="Your Email" required>
+			</div>
+			<div>
+				<input type="text" name="contact_title" id="contact_title" placeholder="Title" required>
+			</div>
+			<div>
+				<textarea name="contact_message" id="contact_message" rows="5" placeholder="Message" required></textarea>
+			</div>
+			<div>
+				<input type="hidden" name="contact_status" id="contact_status" value="답변대기">
+			</div>
+			<div>
+				<button type="submit" name="btn" id="btn">Send Message</button>
+			</div>
+		</div>
+	</form>
 	
-	<!-- ======= Footer ======= -->
+	 <!-- ======= Footer ======= -->
   <div th:replace="~{fragments/footer :: footer}"></div>
 	
+</div>
 </body>
-
 </html>

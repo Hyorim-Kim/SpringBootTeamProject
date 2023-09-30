@@ -51,8 +51,8 @@ public class FaqController {
 		return pagesu;
 	}
 
-	@PostMapping("searchfaq")
-	public String search(@RequestParam("searchpage")int searchpage, FaqBean bean, Model model) {
+	@GetMapping("searchfaquser")
+	public String searchUser(@RequestParam(value = "searchpage", defaultValue = "1")int searchpage, FaqBean bean, Model model) {
 		// @RequestParam("searchpage") int searchpage: 요청 파라미터 중 "searchpage"를 받아와서 searchpage 변수에 저장, 이 변수는 검색 결과 페이지의 번호를 나타낸다
 		int spage = searchpage;
 		if (searchpage <= 0) spage = 1;
@@ -61,7 +61,20 @@ public class FaqController {
 		model.addAttribute("faq", sresult); // 검색 결과 FAQ 목록을 추가
 		model.addAttribute("pagesu", getSearchPageSu(bean)); // 검색 결과의 총 페이지 수를 추가
 		model.addAttribute("page", spage); // 모델에 현재 페이지 번호를 추가
-		return "../templates/faq/faq";
+		return "../templates/faq/faquser";
+	}
+	
+	@GetMapping("searchfaqowner")
+	public String searchOwner(@RequestParam(value = "searchpage", defaultValue = "1")int searchpage, FaqBean bean, Model model) {
+		// @RequestParam("searchpage") int searchpage: 요청 파라미터 중 "searchpage"를 받아와서 searchpage 변수에 저장, 이 변수는 검색 결과 페이지의 번호를 나타낸다
+		int spage = searchpage;
+		if (searchpage <= 0) spage = 1;
+		ArrayList<FaqDto> slist = (ArrayList<FaqDto>)faqDao.searchFaq(bean); // 검색 조건에 따라 FAQ를 검색하고 결과를 slist에 저장
+		ArrayList<FaqDto> sresult = getListData(slist, spage); // 검색 결과를 페이지별로 나누어 표시하기 위해 getListData 메서드를 사용하여 sresult에 해당 페이지의 FAQ 목록을 저장
+		model.addAttribute("faq", sresult); // 검색 결과 FAQ 목록을 추가
+		model.addAttribute("pagesu", getSearchPageSu(bean)); // 검색 결과의 총 페이지 수를 추가
+		model.addAttribute("page", spage); // 모델에 현재 페이지 번호를 추가
+		return "../templates/faq/faqownersearch";
 	}
 	
 	@PostMapping("searchadmin")
@@ -76,8 +89,8 @@ public class FaqController {
 		return "../templates/faq/faqadmin";
 	}
 	
-	@GetMapping("faq")
-	public String listProcess(@RequestParam("page")int page, Model model) {
+	@GetMapping("faquser")
+	public String listProcessUser(@RequestParam("page")int page, Model model) {
 		int spage = page;
 		if (page <= 0) spage = 1;
 		
@@ -88,7 +101,22 @@ public class FaqController {
 		model.addAttribute("pagesu", getPageSu());
 		model.addAttribute("page", spage);
 		
-		return "../templates/faq/faq";
+		return "../templates/faq/faquser";
+	}
+	
+	@GetMapping("faqowner")
+	public String listProcessOwner(@RequestParam("page")int page, Model model) {
+		int spage = page;
+		if (page <= 0) spage = 1;
+		
+		ArrayList<FaqDto> list = (ArrayList<FaqDto>)faqDao.listFaq();
+		ArrayList<FaqDto> result = getListData(list, spage);
+		
+		model.addAttribute("faq", result);
+		model.addAttribute("pagesu", getPageSu());
+		model.addAttribute("page", spage);
+		
+		return "../templates/faq/faqowner";
 	}
 	
 	@GetMapping("faqadmin")
