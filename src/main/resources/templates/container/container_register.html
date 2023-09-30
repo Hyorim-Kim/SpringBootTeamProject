@@ -10,7 +10,7 @@
 
 <body>
 
-<div th:if="${session.owner != null}">
+<div th:if="${session.ownerSession != null}">
 	** 창고 등록 **<br />
 	<form action="insert" method="post" enctype="multipart/form-data">
 		창고주소 : <input type="text" id="user_postcode" class="text-field-postcode" placeholder="우편번호">
@@ -29,16 +29,14 @@
 		창고설명 :
 		<textarea rows="5" cols="50" name="content"></textarea><br />
 
-		사업자번호 : <input type="text" th:placeholder="${session.owner.business_num}" th:value="${session.owner.business_num}" name="owner_num" />
+		사업자번호 : <input type="text" th:placeholder="${session.ownerSession.business_num}" th:value="${session.ownerSession.business_num}" name="owner_num" />
 		<br />
 		이미지 : <input type="file" name="file" /><br />
 		<br />
 		<br />
 		<input type="submit" value="저장">
 	</form>
-
 	</br>
 </div>
 </body>
-
 </html>

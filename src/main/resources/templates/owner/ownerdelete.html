@@ -7,9 +7,20 @@
     <script src="/js/ownerdelete.js"></script>
     <title>회원수정 페이지</title>
     <link rel="stylesheet" href="/css/ownerjoin.css">
+     <link href="../assets/css/main.css" rel="stylesheet">
 </head>
 <body>
 <div th:if="${session.ownerSession != null}">
+	<!-- ======= Header ======= -->
+    <header id="header" class="header d-flex align-items-center">        
+        </a>
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a href="/ownersessionkeep" class="active">Home</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
     <h3 style="text-align: center; line-height: 2;"><span th:text="${ownerSession.owner_name}"></span>님의 회원정보</h3>
     <div class="join-form">
         <div class="content">

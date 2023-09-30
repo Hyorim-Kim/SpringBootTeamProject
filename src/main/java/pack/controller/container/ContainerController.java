@@ -68,7 +68,7 @@ public class ContainerController {
 		// 창고관리 페이지로 매핑해주는 메소드 리스트값을 달고 가서 반복문을 통해 테이블에 값들을 밀어넣어줌
 		ArrayList<ContainerDto> clist = (ArrayList<ContainerDto>) containDao.getDataAll(business_num);
 		// System.out.println(clist);
-		session.setAttribute("owner", clist);
+		session.setAttribute("ownerSession", clist);
 
 		model.addAttribute("datas", clist);
 		System.out.println("business_num  : " + business_num);
@@ -89,7 +89,7 @@ public class ContainerController {
 	// 창고관리(목록)페이지에서 창고등록 페이지로 넘어가는 링크 매핑
 	// 창고관리 페이지에서 a th:href="@{/insert}" 요거 타고 들어옴
 	public String insertContainer(HttpSession session) {
-		String owner = (String) session.getAttribute("owner");
+		String owner = (String) session.getAttribute("ownerSession");
 		System.out.println(owner);
 		return "container/container_register";
 	}
@@ -120,7 +120,7 @@ public class ContainerController {
 
 		try {
 			inputStream = file.getInputStream();
-	        String fileSavePath = "C:/Users/cmh17/git/Team/src/main/resources/static/upload/" + randomFilename;
+	        String fileSavePath = "C:/Users/kwang/git/Team/src/main/resources/static/upload/" + randomFilename;
 	        File newFile = new File(fileSavePath);
 	        if (!newFile.exists()) {
 	            newFile.createNewFile();

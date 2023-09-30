@@ -26,7 +26,7 @@ public interface ContainerMapperInterface {
 	
 	
 	@Insert("insert into container(cont_no, cont_addr, cont_size, cont_image, owner_num) values ((select max(cont_no) + 1 from container num), #{cont_addr}, #{cont_size}, #{cont_image}, #{owner_num})")
-	int insertContainer(FormBean bean); 
+    int insertContainer(FormBean bean);
 	// 빈이랑 매핑됨
 	// 공급자가 새로 등록하고자하는 창고정보 입력 쿼리문
 	// 쿼리문을 통해 bean에 값을 밀어넣어주고 있음
