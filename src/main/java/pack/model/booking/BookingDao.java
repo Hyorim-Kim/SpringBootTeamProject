@@ -37,13 +37,13 @@ public class BookingDao {
 		ArrayList<bookingDTO> blist = (ArrayList<bookingDTO>)bookingMapperInter.bookingList();
 		return blist;
 	}
-	/*
-	public boolean bookingList(bookingDTO dto) {
+	
+    // 예약 삭제 bookingInfo 취소하기
+	public boolean bookingDelete(bookingDTO bookingdto) {
 		boolean b = false;
-		int re = bookingMapperInter.bookingList(dto);  
-		if(re >= 0) b = true;
+		int re = bookingMapperInter.bookingDelete(bookingdto);
+		if(re >= 0 ) b = true;
 		return b;
 	}
-*/
 	
 }

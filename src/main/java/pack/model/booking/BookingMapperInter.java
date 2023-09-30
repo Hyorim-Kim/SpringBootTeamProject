@@ -22,8 +22,8 @@ public interface BookingMapperInter {
 	List<bookingDTO> bookingList();
 	 
 	
-	@Delete("delete from booking_board where booking_id=#{bookingid}")
-	List<bookingDTO> bookDelete(int booking_id);
+	@Delete("delete from booking_board where use_id=#{user_id}")
+	int bookingDelete(bookingDTO bookingdto);
 
 
 
