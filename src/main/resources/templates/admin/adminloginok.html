@@ -19,6 +19,42 @@
 <body>
 <div th:if="${session.adminSession != null}">
 	<!-- ======= Header ======= -->
+
+
+	<header id="header" class="header d-flex align-items-center">
+		<div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+			<a href="index.html" class="logo d-flex align-items-center">
+				<h1>Acorn<span>.</span></h1>
+			</a>
+
+			<i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+			<i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+			<nav id="navbar" class="navbar">
+				<ul>
+					<li><a href="index.html" class="active">Home</a></li>
+					<li class="dropdown"><a href="#"><span>회원관리</span> <i
+								class="bi bi-chevron-down dropdown-indicator"></i></a>
+						<ul>
+							<li><a href="/user?page=1">이용자관리</a></li>
+							<li><a href="/owner?page=1">제공자관리</a></li>
+						</ul>
+					<li class="dropdown"><a href="#">창고관리</a>
+						<ul>
+							<li><a href="/registered?page=1">등록창고관리</a></li>
+						</ul>
+					</li>
+
+					<li><a href="#">예약/결제관리</a></li>
+					<li><a href="/board/list?page=1">공지관리</a></li>
+					<li><a href="#">문의확인</a></li>
+				</ul>
+			</nav><!-- .navbar -->
+		</div>
+	</header><!-- End Header -->
+
+
+
 	<div th:replace="~{fragments/header_admin :: header}"></div>
 
 
