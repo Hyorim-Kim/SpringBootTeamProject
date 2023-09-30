@@ -4,71 +4,23 @@
 <head> 
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
-
 	<title>에이콘테이너</title>
-	<meta content="" name="description">
-	<meta content="" name="keywords">
-
-	<!-- Favicons -->
+	<!-- 파비콘 -->
 	<link href="assets/img/favicon.png" rel="icon">
-	<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-	<!-- Google Fonts -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link
-		href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-		rel="stylesheet">
+	<!-- 폰트 -->
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-
-	<!-- Vendor CSS Files -->
+	<!-- Vendor CSS 파일 -->
 	<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-	<link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
 	<link href="assets/vendor/aos/aos.css" rel="stylesheet">
-	<link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-	<link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 	<link href="assets/css/main.css" rel="stylesheet">
 </head>
 
 <body>
 <div th:if="${session.adminSession != null}">
 	<!-- ======= Header ======= -->
-
-	<header id="header" class="header d-flex align-items-center">
-		<div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-
-			<a href="index.html" class="logo d-flex align-items-center">
-				<h1>Acorn<span>.</span></h1>
-			</a>
-
-			<i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-			<i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-			<nav id="navbar" class="navbar">
-				<ul>
-					<li><a href="index.html" class="active">Home</a></li>
-					<li class="dropdown"><a href="#"><span>회원관리</span> <i
-								class="bi bi-chevron-down dropdown-indicator"></i></a>
-						<ul>
-							<li><a href="/user">이용자관리</a></li>
-							<li><a href="/owner">제공자관리</a></li>
-						</ul>
-					<li class="dropdown"><a href="#">창고관리</a>
-						<ul>
-							<li><a href="registered">등록창고관리</a></li>
-						</ul>
-					</li>
-
-					<li><a href="#">예약/결제관리</a></li>
-					<li><a href="/board/list?page=1">공지관리</a></li>
-					<li><a href="#">문의확인</a></li>
-				</ul>
-			</nav><!-- .navbar -->
-		</div>
-	</header><!-- End Header -->
-
 	<div th:replace="~{fragments/header_admin :: header}"></div>
+
 
 	<!-- ======= Hero Section ======= -->
 	<section id="hero" class="hero">
@@ -77,46 +29,30 @@
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-lg-6 text-center">
-						<h2 data-aos="fade-down" style="font-family: Noto Sans KR;"><span>Acontainer</span>
+						<h2 data-aos="fade-down"><span>ACONTAINER</span>
 							<span style="color: #ffc732;">.</span>
 						</h2>
-						<p data-aos="fade-up" style="font-size: 20px;">현재
+						<p data-aos="fade">현재
 							<span style="color: #ffffff"><strong>관리자</strong></span>페이지 입니다.
 						</p>
-						<a data-aos="fade-up" data-aos-delay="200" href="#get-started" class="btn-get-started">Get
+						<a data-aos="fade" data-aos-delay="200" href="/conajax" class="btn-get-started">Get
 							Started</a>
 					</div>
 				</div>
 			</div>
 		</div>
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="hero">
-
+		
 		<div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
-
-
-			<div class="carousel-item active"
-				style="background-image: url(assets/img/hero-carousel/hero-carousel-1.jpg)">
-			</div>
-			<div class="carousel-item" style="background-image: url(assets/img/hero-carousel/hero-carousel-2.jpg)">
-			</div>
-			<div class="carousel-item" style="background-image: url(assets/img/hero-carousel/hero-carousel-3.jpg)">
-			</div>
-			<div class="carousel-item" style="background-image: url(assets/img/hero-carousel/hero-carousel-4.jpg)">
-			</div>
-			<div class="carousel-item" style="background-image: url(assets/img/hero-carousel/hero-carousel-5.jpg)">
-			</div>
-
+			<div class="carousel-item active" style="background-image: url(assets/img/hero-carousel/hero-carousel-1.jpg)"></div>
+			<div class="carousel-item" style="background-image: url(assets/img/hero-carousel/hero-carousel-2.jpg)"></div>
+			<div class="carousel-item" style="background-image: url(assets/img/hero-carousel/hero-carousel-3.jpg)"></div>
 			<a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
 				<span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
 			</a>
-
 			<a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
 				<span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
 			</a>
-
 		</div>
-
 	</section><!-- End Hero Section -->
 
 	<main id="main">

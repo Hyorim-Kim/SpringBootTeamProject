@@ -15,8 +15,7 @@ public class DeleteControllerBoard {
 		
 	@GetMapping("delete")
 	public String del(@RequestParam("num")String num,
-			@RequestParam("page")String page) {
-		// 사실 비번 삭제는 비밀번호 비교해야 함. 생략...
+			 		  @RequestParam("page")String page) {
 		if(daoImpl.delete(num))
 			return "redirect:list?page=" + page;
 		else

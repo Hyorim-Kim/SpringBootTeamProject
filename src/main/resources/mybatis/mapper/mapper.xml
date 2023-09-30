@@ -4,7 +4,7 @@
 
 <mapper namespace="pack.model.board.DataMappingInterface">
 	<select id="selectList" resultType="pack.model.board.BoardDto">
-		select * from notice_board order by gnum desc, onum asc
+		select * from notice_board order by bdate desc
 	</select>
 	
 	<select id="searchList" parameterType="pack.controller.board.BoardBean" resultType="pack.model.board.BoardDto">
@@ -18,8 +18,8 @@
 	</select>
 	
 	<insert id="insertData" parameterType="pack.controller.board.BoardBean">
-     	insert into notice_board
-     	values (#{num}, 'aa', #{mail}, #{title}, #{cont}, #{bdate}, 0, #{gnum}, 0, 0)
+     	insert into notice_board (num, admin_id, title, cont, bdate, readcnt, gnum)
+     	values (#{num}, #{admin_id}, #{title}, #{cont}, #{bdate}, 0, #{gnum})
  	</insert>
 
 	<update id="updateReadcnt" parameterType="string">
@@ -28,7 +28,7 @@
 	</update>
 	
 	<update id="updateData" parameterType="pack.controller.board.BoardBean">
-		update notice_board set admin_id=#{admin_id},mail=#{mail},title=#{title},cont=#{cont}
+		update notice_board set title=#{title},cont=#{cont}
 		where num=#{num}
 	</update>
 	
@@ -58,6 +58,6 @@
 	</update>
 	
 	<insert id="insertReData" parameterType="pack.controller.board.BoardBean">
-		insert into notice_board values(#{num},#{admin_id},#{admin_pwd},#{mail},#{title},#{cont},#{bdate},0,#{gnum},#{onum},#{nested})
+		insert into notice_board values(#{num},#{title},#{cont},#{bdate},0,#{gnum},#{onum},#{nested})
 	</insert>
 </mapper>

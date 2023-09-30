@@ -1,83 +1,68 @@
-/* board.css */
+/* 미니 메뉴 스타일 */
+.customer-inquiry-banner {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px;
+  text-align: left;
+  margin-top: 20px; /* 위쪽 여백 추가 */
+  margin-right: 10px; /* 오른쪽 여백 추가 */
+}
 
-@charset "UTF-8";
+.customer-inquiry-banner ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+}
 
+.customer-inquiry-banner li {
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.customer-inquiry-banner li:hover {
+  text-decoration: underline;
+}
+
+/* 공지사항 리스트 스타일 */
 .board-container {
-    /* 스타일 정의 */
-    padding: 30px; /* 상단 패딩 */
-    margin: -10px auto 30px; /* 위쪽 마진을 음수로 조절하여 위로 올림 */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 테이블을 가운데로 이동 */
+  margin-top: 10px; /* 위쪽 여백 줄임 */
+  margin-left: 10px; /* 왼쪽 여백 추가 */
 }
 
-.hr1 {
-    border: 0;
-    height: 2px;
-    background: #d3d3d3;
+.board-container table {
+  width: 70%; /* 조절 필요 */
+  border-collapse: collapse;
+  margin-top: 20px;
 }
 
-.grey {
-    color: #727272;
+.board-container th, .board-container td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
 }
 
-#strong {
-    font-weight: 900;
+.board-container th {
+  background-color: #f2f2f2;
 }
 
-table {
-    width: 100%;
-    border-top: 1px solid #d3d3d3;
-    border-collapse: collapse;
-    background-color: #fff; /* 테이블 백그라운드 색상 설정 */
-    margin: 10px auto; /* 가운데 정렬 및 여백 추가 */
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
-    border-radius: 10px; /* 테이블 모서리를 둥글게 만듭니다. */
+.board-container td a {
+  color: #333;
+  font-weight: bold;
 }
 
-th {
-    background-color: #d3d3d3;
-    border-top: 3px solid #727272;
+.edit-button, .delete-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
 }
 
-th,
-td {
-    border-bottom: 1px solid #d3d3d3;
-    padding: 10px;
-}
-
-.greylist {
-    width: 50px;
-    height: 30px;
-    font-weight: 900;
-    color: white;
-    text-align: center;
-    background: grey;
-    border: solid 2px white;
-    border-radius: 5px;
-}
-
-.gradient {
-    width: 80px;
-    height: 30px;
-    font-weight: 900;
-    color: white;
-    text-align: center;
-    background: linear-gradient(to bottom, grey, black);
-    border: solid 2px white;
-    border-radius: 5px;
-}
-
-.left {
-    text-align: left;
-}
-
-.right {
-    float: right;
-}
-
-.center {
-    text-align: center;
-}
-
-a {
-    color: black;
-    text-decoration-line: none;
+.edit-button:hover, .delete-button:hover {
+  background-color: #0056b3;
 }
