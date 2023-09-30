@@ -72,8 +72,9 @@
 </head>
 
 <body>
+<div th:if="${session.userSession != null}">
    <!-- ======= Header ======= -->
-   <div th:replace="~{fragments/header :: header}"></div>
+   <div th:replace="~{fragments/header_user :: header}"></div>
 
    <section id="hero" class="hero">
       <div class="carousel-item active" style="background-image: url(assets/img/hero-carousel/hero-carousel-1.jpg)">
@@ -300,5 +301,6 @@
         }
    }
 </script>
+</div>
 </body>
 </html>
