@@ -41,3 +41,18 @@ table td {
 table th {
     border-bottom: 2px solid #000; /* 헤더 행에 두꺼운 선을 그립니다. */
 }
+
+/* 삭제 버튼 스타일 */
+form input.delete-button[type="submit"] {
+    background-color: #FFC0CB; /* 배경색 지정 */
+    color: #ffffff; /* 텍스트 색상을 흰색으로 지정 */
+    padding: 5px 10px; /* 내부 여백 설정 (상하 5px, 좌우 10px) */
+    border: none; /* 테두리 제거 */
+    cursor: pointer; /* 커서 스타일을 포인터로 변경하여 클릭 가능한 모양으로 만듭니다. */
+}
+
+/* 마우스 오버 효과 - 원하는 스타일을 추가하세요 */
+form input.delete-button[type="submit"]:hover {
+    background-color: #ff5555; /* 마우스 오버 시 배경색 변경 */
+}
+

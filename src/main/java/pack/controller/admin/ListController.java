@@ -73,6 +73,14 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
 		return "../templates/user/user";
 	}
 	
+	@PostMapping("userdelete")
+	public String userdel(@RequestParam("user_id")String user_id,
+			@RequestParam(name = "page", defaultValue = "1") int page) {
+		if(dataDao.userdelete(user_id))
+			return "redirect:user?page=" + page;
+		else
+			return "redirect:error";
+	}
 
 	public ArrayList<OwnerDto> getownerListData(ArrayList<OwnerDto> list, int page){ // 페이지 번호(page)와 FAQ 목록(list)을 받아와서 해당 페이지에 표시할 FAQ 항목을 추출하여 반환하는 메서드, 페이징 처리를 위해 사용
 	      ArrayList<OwnerDto> ownresult = new ArrayList<OwnerDto>();
@@ -125,7 +133,14 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
 		return "../templates/owner/owner";
 	}
 	
-
+	@PostMapping("ownerdelete")
+	public String ownerdel(@RequestParam("business_num")String business_num,
+			@RequestParam(name = "page", defaultValue = "1") int page) {
+		if(dataDao.userdelete(business_num))
+			return "redirect:user?page=" + page;
+		else
+			return "redirect:error";
+	}
 
 
 	public ArrayList<ContainerDto> getregisteredListData(ArrayList<ContainerDto> list, int page){ // 페이지 번호(page)와 FAQ 목록(list)을 받아와서 해당 페이지에 표시할 FAQ 항목을 추출하여 반환하는 메서드, 페이징 처리를 위해 사용

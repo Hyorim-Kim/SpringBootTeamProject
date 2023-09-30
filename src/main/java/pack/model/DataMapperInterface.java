@@ -25,6 +25,9 @@ public interface DataMapperInterface {
    @Select("select count(*) from user ")
    int totalUser();
    
+   @Delete("delete from user where user_id=#{user_id}")
+   int userdeleteData(String user_id);
+   
    // owner sql문들-------------------------------------------------
    @Select("select * from owner")
    List<OwnerDto> selectAll2();
@@ -34,6 +37,9 @@ public interface DataMapperInterface {
 
    @Select("select count(*) from owner ")
    int totalOwner();
+   
+   @Delete("delete from owner where user_id=#{user_id}")
+   int ownerdeleteData(String business_num);
    
    // Container sql문들-------------------------------------------------
    @Select("select * from container")
