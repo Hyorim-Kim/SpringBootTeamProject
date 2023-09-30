@@ -142,8 +142,8 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
 	@PostMapping("ownerdelete")  // owner에서 삭제하기
 	public String ownerdel(@RequestParam("business_num")String business_num,
 			@RequestParam(name = "page", defaultValue = "1") int page) {
-		if(dataDao.userdelete(business_num))
-			return "redirect:user?page=" + page;
+		if(dataDao.ownerdelete(business_num))
+			return "redirect:owner?page=" + page;
 		else
 			return "redirect:error";
 	}

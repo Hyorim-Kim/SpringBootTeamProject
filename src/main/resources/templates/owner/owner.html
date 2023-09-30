@@ -73,10 +73,11 @@
 					<td th:text="${data2.email}"></td>
 					<td th:text="${data2.cont_num}"></td>
 					<td>
+						
 						<form action="/ownerdelete" method="post">
-							<input type="hidden" name="business_num" th:value="${data2.business_num}" />
+							<input type="hidden" name="business_num" th:value="${data2.business_num}"/>
 							<input type="submit" value="삭제" class="delete-button"
-								onclick="if(!confirm('삭제하시면 복구할 수 없습니다. \n 정말로 삭제하시겠습니까?')){return false;}" />
+							onclick="if(!confirm('삭제하시면 복구할 수 없습니다. \n 정말로 삭제하시겠습니까?')){return false;}" />
 						</form>
 					</td>
 				</tr>
