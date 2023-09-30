@@ -24,6 +24,15 @@ import pack.controller.container.UploadFile;
 import pack.model.container.ContainDao;
 import pack.model.container.ContainerDto;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.List;
+import java.util.Map;
+
+import com.fasterxml.jackson.databind.ObjectMapper; // Jackson 라이브러리 추가
+
 @Controller
 @RequestMapping(value = "owner")
 public class ContainerController {
@@ -94,10 +103,59 @@ public class ContainerController {
 		return "container/container_register";
 	}
 
+	// ---------------------------
+	private double[] getCoordinatesFromAddress(String address) {
+        double[] coordinates = new double[2]; // 배열 초기화
+
+        try {
+            // Google Geocoding API를 호출하여 주소를 위도와 경도로 변환
+            String apiKey = "AIzaSyDzGKmDfbyNTWo-0WqNSdQlQSlxc6Wjna4";
+            String apiUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=" + apiKey;
+
+            URL url = new URL(apiUrl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            StringBuilder response = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                response.append(line);
+            }
+            reader.close();
+
+            // JSON 응답에서 위도와 경도 추출
+            Map<String, Object> data = new ObjectMapper().readValue(response.toString(), Map.class);
+            if (data.containsKey("results")) {
+                Map<String, Object> result = ((List<Map<String, Object>>) data.get("results")).get(0);
+                if (result.containsKey("geometry")) {
+                    Map<String, Object> geometry = (Map<String, Object>) result.get("geometry");
+                    if (geometry.containsKey("location")) {
+                        Map<String, Double> location = (Map<String, Double>) geometry.get("location");
+                        coordinates[0] = location.get("lat");
+                        coordinates[1] = location.get("lng");
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return coordinates; // 배열 반환
+    }
+	// ---------------------------
+	
+	
 	@PostMapping("insert")
 	// @RequestMapping(value = "insert", method = RequestMethod.POST)
 	// 인서트 페이지에서 폼-액션태그의 insert인가? post 방식으로 값 전달 받고..?
 	public String insertSubmit(FormBean bean, UploadFile uploadFile, BindingResult result, HttpSession session) {
+        // 주소를 위도와 경도로 변환하여 설정
+        String address = bean.getCont_addr();
+        double[] coordinates = getCoordinatesFromAddress(address);
+        bean.setCont_we(coordinates[0]);
+        bean.setCont_kyung(coordinates[1]);
+        // --------
 		String business_num = (String) session.getAttribute("business_num");
 		System.out.println(business_num);
 		InputStream inputStream = null;
@@ -105,10 +163,15 @@ public class ContainerController {
 		UUID uuid = UUID.randomUUID();
 
 		// 업로드될 파일 검사
+		// 파일 이름이 비어 있지 않고, 점이 포함되어 있는 경우에만 확장자를 추출하도록 조건을 설정하면 오류를 방지 - 재민
 		MultipartFile file = uploadFile.getFile();
 
 		String originalFilename = file.getOriginalFilename();
-		String fileExtension = originalFilename.substring(originalFilename.lastIndexOf("."));
+		String fileExtension = "";
+
+		if (originalFilename != null && originalFilename.contains(".")) {
+		    fileExtension = originalFilename.substring(originalFilename.lastIndexOf("."));
+		}
 
 		// 파일명에 랜덤 문자열을 추가하여 새 파일명 생성
 		String randomFilename = uuid.toString() + fileExtension;
@@ -120,6 +183,7 @@ public class ContainerController {
 
 		try {
 			inputStream = file.getInputStream();
+
 	        String fileSavePath = "C:/Users/kwang/git/Team/src/main/resources/static/upload/" + randomFilename;
 	        File newFile = new File(fileSavePath);
 	        if (!newFile.exists()) {
@@ -160,7 +224,6 @@ public class ContainerController {
 			return "error"; // 이거슨 포워딩
 		}
 	}
-
 	@RequestMapping("update")
 	public String update(FormBean bean) {
 		boolean b = containDao.update(bean);
