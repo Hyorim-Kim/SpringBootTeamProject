@@ -51,6 +51,7 @@ public class AdminController {
 	    return "redirect:/"; // 로그아웃 클릭시 메인 홈페이지로 이동 
 	}
 	
+
 	// 세션값 유지하게 하기
 	@GetMapping("/adminsessionkeep")
 	public String adminSessionKeep(HttpSession session) {

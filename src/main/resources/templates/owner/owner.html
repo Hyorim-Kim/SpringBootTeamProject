@@ -2,42 +2,113 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <title>회원 정보 확인</title>
-    <link rel="stylesheet" href="/css/member.css" />
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<title>회원 정보 확인</title>
+	<link rel="stylesheet" href="/css/member.css" />
+	<!-- Favicons -->
+	<link href="../assets/img/favicon.png" rel="icon">
+	<link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+		rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+	<!-- Vendor CSS Files -->
+	<link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+	<link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+	<link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+	<link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+	<link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+	<link href="../assets/css/main.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/booking.css">
 </head>
 
 <body>
-    <h2>Owner 회원 정보 확인</h2>
-    <form action="/search2" method="post">
-        검색 대상:
-        <select name="searchName">
-            <option value="business_num" selected>사업자번호</option>
-        </select>
-        <input type="text" name="searchValue">
-        <input type="submit" value="검 색">
-    </form>
+	<!-- ======= Header ======= -->
+	<div th:replace="~{fragments/header_admin :: header}"></div>
 
-    <table style="width: 90%">
-        <tr>
-            <th>사업자번호</th>
-            <th>비밀번호</th>
-            <th>이름</th>
-            <th>전화번호</th>
-            <th>이메일</th>
-            <th>창고번호</th>
-        </tr>
-        <th:block th:if="${lists2.size > 0}">
-            <tr th:each="data2:${lists2}">
-                <td th:text="${data2.business_num}">num 출력</td>
-                <td th:text="${data2.owner_pwd}"></td>
-                <td th:text="${data2.owner_name}"></td>
-                <td th:text="${data2.owner_tel}"></td>
-                <td th:text="${data2.email}"></td>
-                <td th:text="${data2.cont_num}"></td>        
-            </tr>
-        </th:block>
-    </table>
+	<main id="container">
+
+		<!-- ======= Breadcrumbs ======= -->
+		<div class="breadcrumbs d-flex align-items-center"
+			style="background-image: url('../assets/img/breadcrumbs-bg.jpg');">
+			<div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+
+				<h2 style="font-family: 'Noto Sans KR'; font-weight: 700;">Service</h2>
+				<ol>
+					<li><a href="/">Home</a></li>
+					<li>서비스소개</li>
+					<li>이용안내</li>
+				</ol>
+
+			</div>
+		</div><!-- End Breadcrumbs --><br/>
+		<h2 style="text-align: center;">제공자 회원 정보 확인(<span th:text="${owner_records}"></span>명)</h2><br/><br/>
+		
+		
+
+		<table style="width: 90%">
+			<tr>
+				<th>사업자번호</th>
+				<th>비밀번호</th>
+				<th>이름</th>
+				<th>전화번호</th>
+				<th>이메일</th>
+				<th>창고번호</th>
+				<th>삭제</th>
+			</tr>
+			<th:block th:if="${lists2.size > 0}">
+				<tr th:each="data2:${lists2}">
+					<td th:text="${data2.business_num}">num 출력</td>
+					<td>**********</td>
+					<td th:text="${data2.owner_name}"></td>
+					<td th:text="${data2.owner_tel}"></td>
+					<td th:text="${data2.email}"></td>
+					<td th:text="${data2.cont_num}"></td>
+					<td>
+						<form action="/ownerdelete" method="post">
+							<input type="hidden" name="business_num" th:value="${data2.business_num}" />
+							<input type="submit" value="삭제" class="delete-button"
+								onclick="if(!confirm('삭제하시면 복구할 수 없습니다. \n 정말로 삭제하시겠습니까?')){return false;}" />
+						</form>
+					</td>
+				</tr>
+			</th:block>
+		</table><br/><br/>
+		<div style="text-align: center;">
+			<form action="/ownersearch" method="post" >
+			<!--<form action="/ownersearch?page=1" method="post">-->
+			검색 대상:
+			<select name="searchName" style="width: 130px;">
+				<option value="business_num" selected>사업자번호</option>
+			</select>
+			<input type="text" name="searchValue" >
+			<input type="submit" value="검 색" >
+		</form>
+		</div>
+		<table style="margin-top: 20px;">
+			<tr style="text-align: center;">
+				<td colspan="5">
+					<th:block th:each="num : ${#numbers.sequence(1, pagesu)}">
+						<th:span th:if="${num == page}">
+							<b th:text="${num}">num 표시(현재 페이지는 링크를 걸지 않음)</b>
+						</th:span>
+						<th:span th:if="${num != page}">
+							<a th:href="@{/owner(page=${num})}" th:text="${num}">num 표시</a>
+						</th:span>
+					</th:block>
+				</td>
+			</tr>
+		</table>
+		<!-- ======= Footer ======= -->
+		<div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 
 </html>
