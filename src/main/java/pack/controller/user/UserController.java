@@ -1,5 +1,7 @@
 package pack.controller.user;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import pack.model.user.UserDao;
 import pack.model.user.UserDto;
@@ -61,31 +64,37 @@ public class UserController {
     @PostMapping("/userLogSuccess")
     public String processLoginForm(@RequestParam("user_id") String user_id,
             					   @RequestParam("user_pwd") String user_pwd,
-            					   Model model, HttpSession session){
+            					   Model model, HttpSession session) {
         // 사용자 로그인 처리
         UserDto user = userDao.userLoginProcess(user_id, user_pwd);
         
         if (user != null) { // 사용자 정보가 있는 경우 로그인 성공
             // 세션 최대 유지 시간을 30분(1800초)으로 설정
             session.setMaxInactiveInterval(1800);
-            // 로그인 성공과 동시에 세션에 사용자 정보 저장
-        	session.setAttribute("user", user); 
-        	session.setAttribute("user_name", user.getUser_name());
+            // 로그인 성공과 동시에 세션에 사용자 정보 설정
+            // 여기서 가독성을 위해 세션 키의 이름은 userSession으로 변경 하였고 값 이름은 그대로 user로 유지.
+            // user는 앞서 사용자가 입력한 아이디와 비밀번호를 담고 있음 그거를 세션에 담는거라 생각하시면 되용
+        	session.setAttribute("userSession", user); 
+        	System.out.println("사용자 ID : " + user.getUser_id() + " " + "사용자 pwd : " + user.getUser_pwd());
         	return "user/usermypage"; // 로그인 성공 시 usermypage.html로 이동.
-            
-        } else { // 사용자 정보가 DB에 없는 경우 즉, 아이디와 비밀번호가 없는 경우 
-            return "user/userlogin"; // 로그인 실패 시 userlogin.html로 이동.
         }
+		else { // 사용자 정보가 DB에 없는 경우 즉, 아이디와 비밀번호가 없는 경우
+			System.out.println("제대로 입력해라");
+			return "user/userlogin"; // 로그인 실패 시 userlogin.html로 이동.
+		}
     }
     
+
+       
     /*** 9/15일 추가 작업 (회원수정) 광진 ***/
     
     // 사용자 마이페이지에서 회원수정을 클릭했을 때 (성공)
 	@GetMapping("/userupdate")
 	public String userUpdatePage(Model model, HttpSession session) {
 		// 세션에서 회원 정보를 가져와서 모델에 추가
-		UserDto user = (UserDto) session.getAttribute("user");
-		model.addAttribute("user", user);
+		UserDto user = (UserDto) session.getAttribute("userSession");
+		model.addAttribute("userSession", user);
+		System.out.println("사용자 ID : " + user.getUser_id() + " " + "사용자 pwd : " + user.getUser_pwd());
 
 		return "user/userupdate"; // 회원 수정 페이지로 이동
 	}
@@ -95,8 +104,8 @@ public class UserController {
 	public String userInfoupdate(UserDto userDto, Model model, HttpSession session) {
 		boolean b = userDao.userDataUpdate(userDto);
 		if(b) {
-			UserDto user = (UserDto) session.getAttribute("user"); 
-			model.addAttribute("user", user); // 세션에 담겨져 있는 정보를 출력하기 위해 사용
+			UserDto user = (UserDto) session.getAttribute("userSession"); 
+			model.addAttribute("userSession", user); // 세션에 담겨져 있는 정보를 출력하기 위해 사용
 			return "user/userlogin";  
 		} else {
 			return "user/usermypage";  
@@ -110,9 +119,8 @@ public class UserController {
 	@GetMapping("/userdelete")
 	public String userDeletePage(Model model, HttpSession session) {
 		// 세션에서 회원 정보를 가져와서 모델에 추가
-		UserDto user = (UserDto) session.getAttribute("user");
-		model.addAttribute("user", user);
-
+		UserDto user = (UserDto) session.getAttribute("userSession");
+		model.addAttribute("userSession", user);
 		return "user/userdelete"; // 회원 수정 페이지로 이동
 	}
 	
@@ -121,8 +129,7 @@ public class UserController {
 	public String userInfoDelete(UserDto userDto, Model model, HttpSession session) {
 		boolean b = userDao.userDataDelete(userDto);
 		if(b) {
-			UserDto user = (UserDto) session.getAttribute("user");
-			model.addAttribute("user", user);
+			// 탈퇴니까 세션 유지 코드가 있을 필요가 없어서 코드 삭제
 			return "user/userlogin";  
 		} else {
 			return "user/userdelete";  
@@ -132,7 +139,8 @@ public class UserController {
 	/*** 9/19일 추가 작업 사용자 마이페이지에서 로그아웃 하기 (광진) ***/
 	@GetMapping("/userlogoutgo")
 	public String userLogoutProcess(HttpSession session) {
-	    session.removeAttribute("user"); // 세션 유지 종료
+		// 세션 유지 종료
+	    session.removeAttribute("userSession"); 
 	    //session.invalidate(); 이거 쓰면 큰일난다 
 	    return "redirect:/"; // 로그아웃 클릭시 메인 홈페이지로 이동 
 	}
@@ -162,16 +170,22 @@ public class UserController {
 	}
 	
 		
-	// 예약페이지에서 마이페이지로 돌아가기
-	@GetMapping("/usermypageback")
-	public String userBack(HttpSession session) {
+	// 세션 유지 (광진)
+	@GetMapping("/usersessionkeep")
+	public String userSessionKeep(HttpSession session) {
 	    // 세션에서 사용자 정보를 가져온다.
-	    UserDto user = (UserDto) session.getAttribute("user");
-	    // 찍어보자
-	    System.out.println("사용자 아이디 : " + user.getUser_id() + " " + "사용자 비번 : " + user.getUser_pwd());
-
-	    // 사용자 정보를 유지한 상태에서 마이페이지로 이동.
-	    return "user/usermypage";
+	    UserDto userSession = (UserDto) session.getAttribute("userSession"); // 여기서 "userSession"은 user값을 담고 있다.
+	    
+	    // 만약 세션에 사용자 정보가 있는 경우
+	    if (userSession != null) {
+	        // 찍어보자
+	        System.out.println("사용자 ID : " + userSession.getUser_id() + " " + "사용자 pwd : " + userSession.getUser_pwd());
+	        // 사용자 정보를 유지하면 로그인페이지에서 home 버튼을 눌러도 로그인 세션이 있는채로 마이페이지로 이동.
+	        return "user/usermypage";
+	    } 	    	            	    
+	    else {
+	        // 세션에 사용자 정보가 없는 경우에는 index로 이동.
+	        return "../templates/index";
+	    }
 	}
-
 }

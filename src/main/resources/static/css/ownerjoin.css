@@ -1,8 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 네비게이션을 오른쪽으로 이동 */
+.navbar {
+  margin-left: auto;
+  margin-right: 60px; /* 오른쪽 여백을 조절 */
+}
+
 body {
   margin: 0;
   font-family: 'Noto Sans KR', sans-serif;
+  background: url("../images/ownerloginimg.jpg") no-repeat center;
+  background-size: cover;
 }
 
 /* 회원가입 CSS*/
