@@ -92,6 +92,52 @@ public class ListControllerBoard {
 		return "board/listAdmin";
 	}
 	
+	@GetMapping("/listUser")
+	public String listUserProcess(@RequestParam("page")int page, Model model) {
+		int spage = 0;
+		try {
+			spage = page;
+		} catch (Exception e) {
+			spage = 1;
+		}
+		if(page <= 0) spage = 1;
+		
+		//model.addAttribute("data", list);   // paging이 없는 경우
+   
+		// paging 처리도 함
+		ArrayList<BoardDto> list = (ArrayList<BoardDto>)daoImpl.listAll();
+		ArrayList<BoardDto> result = getListdata(list, spage);
+		
+		model.addAttribute("data", result);
+		model.addAttribute("pagesu", getPageSu());
+		model.addAttribute("page", spage);
+		
+		return "board/listUser";
+	}
+	
+	@GetMapping("/listOwner")
+	public String listOwnerProcess(@RequestParam("page")int page, Model model) {
+		int spage = 0;
+		try {
+			spage = page;
+		} catch (Exception e) {
+			spage = 1;
+		}
+		if(page <= 0) spage = 1;
+		
+		//model.addAttribute("data", list);   // paging이 없는 경우
+   
+		// paging 처리도 함
+		ArrayList<BoardDto> list = (ArrayList<BoardDto>)daoImpl.listAll();
+		ArrayList<BoardDto> result = getListdata(list, spage);
+		
+		model.addAttribute("data", result);
+		model.addAttribute("pagesu", getPageSu());
+		model.addAttribute("page", spage);
+		
+		return "board/listOwner";
+	}
+	
 	
 	@PostMapping("board/search")
 	public String searchProcess(BoardBean bean, Model model) {
