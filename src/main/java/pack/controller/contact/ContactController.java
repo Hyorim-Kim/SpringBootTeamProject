@@ -25,11 +25,18 @@ public class ContactController {
 		return "../templates/contact/contactadmin";
 	}
 	
-	@RequestMapping("contactmain")
-	public String mainList(Model model) {
+	@RequestMapping("contactuser")
+	public String mainListUser(Model model) {
 		ArrayList<ContactDto> list = (ArrayList<ContactDto>)contactDao.listContact();
 		model.addAttribute("list", list);
-		return "../templates/contact/contactmain";
+		return "../templates/contact/contactuser";
+	}
+	
+	@RequestMapping("contactowner")
+	public String mainListOwner(Model model) {
+		ArrayList<ContactDto> list = (ArrayList<ContactDto>)contactDao.listContact();
+		model.addAttribute("list", list);
+		return "../templates/contact/contactowner";
 	}
 
 }

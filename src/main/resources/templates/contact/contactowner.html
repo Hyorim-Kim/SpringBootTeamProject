@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+</body><!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Insert title here</title>
+<title>Contact</title>
 
 <!-- Favicons -->
 	<link href="../assets/img/favicon.png" rel="icon">
@@ -30,31 +30,22 @@
 
 <script>
 	window.onload = function(){
-		
-		document.querySelector("#btnList").onclick = function(){
-			window.history.back();
-
-		}
-		
 		document.querySelector("#btn").onclick = function(){
-			if(confirm("정말 추가 할까요?")){
+			if(!confirm("정말 작성 할까요?")){
 				event.preventDefault(); // submit 이벤트를 취소
-				ins.action="faqinsert";
-				ins.method="post";
-				ins.submit();
 			}
 		}
 	}
 </script>
 </head>
 <body>
-	
-	<!-- ======= Header ======= -->
- 	<div th:replace="~{fragments/header_admin :: header}"></div>
+
+<!-- ======= Header ======= -->
+ 	<div th:replace="~{fragments/header_owner :: header}"></div>
 
   <main id="container">
-	
-	<!-- ======= Breadcrumbs ======= -->
+
+    <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs d-flex align-items-center" style="background-image: url('../assets/img/breadcrumbs-bg.jpg');">
       <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
 
@@ -67,30 +58,34 @@
 
       </div>
     </div><!-- End Breadcrumbs -->
-	
-<h2 style="padding-top: 1cm;text-align: center;">** FAQ 추가 **</h2><br><br>
+
+<h3>Contact 목록</h3>
 <div>
-	<form action="faqinsert" name="ins" method="post" style="padding-bottom: 1cm; text-align: center;">
+	<form action="insertcontact" name="ins" method="post">
 		<div>
 			<div>
-				카테고리 : <input type="text" name="faq_category" id="faq_category" required>
-			</div><br>
+				<input type="text" name="contact_name" id="contact_name" placeholder="Your Name" required>
+			</div>
 			<div>
-				제  목 : <input type="text" name="faq_question" id="faq_question" required>
-			</div><br>
+				<input type="email" name="contact_email" id="contact_email" placeholder="Your Email" required>
+			</div>
 			<div>
-				내  용 : <input type="text" name="faq_answer" id="faq_answer" required>
-			</div><br>
+				<input type="text" name="contact_title" id="contact_title" placeholder="Title" required>
+			</div>
 			<div>
-				<input type="button" value="추가" name="btn" id="btn"></input>
-				<input type="button" value="목록" name="btnList" id="btnList">
+				<textarea name="contact_message" id="contact_message" rows="5" placeholder="Message" required></textarea>
+			</div>
+			<div>
+				<input type="hidden" name="contact_status" id="contact_status" value="답변대기">
+			</div>
+			<div>
+				<button type="submit" name="btn" id="btn">Send Message</button>
 			</div>
 		</div>
 	</form>
-</div>
-
- <!-- ======= Footer ======= -->
+		
+		 <!-- ======= Footer ======= -->
   <div th:replace="~{fragments/footer :: footer}"></div>
-
+</div>
 </body>
 </html>

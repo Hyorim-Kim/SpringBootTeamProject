@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	
 <title>Insert title here</title>
-
 <!-- Favicons -->
 	<link href="../assets/img/favicon.png" rel="icon">
 	<link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -27,70 +27,30 @@
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 	<link href="../assets/css/main.css" rel="stylesheet">
 	<link rel="stylesheet" href="../css/booking.css">
-
-<script>
-	window.onload = function(){
-		
-		document.querySelector("#btnList").onclick = function(){
-			window.history.back();
-
-		}
-		
-		document.querySelector("#btn").onclick = function(){
-			if(confirm("정말 추가 할까요?")){
-				event.preventDefault(); // submit 이벤트를 취소
-				ins.action="faqinsert";
-				ins.method="post";
-				ins.submit();
-			}
-		}
-	}
-</script>
 </head>
 <body>
-	
 	<!-- ======= Header ======= -->
- 	<div th:replace="~{fragments/header_admin :: header}"></div>
+	<div th:replace="~{fragments/header_admin :: header}"></div>
 
-  <main id="container">
-	
-	<!-- ======= Breadcrumbs ======= -->
+	<main id="container">
+
+		<!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs d-flex align-items-center" style="background-image: url('../assets/img/breadcrumbs-bg.jpg');">
       <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
-
         <h2 style="font-family: 'Noto Sans KR'; font-weight: 700;">Service</h2>
         <ol>
-          <li><a href="/">Home</a></li>
+          <li><a href="/adminsessionkeep">Home</a></li>
           <li>서비스소개</li>
           <li>이용안내</li>
         </ol>
-
       </div>
     </div><!-- End Breadcrumbs -->
-	
-<h2 style="padding-top: 1cm;text-align: center;">** FAQ 추가 **</h2><br><br>
-<div>
-	<form action="faqinsert" name="ins" method="post" style="padding-bottom: 1cm; text-align: center;">
-		<div>
-			<div>
-				카테고리 : <input type="text" name="faq_category" id="faq_category" required>
-			</div><br>
-			<div>
-				제  목 : <input type="text" name="faq_question" id="faq_question" required>
-			</div><br>
-			<div>
-				내  용 : <input type="text" name="faq_answer" id="faq_answer" required>
-			</div><br>
-			<div>
-				<input type="button" value="추가" name="btn" id="btn"></input>
-				<input type="button" value="목록" name="btnList" id="btnList">
-			</div>
-		</div>
-	</form>
+<div style="background-color: white; color: black; padding: 10px;">
+    제공자가 등록한 창고를 먼저 삭제해야 제공자 정보를 삭제할 수 있습니다.
 </div>
 
- <!-- ======= Footer ======= -->
-  <div th:replace="~{fragments/footer :: footer}"></div>
 
+<!-- ======= Footer ======= -->
+		<div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>
