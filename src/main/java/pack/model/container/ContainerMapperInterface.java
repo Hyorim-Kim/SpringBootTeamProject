@@ -25,8 +25,8 @@ public interface ContainerMapperInterface {
 	// 로그인한 공급자가 가지고 있는 창고정보를 볼 수 있는 쿼리문
 	
 
-	@Insert("insert into container(cont_no, cont_addr, cont_we, cont_kyung, cont_size, cont_image, owner_num)\r\n"
-			+ "values ((select max(cont_no) + 1 from container num), #{cont_addr}, #{cont_we}, #{cont_kyung}, #{cont_size}, #{cont_image}, #{owner_num})\r\n"
+	@Insert("insert into container(cont_no, cont_addr, cont_we, cont_kyung, cont_size, cont_image, owner_num, cont_explain, cont_name, owner_phone)\r\n"
+			+ "values ((select max(cont_no) + 1 from container num), #{cont_addr}, #{cont_we}, #{cont_kyung}, #{cont_size}, #{cont_image}, #{owner_num}, #{cont_explain}, #{cont_name}, #{owner_phone})\r\n"
 			+ "")
 	int insertContainer(FormBean bean);
 
@@ -42,7 +42,7 @@ public interface ContainerMapperInterface {
 	@Select("SELECT * FROM container INNER JOIN owner ON owner.business_num = container.owner_num WHERE cont_no = #{cont_no}")
 	ContainerDto selectOne(String cont_no);
 	
-	@Update("update container inner join owner on owner.business_num=container.owner_num set owner_name=#{owner_name}, cont_addr=#{cont_addr}, cont_size=#{cont_size} where cont_no=#{cont_no}")
+	@Update("update container inner join owner on owner.business_num=container.owner_num set owner_name=#{owner_name}, cont_addr=#{cont_addr}, cont_we=#{cont_we}, cont_kyung=#{cont_kyung}, cont_size=#{cont_size}, cont_explain=#{cont_explain} where cont_no=#{cont_no}")
 	int update(FormBean bean);
 	
 	@Delete("delete from container where cont_no = #{cont_no}")
