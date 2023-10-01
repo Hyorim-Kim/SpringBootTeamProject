@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org">
 
 <head>
-
 	<meta charset="UTF-8">
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 	<title>에이콘테이너 창고대여</title>
@@ -29,11 +28,6 @@
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 	<link href="../assets/css/main.css" rel="stylesheet">
 	<link rel="stylesheet" href="../css/booking.css">
-	<title>Insert title here</title>
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script src="../js/userjoin.js"></script>
-
-
 	<!-- Google Maps JavaScript API -->
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzGKmDfbyNTWo-0WqNSdQlQSlxc6Wjna4&libraries=places"
 		defer></script>
@@ -67,16 +61,43 @@
 
 
 	</script>
-	<!-- 재민 -->
+	<script>
+		window.onload = function () {
+			document.querySelector("#btnList").onclick = function () {
+				//alert("a");
+				location.href = "/owner/list";
+			}
+			document.querySelector("#btnUpdate").onclick = function () {
+				// alert("B");
+				if (confirm("정말 수정 하시겠습니까?")) {
+					frm.action = "update";
+					frm.method = "post"
+					frm.submit();
+				}
+			}
+			document.querySelector("#btnDelete").onclick = function () {
+				// alert("C");
+				if (confirm("정말 삭제 하시겠습니까?")) {
+					frm.action = "delete";
+					frm.method = "get"
+					frm.submit();
+				}
+			}
+		}
+
+
+	</script>
 
 </head>
 
 <body>
-
 	<div th:if="${session.ownerSession != null}">
 		<div th:replace="~{fragments/header_owner :: header}"></div>
-		** 창고 등록 **<br />
-		<form action="insert" method="post" enctype="multipart/form-data">
+		<h3>* 상세 보기 *</h3>
+		<form name="frm" th:object="${conDto}">
+			창고 번호 : [[${conDto.cont_no}]]
+			<input type="hidden" th:field="*{cont_no}" /> <br />
+			임대인이름 : <input type="text" th:field="*{owner_name}"><br />
 			창고주소 :
 			<input type="text" id="user_postcode" class="text-field-postcode" placeholder="우편번호">
 			<input type="button" onclick="user_execDaumPostcode()" class="button-postcode" value="우편번호 찾기"><br>
@@ -93,24 +114,17 @@
 			<input type="button" onclick="getCoordinatesFromAddress()" class="button" value="주소 변환"><br />
 			위도:<input type="text" id="cont_we" name="cont_we" class="text-field-postcode" placeholder="위도">
 			경도:<input type="text" id="cont_kyung" name="cont_kyung" class="text-field-postcode" placeholder="경도"><br />
-			창고크기 : <input type="text" name="cont_size" /><br />
-			<!-- 대여가격 : <input type="text" name="cont_price" /><br/> -->
-			창고설명 :
-			<textarea rows="5" cols="50" name="cont_explain"></textarea><br />
-			사업자번호 : <input type="text" th:placeholder="${session.ownerSession.business_num}"
-				th:value="${session.ownerSession.business_num}" name="owner_num" /> <br />
-			회사명 : <input type="text" name="cont_name" /><br />
-			소유주 전화번호 : <input type="text" name="owner_phone" /><br />
-			이미지 : <input type="file" name="file" /><br />
-			<br />
-			<br />
-			<!-- "저장" 버튼 -->
-			<input type="submit" value="저장">
+			창고크기 : <input type="text" th:field="*{cont_size}"><br />
+			<!-- 대여가격 : <input type="text" th:field="*{ce}"><br/> -->
+			창고상세설명 : <textarea rows="5" cols="50" name="content"></textarea><br />
+			창고이미지 : <img th:src="@{/upload/}+${conDto.getCont_image()}" />
+			<input type="button" value="취소" id="btnList" />
+			<input type="button" value="수정" id="btnUpdate" />
+			<input type="button" value="삭제" id="btnDelete" />
+
 		</form>
-		</br>
 		<div th:replace="~{fragments/footer :: footer}"></div>
 	</div>
-
 </body>
 
 </html>
