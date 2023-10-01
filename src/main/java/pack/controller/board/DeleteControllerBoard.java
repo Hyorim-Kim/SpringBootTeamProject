@@ -17,7 +17,7 @@ public class DeleteControllerBoard {
 	public String del(@RequestParam("num")String num,
 			 		  @RequestParam("page")String page) {
 		if(daoImpl.delete(num))
-			return "redirect:list?page=" + page;
+			return "redirect:listAdmin?page=" + page;
 		else
 			return "redirect:error";
 	}
