@@ -34,8 +34,16 @@
 </head>
 
 <body>
-    <!-- ======= Header ======= -->
- 	<div th:replace="~{fragments/header :: header}"></div>
+<!-- 사용자 -->
+<div th:if="${session.userSession != null}">
+    <div th:replace="~{fragments/header_user :: header}"></div>
+</div>
+<div th:if="${session.ownerSession != null}">
+    <div th:replace="~{fragments/header_owner :: header}"></div>
+</div>
+<div th:if="${session.userSession == null && session.ownerSession == null}">
+    <div th:replace="~{fragments/header :: header}"></div>
+</div>
 
   <main id="main">
 

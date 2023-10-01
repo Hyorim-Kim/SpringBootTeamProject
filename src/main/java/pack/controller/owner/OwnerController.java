@@ -22,16 +22,22 @@ public class OwnerController {
 	@Autowired
 	private OwnerDao ownerDao;
 	
-	// 회원가입 선택란에서 공급자를 선택할 때, 공급자 로그인 페이지에서 회원가입을 클릭했을 때 (성공)
+	// 공급자 로그인 페이지에서 회원가입을 클릭했을 때 (성공)
 	@GetMapping("ownerJoinGo")
-	public String ownerChoice() {
-		return "../templates/owner/ownerjoin";
+	public String ownerChoice(HttpSession session) {
+	    if (session.getAttribute("ownerSession") != null) {    	
+	        return "redirect:/ownersessionkeep";	   
+	    }
+		return "owner/ownerjoin";
 	}
 	
 	// 공급자 로그인 페이지에서 사용자 로그인을 클릭했을 때 (성공)
 	@GetMapping("userlogingo")
-	public String userLoginGo() {
-		return "../templates/user/userlogin";
+	public String userLoginGo(HttpSession session) {
+	    if (session.getAttribute("userSession") != null) {    	
+	        return "redirect:/usersessionkeep";	   
+	    }
+		return "user/userlogin";
 	}
 	
 	

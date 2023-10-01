@@ -24,19 +24,29 @@ public class UserController {
 	
 	// 메인페이지에서 로그인을 클릭했을 때 수행 (성공)
 	@GetMapping("firstLogin")
-	public String LoginGo() {
-		return "../templates/user/userlogin";
+	public String LoginGo(HttpSession session) {
+		// 사용자 세션 유지
+	    if (session.getAttribute("userSession") != null) {    	
+	        return "redirect:/usersessionkeep";	   
+	    }
+	    return "user/userlogin";
 	}
 	
 	// 사용자 로그인 페이지에서 회원가입 링크를 클릭했을 때 (성공) 
 	@GetMapping("userJoinGo")
-	public String userJoinGo() {
-		return "../templates/user/userjoin";
+	public String userJoinGo(HttpSession session) {
+	    if (session.getAttribute("userSession") != null) {    	
+	        return "redirect:/usersessionkeep";	   
+	    }
+		return "user/userjoin";
 	}
 		
 	// 사용자 로그인 페이지에서 공급자로그인을 클릭했을 때 (성공)
 	@GetMapping("ownerlogingo")
-	public String ownerLoginGo() {
+	public String ownerLoginGo(HttpSession session) {
+	    if (session.getAttribute("ownerSession") != null) {    	
+	        return "redirect:/ownersessionkeep";	   
+	    }
 		return "../templates/owner/ownerlogin";
 	}
 	
@@ -77,7 +87,7 @@ public class UserController {
             // user는 앞서 사용자가 입력한 아이디와 비밀번호를 담고 있음 그거를 세션에 담는거라 생각하시면 되용
         	session.setAttribute("userSession", user); 
         	System.out.println("사용자 ID : " + user.getUser_id() + " " + "사용자 pwd : " + user.getUser_pwd());
-        	return "user/usermypage"; // 로그인 성공 시 usermypage.html로 이동.
+        	return "redirect:/usersessionkeep"; // 로그인 성공 시 usermypage.html로 이동.
         }
 		else { // 사용자 정보가 DB에 없는 경우 즉, 아이디와 비밀번호가 없는 경우
 			System.out.println("제대로 입력해라");
