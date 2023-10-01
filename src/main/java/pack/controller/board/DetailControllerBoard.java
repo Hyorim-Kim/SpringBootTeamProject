@@ -20,8 +20,8 @@ public class DetailControllerBoard {
 	
 	@GetMapping("detail")
 	public String detailProcess(
-			@RequestParam("num") String num,
-			@RequestParam("page") String page, Model model) {
+			@RequestParam("num") String num, // ﻿조회할 게시글의 번호
+			@RequestParam("page") String page, Model model) { // ﻿현재 페이지 번호
 		// 조회수 증가 선행
 		daoImpl.updateReadcnt(num);
 		

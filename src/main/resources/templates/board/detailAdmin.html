@@ -1,41 +1,99 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
+	
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="/css/board.css">
+<meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>에이콘테이너</title>
+  <!-- 파비콘 -->
+  <link href="/assets/img/favicon.png" rel="icon">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <!-- Template Main CSS File -->
+  <link href="/assets/css/main.css" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/board.css}">
 </head>
+
 <body>
-<h3>공지 시항</h3>
-<table>
-  <tr>
-  	<td style="text-align: right;">
-		<a th:href="@{/board/update(num=${data.num},page=${page})}">
-			수정
-		</a>
-		<a th:href="@{/board/delete(num=${data.num},page=${page})}" onclick="return confirm('정말 삭제할까요?');">
-			삭제
-		</a>
-  		<a th:href="@{/board/listAdmin(page=${page})}">
-  			목록이동
-  		</a>
-  	</td>
-  </tr>
-</table>
-<table>
-	<tr>
-		<td>작성자 : [[${data.admin_id}]]</td>
-		<td>작성일 : [[${data.bdate}]]</td>
-		<td>조회수 : [[${data.readcnt}]]</td>
-	</tr>
-	<tr>
-		<td colspan="3">제목 : [[${data.title}]]</td>
-	</tr>
-	<tr>
-		<td colspan="3">
-			<textarea rows="5" style="width: 98%" readonly="readonly">[[${data.cont}]]</textarea>
-		</td>
-	</tr>
-</table>
+<div th:if="${session.adminSession != null}">
+  <!-- ======= Header ======= -->
+  <div th:replace="~{fragments/header_admin :: header}"></div>
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('/assets/img/breadcrumbs-bg.jpg');">
+      <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+        <h2 style="font-family: 'Noto Sans KR';">공지사항</h2>
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li>게시판</li>
+        </ol>
+      </div>
+	</div><!-- End Breadcrumbs -->
+	<section>
+		<div class="board-detail">
+			<table>
+				<tr>
+					<td style="text-align: right;">
+						<a th:href="@{/board/update(num=${data.num},page=${page})}">수정</a>
+						<a th:href="@{/board/delete(num=${data.num},page=${page})}" onclick="return confirm('정말 삭제할까요?');">삭제</a>
+						<a th:href="@{/board/listAdmin(page=${page})}">목록이동</a>
+					</td>
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<td colspan="5">
+						<span style="font-weight: 700; font-size: 30px;">[[${data.title}]]</span><br />
+						<span>에이콘테이너의 새로운 소식들을 한곳에서 확인하세요</span><br /><br /><br />
+					</td>
+				</tr>
+			</table>
+			<table class="info-table">
+				<tr style="border-top: 2px solid #000; border-bottom: 1px solid lightgrey;">
+					<td class="label-cell">작성자</td>
+					<td class="content-cell">[[${data.admin_id}]]</td>
+				</tr>
+				<tr style="border-bottom: 1px solid lightgrey;">
+					<td class="label-cell">작성일</td>
+					<td class="content-cell">[[${data.bdate}]]</td>
+				</tr>
+				<tr style="border-bottom: 1px solid lightgrey;">
+					<td class="label-cell">조회수</td>
+					<td class="content-cell">[[${data.readcnt}]]</td>
+				</tr>
+				<tr style="border-bottom: 1px solid lightgrey;">
+					<td colspan="3">
+						<textarea rows="5" style="width: 98%" readonly="readonly">[[${data.cont}]]</textarea>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</section>
+  </main><!-- End #main -->
+  <!-- ======= Footer ======= -->
+  <div th:replace="~{fragments/footer :: footer}"></div>
+
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/vendor/aos/aos.js"></script>
+  <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/assets/js/main.js"></script>
 </body>
 </html>
