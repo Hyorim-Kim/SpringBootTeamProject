@@ -55,8 +55,8 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
 
       model.addAttribute("lists", result);
       model.addAttribute("pagesu", getuserPageSu());
-       model.addAttribute("page", spage);
-       model.addAttribute("user_records", user_records);
+      model.addAttribute("page", spage);
+      model.addAttribute("user_records", user_records);
        
       return "../templates/user/user";
    }
@@ -104,6 +104,7 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
       }
    
 
+
    @GetMapping("/owner")  // owner 페이지로 이동
    public String ownerlist(@RequestParam("page")int page, Model model) {
       int spage = page;
@@ -136,14 +137,28 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
       return "../templates/owner/owner";
    }
    
+//   @PostMapping("ownerdelete")  // owner에서 삭제하기
+//   public String ownerdel(@RequestParam("business_num")String business_num,
+//         @RequestParam(name = "page", defaultValue = "1") int page) {
+//      if(dataDao.ownerdelete(business_num))
+//         return "redirect:owner?page=" + page;
+//      else
+//         return "/owner/error.html";
+//   }
    @PostMapping("ownerdelete")  // owner에서 삭제하기
-   public String ownerdel(@RequestParam("business_num")String business_num,
-         @RequestParam(name = "page", defaultValue = "1") int page) {
-      if(dataDao.ownerdelete(business_num))
-         return "redirect:owner?page=" + page;
-      else
-    	  return "../templates/owner/errorstock";
+   public String ownerdel(@RequestParam("business_num") String business_num,
+           @RequestParam(name = "page", defaultValue = "1") int page) {
+       try {
+           if (dataDao.ownerdelete(business_num)) {
+               return "redirect:owner?page=" + page;
+           } else {
+               return "redirect:error"; // 데이터 삭제에 실패한 경우
+           }
+       } catch (Exception e) {
+           return "/owner/error"; // 예외 발생 시 에러 페이지로 리다이렉트
+       }
    }
+
 
 
    public ArrayList<ContainerDto> getregisteredListData(ArrayList<ContainerDto> list, int page){ // 페이지 번호(page)와 FAQ 목록(list)을 받아와서 해당 페이지에 표시할 FAQ 항목을 추출하여 반환하는 메서드, 페이징 처리를 위해 사용
@@ -197,5 +212,4 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
    }
 
 }
-
 
