@@ -21,36 +21,36 @@
   <link rel="stylesheet" th:href="@{/css/board.css}">
 
 <script>
-	window.onload = function(){
-		
-		document.querySelector("#btnList").onclick = function(){
-			window.history.back();
+   window.onload = function(){
+      
+      document.querySelector("#btnList").onclick = function(){
+         window.history.back();
 
-		}
-		
-		document.querySelector("#btnUpdate").onclick = function(){
-			if(confirm("정말 수정 할까요?")){
-				event.preventDefault(); // submit 이벤트를 취소
-				frm.action="contactupdate";
-				frm.method="post";
-				frm.submit();
-			}
-		}
-			
-		document.querySelector("#btnDelete").onclick = function(){
-			if(confirm("정말 삭제 할까요?")){
-				event.preventDefault();
-				frm.action="contactdelete";
-				frm.method="get";
-				frm.submit();
-			}
-		}
-	}
+      }
+      
+      document.querySelector("#btnUpdate").onclick = function(){
+         if(confirm("정말 수정 할까요?")){
+            event.preventDefault(); // submit 이벤트를 취소
+            frm.action="contactupdate";
+            frm.method="post";
+            frm.submit();
+         }
+      }
+         
+      document.querySelector("#btnDelete").onclick = function(){
+         if(confirm("정말 삭제 할까요?")){
+            event.preventDefault();
+            frm.action="contactdelete";
+            frm.method="get";
+            frm.submit();
+         }
+      }
+   }
 </script>
 </head>
 <body>
-	
-	<div th:if="${session.adminSession != null}">
+   
+   <div th:if="${session.adminSession != null}">
   <!-- header 파일 따로 만들어서 삽입 -->
   <div th:replace="~{fragments/header_admin :: header}"></div>
   <main id="main">
@@ -61,37 +61,38 @@
 
         <h2 style="font-family: 'Noto Sans KR';">Contact</h2>
         <ol>
-          <li><a href="/">Home</a></li>
+          <li><a href="/adminsessionkeep">Home</a></li>
           <li>게시판</li>
         </ol>
 
       </div>
     </div><!-- End Breadcrumbs -->
-    
-	<section class="sample-page">
-		
-		
-		<div class="board-container">
-	
+   
+   <section class="sample-page">
+      
+      
+      <div class="board-container">
+   
+>>>>>>> branch 'master' of https://github.com/Hyorim-Kim/Team.git
 <h3 style="padding-top: 1cm; padding-bottom: 1cm; text-align: center;">* 상세 보기 *</h3>
 <form name="frm" th:object="${detail}" style="padding-bottom: 1cm; text-align: center;">
-	작성자 : [[${detail.contact_name}]]<br>
-	이메일 : [[${detail.contact_email}]]<br> <!-- th:field : id="author" name="author" value="가나다" -->
-	<input type="hidden" name="contact_no" th:value="${detail.contact_no}">
-	작성일 : [[${detail.contact_date}]]<br><br>
-	제 목 : [[${detail.contact_title}]]<br>
-	내 용 : [[${detail.contact_message}]]<br><br>
-	처리상태 :
+   작성자 : [[${detail.contact_name}]]<br>
+   이메일 : [[${detail.contact_email}]]<br> <!-- th:field : id="author" name="author" value="가나다" -->
+   <input type="hidden" name="contact_no" th:value="${detail.contact_no}">
+   작성일 : [[${detail.contact_date}]]<br><br>
+   제 목 : [[${detail.contact_title}]]<br>
+   내 용 : [[${detail.contact_message}]]<br><br>
+   처리상태 :
     <select name="contact_status" th:field="*{contact_status}">
         <option value="답변대기">답변대기</option>
         <option value="답변완료">답변완료</option>
     </select><br>
-	<input type="button" value="수정" id="btnUpdate">
-	<input type="button" value="삭제" id="btnDelete">
-	<input type="button" value="목록" id="btnList">
+   <input type="button" value="수정" id="btnUpdate">
+   <input type="button" value="삭제" id="btnDelete">
+   <input type="button" value="목록" id="btnList">
 </form>
 </div>
-	</section>
+</section>
 
   </main><!-- End #main -->
   

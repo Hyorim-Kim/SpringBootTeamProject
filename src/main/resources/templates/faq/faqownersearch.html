@@ -2,11 +2,13 @@
 <html xmlns:th="https://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8">
-	<meta content="width=device-width, initial-scale=1.0" name="viewport">
-	<title>FAQ</title>
-	
-	<!-- 파비콘 -->
+
+   <meta charset="UTF-8">
+   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+   <title>FAQ</title>
+   
+   <!-- 파비콘 -->
+>>>>>>> branch 'master' of https://github.com/Hyorim-Kim/Team.git
   <link href="/assets/img/favicon.png" rel="icon">
 
   <!-- Google Fonts -->
@@ -20,49 +22,49 @@
   <!-- Template Main CSS File -->
   <link href="/assets/css/main.css" rel="stylesheet">
   <link rel="stylesheet" th:href="@{/css/board.css}">
-	
-	<script src="https://code.jquery.com/jquery-latest.js"></script>
-		<script>
-		$(document).ready(function () {
-		    $(".faq").click(function () {
-		        let answer = $(this).data("answer"); // 클릭된 FAQ 항목의 데이터 속성 중 "answer" 값을 가져와서 answer 변수에 저장, 이 데이터 속성은 FAQ 항목의 내용을 나타낸다
-		        let showId = $(this).data("show-id"); // 클릭된 FAQ 항목의 데이터 속성 중 "show-id" 값을 가져와서 showId 변수에 저장, 이 데이터 속성은 FAQ 내용이 표시될 영역의 HTML 요소의 ID를 나타낸다
-		        let showArea = $("#" + showId); // 위에서 가져온 showId 값을 사용하여 FAQ 내용이 표시될 영역을 선택
-		
-		        // 현재 FAQ의 상태 확인
-		        let isOpen = showArea.is(":visible"); // FAQ 내용이 현재 보이는지 아닌지를 확인하기 위해 is(":visible") 함수를 사용하여 showArea의 가시성 상태를 확인하고 isOpen 변수에 저장
-		
-		        // 모든 FAQ를 숨김
-		        $(".faq").each(function() { // 클래스가 "faq"인 모든 FAQ 항목에 대해 반복적으로 처리하기 위한 반복문
-		            let otherShowId = $(this).data("show-id"); // 현재 FAQ 항목의 데이터 속성 중 "show-id" 값을 가져와서 otherShowId 변수에 저장, 이 변수는 다른 FAQ 항목의 표시 영역 ID를 나타낸다
-		            $("#" + otherShowId).hide(); //  otherShowId를 사용하여 다른 FAQ 항목의 표시 영역을 숨긴다. 이렇게 하면 하나의 FAQ를 열 때 다른 FAQ가 닫히게 된다
-		        });
-		
-		        showArea.empty(); // 현재 FAQ의 표시 영역을 비웁니다. 이것은 FAQ 내용을 다시 가져오기 전에 이전 내용을 지우는 역할
-		
-		        if (!isOpen) { // FAQ가 열려 있지 않은 경우에만 다시 열기 위한 조건문
-		            // FAQ가 열려 있지 않은 경우에만 다시 열기
-		            $.ajax({ // FAQ 내용을 서버에서 가져오기 위해 Ajax 요청을 보냅니다. 요청은 "detailfaq" URL로 보내지며, "detail" 파라미터에는 클릭된 FAQ 항목의 내용인 answer를 전달
-		                type: "get",
-		                url: "detailfaq",
-		                data: {"detail": answer},
-		                success: function (data) {
-		                    let str = data.detail + "<br>";
-		                    showArea.append(str);
-		                },
-		                error: function () {
-		                    showArea.html("<b>에러 발생</b>");
-		                }
-		            });
-		            showArea.show(); //  FAQ 내용을 표시하는 부분, 이렇게 하면 FAQ 내용이 보이게 된다
-		        }
-		    });
-		});
-	</script>
+
+   <script src="https://code.jquery.com/jquery-latest.js"></script>
+      <script>
+      $(document).ready(function () {
+          $(".faq").click(function () {
+              let answer = $(this).data("answer"); // 클릭된 FAQ 항목의 데이터 속성 중 "answer" 값을 가져와서 answer 변수에 저장, 이 데이터 속성은 FAQ 항목의 내용을 나타낸다
+              let showId = $(this).data("show-id"); // 클릭된 FAQ 항목의 데이터 속성 중 "show-id" 값을 가져와서 showId 변수에 저장, 이 데이터 속성은 FAQ 내용이 표시될 영역의 HTML 요소의 ID를 나타낸다
+              let showArea = $("#" + showId); // 위에서 가져온 showId 값을 사용하여 FAQ 내용이 표시될 영역을 선택
+      
+              // 현재 FAQ의 상태 확인
+              let isOpen = showArea.is(":visible"); // FAQ 내용이 현재 보이는지 아닌지를 확인하기 위해 is(":visible") 함수를 사용하여 showArea의 가시성 상태를 확인하고 isOpen 변수에 저장
+      
+              // 모든 FAQ를 숨김
+              $(".faq").each(function() { // 클래스가 "faq"인 모든 FAQ 항목에 대해 반복적으로 처리하기 위한 반복문
+                  let otherShowId = $(this).data("show-id"); // 현재 FAQ 항목의 데이터 속성 중 "show-id" 값을 가져와서 otherShowId 변수에 저장, 이 변수는 다른 FAQ 항목의 표시 영역 ID를 나타낸다
+                  $("#" + otherShowId).hide(); //  otherShowId를 사용하여 다른 FAQ 항목의 표시 영역을 숨긴다. 이렇게 하면 하나의 FAQ를 열 때 다른 FAQ가 닫히게 된다
+              });
+      
+              showArea.empty(); // 현재 FAQ의 표시 영역을 비웁니다. 이것은 FAQ 내용을 다시 가져오기 전에 이전 내용을 지우는 역할
+      
+              if (!isOpen) { // FAQ가 열려 있지 않은 경우에만 다시 열기 위한 조건문
+                  // FAQ가 열려 있지 않은 경우에만 다시 열기
+                  $.ajax({ // FAQ 내용을 서버에서 가져오기 위해 Ajax 요청을 보냅니다. 요청은 "detailfaq" URL로 보내지며, "detail" 파라미터에는 클릭된 FAQ 항목의 내용인 answer를 전달
+                      type: "get",
+                      url: "detailfaq",
+                      data: {"detail": answer},
+                      success: function (data) {
+                          let str = data.detail + "<br>";
+                          showArea.append(str);
+                      },
+                      error: function () {
+                          showArea.html("<b>에러 발생</b>");
+                      }
+                  });
+                  showArea.show(); //  FAQ 내용을 표시하는 부분, 이렇게 하면 FAQ 내용이 보이게 된다
+              }
+          });
+      });
+   </script>
 </head>
 
 <body>
-	  <div th:if="${session.ownerSession != null}">
+     <div th:if="${session.ownerSession != null}">
   <!-- header 파일 따로 만들어서 삽입 -->
   <div th:replace="~{fragments/header_owner :: header}"></div>
   <main id="main">
@@ -73,71 +75,70 @@
 
         <h2 style="font-family: 'Noto Sans KR';">FAQ</h2>
         <ol>
-          <li><a href="/">Home</a></li>
+          <li><a href="/ownersessionkeep">Home</a></li>
           <li>게시판</li>
         </ol>
 
       </div>
     </div><!-- End Breadcrumbs -->
     
-	<section class="sample-page">
-		
-		
-		<div class="board-container">
-			<!-- 고객문의 배너 -->
-			<div class="customer-inquiry-banner">
-				<p>목록</p>
-				<ul>
-					<li>공지사항</li>
-					<li>1:1문의</li>
-					<li>FAQ</li>
-				</ul>
-			</div>
- 	
-	<h3 style="padding-top: 1cm; padding-bottom: 1cm; text-align: center;">자주 묻는 질문</h3>
-	<table border="1" style="width: 99%;">
-		<tr>
-			<td colspan="3">
-				<form action="/searchfaqowner?searchpage=1" method="get" style="text-align: right;">
-				검 색 : 
-				<select name="searchName">
-					<option value="faq_category" selected>카테고리</option>
-					<option value="faq_question">제목</option>
-				</select>
-					<input type="text" name="searchValue">
-					<input type="submit" value="검 색">
-				</form>
-			</td>
-		</tr>
-		<tr>
-			<th style="width: 10%;">번호</th>
-			<th style="width: 15%;">카테고리</th>
-			<th style="width: 75%;">제목</th>
-		</tr>
-	</table>
-	<th:block th:if="${faq != null and faq.size() > 0}">
-		<table border="1" style="width: 99%; text-align: center;" th:each="data : ${faq}" class="faq"
-			th:data-answer="${data.faq_answer}" th:data-show-id="'show' + ${data.faq_no}">
-			<!-- th:data-answer="${data.faq_answer}" : Thymeleaf의 th:data-* 속성을 사용하여 각 행에 FAQ 답변(faq_answer) 데이터를 data-answer 속성으로 설정, 
-				 이렇게 함으로써 JavaScript 코드에서 FAQ 항목을 클릭할 때 해당 답변을 가져올 수 있다 
-				 
-				 th:data-show-id="'show' + ${data.faq_no}": FAQ 항목을 클릭할 때 해당 답변을 표시할 영역의 ID를 동적으로 생성, 
-				 FAQ 번호(faq_no)를 사용하여 "show" 접두사를 붙이고, 이를 data-show-id 속성으로 설정, 이것은 JavaScript 코드에서 FAQ 항목과 해당 답변 영역을 매핑하는 데 사용-->		
-			<tr>
-				<td th:text="${data.faq_no}" style="width: 10%;"></td>
-				<td th:text="${data.faq_category}" style="width: 15%;"></td>
-				<td th:text="${data.faq_question}" style="width: 75%; text-align: left; padding-left: 5%"></td>
-			</tr>
-			<tr>
-				<td colspan="3" style="text-align: left; padding-left: 10%; padding-right: 20%;">
-					<div th:id="'show' + ${data.faq_no}" style="display: none; padding-top: 1cm; padding-bottom: 1cm;"></div>
-					<!-- display: none; 스타일은 해당 요소를 화면에 표시하지 않으며 숨긴 상태로 시작, FAQ 내용을 처음에는 숨긴 상태로 유지하려는 목적 -->
-				</td>
-			</tr>
-		</table>
-	</th:block>
-	
-	<table style="margin-top: 20px;">
+   <section class="sample-page">
+      
+      <div class="board-container">
+         <!-- 고객문의 배너 -->
+         <div class="customer-inquiry-banner">
+            <p>목록</p>
+            <ul>
+               <li>공지사항</li>
+               <li>1:1문의</li>
+               <li>FAQ</li>
+            </ul>
+         </div>
+    
+   <h3 style="padding-top: 1cm; padding-bottom: 1cm; text-align: center;">자주 묻는 질문</h3>
+   <table border="1" style="width: 99%;">
+      <tr>
+         <td colspan="3">
+            <form action="/searchfaqowner?searchpage=1" method="get" style="text-align: right;">
+            검 색 : 
+            <select name="searchName">
+               <option value="faq_category" selected>카테고리</option>
+               <option value="faq_question">제목</option>
+            </select>
+               <input type="text" name="searchValue">
+               <input type="submit" value="검 색">
+            </form>
+         </td>
+      </tr>
+      <tr>
+         <th style="width: 10%;">번호</th>
+         <th style="width: 15%;">카테고리</th>
+         <th style="width: 75%;">제목</th>
+      </tr>
+   </table>
+   <th:block th:if="${faq != null and faq.size() > 0}">
+      <table border="1" style="width: 99%; text-align: center;" th:each="data : ${faq}" class="faq"
+         th:data-answer="${data.faq_answer}" th:data-show-id="'show' + ${data.faq_no}">
+         <!-- th:data-answer="${data.faq_answer}" : Thymeleaf의 th:data-* 속성을 사용하여 각 행에 FAQ 답변(faq_answer) 데이터를 data-answer 속성으로 설정, 
+             이렇게 함으로써 JavaScript 코드에서 FAQ 항목을 클릭할 때 해당 답변을 가져올 수 있다 
+             
+             th:data-show-id="'show' + ${data.faq_no}": FAQ 항목을 클릭할 때 해당 답변을 표시할 영역의 ID를 동적으로 생성, 
+             FAQ 번호(faq_no)를 사용하여 "show" 접두사를 붙이고, 이를 data-show-id 속성으로 설정, 이것은 JavaScript 코드에서 FAQ 항목과 해당 답변 영역을 매핑하는 데 사용-->      
+         <tr>
+            <td th:text="${data.faq_no}" style="width: 10%;"></td>
+            <td th:text="${data.faq_category}" style="width: 15%;"></td>
+            <td th:text="${data.faq_question}" style="width: 75%; text-align: left; padding-left: 5%"></td>
+         </tr>
+         <tr>
+            <td colspan="3" style="text-align: left; padding-left: 10%; padding-right: 20%;">
+               <div th:id="'show' + ${data.faq_no}" style="display: none; padding-top: 1cm; padding-bottom: 1cm;"></div>
+               <!-- display: none; 스타일은 해당 요소를 화면에 표시하지 않으며 숨긴 상태로 시작, FAQ 내용을 처음에는 숨긴 상태로 유지하려는 목적 -->
+            </td>
+         </tr>
+      </table>
+   </th:block>
+   
+   <table style="margin-top: 20px;">
         <tr style="text-align: center;">
             <td colspan="5">
                 <th:block th:each="num : ${#numbers.sequence(1, pagesu)}">
@@ -152,7 +153,7 @@
         </tr>
     </table>
     </div>
-	</section>
+   </section>
 
   </main><!-- End #main -->
   

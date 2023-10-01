@@ -21,13 +21,13 @@
   <link rel="stylesheet" th:href="@{/css/board.css}">
 
 <script>
-	window.onload = function(){
-		document.querySelector("#btn").onclick = function(){
-			if(!confirm("정말 작성 할까요?")){
-				event.preventDefault(); // submit 이벤트를 취소
-			}
-		}
-	}
+   window.onload = function(){
+      document.querySelector("#btn").onclick = function(){
+         if(!confirm("정말 작성 할까요?")){
+            event.preventDefault(); // submit 이벤트를 취소
+         }
+      }
+   }
 </script>
 </head>
 <body>
@@ -43,45 +43,45 @@
 
         <h2 style="font-family: 'Noto Sans KR';">Contact</h2>
         <ol>
-          <li><a href="/">Home</a></li>
+          <li><a href="/ownersessionkeep">Home</a></li>
           <li>게시판</li>
         </ol>
 
       </div>
     </div><!-- End Breadcrumbs -->
     
-	<section class="sample-page">
-		
-		
-		<div class="board-container">
+   <section class="sample-page">
+      
+      
+      <div class="board-container">
 
 <h3 style="padding-top: 1cm; padding-bottom: 1cm; text-align: center;">Contact</h3>
 <div>
-	<form action="insertcontact" name="ins" method="post">
-		<div>
-			<div>
-				<input type="text" name="contact_name" id="contact_name" placeholder="Your Name" required>
-			</div>
-			<div>
-				<input type="email" name="contact_email" id="contact_email" placeholder="Your Email" required>
-			</div>
-			<div>
-				<input type="text" name="contact_title" id="contact_title" placeholder="Title" required>
-			</div>
-			<div>
-				<textarea name="contact_message" id="contact_message" rows="5" placeholder="Message" required></textarea>
-			</div>
-			<div>
-				<input type="hidden" name="contact_status" id="contact_status" value="답변대기">
-			</div>
-			<div>
-				<button type="submit" name="btn" id="btn">Send Message</button>
-			</div>
-		</div>
-	</div>
-	</form>
-	</div>
-	</section>
+   <form action="insertcontact" name="ins" method="post">
+      <div>
+         <div>
+            <input type="text" name="contact_name" id="contact_name" placeholder="Your Name" required>
+         </div>
+         <div>
+            <input type="email" name="contact_email" id="contact_email" placeholder="Your Email" required>
+         </div>
+         <div>
+            <input type="text" name="contact_title" id="contact_title" placeholder="Title" required>
+         </div>
+         <div>
+            <textarea name="contact_message" id="contact_message" rows="5" placeholder="Message" required></textarea>
+         </div>
+         <div>
+            <input type="hidden" name="contact_status" id="contact_status" value="답변대기">
+         </div>
+         <div>
+            <button type="submit" name="btn" id="btn">Send Message</button>
+         </div>
+      </div>
+   </div>
+   </form>
+   </div>
+   </section>
 
   </main><!-- End #main -->
   

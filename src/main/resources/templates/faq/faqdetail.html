@@ -21,36 +21,36 @@
   <link rel="stylesheet" th:href="@{/css/board.css}">
 
 <script>
-	window.onload = function(){
-		
-		document.querySelector("#btnList").onclick = function(){
-			window.history.back();
+   window.onload = function(){
+      
+      document.querySelector("#btnList").onclick = function(){
+         window.history.back();
 
-		}
-		
-		document.querySelector("#btnUp").onclick = function(){
-			if(confirm("정말 수정 할까요?")){
-				event.preventDefault(); // submit 이벤트를 취소
-				frm.action="faqupdate";
-				frm.method="post";
-				frm.submit();
-			}
-		}
-		
-		document.querySelector("#btnDel").onclick = function(){
-			if(confirm("정말 삭제 할까요?")){
-				event.preventDefault(); // submit 이벤트를 취소
-				frm.action="faqdelete";
-				frm.method="post";
-				frm.submit();
-			}
-		}
-	}
+      }
+      
+      document.querySelector("#btnUp").onclick = function(){
+         if(confirm("정말 수정 할까요?")){
+            event.preventDefault(); // submit 이벤트를 취소
+            frm.action="faqupdate";
+            frm.method="post";
+            frm.submit();
+         }
+      }
+      
+      document.querySelector("#btnDel").onclick = function(){
+         if(confirm("정말 삭제 할까요?")){
+            event.preventDefault(); // submit 이벤트를 취소
+            frm.action="faqdelete";
+            frm.method="post";
+            frm.submit();
+         }
+      }
+   }
 </script>
 </head>
 <body>
-	
-	<div th:if="${session.adminSession != null}">
+   
+   <div th:if="${session.adminSession != null}">
   <!-- header 파일 따로 만들어서 삽입 -->
   <div th:replace="~{fragments/header_admin :: header}"></div>
   <main id="main">
@@ -61,40 +61,40 @@
 
         <h2 style="font-family: 'Noto Sans KR';">FAQ</h2>
         <ol>
-          <li><a href="/">Home</a></li>
+          <li><a href="/adminsessionkeep">Home</a></li>
           <li>게시판</li>
         </ol>
 
       </div>
     </div><!-- End Breadcrumbs -->
-    
-	<section class="sample-page">
-	
+
+   <section class="sample-page">
+
 <h2 style="padding-top: 1cm;text-align: center;">** FAQ 수정 / 삭제 **</h2><br><br>
 <div>
-	<form name="frm" method="post" th:object="${detail}" style="padding-bottom: 1cm; text-align: center;">
-		<div>
-			<div>
-				번  호 : [[${detail.faq_no}]]
-				<input type="hidden" name="faq_no" th:value="${detail.faq_no}">
-			</div><br>
-			<div>
-				카테고리 : <input type="text" name="faq_category" id="faq_category" th:value="${detail.faq_category}" required>
-			</div><br>
-			<div>
-				제  목 : <input type="text" name="faq_question" id="faq_question" th:value="${detail.faq_question}" required>
-			</div><br>
-			<div>
-				내  용 : <input type="text" name="faq_answer" id="faq_answer" th:value="${detail.faq_answer}" required>
-			</div>
-			<br>
-			<div>
-				<input type="button" value="수정" name="btnUp" id="btnUp"></input>
-				<input type="button" value="삭제" name="btnDel" id="btnDel"></input>
-				<input type="button" value="목록" name="btnList" id="btnList"></input>
-			</div>
-		</div>
-	</form>
+   <form name="frm" method="post" th:object="${detail}" style="padding-bottom: 1cm; text-align: center;">
+      <div>
+         <div>
+            번  호 : [[${detail.faq_no}]]
+            <input type="hidden" name="faq_no" th:value="${detail.faq_no}">
+         </div><br>
+         <div>
+            카테고리 : <input type="text" name="faq_category" id="faq_category" th:value="${detail.faq_category}" required>
+         </div><br>
+         <div>
+            제  목 : <input type="text" name="faq_question" id="faq_question" th:value="${detail.faq_question}" required>
+         </div><br>
+         <div>
+            내  용 : <input type="text" name="faq_answer" id="faq_answer" th:value="${detail.faq_answer}" required>
+         </div>
+         <br>
+         <div>
+            <input type="button" value="수정" name="btnUp" id="btnUp"></input>
+            <input type="button" value="삭제" name="btnDel" id="btnDel"></input>
+            <input type="button" value="목록" name="btnList" id="btnList"></input>
+         </div>
+      </div>
+   </form>
 </div>
 
  </section>

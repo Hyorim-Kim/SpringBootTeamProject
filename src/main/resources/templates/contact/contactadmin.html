@@ -2,11 +2,11 @@
 <html xmlns:th="https://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8">
-	<meta content="width=device-width, initial-scale=1.0" name="viewport">
-	<title>Contact</title>
-	
-	<!-- 파비콘 -->
+   <meta charset="UTF-8">
+   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+   <title>Contact</title>
+   
+   <!-- 파비콘 -->
   <link href="/assets/img/favicon.png" rel="icon">
 
   <!-- Google Fonts -->
@@ -20,12 +20,12 @@
   <!-- Template Main CSS File -->
   <link href="/assets/css/main.css" rel="stylesheet">
   <link rel="stylesheet" th:href="@{/css/board.css}">
-	
+
 </head>
 
 <body>
-	
-	<div th:if="${session.adminSession != null}">
+
+   <div th:if="${session.adminSession != null}">
   <!-- header 파일 따로 만들어서 삽입 -->
   <div th:replace="~{fragments/header_admin :: header}"></div>
   <main id="main">
@@ -36,53 +36,51 @@
 
         <h2 style="font-family: 'Noto Sans KR';">Contact</h2>
         <ol>
-          <li><a href="/">Home</a></li>
+          <li><a href="/adminsessionkeep">Home</a></li>
           <li>게시판</li>
         </ol>
 
       </div>
     </div><!-- End Breadcrumbs -->
     
-	<section class="sample-page">
-		
-		
-		<div class="board-container">
-			
-	
-	<h3 style="padding-top: 1cm; padding-bottom: 1cm; text-align: center;">Contact 목록</h3>
-	<table border="1">
-		<tr>
-			<th>이름</th><th>메일</th><th>주제</th><th>문의날짜</th><th>처리상태</th><th>상세보기</th>
-		</tr>
-		<th:block th:if="${contactadmin.size > 0}">
-			<tr th:each="data:${contactadmin}">
-				<td th:text="${data.contact_name }"></td>
-				<td th:text="${data.contact_email }"></td>
-				<td th:text="${data.contact_title }"></td>
-				<td th:text="${data.contact_date }"></td>
-				<td th:text="${data.contact_status }"></td>
-				<td>
-					<a th:href="@{/contactdetail(contact_no=${data.contact_no})}">상세보기</a>
-				</td>
-			</tr>
-		</th:block>
-	</table>
-	<table style="margin-top: 20px;">
-		<tr style="text-align: center;">
-			<td colspan="5">
-				<th:block th:each="num : ${#numbers.sequence(1, pagesu)}">
-					<th:span th:if="${num == page}">
-						<b th:text="${num}">num 표시(현재 페이지는 링크를 걸지 않음)</b>
-					</th:span>
-					<th:span th:if="${num != page}">
-						<a th:href="@{/contactadmin(page=${num})}" th:text="${num}">num 표시</a>
-					</th:span>
-				</th:block>
-			</td>
-		</tr>
-	</table>
-	</div>
-	</section>
+   <section class="sample-page">
+         
+      <div class="board-container">
+         
+   <h3 style="padding-top: 1cm; padding-bottom: 1cm; text-align: center;">Contact 목록</h3>
+   <table border="1">
+      <tr>
+         <th>이름</th><th>메일</th><th>주제</th><th>문의날짜</th><th>처리상태</th><th>상세보기</th>
+      </tr>
+      <th:block th:if="${contactadmin.size > 0}">
+         <tr th:each="data:${contactadmin}">
+            <td th:text="${data.contact_name }"></td>
+            <td th:text="${data.contact_email }"></td>
+            <td th:text="${data.contact_title }"></td>
+            <td th:text="${data.contact_date }"></td>
+            <td th:text="${data.contact_status }"></td>
+            <td>
+               <a th:href="@{/contactdetail(contact_no=${data.contact_no})}">상세보기</a>
+            </td>
+         </tr>
+      </th:block>
+   </table>
+   <table style="margin-top: 20px;">
+      <tr style="text-align: center;">
+         <td colspan="5">
+            <th:block th:each="num : ${#numbers.sequence(1, pagesu)}">
+               <th:span th:if="${num == page}">
+                  <b th:text="${num}">num 표시(현재 페이지는 링크를 걸지 않음)</b>
+               </th:span>
+               <th:span th:if="${num != page}">
+                  <a th:href="@{/contactadmin(page=${num})}" th:text="${num}">num 표시</a>
+               </th:span>
+            </th:block>
+         </td>
+      </tr>
+   </table>
+   </div>
+   </section>
 
   </main><!-- End #main -->
   
@@ -107,7 +105,7 @@
   <!-- Template Main JS File -->
   <script src="/assets/js/main.js"></script>
 </div>
-	
+
 </body>
 
 </html>

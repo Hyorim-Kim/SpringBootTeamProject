@@ -2,11 +2,11 @@
 <html xmlns:th="https://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8">
-	<meta content="width=device-width, initial-scale=1.0" name="viewport">
-	<title>FAQ</title>
-	
-	<!-- 파비콘 -->
+   <meta charset="UTF-8">
+   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+   <title>FAQ</title>
+   
+   <!-- 파비콘 -->
   <link href="/assets/img/favicon.png" rel="icon">
 
   <!-- Google Fonts -->
@@ -20,12 +20,13 @@
   <!-- Template Main CSS File -->
   <link href="/assets/css/main.css" rel="stylesheet">
   <link rel="stylesheet" th:href="@{/css/board.css}">
-	
+
 </head>
 
 <body>
-	
-	<div th:if="${session.adminSession != null}">
+
+   <div th:if="${session.adminSession != null}">
+
   <!-- header 파일 따로 만들어서 삽입 -->
   <div th:replace="~{fragments/header_admin :: header}"></div>
   <main id="main">
@@ -36,69 +37,70 @@
 
         <h2 style="font-family: 'Noto Sans KR';">FAQ</h2>
         <ol>
-          <li><a href="/">Home</a></li>
+          <li><a href="/adminsessionkeep">Home</a></li>
           <li>게시판</li>
         </ol>
 
       </div>
     </div><!-- End Breadcrumbs -->
     
-	<section class="sample-page">
-		
-		
-		<div class="board-container">
-			<!-- 고객문의 배너 -->
-			<div class="customer-inquiry-banner">
-				<p>목록</p>
-				<ul>
-					<li>공지사항</li>
-					<li>1:1문의</li>
-					<li>FAQ</li>
-				</ul>
-			</div>
-	
-	<h3 style="padding-top: 1cm; padding-bottom: 1cm; text-align: center;">자주 묻는 질문</h3>
-	<div style="text-align: center;"><a href="faqinsert">추가</a></div>
-	<table border="1" style="width: 99%; background-color: white;">
-		<tr>
-			<td colspan="4">
-				<form action="/searchfaqadmin?searchpage=1" method="get" style="text-align: right;">
-					검 색 : 
-					<select name="searchName">
-						<option value="faq_category" selected>카테고리</option>
-						<option value="faq_question">제목</option>
-					</select>
-					<input type="text" name="searchValue">
-					<input type="submit" value="검 색">
-				</form>
-			</td>
-		</tr>
-		<tr>
-			<th style="width: 10%;">번호</th>
-			<th style="width: 15%;">카테고리</th>
-			<th style="width: 60%;">제목</th>
-			<th style="width: 15%;">수정/삭제</th>
-		</tr>
-	</table>
-	<th:block th:if="${faqadmin != null and faqadmin.size() > 0}">
-		<table border="1" style="width: 99%; text-align: center; background-color: white;" th:each="data : ${faqadmin}" class="faq">
-			<tr>
-				<td th:text="${data.faq_no}" style="width: 10%;"></td>
-				<td th:text="${data.faq_category}" style="width: 15%;"></td>
-				<td th:text="${data.faq_question}" style="width: 60%; text-align: left; padding-left: 5%"></td>
-				<td style="width: 15%;">
-					<a th:href="@{faqdetail(faq_no=${data.faq_no})}">수정 / 삭제</a>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="4" style="text-align: left; padding-left: 10%; padding-right: 20%;">
-					<div th:text="${data.faq_answer}" style="padding-top: 1cm; padding-bottom: 1cm;"></div>
-				</td>
-			</tr>
-		</table>
-	</th:block>
-	
-	<table style="margin-top: 20px; background-color: white;">
+
+   <section class="sample-page">
+      
+      
+      <div class="board-container">
+         <!-- 고객문의 배너 -->
+         <div class="customer-inquiry-banner">
+            <p>목록</p>
+            <ul>
+               <li>공지사항</li>
+               <li>1:1문의</li>
+               <li>FAQ</li>
+            </ul>
+         </div>
+   
+   <h3 style="padding-top: 1cm; padding-bottom: 1cm; text-align: center;">자주 묻는 질문</h3>
+   <div style="text-align: center;"><a href="faqinsert">추가</a></div>
+   <table border="1" style="width: 99%;">
+      <tr>
+         <td colspan="4">
+            <form action="/searchfaqadmin?searchpage=1" method="get" style="text-align: right;">
+               검 색 : 
+               <select name="searchName">
+                  <option value="faq_category" selected>카테고리</option>
+                  <option value="faq_question">제목</option>
+               </select>
+               <input type="text" name="searchValue">
+               <input type="submit" value="검 색">
+            </form>
+         </td>
+      </tr>
+      <tr>
+         <th style="width: 10%;">번호</th>
+         <th style="width: 15%;">카테고리</th>
+         <th style="width: 60%;">제목</th>
+         <th style="width: 15%;">수정/삭제</th>
+      </tr>
+   </table>
+   <th:block th:if="${faqadmin != null and faqadmin.size() > 0}">
+      <table border="1" style="width: 99%; text-align: center; background-color: white;" th:each="data : ${faqadmin}" class="faq">
+         <tr>
+            <td th:text="${data.faq_no}" style="width: 10%;"></td>
+            <td th:text="${data.faq_category}" style="width: 15%;"></td>
+            <td th:text="${data.faq_question}" style="width: 60%; text-align: left; padding-left: 5%"></td>
+            <td style="width: 15%;">
+               <a th:href="@{faqdetail(faq_no=${data.faq_no})}">수정 / 삭제</a>
+            </td>
+         </tr>
+         <tr>
+            <td colspan="4" style="text-align: left; padding-left: 10%; padding-right: 20%;">
+               <div th:text="${data.faq_answer}" style="padding-top: 1cm; padding-bottom: 1cm;"></div>
+            </td>
+         </tr>
+      </table>
+   </th:block>
+   
+   <table style="margin-top: 20px;">
         <tr style="text-align: center;">
             <td colspan="5">
                 <th:block th:each="num : ${#numbers.sequence(1, pagesu)}">
@@ -112,8 +114,8 @@
             </td>
         </tr>
     </table>
-	</div>
-	</section>
+   </div>
+   </section>
 
   </main><!-- End #main -->
   
@@ -138,6 +140,6 @@
   <!-- Template Main JS File -->
   <script src="/assets/js/main.js"></script>
 </div>
-	
+
 </body>
 </html>
