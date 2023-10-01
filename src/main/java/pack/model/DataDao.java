@@ -78,7 +78,7 @@ public class DataDao {
    
    public boolean ownerdelete(String business_num) {
 		boolean b = false;
-		int re = dataMapper.userdeleteData(business_num);
+		int re = dataMapper.ownerdeleteData(business_num);
 		if (re > 0)
 			b = true;
 		return b;

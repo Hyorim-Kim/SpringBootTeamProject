@@ -4,63 +4,58 @@
 <head> 
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
   <title>에이콘테이너</title>
   <!-- 파비콘 -->
   <link href="/assets/img/favicon.png" rel="icon">
-
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-
   <!-- Vendor CSS Files -->
   <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
   <!-- Template Main CSS File -->
   <link href="/assets/css/main.css" rel="stylesheet">
   <link rel="stylesheet" th:href="@{/css/board.css}">
-  
-
 </head>
 
 <body>
 <div th:if="${session.userSession != null}">
-  <!-- header 파일 따로 만들어서 삽입 -->
+  <!-- ======= Header ======= -->
   <div th:replace="~{fragments/header_user :: header}"></div>
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs d-flex align-items-center" style="background-image: url('/assets/img/breadcrumbs-bg.jpg');">
       <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
-
         <h2 style="font-family: 'Noto Sans KR';">공지사항</h2>
         <ol>
-          <li><a href="/">Home</a></li>
+          <li><a href="/usersessionkeep">Home</a></li>
           <li>게시판</li>
         </ol>
-
       </div>
-    </div><!-- End Breadcrumbs -->
-    
-	<section class="sample-page">
-		
-		
+    </div><!-- End Breadcrumbs -->  
+	<section>	
 		<div class="board-container">
 			<!-- 고객문의 배너 -->
-			<div class="customer-inquiry-banner">
-				<p>목록</p>
+			<div class="customer-banner">
+				<h2>고객센터</h2>
 				<ul>
-					<li>공지사항</li>
-					<li>1:1문의</li>
-					<li>FAQ</li>
+					<li class="active">공지사항</li>
+					<li><a href="faquser?page=1">자주하는 질문</a></li>
+					<li>도움이 필요하신가요?<br/><stong><a href="contactuser">1:1 문의하기</a></stong></li>
 				</ul>
 			</div>
-
-			<table>
-				<tr style="background-color: silver;">
+ 			<!--공지사항 테이블-->
+			<table style="border-collapse: collapse; border: none;">
+				<tr>
+					<td colspan="5" style="text-align: left;">
+						<span style="font-weight: 600; font-size: 25px;">공지사항&nbsp;&nbsp;</span>
+						<span>에이콘테이너의 새로운 소식들을 한곳에서 확인하세요</span><br/><br/>
+					</td>
+				</tr>
+				<tr style="border-bottom: 1px solid #000; border-top: 2px solid #000;">
 					<th>번호</th>
-					<th style="width: 50%; text-align: center;">제 목</th>
+					<th style="width: 60%;">제 목</th>
 					<th>작성자</th>
 					<th>조회수</th>
 					<th>작성일</th>
@@ -68,14 +63,9 @@
 				<!-- isEmpty()는 들어온 값이 null 이거나 빈 문자열일 때 true를 반환. 체크 전에 trim()을 적용하기 때문에 빈 줄이나 공백도 같이 걸러진다 -->
 				<th:block th:if="${not #strings.isEmpty(data)}"> <!-- th:if="${data != null}" -->
 					<tr th:each="b:${data}">
-						<!--<td>[[${b.num}]]</td>-->
 						<td>공지</td>
-						<td>
-							<!-- 댓글 들여쓰기 준비 -->
-							<th:block th:each="count : ${#numbers.sequence(0, b.nested)}"> <!-- 0부터 nested 만큼 반복 -->
-								<th:with var="tab">&nbsp;</th:with>
-							</th:block>
-							<a th:href="@{/board/detail(num=${b.num},page=${page})}" th:text="${b.title}" style="color: darkslategrey; font-weight: bold;">[[${tab}]]</a>
+						<td style="text-align: left;">
+							<a th:href="@{/board/detail(num=${b.num},page=${page})}" th:text="${b.title}">[[${tab}]]</a>
 						</td>
 						<td>관리자</td>
 						<td>[[${b.readcnt}]]</td>
@@ -84,7 +74,7 @@
 	
 					<!-- paging -->
 					<tr style="text-align: center;">
-						<td colspan="5">
+						<td colspan="5" style="border: none;">
 							<th:block th:each="num : ${#numbers.sequence(1, pagesu)}">
 								<th:span th:if="${num} == ${page}">
 									<b th:text=${num}>num 표시(현재 페이지는 링크를 걸지 않음)</b>
@@ -99,12 +89,12 @@
 	
 				<!-- 검색 작업 추가 -->
 				<tr style="text-align: center;">
-					<td colspan="5">
+					<td colspan="5" style="border: none;">
 						<br />
 						<form action="board/search" method="post">
 							검색 대상 :
-							<select name="searchName">
-								<option value='title' selected>글제목</option>
+							<select name="searchName" selected="selected">
+								<option value='title'>글제목</option>
 							</select>
 							<input type="text" name="searchValue">
 							<input type="submit" value="검 색">
@@ -114,7 +104,6 @@
 			</table>
 		</div>
 	</section>
-
   </main><!-- End #main -->
   
   <!-- ======= Footer ======= -->

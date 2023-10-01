@@ -2,6 +2,18 @@
 <html xmlns:th="https://www.thymeleaf.org">
 
 <head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<title>에이콘테이너</title>
+	<!-- 파비콘 -->
+	<link href="assets/img/favicon.png" rel="icon">
+	<!-- 폰트 -->
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+	<!-- Vendor CSS 파일 -->
+	<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+	<link href="assets/vendor/aos/aos.css" rel="stylesheet">
+	<link href="assets/css/main.css" rel="stylesheet">
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<script>
@@ -14,7 +26,7 @@
 					frm.submit();
 				}
 			}
-			
+
 			document.querySelector("#btnDeny").onclick = function () {
 				// alert("B");
 				if (confirm("거절 하시겠습니까?")) {
@@ -55,34 +67,45 @@
 </head>
 
 <body>
-	<h3>** 상세보기 **</h3>
-	<form name="frm" th:object="${containerDto}">
-		<!-- 'con_no' Hidden Input 필드 추가 -->
-		<input type="hidden" th:field="*{cont_no}" />
-		<br />
-		<div class="container-box">
+	<div th:if="${session.adminSession != null}">
+		<!-- ======= Header ======= -->
+		<div th:replace="~{fragments/header_admin :: header}"></div>
+		<h3>** 상세보기 **</h3>
+		<form name="frm" th:object="${containerDto}">
+			<!-- 'con_no' Hidden Input 필드 추가 -->
+			<input type="hidden" th:field="*{cont_no}" />
+			<br />
+			<div class="container-box">
+				<div>
+					창고번호 : [[${containerDto.cont_no}]]<br /></div>
+				주소 : [[${containerDto.cont_addr}]]<br />
+				위도 : [[${containerDto.cont_we}]]<br />
+				경도 : [[${containerDto.cont_kyung}]]<br />
+				면적 : [[${containerDto.cont_size}]]<br />
+				회사이름 : [[${containerDto.cont_name}]]<br />
+				소유주 전화번호 : [[${containerDto.owner_phone}]]<br />
+				창고 사진 : [[${containerDto.cont_image}]]<br />
+				사업자번호 : [[${containerDto.owner_num}]]<br />
+			</div>
+			<hr />
 			<div>
-			창고번호 : [[${containerDto.cont_no}]]<br /></div>
-			주소 : [[${containerDto.cont_addr}]]<br />
-			위도 : [[${containerDto.cont_we}]]<br />
-			경도 : [[${containerDto.cont_kyung}]]<br />
-			면적 : [[${containerDto.cont_size}]]<br />
-			회사이름 : [[${containerDto.cont_name}]]<br />
-			소유주 전화번호 : [[${containerDto.owner_phone}]]<br />
-			창고 사진 : [[${containerDto.cont_image}]]<br />
-			사업자번호 : [[${containerDto.owner_num}]]<br />
-		</div>
-		<hr />
-		<div>
-			현재 상태 : [[${containerDto.cont_status}]]<br />
+				현재 상태 :
+				<span th:switch="${containerDto.cont_status}">
+					<span th:case='0'>승인대기</span>
+					<span th:case='1'>사용가능</span>
+					<span th:case='2'>예약중</span>
+					<span th:case='3'>사용중</span>
+					<span th:case='4'>승인거절</span>
+				</span>
 
-		</div>
-		<br />
-		<input type="button" value="목록" id="btnList" />
-		<input type="button" value="삭제" id="btnDelete" />
-		<input type="button" value="승인" id="btnApprove" />
-		<input type="button" value="거절" id="btnDeny" />
-	</form>
+			</div>
+			<br />
+			<input type="button" value="목록" id="btnList" />
+			<input type="button" value="삭제" id="btnDelete" />
+			<input type="button" value="승인" id="btnApprove" />
+			<input type="button" value="거절" id="btnDeny" />
+		</form>
+	</div>
 </body>
 
 </html>

@@ -1,48 +1,76 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<div th:if="${session.ownerSession != null}">
-<h3>창고정보(@mvc : myBatis)</h3>
-<table border="1">
-	<tr>
-		<th>창고번호</th><th>창고주소</th><th>창고크기</th><th>창고상태</th><th>임대인이름</th>
-	</tr>
-	<th:block th:if="${datas.size > 0}">
-		<!--<span type="hidden" th:text="${business_num}"></span> -->
-		<tr th:each="data:${datas}"> 
-			
-			<td>[[${data.cont_no}]]</td>
-		
-			<!-- <td>[[${data.cont_addr}]]</td> -->
-			<td>
-				<a th:href="@{/owner/detail(cont_no=${data.cont_no})}" th:text="${data.cont_addr}"></a>
-			</td>
-			<td>[[${data.cont_size}]]</td>
-			<!-- <td>[[${#numbers.formatInteger(data.cont_price, 3, 'COMMA')}]]</td> -->
-			
-			<td th:switch="${data.cont_status}" >
-					<a th:case='0'>승인대기</a>
-					<a th:case='1'>사용가능</a>
-					<a th:case='2'>예약중</a>
-					<a th:case='3'>사용중</a>
-					<a th:case='4'>승인거절</a>
-				</td>
-			<!-- <td>[[${data.cont_status}]]</td> -->
-			<td>[[${data.owner_name}]]</td>
-		</tr>
-	</th:block>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<title>에이콘테이너 창고대여</title>
 
-	
-	
-</table>
-<a th:href="@{/owner/insert}">추가</a> 
-<!-- 창고등록 페이지로 이동 -->
-<!-- 링크를 누르면 컨트롤러의 insertContainer()메소드를 만나 페이지 이동...... -->
-</div>
+	<!-- Favicons -->
+	<link href="../assets/img/favicon.png" rel="icon">
+	<link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+		rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+	<!-- Vendor CSS Files -->
+	<link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+	<link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+	<link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+	<link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+	<link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+	<link href="../assets/css/main.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/booking.css">
+</head>
+
+<body>
+	<div th:if="${session.ownerSession != null}">
+		<div th:replace="~{fragments/header_owner :: header}"></div>
+		<h3>등록된 창고 정보</h3>
+		<table border="1">
+			<tr>
+				<th>창고번호</th>
+				<th>창고주소</th>
+				<th>창고크기</th>
+				<th>창고상태</th>
+				<th>임대인이름</th>
+			</tr>
+			<th:block th:if="${datas.size > 0}">
+				<!--<span type="hidden" th:text="${business_num}"></span> -->
+				<tr th:each="data:${datas}">
+
+					<td>[[${data.cont_no}]]</td>
+
+					<!-- <td>[[${data.cont_addr}]]</td> -->
+					<td>
+						<a th:href="@{/owner/detail(cont_no=${data.cont_no})}" th:text="${data.cont_addr}"></a>
+					</td>
+					<td>[[${data.cont_size}]]</td>
+					<!-- <td>[[${#numbers.formatInteger(data.cont_price, 3, 'COMMA')}]]</td> -->
+
+					<td th:switch="${data.cont_status}">
+						<a th:case='0'>승인대기</a>
+						<a th:case='1'>사용가능</a>
+						<a th:case='2'>예약중</a>
+						<a th:case='3'>사용중</a>
+						<a th:case='4'>승인거절</a>
+					</td>
+					<!-- <td>[[${data.cont_status}]]</td> -->
+					<td>[[${data.owner_name}]]</td>
+				</tr>
+			</th:block>
+		</table>
+		<a th:href="@{/owner/register}">추가</a>
+		<!-- 창고등록 페이지로 이동 -->
+		<!-- 링크를 누르면 컨트롤러의 insertContainer()메소드를 만나 페이지 이동...... -->
+		<div th:replace="~{fragments/footer :: footer}"></div>
+	</div>
 </body>
 </html>
 
