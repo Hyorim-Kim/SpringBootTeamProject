@@ -4,29 +4,23 @@
 <head> 
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
   <title>에이콘테이너</title>
   <!-- 파비콘 -->
   <link href="/assets/img/favicon.png" rel="icon">
-
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-
   <!-- Vendor CSS Files -->
   <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
   <!-- Template Main CSS File -->
   <link href="/assets/css/main.css" rel="stylesheet">
   <link rel="stylesheet" th:href="@{/css/board.css}">
-  
-
 </head>
-
 <body>
- 	<!-- ======= Header ======= -->
-	<div th:replace="~{fragments/header :: header}"></div>
+<div th:if="${session.adminSession != null}">
+<!-- ======= Header ======= -->
+	<div th:replace="~{fragments/header_admin :: header}"></div>
 
   <main id="main">
 
@@ -36,16 +30,13 @@
 
         <h2 style="font-family: 'Noto Sans KR';">공지사항</h2>
         <ol>
-          <li><a href="/">Home</a></li>
+          <li><a href="/adminsessionkeep">Home</a></li>
           <li>게시판</li>
         </ol>
 
       </div>
-    </div><!-- End Breadcrumbs -->
-    
-	<section class="sample-page">
-		
-		
+    </div><!-- End Breadcrumbs -->   
+	<section class="sample-page">		
 		<div class="board-container">
 			<!-- 고객문의 배너 -->
 			<div class="customer-inquiry-banner">
@@ -143,7 +134,6 @@
 
   <!-- Template Main JS File -->
   <script src="/assets/js/main.js"></script>
-
+</div>
 </body>
-
 </html>

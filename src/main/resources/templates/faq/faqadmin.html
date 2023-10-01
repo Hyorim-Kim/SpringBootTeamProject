@@ -2,98 +2,105 @@
 <html xmlns:th="https://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8">
-	<meta content="width=device-width, initial-scale=1.0" name="viewport">
-	<title>FAQ</title>
-	
-	<!-- Favicons -->
-	<link href="../assets/img/favicon.png" rel="icon">
-	<link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+   <meta charset="UTF-8">
+   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+   <title>FAQ</title>
+   
+   <!-- 파비콘 -->
+  <link href="/assets/img/favicon.png" rel="icon">
 
-	<!-- Google Fonts -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link
-		href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-		rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
-	<!-- Vendor CSS Files -->
-	<link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-	<link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-	<link href="../assets/vendor/aos/aos.css" rel="stylesheet">
-	<link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-	<link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-	<link href="../assets/css/main.css" rel="stylesheet">
-	<link rel="stylesheet" href="../css/booking.css">
-	
+  <!-- Vendor CSS Files -->
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/assets/css/main.css" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/board.css}">
+  
+  
+   
 </head>
 
 <body>
-	
-	<!-- ======= Header ======= -->
- 	<div th:replace="~{fragments/header_admin :: header}"></div>
+   
+   <div th:if="${session.adminSession != null}">
+  <!-- header 파일 따로 만들어서 삽입 -->
+  <div th:replace="~{fragments/header_admin :: header}"></div>
+  <main id="main">
 
-  <main id="container">
-	
-	<!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('../assets/img/breadcrumbs-bg.jpg');">
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('/assets/img/breadcrumbs-bg.jpg');">
       <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
 
-        <h2 style="font-family: 'Noto Sans KR'; font-weight: 700;">Service</h2>
+        <h2 style="font-family: 'Noto Sans KR';">FAQ</h2>
         <ol>
-          <li><a href="/">Home</a></li>
-          <li>서비스소개</li>
-          <li>이용안내</li>
+          <li><a href="/adminsessionkeep">Home</a></li>
+          <li>게시판</li>
         </ol>
 
       </div>
     </div><!-- End Breadcrumbs -->
-	
-	<h3 style="padding-top: 1cm; padding-bottom: 1cm; text-align: center;">자주 묻는 질문</h3>
-	<div style="text-align: center;"><a href="faqinsert">추가</a></div>
-	<table border="1" style="width: 99%;">
-		<tr>
-			<td colspan="4">
-				<form action="/searchfaqadmin?searchpage=1" method="get" style="text-align: right;">
-					검 색 : 
-					<select name="searchName">
-						<option value="faq_category" selected>카테고리</option>
-						<option value="faq_question">제목</option>
-					</select>
-					<input type="text" name="searchValue">
-					<input type="submit" value="검 색">
-				</form>
-			</td>
-		</tr>
-		<tr>
-			<th style="width: 10%;">번호</th>
-			<th style="width: 15%;">카테고리</th>
-			<th style="width: 60%;">제목</th>
-			<th style="width: 15%;">수정/삭제</th>
-		</tr>
-	</table>
-	<th:block th:if="${faqadmin != null and faqadmin.size() > 0}">
-		<table border="1" style="width: 99%; text-align: center;" th:each="data : ${faqadmin}" class="faq">
-			<tr>
-				<td th:text="${data.faq_no}" style="width: 10%;"></td>
-				<td th:text="${data.faq_category}" style="width: 15%;"></td>
-				<td th:text="${data.faq_question}" style="width: 60%; text-align: left; padding-left: 5%"></td>
-				<td style="width: 15%;">
-					<a th:href="@{faqdetail(faq_no=${data.faq_no})}">수정 / 삭제</a>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="4" style="text-align: left; padding-left: 10%; padding-right: 20%;">
-					<div th:text="${data.faq_answer}" style="padding-top: 1cm; padding-bottom: 1cm;"></div>
-				</td>
-			</tr>
-		</table>
-	</th:block>
-	
-	<table style="margin-top: 20px;">
+    
+   <section class="sample-page">
+      
+      
+      <div class="board-container">
+         <!-- 고객문의 배너 -->
+         <div class="customer-inquiry-banner">
+            <p>목록</p>
+            <ul>
+               <li>공지사항</li>
+               <li>1:1문의</li>
+               <li>FAQ</li>
+            </ul>
+         </div>
+   
+   <h3 style="padding-top: 1cm; padding-bottom: 1cm; text-align: center;">자주 묻는 질문</h3>
+   <div style="text-align: center;"><a href="faqinsert">추가</a></div>
+   <table border="1" style="width: 99%;">
+      <tr>
+         <td colspan="4">
+            <form action="/searchfaqadmin?searchpage=1" method="get" style="text-align: right;">
+               검 색 : 
+               <select name="searchName">
+                  <option value="faq_category" selected>카테고리</option>
+                  <option value="faq_question">제목</option>
+               </select>
+               <input type="text" name="searchValue">
+               <input type="submit" value="검 색">
+            </form>
+         </td>
+      </tr>
+      <tr>
+         <th style="width: 10%;">번호</th>
+         <th style="width: 15%;">카테고리</th>
+         <th style="width: 60%;">제목</th>
+         <th style="width: 15%;">수정/삭제</th>
+      </tr>
+   </table>
+   <th:block th:if="${faqadmin != null and faqadmin.size() > 0}">
+      <table border="1" style="width: 99%; text-align: center;" th:each="data : ${faqadmin}" class="faq">
+         <tr>
+            <td th:text="${data.faq_no}" style="width: 10%;"></td>
+            <td th:text="${data.faq_category}" style="width: 15%;"></td>
+            <td th:text="${data.faq_question}" style="width: 60%; text-align: left; padding-left: 5%"></td>
+            <td style="width: 15%;">
+               <a th:href="@{faqdetail(faq_no=${data.faq_no})}">수정 / 삭제</a>
+            </td>
+         </tr>
+         <tr>
+            <td colspan="4" style="text-align: left; padding-left: 10%; padding-right: 20%;">
+               <div th:text="${data.faq_answer}" style="white-space: pre-line;  padding-top: 1cm; padding-bottom: 1cm;"></div>
+            </td>
+         </tr>
+      </table>
+   </th:block>
+   
+   <table style="margin-top: 20px;">
         <tr style="text-align: center;">
             <td colspan="5">
                 <th:block th:each="num : ${#numbers.sequence(1, pagesu)}">
@@ -107,9 +114,32 @@
             </td>
         </tr>
     </table>
-	
-	 <!-- ======= Footer ======= -->
+   </div>
+   </section>
+
+  </main><!-- End #main -->
+  
+  <!-- ======= Footer ======= -->
   <div th:replace="~{fragments/footer :: footer}"></div>
-	
+
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/vendor/aos/aos.js"></script>
+  <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/assets/js/main.js"></script>
+</div>
+   
 </body>
 </html>

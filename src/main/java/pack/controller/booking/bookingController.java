@@ -34,7 +34,7 @@ public class bookingController {
 		return "booking/booking";
 	}
 	//예약하기
-	@PostMapping("bookingDo")
+	@PostMapping("/bookingDo")
 	public String bookingDo(bookingDTO bookingdto) {
 		boolean b = dao.bookingInsert(bookingdto);
 		if(b) {
