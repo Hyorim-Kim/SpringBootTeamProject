@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   "use strict"; /*코드를 더 엄격하게 해석하고 오류를 방지하기 위해 사용*/
 
-  // 스크롤 이벤트 감지 - 스크롤 해도 헤더가 항상 어두운 색으로 유지되도록 하는 기능
+  // 스크롤 이벤트 감지 - 스크롤 하면 헤더의 바탕 색이 어두워지는 기능
 window.addEventListener('scroll', function() {
     var header = document.getElementById('header');
     
