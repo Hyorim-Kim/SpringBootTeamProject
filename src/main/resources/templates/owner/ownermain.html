@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
-  <meta charset="utf-8">
+    <meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 	<title>에이콘테이너</title>
 	<!-- 파비콘 -->
@@ -13,46 +13,6 @@
 	<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
 	<link href="assets/vendor/aos/aos.css" rel="stylesheet">
 	<link href="assets/css/main.css" rel="stylesheet">
-	<script>
-		// 하단 백그라운드 애니메이션 ?????
-		$(window).scroll(function () {
-			var thisTop = $(window).scrollTop();
-			var wHeignt = $(window).height();
-			if ($('.company_inner').offset().top - wHeignt < thisTop) {
-				var avScroll2 = (thisTop - $('.company_inner').offset().top + wHeignt) / 20;
-				$('.company_inner .download').css('background-position', 170 + avScroll2 + 'px 100%');
-				$('.company_inner .company').css('background-position', -40 + avScroll2 + 'px 100%');
-				behavior: 'smooth'
-			}
-		});
-	</script>
-	<script>
-		function sendSearch() {
-			const searchTerm = document.getElementById('searchInput').value;
-
-			fetch('/conajax', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({query: searchTerm}),
-			})
-				.then(response => response.json())
-				.then(data => {
-					console.log(data.message);
-					console.log('받아온 검색어:', searchTerm);
-
-					// 검색 결과를 출력할 부분에 내용 변경
-					const searchResultDiv = document.getElementById('searchResult');
-					searchResultDiv.innerHTML = `받아온 검색어: ${searchTerm}`;
-
-					// 추가 작업 가능
-				})
-				.catch(error => {
-					console.error('에러 발생:', error);
-				});
-		}
-	</script>
 </head>
 
 <body>
@@ -75,11 +35,11 @@
             <p data-aos="fade">
 			<!--세션에서 owner 객체를 가져와서 owner_name 속성을 출력-->
             <span style="color: #ffffff;"><strong th:text="${session.ownerSession.owner_name}">사업자 이름</strong></span> 사업자님 환영합니다</p>
-            <a data-aos="fade" data-aos-delay="200" href="/conajax" class="btn-get-started">바로 시작하기</a>
+            <a data-aos="fade" data-aos-delay="200" href="/owner/list" class="btn-get-started">바로 시작하기</a>
 			<!-- 검색바 추가 -->
 			<div class='hero search-container'>
 				<form action="/conajax" method="get" class="search-form" data-aos="fade" data-aos-delay="200">
-					<input type="text" id="searchInput" name="q" placeholder="관심 지역을 검색하세요" class="search-input">
+					<input type="text" id="searchInput" name="q" placeholder="창고검색에서 관심 지역을 입력하세요" class="search-input">
 					<button type='submit' class='search-button'><i class='bx bx-search'></i></button>
 				</form>
 			</div>
@@ -103,11 +63,11 @@
 
   <main id="main">
 		
-		<!-- ======= Recent Blog Posts Section : 추천창고와 이미지들 ======= -->
+	<!-- ======= 추천창고와 이미지들 ======= -->
 		<section id="recent-blog-posts" class="recent-blog-posts">
 			<div class="container" data-aos="fade-up">
 				<div class=" section-header">
-					<h2>추천 창고</h2>
+					<h2>추천 창고</h2><br/>
 				</div>
 				<div class="row gy-5">
 					<div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
@@ -117,7 +77,7 @@
 							</div>
 							<div class="post-content d-flex flex-column">
 								<h3 class="post-title">경기도 안성시</h3><hr>
-								<a href="conajax.html" class="readmore stretched-link"><span>지도로 보기</span><i
+								<a href="/conajax" class="readmore stretched-link"><span>지도로 보기</span><i
 										class="bi bi-arrow-right"></i></a>
 							</div>
 						</div>
@@ -126,11 +86,11 @@
 					<div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
 						<div class="post-item position-relative h-100">
 							<div class="post-img position-relative overflow-hidden">
-								<img src="assets/img/boxbox.jpg" class="img-fluid" alt="">
+								<img src="assets/img/boxbox2.jpg" class="img-fluid" alt="">
 							</div>
 							<div class="post-content d-flex flex-column">
 								<h3 class="post-title">경기도 용인시</h3><hr>
-								<a href="conajax.html" class="readmore stretched-link"><span>지도로 보기</span><i
+								<a href="/conajax" class="readmore stretched-link"><span>지도로 보기</span><i
 										class="bi bi-arrow-right"></i></a>
 							</div>
 						</div>
@@ -139,7 +99,7 @@
 					<div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
 						<div class="post-item position-relative h-100">
 							<div class="post-img position-relative overflow-hidden">
-								<img src="assets/img/boxbox.jpg" class="img-fluid" alt="">
+								<img src="assets/img/boxbox3.jpg" class="img-fluid" alt="">
 							</div>
 							<div class="post-content d-flex flex-column">
 								<h3 class="post-title">경기도 하남시</h3><hr>
@@ -149,29 +109,30 @@
 						</div>
 					</div>
 					<!-- === 추천창고 코드는 여기서 끝납니다 == -->
+				</div>
+			</div>
 		</section>
 		<!-- End Recent Blog Posts Section -->
 	
 		<!--메인 하단 소개 및 자료 다운로드-->
-		<div class="company_wrap" data-aos="fade-up">
-			<ul class="company_inner clearfix">
-				<li>
-					<div class="company transition-effect">
-						<strong style="font-weight: bold;">창고 의뢰</strong>
-						<p>창고 찾기 힘드시지요?<br class="brnone" />에이콘테이너 담당자가 도와드립니다.</p>
-						<a href="../templates/faq/faq.html" onclick="return false;" id="mainBottomLeftBanner">자세히보기</a>
-					</div>
-				</li>
-				<li>
-					<div class="download transition-effect" style="background-position: 190.132px 100%;">
-						<strong style="font-weight: bold;">화물 운송 요청</strong>
-						<p>화물 운송이 필요하신가요?<br class="brnone" />화물 정보만 알려주세요. 화물차를 연결해 드립니다.</p>
-						<a href="#" onclick="return false;" id="mainBottomRightBanner">자세히보기</a>
-					</div>
-				</li>
-			</ul>
-		</div>
-	
+        <div class="company_wrap" data-aos="fade-up">
+         <ul class="company_inner clearfix">
+            <li>
+               <div class="company transition-effect">
+                  <strong style="font-weight: bold;">FAQ</strong>
+                  <p>창고 등록하기 어려우시죠?<br class="brnone" />자주 묻는 질문을 확인해 보세요</p>
+                  <a href="/faqowner?page=1" id="mainBottomLeftBanner">자세히보기</a>
+               </div>
+            </li>
+            <li>
+               <div class="download transition-effect" style="background-position: 190.132px 100%;">
+                  <strong style="font-weight: bold;">화물 운송 요청</strong>
+                  <p>화물 운송이 필요하신가요?<br class="brnone" />화물 정보만 알려주세요. 화물차를 연결해 드립니다.</p>
+                  <a href="/contactowner" id="mainBottomRightBanner">자세히보기</a>
+               </div>
+            </li>
+         </ul>
+        </div>
 	
 		<!-- ======= Our Projects Section : 에이콘 협력사 ======= -->
 		<section id="projects" class="projects">
