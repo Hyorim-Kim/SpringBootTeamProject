@@ -55,16 +55,16 @@
             <h2 data-aos="fade-down"><span>ACONTAINER</span>
             <span style="color: #ffc732;">.</span></h2>
             <p data-aos="fade">
-         <!--Thymeleaf를 사용하여 세션에서 사용자 이름을 가져와서 화면에 출력-->
+          	<!--Thymeleaf를 사용하여 세션에서 사용자 이름을 가져와서 화면에 출력-->
             <span style="color: #ffffff;"><strong th:text="${session.userSession.user_name}">사용자 이름</strong></span> 고객님 환영합니다</p>
             <a data-aos="fade" data-aos-delay="200" href="/conajax" class="btn-get-started">바로 시작하기</a>
-         <!-- 검색바 추가 -->
-         <div class='hero search-container'>
-            <form action="/conajax" method="get" class="search-form" data-aos="fade" data-aos-delay="200">
-               <input type="text" id="searchInput" name="q" placeholder="관심 지역을 검색하세요" class="search-input">
-               <button type='submit' class='search-button'><i class='bx bx-search'></i></button>
-            </form>
-         </div>
+          	<!-- 검색바 추가 -->
+          	<div class='hero search-container'>
+            	 <form action="/conajax" method="get" class="search-form" data-aos="fade" data-aos-delay="200">
+                	<input type="text" id="searchInput" name="q" placeholder="관심 지역을 검색하세요" class="search-input">
+                	<button type='submit' class='search-button'><i class='bx bx-search'></i></button>
+             	</form>
+          	</div>
           </div>
         </div>
       </div>
@@ -87,53 +87,55 @@
   <main id="main">
       
       <!-- ======= Recent Blog Posts Section : 추천창고와 이미지들 ======= -->
-      <section id="recent-blog-posts" class="recent-blog-posts">
-         <div class="container" data-aos="fade-up">
-            <div class=" section-header">
-               <h2>추천 창고</h2>
-            </div>
-            <div class="row gy-5">
-               <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                  <div class="post-item position-relative h-100">
-                     <div class="post-img position-relative overflow-hidden">
-                        <img src="assets/img/boxbox.jpg" class="img-fluid" alt="">
-                     </div>
-                     <div class="post-content d-flex flex-column">
-                        <h3 class="post-title">경기도 안성시</h3><hr>
-                        <a href="conajax.html" class="readmore stretched-link"><span>지도로 보기</span><i
-                              class="bi bi-arrow-right"></i></a>
-                     </div>
-                  </div>
-               </div>
-               <!-- === 추천창고 작은이미지 구분하기위해 남깁니다 == -->
-               <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                  <div class="post-item position-relative h-100">
-                     <div class="post-img position-relative overflow-hidden">
-                        <img src="assets/img/boxbox.jpg" class="img-fluid" alt="">
-                     </div>
-                     <div class="post-content d-flex flex-column">
-                        <h3 class="post-title">경기도 용인시</h3><hr>
-                        <a href="conajax.html" class="readmore stretched-link"><span>지도로 보기</span><i
-                              class="bi bi-arrow-right"></i></a>
-                     </div>
-                  </div>
-               </div>
-               <!-- === 추천창고 작은이미지 구분하기위해 남깁니다 == -->
-               <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                  <div class="post-item position-relative h-100">
-                     <div class="post-img position-relative overflow-hidden">
-                        <img src="assets/img/boxbox.jpg" class="img-fluid" alt="">
-                     </div>
-                     <div class="post-content d-flex flex-column">
-                        <h3 class="post-title">경기도 하남시</h3><hr>
-                        <a href="/conajax" class="readmore stretched-link"><span>지도로 보기</span><i
-                              class="bi bi-arrow-right"></i></a>
-                     </div>
-                  </div>
-               </div>
-               <!-- === 추천창고 코드는 여기서 끝납니다 == -->
-      </section>
-      <!-- End Recent Blog Posts Section -->
+		<section id="recent-blog-posts" class="recent-blog-posts">
+			<div class="container" data-aos="fade-up">
+				<div class=" section-header">
+					<h2>추천 창고</h2><br/>
+				</div>
+				<div class="row gy-5">
+					<div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+						<div class="post-item position-relative h-100">
+							<div class="post-img position-relative overflow-hidden">
+								<img src="assets/img/boxbox.jpg" class="img-fluid" alt="">
+							</div>
+							<div class="post-content d-flex flex-column">
+								<h3 class="post-title">경기도 안성시</h3><hr>
+								<a href="conajax.html" class="readmore stretched-link"><span>지도로 보기</span><i
+										class="bi bi-arrow-right"></i></a>
+							</div>
+						</div>
+					</div>
+					<!-- === 추천창고 작은이미지 구분하기위해 남깁니다 == -->
+					<div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+						<div class="post-item position-relative h-100">
+							<div class="post-img position-relative overflow-hidden">
+								<img src="assets/img/boxbox2.jpg" class="img-fluid" alt="">
+							</div>
+							<div class="post-content d-flex flex-column">
+								<h3 class="post-title">경기도 용인시</h3><hr>
+								<a href="conajax.html" class="readmore stretched-link"><span>지도로 보기</span><i
+										class="bi bi-arrow-right"></i></a>
+							</div>
+						</div>
+					</div>
+					<!-- === 추천창고 작은이미지 구분하기위해 남깁니다 == -->
+					<div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+						<div class="post-item position-relative h-100">
+							<div class="post-img position-relative overflow-hidden">
+								<img src="assets/img/boxbox3.jpg" class="img-fluid" alt="">
+							</div>
+							<div class="post-content d-flex flex-column">
+								<h3 class="post-title">경기도 하남시</h3><hr>
+								<a href="/conajax" class="readmore stretched-link"><span>지도로 보기</span><i
+										class="bi bi-arrow-right"></i></a>
+							</div>
+						</div>
+					</div>
+					<!-- === 추천창고 코드는 여기서 끝납니다 == -->
+				</div>
+			</div>
+		</section>
+		<!-- End Recent Blog Posts Section -->
    
       <!--메인 하단 소개 및 자료 다운로드-->
       <div class="company_wrap" data-aos="fade-up">

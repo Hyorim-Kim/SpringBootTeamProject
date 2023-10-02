@@ -43,13 +43,15 @@ public class ListControllerBoard {
 	public int getPageSu() { // 총 페이지 수 얻기
 		tot = daoImpl.totalCnt(); // daoImpl.totalCnt() : 데이터베이스에 저장된 총 레코드 수 조회
 		pagesu = tot / plist;
-		if(tot % plist > 0) pagesu += 1;
+		if(tot % plist > 0) pagesu += 1; // 나머지 글들을 표시
 		return pagesu;
 	}
 	
 	// 게시판 목록 처리
 	@GetMapping("/list")
-	public String listProcess(@RequestParam("page")int page, Model model) {
+	public String listProcess(@RequestParam("page")int page, Model model) {  
+		//URL에서 "page"라는 파라미터 값을 받아온다. 이 값은 현재 페이지를 나타낸다.
+
 		int spage = 0;
 		try {
 			spage = page;
