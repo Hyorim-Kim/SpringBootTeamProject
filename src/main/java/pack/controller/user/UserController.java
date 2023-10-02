@@ -23,7 +23,7 @@ public class UserController {
 	private UserDao userDao;
 	
 	// 메인페이지에서 로그인을 클릭했을 때 수행 (성공)
-	@GetMapping("firstLogin")
+	@GetMapping("/firstLogin")
 	public String LoginGo(HttpSession session) {
 		// 사용자 세션 유지
 	    if (session.getAttribute("userSession") != null) {    	
@@ -33,7 +33,7 @@ public class UserController {
 	}
 	
 	// 사용자 로그인 페이지에서 회원가입 링크를 클릭했을 때 (성공) 
-	@GetMapping("userJoinGo")
+	@GetMapping("/userJoinGo")
 	public String userJoinGo(HttpSession session) {
 	    if (session.getAttribute("userSession") != null) {    	
 	        return "redirect:/usersessionkeep";	   
@@ -42,7 +42,7 @@ public class UserController {
 	}
 		
 	// 사용자 로그인 페이지에서 공급자로그인을 클릭했을 때 (성공)
-	@GetMapping("ownerlogingo")
+	@GetMapping("/ownerlogingo")
 	public String ownerLoginGo(HttpSession session) {
 	    if (session.getAttribute("ownerSession") != null) {    	
 	        return "redirect:/ownersessionkeep";	   
@@ -51,7 +51,7 @@ public class UserController {
 	}
 	
 	// 사용자 로그인 패이지에서 아이디/비밀번호 찾기 클릭했을 때 (광진)
-	@GetMapping("userInfoFind")
+	@GetMapping("/userInfoFind")
 	public String userInfoFinding() {
 		return "../templates/user/useridfind";
 	}
