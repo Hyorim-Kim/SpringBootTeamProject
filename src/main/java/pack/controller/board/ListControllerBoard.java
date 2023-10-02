@@ -24,7 +24,7 @@ public class ListControllerBoard {
 	private int pagesu;    // 전체 페이지 수
 
 	// 페이지 당 목록 데이터 추출
-	public ArrayList<BoardDto> getListdata(ArrayList<BoardDto> list, int page){
+	public ArrayList<BoardDto> getListdata(ArrayList<BoardDto> list, int page){ // 리스트와 페이지 번호를 매개변수로 받음
 		ArrayList<BoardDto> result = new ArrayList<BoardDto>();
 		
 		int start = (page - 1) * plist;   // 목록의 인덱스 계산
@@ -47,6 +47,7 @@ public class ListControllerBoard {
 		return pagesu;
 	}
 	
+	// 게시판 목록 처리
 	@GetMapping("/list")
 	public String listProcess(@RequestParam("page")int page, Model model) {
 		int spage = 0;

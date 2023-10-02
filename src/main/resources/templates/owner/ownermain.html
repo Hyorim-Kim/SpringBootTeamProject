@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
-  <meta charset="utf-8">
+    <meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 	<title>에이콘테이너</title>
 	<!-- 파비콘 -->
@@ -13,19 +13,6 @@
 	<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
 	<link href="assets/vendor/aos/aos.css" rel="stylesheet">
 	<link href="assets/css/main.css" rel="stylesheet">
-	<script>
-		// 하단 백그라운드 애니메이션 ?????
-		$(window).scroll(function () {
-			var thisTop = $(window).scrollTop();
-			var wHeignt = $(window).height();
-			if ($('.company_inner').offset().top - wHeignt < thisTop) {
-				var avScroll2 = (thisTop - $('.company_inner').offset().top + wHeignt) / 20;
-				$('.company_inner .download').css('background-position', 170 + avScroll2 + 'px 100%');
-				$('.company_inner .company').css('background-position', -40 + avScroll2 + 'px 100%');
-				behavior: 'smooth'
-			}
-		});
-	</script>
 	<script>
 		function sendSearch() {
 			const searchTerm = document.getElementById('searchInput').value;

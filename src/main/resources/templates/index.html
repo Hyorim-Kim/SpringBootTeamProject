@@ -15,19 +15,6 @@
 	<link href="assets/css/main.css" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
-		// 하단 백그라운드 애니메이션 ?????
-		$(window).scroll(function () {
-			var thisTop = $(window).scrollTop();
-			var wHeignt = $(window).height();
-			if ($('.company_inner').offset().top - wHeignt < thisTop) {
-				var avScroll2 = (thisTop - $('.company_inner').offset().top + wHeignt) / 20;
-				$('.company_inner .download').css('background-position', 170 + avScroll2 + 'px 100%');
-				$('.company_inner .company').css('background-position', -40 + avScroll2 + 'px 100%');
-				behavior: 'smooth'
-			}
-		});
-	</script>
-	<script>
 		function sendSearch() {
 			const searchTerm = document.getElementById('searchInput').value;
 
