@@ -105,6 +105,7 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
    
 
 
+
 	@GetMapping("/owner")  // owner 페이지로 이동
 	public String ownerlist(@RequestParam("page")int page, Model model) {
 		int spage = page;
@@ -160,7 +161,6 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
 	}
 
 
-
    public ArrayList<ContainerDto> getregisteredListData(ArrayList<ContainerDto> list, int page){ // 페이지 번호(page)와 FAQ 목록(list)을 받아와서 해당 페이지에 표시할 FAQ 항목을 추출하여 반환하는 메서드, 페이징 처리를 위해 사용
          ArrayList<ContainerDto> regresult = new ArrayList<ContainerDto>();
          
@@ -212,5 +212,4 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
    }
 
 }
-
 

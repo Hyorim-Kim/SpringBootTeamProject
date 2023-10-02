@@ -3,113 +3,113 @@
 
 <head>
 
-	<meta charset="UTF-8">
-	<meta content="width=device-width, initial-scale=1.0" name="viewport">
-	<title>에이콘테이너 창고대여</title>
+   <meta charset="UTF-8">
+   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+   <title>에이콘테이너 창고대여</title>
 
-	<!-- Favicons -->
-	<link href="../assets/img/favicon.png" rel="icon">
-	<link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+   <!-- Favicons -->
+   <link href="../assets/img/favicon.png" rel="icon">
+   <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-	<!-- Google Fonts -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link
-		href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-		rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+   <!-- Google Fonts -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
-	<!-- Vendor CSS Files -->
-	<link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-	<link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-	<link href="../assets/vendor/aos/aos.css" rel="stylesheet">
-	<link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-	<link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-	<link href="../assets/css/main.css" rel="stylesheet">
-	<link rel="stylesheet" href="../css/booking.css">
-	<title>Insert title here</title>
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script src="../js/userjoin.js"></script>
-
-
-	<!-- Google Maps JavaScript API -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzGKmDfbyNTWo-0WqNSdQlQSlxc6Wjna4&libraries=places"
-		defer></script>
-	<script src="../js/userjoin.js"></script>
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<!-- 재민 -->
-	<script>
-		// 주소를 위도와 경도로 변환하고 값을 설정하는 JavaScript 함수
-		function getCoordinatesFromAddress() {
-			var geocoder = new google.maps.Geocoder();
-			var address = document.getElementById('user_combinedAddress').value; // 주소 입력 필드의 값을 가져옵니다.
-			var encodedAddress = encodeURIComponent(address); // 주소를 인코딩
-			var coordinates = []; // 배열 초기화
-
-			// 주소를 위도와 경도로 변환합니다.
-			geocoder.geocode({'address': address}, function (results, status) {
-				console.log('Geocode Status:', status); // status 값 로깅
-				if (status === 'OK') {
-					// 변환에 성공하면 위도와 경도 값을 가져옵니다.
-					var latitude = results[0].geometry.location.lat();
-					var longitude = results[0].geometry.location.lng();
-
-					// 숨겨진 폼 필드에 위도와 경도 값을 설정합니다.
-					document.getElementById('cont_we').value = latitude;
-					document.getElementById('cont_kyung').value = longitude;
-				} else {
-					alert('주소를 찾을 수 없습니다.');
-				}
-			});
-		}
+   <!-- Vendor CSS Files -->
+   <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+   <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+   <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+   <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+   <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+   <link href="../assets/css/main.css" rel="stylesheet">
+   <link rel="stylesheet" href="../css/booking.css">
+   <title>Insert title here</title>
+   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+   <script src="../js/userjoin.js"></script>
 
 
-	</script>
-	<!-- 재민 -->
+   <!-- Google Maps JavaScript API -->
+   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzGKmDfbyNTWo-0WqNSdQlQSlxc6Wjna4&libraries=places"
+      defer></script>
+   <script src="../js/userjoin.js"></script>
+   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+   <!-- 재민 -->
+   <script>
+      // 주소를 위도와 경도로 변환하고 값을 설정하는 JavaScript 함수
+      function getCoordinatesFromAddress() {
+         var geocoder = new google.maps.Geocoder();
+         var address = document.getElementById('user_combinedAddress').value; // 주소 입력 필드의 값을 가져옵니다.
+         var encodedAddress = encodeURIComponent(address); // 주소를 인코딩
+         var coordinates = []; // 배열 초기화
+
+         // 주소를 위도와 경도로 변환합니다.
+         geocoder.geocode({'address': address}, function (results, status) {
+            console.log('Geocode Status:', status); // status 값 로깅
+            if (status === 'OK') {
+               // 변환에 성공하면 위도와 경도 값을 가져옵니다.
+               var latitude = results[0].geometry.location.lat();
+               var longitude = results[0].geometry.location.lng();
+
+               // 숨겨진 폼 필드에 위도와 경도 값을 설정합니다.
+               document.getElementById('cont_we').value = latitude;
+               document.getElementById('cont_kyung').value = longitude;
+            } else {
+               alert('주소를 찾을 수 없습니다.');
+            }
+         });
+      }
+
+
+   </script>
+   <!-- 재민 -->
 
 </head>
 
 <body>
 
-	<div th:if="${session.ownerSession != null}">
-		<div th:replace="~{fragments/header_owner :: header}"></div>
-		** 창고 등록 **<br />
-		<form action="insert" method="post" enctype="multipart/form-data">
-			창고주소 :
-			<input type="text" id="user_postcode" class="text-field-postcode" placeholder="우편번호">
-			<input type="button" onclick="user_execDaumPostcode()" class="button-postcode" value="우편번호 찾기"><br>
-			<input type="text" id="user_roadAddress" class="text-field-postcode" placeholder="도로명주소">
-			<input type="text" id="user_jibunAddress" class="text-field-postcode" placeholder="지번주소">
-			<span id="guide" style="color:#999;display:none"></span>
-			<input type="text" id="user_detailAddress" class="text-field-postcode" placeholder="상세주소">
-			<input type="text" id="user_extraAddress" class="text-field-postcode" placeholder="참고항목">
-			<br />
-			<!-- 결과를 출력할 한 줄로 된 주소 필드 -->
-			<!-- <h3>입력한 주소</h3> -->
-			<input type="text" name="cont_addr" id="user_combinedAddress" class="text-field" placeholder="입력한 주소"><br />
-			<!-- 주소를 위도와 경도로 변환하는 버튼 -->
-			<input type="button" onclick="getCoordinatesFromAddress()" class="button" value="주소 변환"><br />
-			위도:<input type="text" id="cont_we" name="cont_we" class="text-field-postcode" placeholder="위도">
-			경도:<input type="text" id="cont_kyung" name="cont_kyung" class="text-field-postcode" placeholder="경도"><br />
-			창고크기 : <input type="text" name="cont_size" /><br />
-			<!-- 대여가격 : <input type="text" name="cont_price" /><br/> -->
-			창고설명 :
-			<textarea rows="5" cols="50" name="cont_explain"></textarea><br />
-			사업자번호 : <input type="text" th:placeholder="${session.ownerSession.business_num}"
-				th:value="${session.ownerSession.business_num}" name="owner_num" /> <br />
-			회사명 : <input type="text" name="cont_name" /><br />
-			소유주 전화번호 : <input type="text" name="owner_phone" /><br />
-			이미지 : <input type="file" name="file" /><br />
-			<br />
-			<br />
-			<!-- "저장" 버튼 -->
-			<input type="submit" value="저장">
-		</form>
-		</br>
-		<div th:replace="~{fragments/footer :: footer}"></div>
-	</div>
+   <div th:if="${session.ownerSession != null}">
+      <div th:replace="~{fragments/header_owner :: header}"></div>
+      ** 창고 등록 **<br />
+      <form action="insert" method="post" enctype="multipart/form-data">
+         창고주소 :
+         <input type="text" id="user_postcode" class="text-field-postcode" placeholder="우편번호">
+         <input type="button" onclick="user_execDaumPostcode()" class="button-postcode" value="우편번호 찾기"><br>
+         <input type="text" id="user_roadAddress" class="text-field-postcode" placeholder="도로명주소">
+         <input type="text" id="user_jibunAddress" class="text-field-postcode" placeholder="지번주소">
+         <span id="guide" style="color:#999;display:none"></span>
+         <input type="text" id="user_detailAddress" class="text-field-postcode" placeholder="상세주소">
+         <input type="text" id="user_extraAddress" class="text-field-postcode" placeholder="참고항목">
+         <br />
+         <!-- 결과를 출력할 한 줄로 된 주소 필드 -->
+         <!-- <h3>입력한 주소</h3> -->
+         <input type="text" name="cont_addr" id="user_combinedAddress" class="text-field" placeholder="입력한 주소"><br />
+         <!-- 주소를 위도와 경도로 변환하는 버튼 -->
+         <input type="button" onclick="getCoordinatesFromAddress()" class="button" value="주소 변환"><br />
+         위도:<input type="text" id="cont_we" name="cont_we" class="text-field-postcode" placeholder="위도">
+         경도:<input type="text" id="cont_kyung" name="cont_kyung" class="text-field-postcode" placeholder="경도"><br />
+         창고크기 : <input type="text" name="cont_size" /><br />
+         <!-- 대여가격 : <input type="text" name="cont_price" /><br/> -->
+         창고설명 :
+         <textarea rows="5" cols="50" name="cont_explain"></textarea><br />
+         사업자번호 : <input type="text" th:placeholder="${session.ownerSession.business_num}"
+            th:value="${session.ownerSession.business_num}" name="owner_num" /> <br />
+         회사명 : <input type="text" name="cont_name" /><br />
+         소유주 전화번호 : <input type="text" name="owner_phone" /><br />
+         이미지 : <input type="file" name="file" /><br />
+         <br />
+         <br />
+         <!-- "저장" 버튼 -->
+         <input type="submit" value="저장">
+      </form>
+      </br>
+      <div th:replace="~{fragments/footer :: footer}"></div>
+   </div>
 
 </body>
 

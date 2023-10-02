@@ -1,28 +1,53 @@
 /* 미니 메뉴 스타일 */
-.customer-inquiry-banner {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px;
-  text-align: left;
-  margin-top: 20px; /* 위쪽 여백 추가 */
-  margin-right: 10px; /* 오른쪽 여백 추가 */
+body {
+	font-family: "Noto Sans KR";
+	margin: 0;
+	padding: 0;
 }
 
-.customer-inquiry-banner ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: space-around;
+.customer-banner {
+	display: flex;
+	flex-direction: column;
+	position: fixed;
+	left: 130px;
+	top: 65%;
+	transform: translateY(-50%);
+	background-color: #fff;
+	border: 1px solid #ccc;
+	padding: 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	z-index: 1000; /* 임의의 숫자로 설정, 다른 요소들과 비교하여 설정해야 함 */
 }
 
-.customer-inquiry-banner li {
-  cursor: pointer;
-  margin-bottom: 5px;
+h2 {
+	font-weight: 550;
+	font-size: 25px;
+	margin-bottom: 10px;
 }
 
-.customer-inquiry-banner li:hover {
-  text-decoration: underline;
+ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+li {
+	font-size: 15px;
+	padding: 10px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+li:hover,
+li.active {
+	font-weight: bold;
+	color: darkslateblue;
+	background-color: #f2f2f2;
+}
+
+strong {
+	display: block;
+	margin-top: 10px;
 }
 
 /* 공지사항 리스트 스타일 */
@@ -30,8 +55,8 @@
   display: flex;
   flex-direction: column;
   align-items: center; /* 테이블을 가운데로 이동 */
-  margin-top: 10px; /* 위쪽 여백 줄임 */
-  margin-left: 10px; /* 왼쪽 여백 추가 */
+  margin-top: -50px; /*테이블을 위로 이동*/
+  margin-left: 180px; /* 왼쪽 여백 추가 */
 }
 
 .board-container table {
@@ -40,29 +65,79 @@
   margin-top: 20px;
 }
 
-.board-container th, .board-container td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
+.board-container th {
+  padding: 20px;
+  border: none;
+  background-color: transparent;
 }
 
-.board-container th {
-  background-color: #f2f2f2;
+.board-container td {
+  border: none;
+  padding: 17px;
+  border-bottom: 1px solid lightgray;
 }
 
 .board-container td a {
   color: #333;
-  font-weight: bold;
 }
 
-.edit-button, .delete-button {
-  background-color: #007bff;
-  color: #fff;
+
+/*공지사항 상세보기*/
+
+.board-detail {
+  width: 70%; /* 화면너비 */
+  margin: auto;
   border: none;
-  padding: 5px 10px;
-  cursor: pointer;
 }
 
-.edit-button:hover, .delete-button:hover {
-  background-color: #0056b3;
+.board-detail table {
+  width: 100%;
+  border: none;
+}
+
+.board-detail td {
+  border: none;
+}
+
+.board-detail textarea {
+  width: 98%;
+  border: none;
+}
+
+.board-detail a {
+  border: none;
+}
+
+.info-table {
+  width: 80%;
+  margin: auto;
+  border-collapse: collapse;
+}
+
+.label-cell {
+  width: 15%;
+  text-align: left;
+  font-weight: bold;
+  background-color: #f2f2f2; /* 배경색 */
+  padding: 10px 10px 10px 20px; /* 위, 오른쪽, 아래, 왼쪽 */
+}
+
+.content-cell {
+  width: 85%;
+  text-align: left;
+  padding: 10px 10px 10px 20px; /* 위, 오른쪽, 아래, 왼쪽 */
+}
+
+.content-cell:last-child {
+  border-bottom: none; /* 마지막 행의 아래 경계선 제거 */
+}
+
+textarea {
+  margin-top: 30px; /* textarea 위에 여백 추가 */
+  font-size: large;
+}
+
+a {
+  color: #000;
+  font-size: 16px;
 }

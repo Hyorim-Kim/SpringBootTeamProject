@@ -5,38 +5,31 @@
 	<meta charset="UTF-8">
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 	<title>회원 정보 확인</title>
-	<link rel="stylesheet" href="/css/member.css" />
-	<!-- Favicons -->
-	<link href="../assets/img/favicon.png" rel="icon">
-	<link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-	<!-- Google Fonts -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link
-		href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-		rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-
-	<!-- Vendor CSS Files -->
-	<link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-	<link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-	<link href="../assets/vendor/aos/aos.css" rel="stylesheet">
-	<link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-	<link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-	<link href="../assets/css/main.css" rel="stylesheet">
-	<link rel="stylesheet" href="../css/booking.css">
+	<link rel="stylesheet" href="/css/member.css" /> 
+    
+  <!-- 파비콘 -->
+  <link href="/assets/img/favicon.png" rel="icon">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <!-- Template Main CSS File -->
+  <link href="/assets/css/main.css" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/board.css}">
+  <style>
+    table th {
+      text-align: center;
+    }
+  </style>
 </head>
-
 <body>
 <div th:if="${session.adminSession != null}">
-	<!-- ======= Header ======= -->
-	<div th:replace="~{fragments/header_admin :: header}"></div>
+  <!-- ======= Header ======= -->
+  <div th:replace="~{fragments/header_admin :: header}"></div>
 
-	<main id="container">
-
+  <main id="main">
 		<!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs d-flex align-items-center" style="background-image: url('../assets/img/breadcrumbs-bg.jpg');">
       <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
@@ -48,11 +41,10 @@
         </ol>
       </div>
     </div><!-- End Breadcrumbs -->
+    <br/>
 		<h2 style="text-align: center;">제공자 회원 정보 확인(<span th:text="${owner_records}"></span>명)</h2><br/><br/>
 		
-		
-
-		<table style="width: 90%">
+		<table>
 			<tr>
 				<th>사업자번호</th>
 				<th>비밀번호</th>
