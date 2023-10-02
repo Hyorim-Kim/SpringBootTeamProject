@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   "use strict"; /*코드를 더 엄격하게 해석하고 오류를 방지하기 위해 사용*/
 
   // 스크롤 이벤트 감지 - 스크롤 하면 헤더의 바탕 색이 어두워지는 기능
-window.addEventListener('scroll', function() {
+  window.addEventListener('scroll', function() {
     var header = document.getElementById('header');
     
     // 스크롤 위치를 확인하여 어두운 색으로 설정
@@ -12,8 +12,8 @@ window.addEventListener('scroll', function() {
     } else {
         header.style.backgroundColor = 'transparent'; // 스크롤이 상단에 있으면 투명한 배경으로 설정
     }
-});
- 
+  });
+  
 
   /*Preloader : 페이지가 로딩 중일 때 사용자에게 로딩 중임을 시각적으로 알려주는 기능*/
   /* #preloader라는 ID를 가진 요소를 찾고 해당 요소가 존재하면,
@@ -64,9 +64,9 @@ window.addEventListener('scroll', function() {
     });
 
   });
+  
 
   /*모바일 네비게이션 드롭다운(햄버거 메뉴바 하위메뉴 펼치는거) 토글: 네비게이션 바 내부의 드롭다운 메뉴를 처리
-  .navbar .dropdown > a 요소를 찾습니다.
   모바일 네비게이션이 활성화되어 있을 때, 드롭다운 메뉴를 클릭하면 해당 메뉴가 확장되고 축소되며, 아이콘도 변경된다.*/
   const navDropdowns = document.querySelectorAll('.navbar .dropdown > a');
 
