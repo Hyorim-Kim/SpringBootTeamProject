@@ -234,10 +234,7 @@ public class ContainerController {
 	}
 
 	@PostMapping("update")
-	public String update(FormBean bean) {
-		
-		
-		
+	public String update(FormBean bean) {	
 		boolean b = containDao.update(bean);
 		if (b)
 			return "redirect:/owner/list"; // 수정 후 목록보기

@@ -70,7 +70,6 @@ public class OwnerController {
         	session.setAttribute("ownerSession", owner);
         	session.setAttribute("business_num", owner.getBusiness_num());
         	session.setAttribute("owner_name", owner.getOwner_name());
-        	System.out.println("공급자 사업자번호 : " + owner.getBusiness_num() + " " + "공급자 비번 : " + owner.getOwner_pwd());
             return "owner/ownermain"; // 로그인 성공 시 ownermain.html로 이동
         } else {
             // 로그인 실패
@@ -82,7 +81,6 @@ public class OwnerController {
     @GetMapping("/ownerupdate")
     public String ownerUpdatePage (Model model, HttpSession session) {
     	OwnerDto owner = (OwnerDto) session.getAttribute("ownerSession");
-    	System.out.println("공급자 사업자번호 : " + owner.getBusiness_num() + " " + "공급자 비번 : " + owner.getOwner_pwd());
     	model.addAttribute("ownerSession", owner);
     	
     	return "owner/ownerupdate";
@@ -95,7 +93,6 @@ public class OwnerController {
 		if(b) {
 			OwnerDto owner = (OwnerDto) session.getAttribute("ownerSession");
 			model.addAttribute("ownerSession", owner);
-			System.out.println("공급자 사업자번호 : " + owner.getBusiness_num() + " " + "공급자 비번 : " + owner.getOwner_pwd());
 			return "owner/ownerlogin";  
 		} else {
 			return "owner/ownerupdate";  
@@ -110,7 +107,6 @@ public class OwnerController {
 		// 세션에서 회원 정보를 가져와서 모델에 추가
 		OwnerDto owner = (OwnerDto) session.getAttribute("ownerSession");
 		model.addAttribute("ownerSession", owner);
-		System.out.println("공급자 사업자번호 : " + owner.getBusiness_num() + " " + "공급자 비번 : " + owner.getOwner_pwd());
 		return "owner/ownerdelete"; // 회원 수정 페이지로 이동  
     }
     
@@ -139,8 +135,6 @@ public class OwnerController {
 	    OwnerDto ownerSession = (OwnerDto) session.getAttribute("ownerSession");
 	    if (ownerSession != null) {
 	        // 세션에 ownerSession값이 존재할 경우 ownermain.html 페이지로 이동
-	        System.out.println("공급자 사업자번호 : " + ownerSession.getBusiness_num() + " " + "공급자 비번 : " + ownerSession.getOwner_pwd());
-	        // 이동 경로를 상대 경로로 지정
 	        return "owner/ownermain"; 
 	    } else {
 	    	// 세션값이 없을 경우

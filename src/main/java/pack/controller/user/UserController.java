@@ -53,7 +53,7 @@ public class UserController {
 	// 사용자 로그인 패이지에서 아이디/비밀번호 찾기 클릭했을 때 (광진)
 	@GetMapping("/userInfoFind")
 	public String userInfoFinding() {
-		return "../templates/user/useridfind";
+		return "user/useridfind";
 	}
 	
 	
@@ -63,9 +63,9 @@ public class UserController {
 		boolean b = userDao.userInsertData(userDto);
 		
 		if(b) {
-			return "../templates/user/userlogin";  
+			return "user/userlogin";  
 		} else {
-			return "../templates/user/userjoin";  
+			return "user/userjoin";  
 		}	
 	}
 		
@@ -86,7 +86,6 @@ public class UserController {
             // 여기서 가독성을 위해 세션 키의 이름은 userSession으로 변경 하였고 값 이름은 그대로 user로 유지.
             // user는 앞서 사용자가 입력한 아이디와 비밀번호를 담고 있음 그거를 세션에 담는거라 생각하시면 되용
         	session.setAttribute("userSession", user); 
-        	System.out.println("사용자 ID : " + user.getUser_id() + " " + "사용자 pwd : " + user.getUser_pwd());
         	return "redirect:/usersessionkeep"; // 로그인 성공 시 usermypage.html로 이동.
         }
 		else { // 사용자 정보가 DB에 없는 경우 즉, 아이디와 비밀번호가 없는 경우
@@ -105,8 +104,6 @@ public class UserController {
 		UserDto user = (UserDto) session.getAttribute("userSession");
 		// 세션에서 회원 정보를 가져와서 모델에 추가
 		model.addAttribute("userSession", user);
-		System.out.println("사용자 ID : " + user.getUser_id() + " " + "사용자 pwd : " + user.getUser_pwd());
-
 		return "user/userupdate"; // 회원 수정 페이지로 이동
 	}
 	
@@ -189,8 +186,6 @@ public class UserController {
 	    
 	    // 만약 세션에 사용자 정보가 있는 경우
 	    if (userSession != null) {
-	        // 찍어보자
-	        System.out.println("사용자 ID : " + userSession.getUser_id() + " " + "사용자 pwd : " + userSession.getUser_pwd());
 	        // 사용자 정보를 유지하면 로그인페이지에서 home 버튼을 눌러도 로그인 세션이 있는채로 마이페이지로 이동.
 	        return "user/usermypage";
 	    } 	    	            	    
