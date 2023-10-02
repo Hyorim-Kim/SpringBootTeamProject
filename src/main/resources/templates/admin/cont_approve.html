@@ -70,21 +70,34 @@
 	<div th:if="${session.adminSession != null}">
 		<!-- ======= Header ======= -->
 		<div th:replace="~{fragments/header_admin :: header}"></div>
+		<main id="main">
+
+ 	<!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('../assets/img/breadcrumbs-bg.jpg');">
+      <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+
+        <h2 style="font-family: 'Noto Sans KR'; font-weight: 700;">Service</h2>
+        
+
+      </div>
+    </div><!-- End Breadcrumbs -->
+    <br/>
 		<h3>** 상세보기 **</h3>
 		<form name="frm" th:object="${containerDto}">
 			<!-- 'con_no' Hidden Input 필드 추가 -->
 			<input type="hidden" th:field="*{cont_no}" />
 			<br />
-			<div class="container-box">
+			<div class="container-box" >
 				<div>
-					창고번호 : [[${containerDto.cont_no}]]<br /></div>
+				창고번호 : [[${containerDto.cont_no}]]<br /></div>
 				주소 : [[${containerDto.cont_addr}]]<br />
 				위도 : [[${containerDto.cont_we}]]<br />
 				경도 : [[${containerDto.cont_kyung}]]<br />
 				면적 : [[${containerDto.cont_size}]]<br />
 				회사이름 : [[${containerDto.cont_name}]]<br />
 				소유주 전화번호 : [[${containerDto.owner_phone}]]<br />
-				창고 사진 : [[${containerDto.cont_image}]]<br />
+				<!-- 창고 사진 : [[${containerDto.cont_image}]]<br /> -->
+				창고 사진: <img th:src="@{/upload/} + ${containerDto.getCont_image}" width="500" height="300"/><br/>
 				사업자번호 : [[${containerDto.owner_num}]]<br />
 			</div>
 			<hr />
@@ -105,6 +118,10 @@
 			<input type="button" value="승인" id="btnApprove" />
 			<input type="button" value="거절" id="btnDeny" />
 		</form>
+		<br/><br/>
+		<!-- ======= Footer ======= -->
+  <div th:replace="~{fragments/footer :: footer}"></div>
+		</main>
 	</div>
 </body>
 

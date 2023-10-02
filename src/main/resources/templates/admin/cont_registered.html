@@ -23,67 +23,82 @@
 	<div th:if="${session.adminSession != null}">
 		<!-- ======= Header ======= -->
 		<div th:replace="~{fragments/header_admin :: header}"></div>
-		<h2>등록된 창고 관리하기</h2>
+		<main id="main">
+			<!-- ======= Breadcrumbs ======= -->
+			<div class="breadcrumbs d-flex align-items-center"
+				style="background-image: url('../assets/img/breadcrumbs-bg.jpg');">
+				<div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
 
-		<table style="width:90%">
+					<h2 style="font-family: 'Noto Sans KR'; font-weight: 700;">Service</h2>
 
-			<tr>
-				<th>창고번호</th>
-				<th>주소</th>
-				<th>위도</th>
-				<th>경도</th>
-				<th>면적</th>
-				<th>회사이름</th>
-				<th>소유주 전화번호</th>
-				<th>현재 상태(사용중,사용가능)</th>
-				<th>사업자번호</th>
-			</tr>
-			<th:block th:if="${lists3.size > 0}">
-				<tr th:each="data3:${lists3}">
-					<td th:text="${data3.cont_no}"></td>
-					<td th:text="${data3.cont_addr}"></td>
-					<td th:text="${data3.cont_we}"></td>
-					<td th:text="${data3.cont_kyung}"></td>
-					<td th:text="${data3.cont_size}"></td>
-					<td th:text="${data3.cont_name}"></td>
-					<td th:text="${data3.owner_phone}"></td>
-					<td th:switch="${data3.cont_status}">
-						<a th:case='0' th:href="@{detail(cont_no=${data3.cont_no})}">승인대기</a>
-						<a th:case='1' th:href="@{detail(cont_no=${data3.cont_no})}">사용가능</a>
-						<a th:case='2'>예약중</a>
-						<a th:case='3'>사용중</a>
-						<a th:case='4' th:href="@{detail(cont_no=${data3.cont_no})}">승인거절</a>
-					</td>
 
-					<!-- <td> <a th:href="@{approve/detail(cont_no=${data3.cont_no})}" th:text="${data3.cont_status}"></a> </td> -->
-					<!-- <td th:text="${data3.cont_status}"></td>-->
-					<td th:text="${data3.owner_num}"></td>
+				</div>
+			</div><!-- End Breadcrumbs -->
+			<br />
+			<h2 style="text-align: center;">등록된 창고 관리하기</h2><br /><br />
+
+			<table style="width:90%">
+
+				<tr>
+					<th>창고번호</th>
+					<th>주소</th>
+					<th>위도</th>
+					<th>경도</th>
+					<th>면적</th>
+					<th>회사이름</th>
+					<th>소유주 전화번호</th>
+					<th>현재 상태(사용중,사용가능)</th>
+					<th>사업자번호</th>
 				</tr>
-			</th:block>
+				<th:block th:if="${lists3.size > 0}">
+					<tr th:each="data3:${lists3}">
+						<td th:text="${data3.cont_no}"></td>
+						<td th:text="${data3.cont_addr}"></td>
+						<td th:text="${data3.cont_we}"></td>
+						<td th:text="${data3.cont_kyung}"></td>
+						<td th:text="${data3.cont_size}"></td>
+						<td th:text="${data3.cont_name}"></td>
+						<td th:text="${data3.owner_phone}"></td>
+						<td th:switch="${data3.cont_status}">
+							<a th:case='0' th:href="@{detail(cont_no=${data3.cont_no})}">승인대기</a>
+							<a th:case='1' th:href="@{detail(cont_no=${data3.cont_no})}">사용가능</a>
+							<a th:case='2'>예약중</a>
+							<a th:case='3'>사용중</a>
+							<a th:case='4' th:href="@{detail(cont_no=${data3.cont_no})}">승인거절</a>
+						</td>
 
-		</table><br /><br />
-		<form action="/regsearch" method="post" style="text-align: center;">
-			검색 대상:
-			<select name="searchName">
-				<option value="cont_name" selected>회사이름</option>
-			</select>
-			<input type="text" name="searchValue">
-			<input type="submit" value="검 색">
-		</form>
-		<table style="margin-top: 20px;">
-			<tr style="text-align: center;">
-				<td colspan="5">
-					<th:block th:each="num : ${#numbers.sequence(1, pagesu)}">
-						<th:span th:if="${num == page}">
-							<b th:text="${num}">num 표시(현재 페이지는 링크를 걸지 않음)</b>
-						</th:span>
-						<th:span th:if="${num != page}">
-							<a th:href="@{/registered(page=${num})}" th:text="${num}">num 표시</a>
-						</th:span>
-					</th:block>
-				</td>
-			</tr>
-		</table>
+						<!-- <td> <a th:href="@{approve/detail(cont_no=${data3.cont_no})}" th:text="${data3.cont_status}"></a> </td> -->
+						<!-- <td th:text="${data3.cont_status}"></td>-->
+						<td th:text="${data3.owner_num}"></td>
+					</tr>
+				</th:block>
+
+			</table><br /><br />
+			<form action="/regsearch" method="post" style="text-align: center;">
+				검색 대상:
+				<select name="searchName">
+					<option value="cont_name" selected>회사이름</option>
+				</select>
+				<input type="text" name="searchValue">
+				<input type="submit" value="검 색">
+			</form>
+			<table style="margin-top: 20px;">
+				<tr style="text-align: center;">
+					<td colspan="5">
+						<th:block th:each="num : ${#numbers.sequence(1, pagesu)}">
+							<th:span th:if="${num == page}">
+								<b th:text="${num}">num 표시(현재 페이지는 링크를 걸지 않음)</b>
+							</th:span>
+							<th:span th:if="${num != page}">
+								<a th:href="@{/registered(page=${num})}" th:text="${num}">num 표시</a>
+							</th:span>
+						</th:block>
+					</td>
+				</tr>
+			</table>
+			<!-- ======= Footer ======= -->
+			<div th:replace="~{fragments/footer :: footer}"></div>
+		</main>
 	</div>
 </body>
 

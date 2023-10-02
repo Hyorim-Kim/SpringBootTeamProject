@@ -105,60 +105,60 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
    
 
 
-   @GetMapping("/owner")  // owner 페이지로 이동
-   public String ownerlist(@RequestParam("page")int page, Model model) {
-      int spage = page;
-       if (page <= 0) spage = 1;
-      
-      ArrayList<OwnerDto> ownerlist = (ArrayList<OwnerDto>)dataDao.getOwnerAll();
-      ArrayList<OwnerDto> ownerresult = getownerListData(ownerlist, spage);
-      
-      int owner_records = dataDao.getownerrecords(); // 전체 레코드 수
-      
-      model.addAttribute("lists2", ownerresult);
-      model.addAttribute("pagesu", getownerPageSu());
-      model.addAttribute("page", spage);
-      model.addAttribute("owner_records",owner_records);
-      return "../templates/owner/owner";
-   }
-   
-   @PostMapping("ownersearch")  // owner에서 검색하기
-   public String ownersearch(@RequestParam(name = "page", required = false, defaultValue = "1")int page, FormBean bean, Model model) {  //넘어가니까 Model 사용
-      int spage = page;
-       if (page <= 0) spage = 1 ;
-      
-      ArrayList<OwnerDto> slist2 = (ArrayList<OwnerDto>)dataDao.getOwnerSearch(bean);
-      ArrayList<OwnerDto> result = getownerListData(slist2, spage);
-      
-      model.addAttribute("lists2", result);
-      model.addAttribute("pagesu", getownerPageSu());
-      model.addAttribute("page", spage);
-      
-      return "../templates/owner/owner";
-   }
-   
-//   @PostMapping("ownerdelete")  // owner에서 삭제하기
-//   public String ownerdel(@RequestParam("business_num")String business_num,
-//         @RequestParam(name = "page", defaultValue = "1") int page) {
-//      if(dataDao.ownerdelete(business_num))
-//         return "redirect:owner?page=" + page;
-//      else
-//         return "/owner/error.html";
-//   }
-   @PostMapping("ownerdelete")  // owner에서 삭제하기
-   public String ownerdel(@RequestParam("business_num") String business_num,
-           @RequestParam(name = "page", defaultValue = "1") int page) {
-       try {
-           if (dataDao.ownerdelete(business_num)) {
-               return "redirect:owner?page=" + page;
-           } else {
-               return "redirect:error"; // 데이터 삭제에 실패한 경우
-           }
-       } catch (Exception e) {
-           return "/owner/error"; // 예외 발생 시 에러 페이지로 리다이렉트
-       }
-   }
 
+	@GetMapping("/owner")  // owner 페이지로 이동
+	public String ownerlist(@RequestParam("page")int page, Model model) {
+		int spage = page;
+	    if (page <= 0) spage = 1;
+		
+		ArrayList<OwnerDto> ownerlist = (ArrayList<OwnerDto>)dataDao.getOwnerAll();
+		ArrayList<OwnerDto> ownerresult = getownerListData(ownerlist, spage);
+		
+		int owner_records = dataDao.getownerrecords(); // 전체 레코드 수
+		
+		model.addAttribute("lists2", ownerresult);
+		model.addAttribute("pagesu", getownerPageSu());
+		model.addAttribute("page", spage);
+		model.addAttribute("owner_records",owner_records);
+		return "../templates/owner/owner";
+	}
+	
+	@PostMapping("ownersearch")  // owner에서 검색하기
+	public String ownersearch(@RequestParam(name = "page", required = false, defaultValue = "1")int page, FormBean bean, Model model) {  //넘어가니까 Model 사용
+		int spage = page;
+	    if (page <= 0) spage = 1 ;
+		
+		ArrayList<OwnerDto> slist2 = (ArrayList<OwnerDto>)dataDao.getOwnerSearch(bean);
+		ArrayList<OwnerDto> result = getownerListData(slist2, spage);
+		
+		model.addAttribute("lists2", result);
+		model.addAttribute("pagesu", getownerPageSu());
+		model.addAttribute("page", spage);
+		
+		return "../templates/owner/owner";
+	}
+	
+//	@PostMapping("ownerdelete")  // owner에서 삭제하기
+//	public String ownerdel(@RequestParam("business_num")String business_num,
+//			@RequestParam(name = "page", defaultValue = "1") int page) {
+//		if(dataDao.ownerdelete(business_num))
+//			return "redirect:owner?page=" + page;
+//		else
+//			return "/owner/error.html";
+//	}
+	@PostMapping("ownerdelete")  // owner에서 삭제하기
+	public String ownerdel(@RequestParam("business_num") String business_num,
+	        @RequestParam(name = "page", defaultValue = "1") int page) {
+	    try {
+	        if (dataDao.ownerdelete(business_num)) {
+	            return "redirect:owner?page=" + page;
+	        } else {
+	            return "redirect:error"; // 데이터 삭제에 실패한 경우
+	        }
+	    } catch (Exception e) {
+	        return "/owner/error"; // 예외 발생 시 에러 페이지로 리다이렉트
+	    }
+	}
 
 
    public ArrayList<ContainerDto> getregisteredListData(ArrayList<ContainerDto> list, int page){ // 페이지 번호(page)와 FAQ 목록(list)을 받아와서 해당 페이지에 표시할 FAQ 항목을 추출하여 반환하는 메서드, 페이징 처리를 위해 사용

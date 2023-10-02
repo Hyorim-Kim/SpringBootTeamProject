@@ -169,7 +169,8 @@ public class ContainerController {
 
 	      try {
 	         inputStream = file.getInputStream();
-	         String fileSavePath = "C:/Users/kwang/git/Team/src/main/resources/static/upload/" + randomFilename;
+
+	         String fileSavePath = "C:/Users/seoho/git/Team/src/main/resources/static/upload/" + randomFilename;
 	         File newFile = new File(fileSavePath);
 	         if (!newFile.exists()) {
 	            newFile.createNewFile();
@@ -216,7 +217,6 @@ public class ContainerController {
 	         return "error"; // 이거슨 포워딩
 	      }
 	   }
-	
 
 	@GetMapping("/detail")
 	public String conDetail(@RequestParam("cont_no") String cont_no, Model model) {
