@@ -54,13 +54,20 @@
 				});
 		}
 	</script>
-	
 </head>
-
 <body>
-	<!-- ======= Header ======= -->
-	<div th:replace="~{fragments/header :: header}"></div>
-
+<!-- 사용자 세션 값일 때-->
+<div th:if="${session.userSession != null}">
+    <div th:replace="~{fragments/header_user :: header}"></div>
+</div>
+<!-- 공급자 세션 값일 때-->
+<div th:if="${session.ownerSession != null}">
+    <div th:replace="~{fragments/header_owner :: header}"></div>
+</div>
+<!-- 사용자 세션값, 공급자 세션값이 없을 때-->
+<div th:if="${session.userSession == null && session.ownerSession == null}">
+    <div th:replace="~{fragments/header :: header}"></div>
+</div>
 	<!-- ======= Hero Section : 웹 페이지 상단에 배너 이미지와 제목, 설명 등을 표시 ======= -->
 	<section id="hero" class="hero">
 		
@@ -169,9 +176,7 @@
 					</div>
 				</li>
 			</ul>
-		</div>
-	
-	
+		</div>	
 		<!-- ======= Our Projects Section : 에이콘 협력사 ======= -->
 		<section id="projects" class="projects">
 			<div class="container" data-aos="fade-up">
