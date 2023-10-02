@@ -34,13 +34,15 @@
 </head>
 
 <body>
-<!-- 사용자 -->
+<!-- 사용자 세션 값일 때-->
 <div th:if="${session.userSession != null}">
     <div th:replace="~{fragments/header_user :: header}"></div>
 </div>
+<!-- 공급자 세션 값일 때-->
 <div th:if="${session.ownerSession != null}">
     <div th:replace="~{fragments/header_owner :: header}"></div>
 </div>
+<!-- 사용자 세션값, 공급자 세션값이 없을 때-->
 <div th:if="${session.userSession == null && session.ownerSession == null}">
     <div th:replace="~{fragments/header :: header}"></div>
 </div>
