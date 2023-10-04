@@ -169,7 +169,7 @@ public class ContainerController {
 
 	      try {
 	         inputStream = file.getInputStream();
-	         String fileSavePath = "C:/Users/kwang/git/Team/src/main/resources/static/upload/" + randomFilename;
+	         String fileSavePath = "C:/Users/cmh17/git/Team/src/main/resources/static/upload/" + randomFilename;
 	         File newFile = new File(fileSavePath);
 	         if (!newFile.exists()) {
 	            newFile.createNewFile();
@@ -235,9 +235,7 @@ public class ContainerController {
 
 	@PostMapping("update")
 	public String update(FormBean bean) {
-		
-		
-		
+				
 		boolean b = containDao.update(bean);
 		if (b)
 			return "redirect:/owner/list"; // 수정 후 목록보기

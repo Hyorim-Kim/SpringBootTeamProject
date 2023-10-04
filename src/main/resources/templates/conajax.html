@@ -70,7 +70,6 @@
    .info .link { color: #5085BB; }
    </style>
 </head>
-
 <body>
 <div th:if="${session.userSession != null}">
    <!-- ======= Header ======= -->
@@ -211,13 +210,14 @@
                   '        </div>' +
                   '        <div class="body">' +
                   '            <div class="img">' +
-                  '                <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/thumnail.png" width="73" height="70">' +
+                  '                <img src="/static/upload/' + data[i].con_image_url + '" width="73" height="70">' + // 이미지를 추가
                   '           </div>' +
                   '            <div class="desc">' +
+                  '                <div style="display:none" class="ellipsis">창고번호: ' + data[i].con_no + '</div>' +  // 데이터를 표시					  
                   '                <div class="ellipsis">회사명: ' + data[i].con_name + '</div>' +  // 데이터를 표시
                   '                <div class="ellipsis">주소: ' + data[i].con_addr + '</div>' +  // 데이터를 표시
-                  '                <div class="ellipsis">면적: ' + data[i].con_area + ' ㎡</div>' +  // 데이터를 표시
-                  '            <div><a href="/bookingDo" target="_blank" onclick="openPopup()">예약하기</a></div>' +
+                  '                <div class="ellipsis">크기: ' + data[i].con_area + ' </div>' +  // 데이터를 표시
+                  '            <div><a href="javascript:void(0);" onclick="openPopup(' + data[i].con_no + ')">창고 예약하기</a></div>' +
                   '            </div>' +
                   '    </div>' +
                   '</div>';
@@ -243,25 +243,40 @@
       var currentOverlay = null;
 
       // 마커를 클릭했을 때 커스텀 오버레이를 표시하는 함수
-      function attachOverlay(marker, content) {
-         kakao.maps.event.addListener(marker, 'click', function () {
-            // 기존 오버레이가 있으면 닫기
-            closeOverlay();
+function attachOverlay(marker, content) {
+    kakao.maps.event.addListener(marker, 'click', function () {
+        // 기존 오버레이가 있으면 닫기
+        closeOverlay();
 
-            var overlay = new kakao.maps.CustomOverlay({
-               content: content,
-               map: map,
-               position: marker.getPosition()
+        var overlay = new kakao.maps.CustomOverlay({
+            content: content,
+            map: map,
+            position: marker.getPosition()
+        });
+
+        // 클릭한 마커에 대한 오버레이를 현재 오버레이로 저장
+        currentOverlay = overlay;
+
+        // 창고 예약하기 링크를 눌렀을 때 팝업 열기
+        var popupButton = overlay.getElement().querySelector('.popup-button');
+        if (popupButton) {
+            popupButton.addEventListener('click', function () {
+                openPopup();
             });
+        }
+    });
+}
 
-            // 클릭한 마커에 대한 오버레이를 현재 오버레이로 저장
-            currentOverlay = overlay;
-         });
-      }
-      // 팝업을 열기 위한 함수
-      function openPopup() {
-         window.open("container_list.html", "_blank", "width=600, height=400");
-      }
+function openPopup(conNo) {
+    // conNo 값을 URL-인코딩합니다.
+    var encodedConNo = encodeURIComponent(conNo);
+
+    // 새 창을 열 때 데이터를 쿼리 매개변수로 전달합니다.
+    var url = 'booking/booking?con_no=' + encodedConNo;
+
+    // 새 창을 엽니다.
+    window.open(url, '_blank', 'width=1000, height=800');
+}
       
       
       //마커 정보에서 상세보기 링크를 누르면 상세보기 팝업을 열기-- 이건 세션관리를 구현해야 실행가능
@@ -300,46 +315,10 @@
           trafficShown = true;
         }
    }
+
+
 </script>
-
-<!-- 검색 결과를 출력할 부분에 id 부여 -->
-<div id="searchResult"></div>
-
-<!-- 검색어를 입력하는 input과 버튼 -->
-<input type="text" id="searchInput" placeholder="검색어를 입력하세요">
-<button onclick="sendSearch()">검색</button>
-
-<!-- 검색 결과를 출력하는 스크립트 -->
-<script>
-    function sendSearch() {
-        // 입력한 검색어 가져오기
-        const searchTerm = document.getElementById('searchInput').value;
-
-        // 서버로 POST 요청 보내기
-        fetch('/conajax', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ query: searchTerm }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data.message);
-            console.log('받아온 검색어:', searchTerm);
-
-            // 검색 결과를 출력할 부분에 내용 변경
-            const searchResultDiv = document.getElementById('searchResult');
-            searchResultDiv.innerHTML = `받아온 검색어: ${searchTerm}`;
-
-            // 추가 작업 가능
-        })
-        .catch(error => {
-            console.error('에러 발생:', error);
-        });
-    }
-</script>
-
-</div>
+    
 </body>
+
 </html>
