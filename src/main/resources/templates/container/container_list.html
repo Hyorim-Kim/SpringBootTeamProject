@@ -2,25 +2,27 @@
 <html xmlns:th="https://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8">
-	<meta content="width=device-width, initial-scale=1.0" name="viewport">
-	<title>에이콘테이너 창고대여</title>
+   <meta charset="UTF-8">
+   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+   <title>에이콘테이너 창고대여</title>
 
+<<<<<<< HEAD
 	<!-- table css -->
 	<link rel="stylesheet" type="text/css" href="../css/container.css">
 
 	<!-- Favicons -->
 	<link href="../assets/img/favicon.png" rel="icon">
 	<link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+=======
+   <!-- table css -->
+   <link rel="stylesheet" type="text/css" href="../css/container.css">
+>>>>>>> refs/remotes/origin/master
 
-	<!-- Google Fonts -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link
-		href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-		rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+   <!-- Favicons -->
+   <link href="../assets/img/favicon.png" rel="icon">
+   <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
+<<<<<<< HEAD
 	<!-- Vendor CSS Files -->
 	<link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -30,10 +32,30 @@
 	<link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 	<link href="../assets/css/main.css" rel="stylesheet">
+=======
+   <!-- Google Fonts -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+   <!-- Vendor CSS Files -->
+   <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+   <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+   <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+   <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+   <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+   <link href="../assets/css/main.css" rel="stylesheet">
+>>>>>>> refs/remotes/origin/master
 
 </head>
 
 <body>
+<<<<<<< HEAD
 	<div th:if="${session.ownerSession != null}">
 		<div th:replace="~{fragments/header_owner :: header}"></div>
 		<main>
@@ -75,6 +97,48 @@
 		<div th:replace="~{fragments/footer :: footer}" class="footer"></div>
 		
 	</div>
+=======
+   <div th:if="${session.ownerSession != null}">
+      <div th:replace="~{fragments/header_owner :: header}"></div>
+      <main>
+      <div class="custom-gap-top"></div>
+         <div class="text-header">
+         <h3 class="align">보유 창고 정보</h3>
+         </div>
+         <div class="custom-table">
+            <div class="table-header">
+               <div class="table-header-cell">창고번호</div>
+               <div class="table-header-cell">창고주소</div>
+               <div class="table-header-cell">창고크기</div>
+               <div class="table-header-cell">창고상태</div>
+               <div class="table-header-cell">임대인이름</div>
+            </div>
+            <div th:if="${datas.size > 0}" class="table-body">
+               <div th:each="data:${datas}" class="table-row">
+                  <div class="table-cell">[[${data.cont_no}]]</div>
+                  <div class="table-cell">
+                     <a th:href="@{/owner/detail(cont_no=${data.cont_no})}" th:text="${data.cont_addr}"></a>
+                  </div>
+                  <div class="table-cell">[[${data.cont_size}]]</div>
+                  <div class="table-cell" th:switch="${data.cont_status}">
+                     <a th:case='0'>승인대기</a>
+                     <a th:case='1'>사용가능</a>
+                     <a th:case='2'>예약중</a>
+                     <a th:case='3'>사용중</a>
+                     <a th:case='4'>승인거절</a>
+                  </div>
+                  <div class="table-cell">[[${data.owner_name}]]</div>
+               </div>
+            </div>
+         </div>
+         <div class="custom-gap-middle"></div>
+         <div class="text-link">
+         <a th:href="@{/owner/register}" class="button-align">추가</a>
+         </div>
+      </main>
+     
+   </div>
+>>>>>>> refs/remotes/origin/master
 </body>
 
 </html>

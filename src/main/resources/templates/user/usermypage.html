@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
-   <meta charset="utf-8">
+  <meta charset="utf-8">
    <meta content="width=device-width, initial-scale=1.0" name="viewport">
    <title>에이콘테이너</title>
    <!-- 파비콘 -->
@@ -13,7 +13,6 @@
    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
    <link href="assets/css/main.css" rel="stylesheet">
-   <!-- HTML 파일 -->
 </head>
 <body>
 <div th:if="${session.userSession != null}">
@@ -29,16 +28,16 @@
             <h2 data-aos="fade-down"><span>ACONTAINER</span>
             <span style="color: #ffc732;">.</span></h2>
             <p data-aos="fade">
-          	<!--Thymeleaf를 사용하여 세션에서 사용자 이름을 가져와서 화면에 출력-->
+         <!--Thymeleaf를 사용하여 세션에서 사용자 이름을 가져와서 화면에 출력-->
             <span style="color: #ffffff;"><strong th:text="${session.userSession.user_name}">사용자 이름</strong></span> 고객님 환영합니다</p>
-            <a data-aos="fade" data-aos-delay="200" href="/booking/booking" class="btn-get-started">바로 시작하기</a>
-          	<!-- 검색바 추가 -->
-          	<div class='hero search-container'>
-            	 <form action="/conajax" method="get" class="search-form" data-aos="fade" data-aos-delay="200">
-                	<input type="text" id="searchInput" name="q" placeholder="창고검색에서 관심 지역을 입력하세요" class="search-input">
-                	<button type='submit' class='search-button'><i class='bx bx-search'></i></button>
-             	</form>
-          	</div>
+            <a data-aos="fade" data-aos-delay="200" href="/conajax" class="btn-get-started">바로 시작하기</a>
+         <!-- 검색바 추가 -->
+         <div class='hero search-container'>
+            <form action="/conajax" method="get" class="search-form" data-aos="fade" data-aos-delay="200">
+               <input type="text" id="searchInput" name="q" placeholder="창고검색에서 관심 지역을 입력하세요." class="search-input">
+               <button type='submit' class='search-button'><i class='bx bx-search'></i></button>
+            </form>
+         </div>
           </div>
         </div>
       </div>
@@ -60,56 +59,54 @@
 
   <main id="main">
       
-      <!-- ======= 추천창고와 이미지들 ======= -->
-		<section id="recent-blog-posts" class="recent-blog-posts">
-			<div class="container" data-aos="fade-up">
-				<div class=" section-header">
-					<h2>추천 창고</h2><br/>
-				</div>
-				<div class="row gy-5">
-					<div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-						<div class="post-item position-relative h-100">
-							<div class="post-img position-relative overflow-hidden">
-								<img src="assets/img/boxbox.jpg" class="img-fluid" alt="">
-							</div>
-							<div class="post-content d-flex flex-column">
-								<h3 class="post-title">경기도 안성시</h3><hr>
-								<a href="/conajax" class="readmore stretched-link"><span>지도로 보기</span><i
-										class="bi bi-arrow-right"></i></a>
-							</div>
-						</div>
-					</div>
-					<!-- === 추천창고 작은이미지 구분하기위해 남깁니다 == -->
-					<div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-						<div class="post-item position-relative h-100">
-							<div class="post-img position-relative overflow-hidden">
-								<img src="assets/img/boxbox2.jpg" class="img-fluid" alt="">
-							</div>
-							<div class="post-content d-flex flex-column">
-								<h3 class="post-title">경기도 용인시</h3><hr>
-								<a href="/conajax" class="readmore stretched-link"><span>지도로 보기</span><i
-										class="bi bi-arrow-right"></i></a>
-							</div>
-						</div>
-					</div>
-					<!-- === 추천창고 작은이미지 구분하기위해 남깁니다 == -->
-					<div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-						<div class="post-item position-relative h-100">
-							<div class="post-img position-relative overflow-hidden">
-								<img src="assets/img/boxbox3.jpg" class="img-fluid" alt="">
-							</div>
-							<div class="post-content d-flex flex-column">
-								<h3 class="post-title">경기도 하남시</h3><hr>
-								<a href="/conajax" class="readmore stretched-link"><span>지도로 보기</span><i
-										class="bi bi-arrow-right"></i></a>
-							</div>
-						</div>
-					</div>
-					<!-- === 추천창고 코드는 여기서 끝납니다 == -->
-				</div>
-			</div>
-		</section>
-		<!-- End Recent Blog Posts Section -->
+      <!-- ======= Recent Blog Posts Section : 추천창고와 이미지들 ======= -->
+      <section id="recent-blog-posts" class="recent-blog-posts">
+         <div class="container" data-aos="fade-up">
+            <div class=" section-header">
+               <h2>추천 창고</h2>
+            </div>
+            <div class="row gy-5">
+               <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                  <div class="post-item position-relative h-100">
+                     <div class="post-img position-relative overflow-hidden">
+                        <img src="assets/img/boxbox.jpg" class="img-fluid" alt="">
+                     </div>
+                     <div class="post-content d-flex flex-column">
+                        <h3 class="post-title">경기도 안성시</h3><hr>
+                        <a href="conajax.html" class="readmore stretched-link"><span>지도로 보기</span><i
+                              class="bi bi-arrow-right"></i></a>
+                     </div>
+                  </div>
+               </div>
+               <!-- === 추천창고 작은이미지 구분하기위해 남깁니다 == -->
+               <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                  <div class="post-item position-relative h-100">
+                     <div class="post-img position-relative overflow-hidden">
+                        <img src="assets/img/boxbox.jpg" class="img-fluid" alt="">
+                     </div>
+                     <div class="post-content d-flex flex-column">
+                        <h3 class="post-title">경기도 용인시</h3><hr>
+                        <a href="conajax.html" class="readmore stretched-link"><span>지도로 보기</span><i
+                              class="bi bi-arrow-right"></i></a>
+                     </div>
+                  </div>
+               </div>
+               <!-- === 추천창고 작은이미지 구분하기위해 남깁니다 == -->
+               <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                  <div class="post-item position-relative h-100">
+                     <div class="post-img position-relative overflow-hidden">
+                        <img src="assets/img/boxbox.jpg" class="img-fluid" alt="">
+                     </div>
+                     <div class="post-content d-flex flex-column">
+                        <h3 class="post-title">경기도 하남시</h3><hr>
+                        <a href="/conajax" class="readmore stretched-link"><span>지도로 보기</span><i
+                              class="bi bi-arrow-right"></i></a>
+                     </div>
+                  </div>
+               </div>
+               <!-- === 추천창고 코드는 여기서 끝납니다 == -->
+      </section>
+      <!-- End Recent Blog Posts Section -->
    
       <!--메인 하단 소개 및 자료 다운로드-->
       <div class="company_wrap" data-aos="fade-up">
@@ -125,101 +122,13 @@
                <div class="download transition-effect" style="background-position: 190.132px 100%;">
                   <strong style="font-weight: bold;">화물 운송 요청</strong>
                   <p>화물 운송이 필요하신가요?<br class="brnone" />화물 정보만 알려주세요. 화물차를 연결해 드립니다.</p>
-                  <a href="/contactuser" id="mainBottomRightBanner">자세히보기</a>
+                  <a href="/contactuser" id="mainBottomLeftBanner">자세히보기</a>
                </div>
             </li>
          </ul>
       </div>
-   
-   
-      <!-- ======= Our Projects Section : 에이콘 협력사 ======= -->
-      <section id="projects" class="projects">
-         <div class="container" data-aos="fade-up">
-   
-            <div class="section-header">
-               <h2>에이콘테이너 파트너사</h2>
-            </div>
-            <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry"
-               data-portfolio-sort="original-order">
-               <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
-   
-                  <div class="col-lg-4 col-md-6 portfolio-item filter-remodeling">
-                     <div class="portfolio-content h-100">
-                        <img src="assets/img/projects/remodeling-1.jpg" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                           <h4>CJ 대한통운</h4>
-                           <p>기업물류(3PL), 이커머스 물류, 택배, 포워딩</p>
-                           <a href="https://www.cjlogistics.com/ko/tool/parcel/tracking" title="More Details"
-                              class="details-link"><i class="bi bi-link-45deg"></i></a>
-                        </div>
-                     </div>
-                  </div><!-- End Projects Item -->
-   
-                  <div class="col-lg-4 col-md-6 portfolio-item filter-construction">
-                     <div class="portfolio-content h-100">
-                        <img src="assets/img/projects/construction-1.jpg" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                           <h4>마이창고</h4>
-                           <p>3자 물류, 3PL, 4PL, 온디맨드 창고, 포장 및 택배 대행</p>
-                           <a href="https://mychango.com/" title="More Details" class="details-link"><i
-                                 class="bi bi-link-45deg"></i></a>
-                        </div>
-                     </div>
-                  </div><!-- End Projects Item -->
-   
-                  <div class="col-lg-4 col-md-6 portfolio-item filter-repairs">
-                     <div class="portfolio-content h-100">
-                        <img src="assets/img/projects/repairs-1.jpg" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                           <h4>유진로지스틱스</h4>
-                           <p>종합물류서비스</p>
-                           <a href="http://eugenelogistics.co.kr/" title="More Details" class="details-link"><i
-                                 class="bi bi-link-45deg"></i></a>
-                        </div>
-                     </div>
-                  </div><!-- End Projects Item -->
-   
-                  <div class="col-lg-4 col-md-6 portfolio-item filter-design">
-                     <div class="portfolio-content h-100">
-                        <img src="assets/img/projects/design-1.jpg" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                           <h4>emro</h4>
-                           <p>AI 기반 기업용 공급망관리 소프트웨어 전문 기업</p>
-                           <a href="http://www.emro.co.kr/" title="More Details" class="details-link"><i
-                                 class="bi bi-link-45deg"></i></a>
-                        </div>
-                     </div>
-                  </div><!-- End Projects Item -->
-   
-   
-   
-                  <div class="col-lg-4 col-md-6 portfolio-item filter-repairs">
-                     <div class="portfolio-content h-100">
-                        <img src="assets/img/projects/repairs-3.jpg" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                           <h4>두산 밥캣</h4>
-                           <p>소형장비, 산업차량</p>
-                           <a href="https://www.doosanbobcat.com/kr" title="More Details" class="details-link"><i
-                                 class="bi bi-link-45deg"></i></a>
-                        </div>
-                     </div>
-                  </div><!-- End Projects Item -->
-   
-                  <div class="col-lg-4 col-md-6 portfolio-item filter-design">
-                     <div class="portfolio-content h-100">
-                        <img src="assets/img/projects/design-3.jpg" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                           <h4>동원 넥스트로</h4>
-                           <p>신선물류, 냉동냉장창고 보관임대</p>
-                           <a href="https://www.dongwon.com/" title="More Details" class="details-link"><i
-                                 class="bi bi-link-45deg"></i></a>
-                        </div>
-                     </div>
-                  </div><!-- End Projects Item -->
-               </div><!-- End Projects Container -->
-            </div>
-         </div>
-      </section><!-- End Our Projects Section -->
+  	  <!-- ======= 에이콘 협력사 ======= -->
+      <div th:replace="~{fragments/partner :: partner}"></div>  
    </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->

@@ -2,24 +2,33 @@
 <html xmlns:th="https://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8">
-	<meta content="width=device-width, initial-scale=1.0" name="viewport">
-	<title>에이콘테이너 창고대여</title>
+   <meta charset="UTF-8">
+   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+   <title>에이콘테이너 창고대여</title>
 
+<<<<<<< HEAD
 	<!-- table css -->
 	<link rel="stylesheet" type="text/css" href="../css/container.css">
 	<!-- Favicons -->
 	<link href="../assets/img/favicon.png" rel="icon">
 	<link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+=======
+   <!-- table css -->
+   <link rel="stylesheet" type="text/css" href="../css/container.css">
+   <!-- Favicons -->
+   <link href="../assets/img/favicon.png" rel="icon">
+   <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+>>>>>>> refs/remotes/origin/master
 
-	<!-- Google Fonts -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link
-		href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-		rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+   <!-- Google Fonts -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
+<<<<<<< HEAD
 	<!-- Vendor CSS Files -->
 	<link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -29,30 +38,42 @@
 	<link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 	<link href="../assets/css/main.css" rel="stylesheet">
+=======
+   <!-- Vendor CSS Files -->
+   <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+   <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+   <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+   <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+   <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+   <link href="../assets/css/main.css" rel="stylesheet">
+>>>>>>> refs/remotes/origin/master
 
-	<script>
-		window.onload = function () {
-			document.querySelector("#btnList").onclick = function () {
-				//alert("a");
-				location.href = "/owner/list";
-			}
+   <script>
+      window.onload = function () {
+         document.querySelector("#btnList").onclick = function () {
+            //alert("a");
+            location.href = "/owner/list";
+         }
 
-			document.querySelector("#btnDelete").onclick = function () {
-				// alert("C");
-				if (confirm("정말 삭제 하시겠습니까?")) {
-					frm.action = "delete";
-					frm.method = "get"
-					frm.submit();
-				}
-			}
-		}
+         document.querySelector("#btnDelete").onclick = function () {
+            // alert("C");
+            if (confirm("정말 삭제 하시겠습니까?")) {
+               frm.action = "delete";
+               frm.method = "get"
+               frm.submit();
+            }
+         }
+      }
 
 
-	</script>
+   </script>
 
 </head>
 
 <body>
+<<<<<<< HEAD
 	<div th:if="${session.ownerSession != null}">
 		<div th:replace="~{fragments/header_owner :: header}"></div>
 		<main>
@@ -102,6 +123,57 @@
 		</main>
 		<div th:replace="~{fragments/footer :: footer}"></div>
 	</div>
+=======
+   <div th:if="${session.ownerSession != null}">
+      <div th:replace="~{fragments/header_owner :: header}"></div>
+      <main>
+         <div class="custom-gap-top"></div>
+         <div class="text-header">
+            <h3 class="align-detail">창고 상세 정보</h3>
+         </div>
+         <form name="frm" th:object="${conDto}">
+            <div class="table-detail">
+               <input type="hidden" th:field="*{cont_no}" /> <br />
+               <div class="table-row">
+                  <div class="table-cell-detail">창고 번호:</div>
+                  
+                  <div class="table-cell-detail">[[${conDto.cont_no}]]</div>
+               </div>
+               <div class="table-row">
+                  <div class="table-cell-detail">임대인 이름:</div>
+                  <div class="table-cell-detail">[[${conDto.owner_name}]]</div>
+               </div>
+               <div class="table-row">
+                  <div class="table-cell-detail">창고 주소:</div>
+                  <div class="table-cell-detail">[[${conDto.cont_addr}]]</div>
+               </div>
+               <div class="table-row">
+                  <div class="table-cell-detail">창고 크기:</div>
+                  <div class="table-cell-detail">[[${conDto.cont_size}]]</div>
+               </div>
+               <div class="table-row">
+                  <div class="table-cell-detail">창고 상세 설명:</div>
+                  <div class="table-cell-detail">[[${conDto.cont_explain}]]</div>
+               </div>
+               <div class="table-row">
+                  <div class="table-cell-detail">창고 이미지:</div>
+                  <div class="table-cell-detail">
+                     <img th:src="@{/upload/}+${conDto.getCont_image()}" />
+                  </div>
+               </div>
+            </div>
+            <div class="button-link">
+            <div class="button-container">
+               <input type="button" value="목록" id="btnList" />
+               <a th:href="@{/owner/goUpdate(cont_no=${conDto.cont_no})}">수정</a>
+               <input type="button" value="삭제" id="btnDelete" />
+            </div>
+            </div>
+         </form>
+      </main>
+      <div th:replace="~{fragments/footer :: footer}"></div>
+   </div>
+>>>>>>> refs/remotes/origin/master
 </body>
 
 </html>

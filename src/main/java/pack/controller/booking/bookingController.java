@@ -38,6 +38,7 @@ public class bookingController {
 	
 
 
+
 	   // 10/3 민혁 예약에 따른 상태변경 메소드 추가 예정
 	   //예약하기
 	      @PostMapping("/bookingDo")

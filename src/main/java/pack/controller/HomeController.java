@@ -12,19 +12,26 @@ import pack.model.user.UserDto;
 
 @Controller
 public class HomeController {
-	// 세션 유지 (광진)
-    @GetMapping("/") // "/"는 메인 홈페이지의 URL 경로를 나타낸다.
+    @GetMapping("/") // 사용자가 웹사이트에 처음 접속하거나 홈 페이지를 요청하는 경우에 이 핸들러 매핑이 작동
     public String home(HttpSession session) {
-    	// 사용자 세션 유지
-	    if (session.getAttribute("userSession") != null) {
-	        return "redirect:/usersessionkeep";
-	    // 공급자 세션 유지
-	    } else if (session.getAttribute("ownerSession") != null) {
-	        return "redirect:/ownersessionkeep";	        
-	     // 관리자 세션 유지
-	    } else if (session.getAttribute("adminSession") != null) {
-	        return "redirect:/adminsessionkeep";
-	    }	   
+        // 세션 유지 상황에 따라 리다이렉션 처리
+
+        // 사용자 세션이 유지되고 있는지 확인
+        if (session.getAttribute("userSession") != null) {
+            // 사용자 세션이 있으면 "/usersessionkeep"로 리다이렉션
+            return "redirect:/usersessionkeep";
+        }
+        // 공급자 세션이 유지되고 있는지 확인
+        else if (session.getAttribute("ownerSession") != null) {
+            // 공급자 세션이 있으면 "/ownersessionkeep"로 리다이렉션
+            return "redirect:/ownersessionkeep";        
+        }
+        // 관리자 세션이 유지되고 있는지 확인
+        else if (session.getAttribute("adminSession") != null) {
+            // 관리자 세션이 있으면 "/adminsessionkeep"로 리다이렉션
+            return "redirect:/adminsessionkeep";
+        }
+        // 어떠한 세션도 없는 경우, 기본 페이지로 이동
         return "index";      
     }   
 }

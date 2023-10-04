@@ -54,9 +54,7 @@
 		}
 	</script>
 </head>
-
 <body>
-
 <div th:if="${session.ownerSession != null}">
   <!-- header 파일 따로 만들어서 삽입 -->
   <!-- ======= Header ======= -->
@@ -153,6 +151,7 @@
 		<!-- End Recent Blog Posts Section -->
 	
 		<!--메인 하단 소개 및 자료 다운로드-->
+<<<<<<< HEAD
 		<div class="company_wrap" data-aos="fade-up">
 			<ul class="company_inner clearfix">
 				<li>
@@ -261,9 +260,29 @@
 				</div>
 			</div>
 		</section><!-- End Our Projects Section -->
+=======
+        <div class="company_wrap" data-aos="fade-up">
+         <ul class="company_inner clearfix">
+            <li>
+               <div class="company transition-effect">
+                  <strong style="font-weight: bold;">FAQ</strong>
+                  <p>창고 등록하기 어려우시죠?<br class="brnone" />자주 묻는 질문을 확인해 보세요</p>
+                  <a href="/faqowner?page=1" id="mainBottomLeftBanner">자세히보기</a>
+               </div>
+            </li>
+            <li>
+               <div class="download transition-effect" style="background-position: 190.132px 100%;">
+                  <strong style="font-weight: bold;">화물 운송 요청</strong>
+                  <p>화물 운송이 필요하신가요?<br class="brnone" />화물 정보만 알려주세요. 화물차를 연결해 드립니다.</p>
+                  <a href="/contactowner" id="mainBottomRightBanner">자세히보기</a>
+               </div>
+            </li>
+         </ul>
+        </div>
+		<!-- ======= 에이콘 협력사 ======= -->
+        <div th:replace="~{fragments/partner :: partner}"></div>  
+>>>>>>> refs/remotes/origin/master
 	</main><!-- End #main -->
-
-
   <!-- ======= Footer ======= -->
   <div th:replace="~{fragments/footer :: footer}"></div>
 

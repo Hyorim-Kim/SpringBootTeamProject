@@ -72,4 +72,8 @@ public class BookingDao {
 	
 	
 	
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> refs/remotes/origin/master

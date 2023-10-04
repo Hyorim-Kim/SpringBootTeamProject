@@ -46,8 +46,47 @@
 			<div class="booking-box">
 				<h2>나의 예약정보</h2>
 				<div>
+<<<<<<< HEAD
 					<input type="hidden" th:value="${session.userSession.user_id}" readonly="readonly">
+=======
+					<input type="hidden" th:value="${session.userSession.user_id}">
+				</div>
 
+				<div class="table-booking">
+					<div th:if="${bList.size > 0}" class="table-body">
+						<div th:each="b : ${bList}" class="table-row">
+							<div class="table-row">
+								<div class="table-cell">예약자</div>
+								<div class="table-cell" th:text="${b.user_name}"></div>
+							</div>
+							<div class="table-row">
+								<div class="table-cell">예약날짜(시작)</div>
+								<div class="table-cell" th:text="${b.booking_date_start}"></div>
+							</div>
+							<div class="table-row">
+								<div class="table-cell">예약날짜(종료)</div>
+								<div class="table-cell" th:text="${b.booking_date_end}"></div>
+							</div>
+							<div class="table-row">
+								<div class="table-cell">회사명</div>
+								<div class="table-cell" th:text="${b.cont_no}"></div>
+							</div>
+							<div class="table-row">
+								<div class="table-cell">사이즈</div>
+								<div class="table-cell" th:text="${b.cont_size}"></div>
+							</div>
+							<div class="table-row">
+								<div class="table-cell">이용요금</div>
+								<div class="table-cell" th:text="${b.booking_price}"></div>
+							</div>
+						</div>
+					</div>
+					<button type="button" id="cancel-btn" onclick="location.href='booking'">취소하기</button>
+					<button type="button" id="main-btn" onClick="location.href='/usersessionkeep'">메인으로 돌아가기</button>
+				</div>
+>>>>>>> refs/remotes/origin/master
+
+<<<<<<< HEAD
 				</div>
 
        
@@ -84,9 +123,19 @@
 					<button type="button" id="main-btn" onClick="location.href='/usersessionkeep'">메인으로 돌아가기</button>
 				</div>
       </div>
+=======
+			</div>
+>>>>>>> refs/remotes/origin/master
 		</main>
 		<script src="../js/bookingInfo.js"></script>
 	</main>
 
 </body>
+<<<<<<< HEAD
 </html>
+=======
+
+</html>
+
+</html>
+>>>>>>> refs/remotes/origin/master
