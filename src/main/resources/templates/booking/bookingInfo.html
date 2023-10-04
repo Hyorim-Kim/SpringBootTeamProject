@@ -59,23 +59,6 @@
 								<th scope="row">예약자</th>
 								<td>[[${session.userSession.user_name}]]</td>
 							</tr>
-							<tr th:each="b:${bList}">
-								<th scope="row">예약날짜</th>
-								<td>[[${b.booking_date_start}]]</td>
-							</tr>
-
-							<tr th:each="b:${bList}">
-								<th scope="row">지점명</th>
-								<td>[[${b.stringCity}]]</td>
-							</tr>
-							<tr th:each="bList:${bookList}">
-								<th scope="row">사이즈</th>
-								<td>[[${bList.stringsize }]]</td>
-							</tr>
-							<tr th:each="bList:${bookList}">
-								<th scope="row">이용요금</th>
-								<td>[[${bList.intmoney }]]</td>
-							</tr>
 							</th:block>
 					</table>
 
