@@ -169,8 +169,7 @@ public class ContainerController {
 
 	      try {
 	         inputStream = file.getInputStream();
-
-	         String fileSavePath = "C:/Users/seoho/git/Team/src/main/resources/static/upload/" + randomFilename;
+	         String fileSavePath = "C:/Users/cmh17/git/Team/src/main/resources/static/upload/" + randomFilename;
 	         File newFile = new File(fileSavePath);
 	         if (!newFile.exists()) {
 	            newFile.createNewFile();
@@ -217,6 +216,7 @@ public class ContainerController {
 	         return "error"; // 이거슨 포워딩
 	      }
 	   }
+	
 
 	@GetMapping("/detail")
 	public String conDetail(@RequestParam("cont_no") String cont_no, Model model) {
@@ -235,9 +235,7 @@ public class ContainerController {
 
 	@PostMapping("update")
 	public String update(FormBean bean) {
-		
-		
-		
+				
 		boolean b = containDao.update(bean);
 		if (b)
 			return "redirect:/owner/list"; // 수정 후 목록보기

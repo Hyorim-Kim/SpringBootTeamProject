@@ -36,10 +36,7 @@
 
   <main id="container">
 
-  	<!--<main id="container">-->
-
 		<div class="booking-box">
-			<!--<h2>예약하기</h2>-->
 			
 			<div>
 				<form action="../booking/bookingDo" method="post" class="cf" name="select">
@@ -57,8 +54,8 @@
 								class="end-date" onchange="checkPrice()">
 						</div>
 					</div>
-					<label for="bookingName">예약자</label> <input type="text" name="user_name" id="book-name" required="required"> 
-					<label for="stringcity">지점명</label> <input type="text" name="cont_no" id="stringCity" /> 
+					<label for="bookingName">예약자</label> <input type="text" name="user_name" id="book-name" th:value="${session.userSession.user_name}" required="required"> 
+					<label for="cont_no">창고번호</label> <input type="text" name="cont_no" id="cont_no" readonly="readonly"/> 
 						<label for="stringsize">사이즈</label> 
 					<select name="cont_size" id="stringsize"
 						onchange="checkPrice()">

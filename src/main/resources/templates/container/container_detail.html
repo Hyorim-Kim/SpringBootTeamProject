@@ -6,6 +6,8 @@
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 	<title>에이콘테이너 창고대여</title>
 
+	<!-- table css -->
+	<link rel="stylesheet" type="text/css" href="../css/container.css">
 	<!-- Favicons -->
 	<link href="../assets/img/favicon.png" rel="icon">
 	<link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -27,7 +29,6 @@
 	<link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 	<link href="../assets/css/main.css" rel="stylesheet">
-	<link rel="stylesheet" href="../css/booking.css">
 
 	<script>
 		window.onload = function () {
@@ -54,22 +55,51 @@
 <body>
 	<div th:if="${session.ownerSession != null}">
 		<div th:replace="~{fragments/header_owner :: header}"></div>
-		<h3>* 상세 보기 *</h3>
-		<form name="frm" th:object="${conDto}">
-			창고 번호 : [[${conDto.cont_no}]]<br />
-			임대인이름 :[[${conDto.owner_name}]]<br />
-			창고주소 : [[${conDto.cont_addr}]]<br />
-			창고크기 : [[${conDto.cont_size}]]<br />
-			<!-- 대여가격 : <input type="text" th:field="*{ce}"><br/> -->
-			창고상세설명 : [[${conDto.cont_explain}]]<br />
-			창고이미지 :<br />
-			<img th:src="@{/upload/}+${conDto.getCont_image()}" />
-			<br />
-			<input type="button" value="목록" id="btnList" />
-			<a th:href="@{/owner/goUpdate(cont_no=${conDto.cont_no})}">수정</a>
-			<input type="button" value="삭제" id="btnDelete" />
-
-		</form>
+		<main>
+			<div class="custom-gap-top"></div>
+			<div class="text-header">
+				<h3 class="align-detail">창고 상세 정보</h3>
+			</div>
+			<form name="frm" th:object="${conDto}">
+				<div class="table-detail">
+					<input type="hidden" th:field="*{cont_no}" /> <br />
+					<div class="table-row">
+						<div class="table-cell-detail">창고 번호:</div>
+						
+						<div class="table-cell-detail">[[${conDto.cont_no}]]</div>
+					</div>
+					<div class="table-row">
+						<div class="table-cell-detail">임대인 이름:</div>
+						<div class="table-cell-detail">[[${conDto.owner_name}]]</div>
+					</div>
+					<div class="table-row">
+						<div class="table-cell-detail">창고 주소:</div>
+						<div class="table-cell-detail">[[${conDto.cont_addr}]]</div>
+					</div>
+					<div class="table-row">
+						<div class="table-cell-detail">창고 크기:</div>
+						<div class="table-cell-detail">[[${conDto.cont_size}]]</div>
+					</div>
+					<div class="table-row">
+						<div class="table-cell-detail">창고 상세 설명:</div>
+						<div class="table-cell-detail">[[${conDto.cont_explain}]]</div>
+					</div>
+					<div class="table-row">
+						<div class="table-cell-detail">창고 이미지:</div>
+						<div class="table-cell-detail">
+							<img th:src="@{/upload/}+${conDto.getCont_image()}" />
+						</div>
+					</div>
+				</div>
+				<div class="button-link">
+				<div class="button-container">
+					<input type="button" value="목록" id="btnList" />
+					<a th:href="@{/owner/goUpdate(cont_no=${conDto.cont_no})}">수정</a>
+					<input type="button" value="삭제" id="btnDelete" />
+				</div>
+				</div>
+			</form>
+		</main>
 		<div th:replace="~{fragments/footer :: footer}"></div>
 	</div>
 </body>
