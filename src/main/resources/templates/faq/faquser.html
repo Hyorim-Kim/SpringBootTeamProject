@@ -6,27 +6,27 @@
    <meta content="width=device-width, initial-scale=1.0" name="viewport">
    <title>FAQ</title>
    
-   <!-- 파비콘 -->
+  <!-- 파비콘 -->
   <link href="/assets/img/favicon.png" rel="icon">
-
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-
   <!-- Vendor CSS Files -->
   <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
   <!-- Template Main CSS File -->
   <link href="/assets/css/main.css" rel="stylesheet">
   <link rel="stylesheet" th:href="@{/css/board.css}">
-   
+</head>
+
    <script src="https://code.jquery.com/jquery-latest.js"></script>
    <script>
+     // FAQ 항목인 .faq 클래스를 가진 요소들에 대한 클릭 이벤트 리스너를 등록하고, FAQ 항목을 클릭할 때 해당 FAQ 내용을 토글(열기/닫기)하는 로직이 수행. 
+     // 클릭 이벤트가 발생하면 해당 FAQ 항목의 데이터 속성을 확인하고, FAQ 내용을 서버에서 가져와서 화면에 표시, FAQ 항목을 클릭할 때 해당 FAQ의 내용을 열거나 닫을 수 있도록 구현
       $(document).ready(function () {
           $(".faq").click(function () {
-              let answer = $(this).data("answer"); // 클릭된 FAQ 항목의 데이터 속성 중 "answer" 값을 가져와서 answer 변수에 저장, 이 데이터 속성은 FAQ 항목의 내용을 나타낸다
-              let showId = $(this).data("show-id"); // 클릭된 FAQ 항목의 데이터 속성 중 "show-id" 값을 가져와서 showId 변수에 저장, 이 데이터 속성은 FAQ 내용이 표시될 영역의 HTML 요소의 ID를 나타낸다
+              let answer = $(this).data("answer"); // 클릭된 FAQ 항목의 데이터 속성 중 "answer" 값을 가져와서 answer 변수에 저장, 이 데이터 속성은 FAQ 항목의 내용을 나타낸다.
+              let showId = $(this).data("show-id"); // 클릭된 FAQ 항목의 데이터 속성 중 "show-id" 값을 가져와서 showId 변수에 저장, 이 데이터 속성은 FAQ 내용이 표시될 영역의 HTML 요소의 ID를 나타낸다.
               let showArea = $("#" + showId); // 위에서 가져온 showId 값을 사용하여 FAQ 내용이 표시될 영역을 선택
       
               // 현재 FAQ의 상태 확인
@@ -34,27 +34,27 @@
       
               // 모든 FAQ를 숨김
               $(".faq").each(function() { // 클래스가 "faq"인 모든 FAQ 항목에 대해 반복적으로 처리하기 위한 반복문
-                  let otherShowId = $(this).data("show-id"); // 현재 FAQ 항목의 데이터 속성 중 "show-id" 값을 가져와서 otherShowId 변수에 저장, 이 변수는 다른 FAQ 항목의 표시 영역 ID를 나타낸다
-                  $("#" + otherShowId).hide(); //  otherShowId를 사용하여 다른 FAQ 항목의 표시 영역을 숨긴다. 이렇게 하면 하나의 FAQ를 열 때 다른 FAQ가 닫히게 된다
+                  let otherShowId = $(this).data("show-id"); // 현재 FAQ 항목의 데이터 속성 중 "show-id" 값을 가져와서 otherShowId 변수에 저장, 이 변수는 다른 FAQ 항목의 표시 영역 ID를 나타낸다.
+                  $("#" + otherShowId).hide(); //  otherShowId를 사용하여 다른 FAQ 항목의 표시 영역을 숨긴다. 이렇게 하면 하나의 FAQ를 열 때 다른 FAQ가 닫히게 된다.
               });
       
-              showArea.empty(); // 현재 FAQ의 표시 영역을 비웁니다. 이것은 FAQ 내용을 다시 가져오기 전에 이전 내용을 지우는 역할
+              showArea.empty(); // 현재 FAQ의 표시 영역을 비움, 이것은 FAQ 내용을 다시 가져오기 전에 이전 내용을 지우는 역할
       
               if (!isOpen) { // FAQ가 열려 있지 않은 경우에만 다시 열기 위한 조건문
                   // FAQ가 열려 있지 않은 경우에만 다시 열기
-                  $.ajax({ // FAQ 내용을 서버에서 가져오기 위해 Ajax 요청을 보냅니다. 요청은 "detailfaq" URL로 보내지며, "detail" 파라미터에는 클릭된 FAQ 항목의 내용인 answer를 전달
-                      type: "get",
-                      url: "detailfaq",
-                      data: {"detail": answer},
-                      success: function (data) {
+                  $.ajax({ // FAQ 내용을 서버에서 가져오기 위해 Ajax 요청을 보내고 요청은 "detailfaq" URL로 보내지며, "detail" 파라미터에는 클릭된 FAQ 항목의 내용인 answer를 전달
+                      type: "get", // HTTP 요청 메서드로, 여기서는 GET 요청
+                      url: "detailfaq", // Ajax 요청을 보낼 서버의 URL을 지정, "detailfaq" URL로 요청
+                      data: {"detail": answer}, // 요청에 함께 보낼 데이터를 객체 형태로 지정, 여기서는 "detail" 파라미터에 answer 변수의 값을 전달
+                      success: function (data) { // Ajax 요청이 성공했을 때 호출되는 콜백 함수, 서버에서 받은 데이터는 data 객체로 전달
                           let str = data.detail + "<br>";
-                          showArea.append(str);
+                          showArea.append(str); // 이 코드에서는 서버에서 받은 data.detail을 가져와서 showArea 요소에 내용을 추가
                       },
                       error: function () {
                           showArea.html("<b>에러 발생</b>");
                       }
                   });
-                  showArea.show(); //  FAQ 내용을 표시하는 부분, 이렇게 하면 FAQ 내용이 보이게 된다
+                  showArea.show(); //  FAQ 내용을 표시하는 부분, 이렇게 하면 FAQ 내용이 보이게 된다.
               }
           });
       });
@@ -63,40 +63,35 @@
 
 <body>
    
-   <div th:if="${session.userSession != null}">
-  <!-- header 파일 따로 만들어서 삽입 -->
+<div th:if="${session.userSession != null}">
+  <!-- ======= Header ======= -->
   <div th:replace="~{fragments/header_user :: header}"></div>
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs d-flex align-items-center" style="background-image: url('/assets/img/breadcrumbs-bg.jpg');">
       <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
-
-        <h2 style="font-family: 'Noto Sans KR';">FAQ</h2>
+        <h2 style="font-family: 'Noto Sans KR';">공지사항</h2>
         <ol>
           <li><a href="/usersessionkeep">Home</a></li>
           <li>게시판</li>
         </ol>
-
       </div>
-    </div><!-- End Breadcrumbs -->
-    
-    <section class="sample-page">
-      
-      
-      <div class="board-container">
+    </div><!-- End Breadcrumbs -->  
+   <section>   
+      <div class="board-container" style="margin-left: 180px;">
          <!-- 고객문의 배너 -->
-         <div class="customer-inquiry-banner">
-            <p>목록</p>
+         <div class="customer-banner">
+            <h2>고객센터</h2>
             <ul>
-               <li>공지사항</li>
-               <li>1:1문의</li>
-               <li>FAQ</li>
+               <li><a href="/board/listUser?page=1">공지사항</a></li>
+               <li><a href="/faquser?page=1">자주하는 질문</a></li>
+               <li>도움이 필요하신가요?<br/><stong><a href="/contactuser">1:1 문의하기</a></stong></li>
             </ul>
          </div>
    
    <h3 style="padding-top: 1cm; padding-bottom: 1cm; text-align: center;">자주 묻는 질문</h3>
-   <table border="1" style="width: 99%;">
+   <table border="1" style="text-align: center;" >
       <tr>
          <td colspan="3">
             <form action="/searchfaquser?searchpage=1" method="get" style="text-align: right;">
@@ -113,11 +108,11 @@
       <tr>
          <th style="width: 10%;">번호</th>
          <th style="width: 15%;">카테고리</th>
-         <th style="width: 75%;">제목</th>
+         <th style="width: 75%; text-align: left;">제목</th>
       </tr>
    </table>
    <th:block th:if="${faq != null and faq.size() > 0}">
-      <table border="1" style="width: 99%; text-align: center;" th:each="data : ${faq}" class="faq"
+      <table border="1" style="text-align: center;" th:each="data : ${faq}" class="faq"
          th:data-answer="${data.faq_answer}" th:data-show-id="'show' + ${data.faq_no}">
          <!-- th:data-answer="${data.faq_answer}" : Thymeleaf의 th:data-* 속성을 사용하여 각 행에 FAQ 답변(faq_answer) 데이터를 data-answer 속성으로 설정, 
              이렇게 함으로써 JavaScript 코드에서 FAQ 항목을 클릭할 때 해당 답변을 가져올 수 있다 
@@ -127,7 +122,7 @@
          <tr>
             <td th:text="${data.faq_no}" style="width: 10%;"></td>
             <td th:text="${data.faq_category}" style="width: 15%;"></td>
-            <td th:text="${data.faq_question}" style="width: 75%; text-align: left; padding-left: 5%"></td>
+            <td th:text="${data.faq_question}" style="width: 75%; text-align: left;"></td>
          </tr>
          <tr>
             <td colspan="3" style="text-align: left; padding-left: 10%; padding-right: 20%;">

@@ -70,7 +70,6 @@ public class OwnerController {
         	session.setAttribute("ownerSession", owner);
         	session.setAttribute("business_num", owner.getBusiness_num());
         	session.setAttribute("owner_name", owner.getOwner_name());
-        	System.out.println("공급자 사업자번호 : " + owner.getBusiness_num() + " " + "공급자 비번 : " + owner.getOwner_pwd());
             return "owner/ownermain"; // 로그인 성공 시 ownermain.html로 이동
         } else {
             // 로그인 실패
@@ -82,7 +81,6 @@ public class OwnerController {
     @GetMapping("/ownerupdate")
     public String ownerUpdatePage (Model model, HttpSession session) {
     	OwnerDto owner = (OwnerDto) session.getAttribute("ownerSession");
-    	System.out.println("공급자 사업자번호 : " + owner.getBusiness_num() + " " + "공급자 비번 : " + owner.getOwner_pwd());
     	model.addAttribute("ownerSession", owner);
     	
     	return "owner/ownerupdate";
@@ -95,7 +93,6 @@ public class OwnerController {
 		if(b) {
 			OwnerDto owner = (OwnerDto) session.getAttribute("ownerSession");
 			model.addAttribute("ownerSession", owner);
-			System.out.println("공급자 사업자번호 : " + owner.getBusiness_num() + " " + "공급자 비번 : " + owner.getOwner_pwd());
 			return "owner/ownerlogin";  
 		} else {
 			return "owner/ownerupdate";  
@@ -110,21 +107,26 @@ public class OwnerController {
 		// 세션에서 회원 정보를 가져와서 모델에 추가
 		OwnerDto owner = (OwnerDto) session.getAttribute("ownerSession");
 		model.addAttribute("ownerSession", owner);
-		System.out.println("공급자 사업자번호 : " + owner.getBusiness_num() + " " + "공급자 비번 : " + owner.getOwner_pwd());
 		return "owner/ownerdelete"; // 회원 수정 페이지로 이동  
     }
     
     // 공급자 회원탈퇴 페이지 에서 회원탈퇴 버튼을 클릭할 때
-    @PostMapping("ownerInfoDelete")
-    public String ownerInfoDelete(OwnerDto ownerDto, Model model, HttpSession session) {
-    	boolean b = ownerDao.ownerdelete(ownerDto);
-		if(b) {
-			// 탈퇴니까 세션 유지 코드가 있을 필요가 없어서 코드 삭제
-			return "owner/ownerlogin";  
-		} else {
-			return "owner/ownerdelete";  
-		}
+    @PostMapping("/ownerInfoDelete")
+    public String ownerInfoDelete(OwnerDto ownerDto, Model model) {
+    	// 공급자는 창고가 등록된 상태에서 회원탈퇴가 안되기 때문에 try ~ catch문으로 예외처리
+        try {
+            boolean b = ownerDao.ownerdelete(ownerDto);
+            if (b) {
+                // 탈퇴니까 세션 유지 코드가 있을 필요가 없어서 코드 삭제
+                return "owner/ownerlogin";
+            } else {
+                return "/";
+            }
+        } catch (Exception e) {
+            return "owner/ownererror"; 
+        }
     }
+
     
 	/*** 9/19일 추가 작업 공급자 마이페이지에서 로그아웃 하기 (광진) ***/
 	@GetMapping("/ownerlogoutgo")
@@ -139,8 +141,6 @@ public class OwnerController {
 	    OwnerDto ownerSession = (OwnerDto) session.getAttribute("ownerSession");
 	    if (ownerSession != null) {
 	        // 세션에 ownerSession값이 존재할 경우 ownermain.html 페이지로 이동
-	        System.out.println("공급자 사업자번호 : " + ownerSession.getBusiness_num() + " " + "공급자 비번 : " + ownerSession.getOwner_pwd());
-	        // 이동 경로를 상대 경로로 지정
 	        return "owner/ownermain"; 
 	    } else {
 	    	// 세션값이 없을 경우
