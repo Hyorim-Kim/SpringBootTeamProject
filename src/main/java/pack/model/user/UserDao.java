@@ -16,12 +16,12 @@ public class UserDao {
 	private DataMapperInter dataMapperInter;
 	
 	// isEmpty() 정의 문자열이 비였는지 여부 체크.
-	// value 매개변수로 전달된 문자열이 null이거나 공백 문자열("")로 이루어져 있으면 true를 반환하고, 그렇지 않으면 false를 반환
+	// isEmpty 메서드는 문자열 값이 공백이거나 양옆의 공백을 제거했을때에도 공백일때 true를 반환합니다.
     private boolean isEmpty(String value) {
         return value == null || value.trim().isEmpty();
     }
 	
-    // 사용자 회원가입시 필드란에 데이터값이 없어도 DB에 들어가는걸 방지 (광진)
+    // 사용자의 회원가입 데이터 유효성을 검사하고, 필드 값이 비어 있거나 정규식 패턴에 맞지 않는 경우 회원가입을 방지하는 데 사용되는 메서드
     private boolean joinUserData(UserDto userDto) {
         boolean b = false; 
         // 각 필드의 유효성 검사를 수행
@@ -48,20 +48,24 @@ public class UserDao {
         // 최종 반환값
         return b;
     }
-
-	// 사용자 회원가입에 사용되는 메서드 (광진)
+    
+    // UserDto 객체인 userDto를 파라미터로 받아 사용자가 입력한 회원가입 데이터를 처리하고 성공 여부를 boolean 값으로 반환.
     public boolean userInsertData(UserDto userDto) {
 		boolean b = false;
-		try { 
-			if (joinUserData(userDto)) {
+		try {
+			// joinUserData(userDto) 메서드를 호출하여 사용자가 입력한 데이터의 유효성을 검사
+			if (joinUserData(userDto)) { // // 데이터가 유효할 때 (true 값일 때)
+				// 데이터베이스에 사용자의 회원가입 데이터를 삽입하기 위해 메서드 호출  
 				int re = dataMapperInter.userInsertData(userDto);
+				// re 변수의 값이 양수(보통 1)인 경우, 데이터베이스 삽입이 성공한 것으로 간주
+				// 따라서 b 변수를 true로 설정하여 회원가입 작업의 성공 여부를 나타낸다.
 				if (re > 0) {
 					b = true;
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace(); 
-			// 예외 발생 시에도 b는 false로 유지
+			// b 변수를 false로 설정하여 회원가입 작업의 실패
 		}
 		return b;
     }

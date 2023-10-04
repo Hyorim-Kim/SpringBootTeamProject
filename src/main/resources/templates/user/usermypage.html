@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
-   <meta charset="utf-8">
+  <meta charset="utf-8">
    <meta content="width=device-width, initial-scale=1.0" name="viewport">
    <title>에이콘테이너</title>
    <!-- 파비콘 -->
@@ -11,69 +11,59 @@
    <!-- Vendor CSS 파일 -->
    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-   <link href="assets/vendor/aos/aos.css" rel="stylesheet"><!--페이지 스크롤 시 애니메이션 적용됨-->
+   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
    <link href="assets/css/main.css" rel="stylesheet">
 </head>
-
 <body>
-<!-- 사용자 세션 값일 때-->
 <div th:if="${session.userSession != null}">
-    <div th:replace="~{fragments/header_user :: header}"></div>
-</div>
-<!-- 공급자 세션 값일 때-->
-<div th:if="${session.ownerSession != null}">
-    <div th:replace="~{fragments/header_owner :: header}"></div>
-</div>
-<!-- 사용자 세션값, 공급자 세션값이 없을 때-->
-<div th:if="${session.userSession == null && session.ownerSession == null}">
-    <div th:replace="~{fragments/header :: header}"></div>
-</div>
-   <!-- ======= Hero Section : 웹 페이지 상단에 배너 이미지와 제목, 설명 등을 표시 ======= -->
-   <section id="hero" class="hero">
-      
-      <div class="info d-flex align-items-center">
-         <div class="container">
-            <div class="row justify-content-center">
-               <div class="col-lg-6 text-center">
-                  <h2 data-aos="fade-down"><span>ACONTAINER</span>
-                     <a href="/adminLoginGo" style="color: #ffc732; cursor: default;">.</a>
-                  </h2>
-                  <p data-aos="fade">고객맞춤형
-                     <span style="color: #ffffff; font-size: 27px;"><strong>물류창고 대여</strong></span> 플랫폼
-                  </p>
-                  <a data-aos="fade" data-aos-delay="200" href="/conajax" class="btn-get-started">바로 시작하기</a>
-               <!-- 검색바 추가 -->
-                    <div class='hero search-container'>
-                        <form action="/conajax" method="get" class="search-form" data-aos="fade" data-aos-delay="200">
-                            <input type="text" id="searchInput" name="q" placeholder="창고검색에서 관심 지역을 입력하세요" class="search-input">
-                            <button type='submit' class='search-button'><i class='bx bx-search'></i></button>
-                        </form>
-                    </div>
-                  </div>
-               </div>
-            </div>
+  <!-- header 파일 따로 만들어서 삽입 -->
+  <div th:replace="~{fragments/header_user :: header}"></div>
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="hero">
+    <div class="info d-flex align-items-center">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6 text-center">
+            <h2 data-aos="fade-down"><span>ACONTAINER</span>
+            <span style="color: #ffc732;">.</span></h2>
+            <p data-aos="fade">
+         <!--Thymeleaf를 사용하여 세션에서 사용자 이름을 가져와서 화면에 출력-->
+            <span style="color: #ffffff;"><strong th:text="${session.userSession.user_name}">사용자 이름</strong></span> 고객님 환영합니다</p>
+            <a data-aos="fade" data-aos-delay="200" href="/conajax" class="btn-get-started">바로 시작하기</a>
+         <!-- 검색바 추가 -->
+         <div class='hero search-container'>
+            <form action="/conajax" method="get" class="search-form" data-aos="fade" data-aos-delay="200">
+               <input type="text" id="searchInput" name="q" placeholder="창고검색에서 관심 지역을 입력하세요." class="search-input">
+               <button type='submit' class='search-button'><i class='bx bx-search'></i></button>
+            </form>
+         </div>
+          </div>
         </div>
-
-      <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
-         <div class="carousel-item active" style="background-image: url(assets/img/hero-carousel/hero-carousel-1.jpg)"></div>
-         <div class="carousel-item" style="background-image: url(assets/img/hero-carousel/hero-carousel-2.jpg)"></div>
-         <div class="carousel-item" style="background-image: url(assets/img/hero-carousel/hero-carousel-3.jpg)"></div>
-         <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
-         </a>
-         <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
-            <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
-         </a>
       </div>
-   </section><!-- End Hero Section -->
+    </div>
 
-   <main id="main">
+    <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+      <div class="carousel-item active" style="background-image: url(assets/img/hero-carousel/hero-carousel-1.jpg)"></div>
+      <div class="carousel-item" style="background-image: url(assets/img/hero-carousel/hero-carousel-2.jpg)"></div>
+      <div class="carousel-item" style="background-image: url(assets/img/hero-carousel/hero-carousel-3.jpg)"></div>
+      <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+      </a>
+      <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+      </a>
+    </div>
+
+  </section><!-- End Hero Section -->
+
+  <main id="main">
       
-      <!-- ======= 추천창고와 이미지들 ======= -->
+      <!-- ======= Recent Blog Posts Section : 추천창고와 이미지들 ======= -->
       <section id="recent-blog-posts" class="recent-blog-posts">
          <div class="container" data-aos="fade-up">
             <div class=" section-header">
-               <h2>추천 창고</h2><br/>
+               <h2>추천 창고</h2>
             </div>
             <div class="row gy-5">
                <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
@@ -83,7 +73,7 @@
                      </div>
                      <div class="post-content d-flex flex-column">
                         <h3 class="post-title">경기도 안성시</h3><hr>
-                        <a href="/conajax" class="readmore stretched-link"><span>로그인 후 지도로 보기</span><i
+                        <a href="conajax.html" class="readmore stretched-link"><span>지도로 보기</span><i
                               class="bi bi-arrow-right"></i></a>
                      </div>
                   </div>
@@ -92,11 +82,11 @@
                <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                   <div class="post-item position-relative h-100">
                      <div class="post-img position-relative overflow-hidden">
-                        <img src="assets/img/boxbox2.jpg" class="img-fluid" alt="">
+                        <img src="assets/img/boxbox.jpg" class="img-fluid" alt="">
                      </div>
                      <div class="post-content d-flex flex-column">
                         <h3 class="post-title">경기도 용인시</h3><hr>
-                        <a href="/conajax" class="readmore stretched-link"><span>로그인 후 지도로 보기</span><i
+                        <a href="conajax.html" class="readmore stretched-link"><span>지도로 보기</span><i
                               class="bi bi-arrow-right"></i></a>
                      </div>
                   </div>
@@ -105,18 +95,16 @@
                <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                   <div class="post-item position-relative h-100">
                      <div class="post-img position-relative overflow-hidden">
-                        <img src="assets/img/boxbox3.jpg" class="img-fluid" alt="">
+                        <img src="assets/img/boxbox.jpg" class="img-fluid" alt="">
                      </div>
                      <div class="post-content d-flex flex-column">
                         <h3 class="post-title">경기도 하남시</h3><hr>
-                        <a href="/conajax" class="readmore stretched-link"><span>로그인 후 지도로 보기</span><i
+                        <a href="/conajax" class="readmore stretched-link"><span>지도로 보기</span><i
                               class="bi bi-arrow-right"></i></a>
                      </div>
                   </div>
                </div>
                <!-- === 추천창고 코드는 여기서 끝납니다 == -->
-            </div>
-         </div>
       </section>
       <!-- End Recent Blog Posts Section -->
    
@@ -134,36 +122,34 @@
                <div class="download transition-effect" style="background-position: 190.132px 100%;">
                   <strong style="font-weight: bold;">화물 운송 요청</strong>
                   <p>화물 운송이 필요하신가요?<br class="brnone" />화물 정보만 알려주세요. 화물차를 연결해 드립니다.</p>
-                  <p style="font-size: 17px;">로그인 후 이용 가능</p>
+                  <a href="/contactuser" id="mainBottomLeftBanner">자세히보기</a>
                </div>
             </li>
          </ul>
       </div>
-      
-      <!-- ======= 에이콘 협력사 ======= -->
-          <div th:replace="~{fragments/partner :: partner}"></div>
-      
+  	  <!-- ======= 에이콘 협력사 ======= -->
+      <div th:replace="~{fragments/partner :: partner}"></div>  
    </main><!-- End #main -->
 
-   <!-- ======= Footer ======= -->
-   <div th:replace="~{fragments/footer :: footer}"></div>
+  <!-- ======= Footer ======= -->
+  <div th:replace="~{fragments/footer :: footer}"></div>
 
-    <!-- ======= 스크롤 버튼 ======= -->
-   <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i></i></a>
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
-   <div id="preloader"></div>
+  <div id="preloader"></div>
 
-   <!-- Vendor JS Files -->
-   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-   <script src="assets/vendor/aos/aos.js"></script>
-   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-   <script src="assets/vendor/php-email-form/validate.js"></script>
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
 
-   <!-- Template Main JS File -->
-   <script src="assets/js/main.js"></script>
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+</div>
 </body>
-
 </html>
