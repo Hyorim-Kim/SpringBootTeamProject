@@ -111,16 +111,22 @@ public class OwnerController {
     }
     
     // 공급자 회원탈퇴 페이지 에서 회원탈퇴 버튼을 클릭할 때
-    @PostMapping("ownerInfoDelete")
-    public String ownerInfoDelete(OwnerDto ownerDto, Model model, HttpSession session) {
-    	boolean b = ownerDao.ownerdelete(ownerDto);
-		if(b) {
-			// 탈퇴니까 세션 유지 코드가 있을 필요가 없어서 코드 삭제
-			return "owner/ownerlogin";  
-		} else {
-			return "owner/ownerdelete";  
-		}
+    @PostMapping("/ownerInfoDelete")
+    public String ownerInfoDelete(OwnerDto ownerDto, Model model) {
+    	// 공급자는 창고가 등록된 상태에서 회원탈퇴가 안되기 때문에 try ~ catch문으로 예외처리
+        try {
+            boolean b = ownerDao.ownerdelete(ownerDto);
+            if (b) {
+                // 탈퇴니까 세션 유지 코드가 있을 필요가 없어서 코드 삭제
+                return "owner/ownerlogin";
+            } else {
+                return "/";
+            }
+        } catch (Exception e) {
+            return "owner/ownererror"; 
+        }
     }
+
     
 	/*** 9/19일 추가 작업 공급자 마이페이지에서 로그아웃 하기 (광진) ***/
 	@GetMapping("/ownerlogoutgo")
