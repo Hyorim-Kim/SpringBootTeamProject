@@ -27,7 +27,7 @@ public class ContainDao {
 
    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-   @Value("${C:/Users/cmh17/git/Team/src/main/resources/static/upload}")
+   @Value("${C:/Users/dfty1/git/Team/src/main/resources/static/upload}")
    private String uploadDirectory;
 
    @Autowired

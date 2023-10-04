@@ -34,6 +34,7 @@ public class ContainController {
 		data.put("we", c.getCont_we());
 		data.put("kyung", c.getCont_kyung());
 		data.put("con_area", c.getCont_size());
+		data.put("image", c.getCont_image());
 		list.add(data); //작업을 반복한다
 	}
 	System.out.println(list);
