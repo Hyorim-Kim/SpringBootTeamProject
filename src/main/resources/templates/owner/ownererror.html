@@ -36,11 +36,9 @@
         }
     </style>
 </head>
-
 <body>
-    <div th:if="${session.adminSession != null}">
         <!-- ======= Header ======= -->
-        <div th:replace="~{fragments/header_admin :: header}"></div>
+        <div th:replace="~{fragments/header_owner :: header}"></div>
         <main id="main">
             <!-- ======= Breadcrumbs ======= -->
             <div class="breadcrumbs d-flex align-items-center"
@@ -48,19 +46,17 @@
                 <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
                     <h2 style="font-family: 'Noto Sans KR'; font-weight: 700;">Service</h2>
                     <ol>
-                        <li><a href="/adminsessionkeep">Home</a></li>
+                        <li><a href="/ownersessionkeep">Home</a></li>
                         <li>서비스소개</li>
                         <li>이용안내</li>
                     </ol>
                 </div>
             </div><!-- End Breadcrumbs -->
-            <div style="background-color: white; color: black; text-align: center; padding: 10px; margin-top: 120px;">
-    			<h4>제공자가 등록한 창고를 먼저 삭제해야 제공자 정보를 삭제할 수 있습니다.</h4>
-			</div>
-          	<!-- ======= Footer ======= -->
+            <div style="background-color: white; color: red; text-align: center; padding: 10px; margin-top: 120px;">
+             <h3>창고를 등록한 공급자는 회원탈퇴를 할 수 없습니다. 관리자한테 문의하세요.</h3>
+         </div>
+            <!-- ======= Footer ======= -->
             <div th:replace="~{fragments/footer :: footer}"></div>
         </main>
-    </div>
 </body>
-
 </html>

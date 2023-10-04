@@ -51,7 +51,6 @@
 				<th>이름</th>
 				<th>전화번호</th>
 				<th>이메일</th>
-				<th>창고번호</th>
 				<th>삭제</th>
 			</tr>
 			<th:block th:if="${lists2.size > 0}">
@@ -61,7 +60,6 @@
 					<td th:text="${data2.owner_name}"></td>
 					<td th:text="${data2.owner_tel}"></td>
 					<td th:text="${data2.email}"></td>
-					<td th:text="${data2.cont_num}"></td>
 					<td>
 						
 						<form action="/ownerdelete" method="post">
@@ -103,5 +101,4 @@
 	</main>
 </div>
 </body>
-
 </html>

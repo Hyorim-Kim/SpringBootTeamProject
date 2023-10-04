@@ -210,10 +210,11 @@
                   '        </div>' +
                   '        <div class="body">' +
                   '            <div class="desc">' +
+                  '                <div style="display:none" class="ellipsis">창고번호: ' + data[i].con_no + '</div>' +  // 데이터를 표시					  
                   '                <div class="ellipsis">회사명: ' + data[i].con_name + '</div>' +  // 데이터를 표시
                   '                <div class="ellipsis">주소: ' + data[i].con_addr + '</div>' +  // 데이터를 표시
                   '                <div class="ellipsis">크기: ' + data[i].con_area + ' </div>' +  // 데이터를 표시
-                  '            <div><a href="javascript:void(0);" onclick="openPopup()">창고 예약하기</a></div>' +
+                  '            <div><a href="javascript:void(0);" onclick="openPopup(' + data[i].con_no + ')">창고 예약하기</a></div>' +
                   '            </div>' +
                   '    </div>' +
                   '</div>';
@@ -263,9 +264,15 @@ function attachOverlay(marker, content) {
     });
 }
 
-// 팝업을 열기 위한 함수
-function openPopup() {
-    window.open('booking/booking', '_blank', 'width=1000, height=800');
+function openPopup(conNo) {
+    // conNo 값을 URL-인코딩합니다.
+    var encodedConNo = encodeURIComponent(conNo);
+
+    // 새 창을 열 때 데이터를 쿼리 매개변수로 전달합니다.
+    var url = 'booking/booking?con_no=' + encodedConNo;
+
+    // 새 창을 엽니다.
+    window.open(url, '_blank', 'width=1000, height=800');
 }
  
    var trafficShown = false; // 초기에는 교통 정보가 표시되지 않음
@@ -286,7 +293,7 @@ function openPopup() {
 
 
 </script>
- 	
+    
 </body>
 
 </html>

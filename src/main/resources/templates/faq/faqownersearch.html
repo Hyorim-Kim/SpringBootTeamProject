@@ -2,25 +2,23 @@
 <html xmlns:th="https://www.thymeleaf.org">
 
 <head>
+
    <meta charset="UTF-8">
    <meta content="width=device-width, initial-scale=1.0" name="viewport">
    <title>FAQ</title>
    
-   <!-- 파비콘 -->
+  <!-- 파비콘 -->
   <link href="/assets/img/favicon.png" rel="icon">
-
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-
   <!-- Vendor CSS Files -->
   <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
   <!-- Template Main CSS File -->
   <link href="/assets/css/main.css" rel="stylesheet">
   <link rel="stylesheet" th:href="@{/css/board.css}">
-   
+
    <script src="https://code.jquery.com/jquery-latest.js"></script>
       <script>
       $(document).ready(function () {
@@ -62,40 +60,35 @@
 </head>
 
 <body>
-     <div th:if="${session.ownerSession != null}">
-  <!-- header 파일 따로 만들어서 삽입 -->
+<div th:if="${session.ownerSession != null}">
+  <!-- ======= Header ======= -->
   <div th:replace="~{fragments/header_owner :: header}"></div>
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs d-flex align-items-center" style="background-image: url('/assets/img/breadcrumbs-bg.jpg');">
       <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
-
-        <h2 style="font-family: 'Noto Sans KR';">FAQ</h2>
+        <h2 style="font-family: 'Noto Sans KR';">공지사항</h2>
         <ol>
           <li><a href="/ownersessionkeep">Home</a></li>
           <li>게시판</li>
         </ol>
-
       </div>
-    </div><!-- End Breadcrumbs -->
-    
-   <section class="sample-page">
-      
-      
-      <div class="board-container">
+    </div><!-- End Breadcrumbs -->  
+   <section>   
+      <div class="board-container" style="margin-left: 180px;">
          <!-- 고객문의 배너 -->
-         <div class="customer-inquiry-banner">
-            <p>목록</p>
+         <div class="customer-banner">
+            <h2>고객센터</h2>
             <ul>
-               <li>공지사항</li>
-               <li>1:1문의</li>
-               <li>FAQ</li>
+               <li><a href="/board/listOwner?page=1">공지사항</a></li>
+               <li><a href="/faqowner?page=1">자주하는 질문</a></li>
+               <li>도움이 필요하신가요?<br/><stong><a href="/contactowner">1:1 문의하기</a></stong></li>
             </ul>
          </div>
     
    <h3 style="padding-top: 1cm; padding-bottom: 1cm; text-align: center;">자주 묻는 질문</h3>
-   <table border="1" style="width: 99%;">
+   <table border="1" style="text-align: center;" >
       <tr>
          <td colspan="3">
             <form action="/searchfaqowner?searchpage=1" method="get" style="text-align: right;">
@@ -106,17 +99,18 @@
             </select>
                <input type="text" name="searchValue">
                <input type="submit" value="검 색">
+               <input type="text" name="searchpage" value="1" style="display: none;"> <!-- 이 부분이 숨겨진 필드입니다 -->
             </form>
          </td>
       </tr>
       <tr>
          <th style="width: 10%;">번호</th>
          <th style="width: 15%;">카테고리</th>
-         <th style="width: 75%;">제목</th>
+         <th style="width: 75%; text-align: left;">제목</th>
       </tr>
    </table>
    <th:block th:if="${faq != null and faq.size() > 0}">
-      <table border="1" style="width: 99%; text-align: center;" th:each="data : ${faq}" class="faq"
+      <table border="1" style="text-align: center;" th:each="data : ${faq}" class="faq"
          th:data-answer="${data.faq_answer}" th:data-show-id="'show' + ${data.faq_no}">
          <!-- th:data-answer="${data.faq_answer}" : Thymeleaf의 th:data-* 속성을 사용하여 각 행에 FAQ 답변(faq_answer) 데이터를 data-answer 속성으로 설정, 
              이렇게 함으로써 JavaScript 코드에서 FAQ 항목을 클릭할 때 해당 답변을 가져올 수 있다 
@@ -126,7 +120,7 @@
          <tr>
             <td th:text="${data.faq_no}" style="width: 10%;"></td>
             <td th:text="${data.faq_category}" style="width: 15%;"></td>
-            <td th:text="${data.faq_question}" style="width: 75%; text-align: left; padding-left: 5%"></td>
+            <td th:text="${data.faq_question}" style="width: 75%; text-align: left;"></td>
          </tr>
          <tr>
             <td colspan="3" style="text-align: left; padding-left: 10%; padding-right: 20%;">
@@ -146,6 +140,9 @@
                     </th:span>
                     <th:span th:if="${num != page}">
                        <a th:href="@{/searchfaqowner(searchpage=${num}, searchName=${searchName}, searchValue=${searchValue})}" th:text="${num}">num 표시</a>
+                      <!-- 코드 내에서 ${num} 변수는 현재 페이지 번호를 나타낸다. ${searchName}과 ${searchValue}는 다른 변수로, 현재 페이지와 관련된 검색 조건을 나타낸다. 
+                       URL은 /searchfaqowner로 시작하며, 이 URL에 페이지 번호(searchpage), 검색 이름(searchName), 검색 값(searchValue)을 쿼리 매개변수로 전달, 
+                       따라서 사용자가 페이지 번호를 클릭하면 해당 페이지와 검색 조건을 고려한 결과 페이지로 이동할 수 있다. -->
                     </th:span>
                 </th:block>
             </td>

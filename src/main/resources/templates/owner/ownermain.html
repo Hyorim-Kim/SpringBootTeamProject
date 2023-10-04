@@ -14,9 +14,7 @@
 	<link href="assets/vendor/aos/aos.css" rel="stylesheet">
 	<link href="assets/css/main.css" rel="stylesheet">
 </head>
-
 <body>
-
 <div th:if="${session.ownerSession != null}">
   <!-- header 파일 따로 만들어서 삽입 -->
   <!-- ======= Header ======= -->
@@ -133,98 +131,9 @@
             </li>
          </ul>
         </div>
-	
-		<!-- ======= Our Projects Section : 에이콘 협력사 ======= -->
-		<section id="projects" class="projects">
-			<div class="container" data-aos="fade-up">
-	
-				<div class="section-header">
-					<h2>에이콘테이너 파트너사</h2>
-				</div>
-				<div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry"
-					data-portfolio-sort="original-order">
-					<div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
-	
-						<div class="col-lg-4 col-md-6 portfolio-item filter-remodeling">
-							<div class="portfolio-content h-100">
-								<img src="assets/img/projects/remodeling-1.jpg" class="img-fluid" alt="">
-								<div class="portfolio-info">
-									<h4>CJ 대한통운</h4>
-									<p>기업물류(3PL), 이커머스 물류, 택배, 포워딩</p>
-									<a href="https://www.cjlogistics.com/ko/tool/parcel/tracking" title="More Details"
-										class="details-link"><i class="bi bi-link-45deg"></i></a>
-								</div>
-							</div>
-						</div><!-- End Projects Item -->
-	
-						<div class="col-lg-4 col-md-6 portfolio-item filter-construction">
-							<div class="portfolio-content h-100">
-								<img src="assets/img/projects/construction-1.jpg" class="img-fluid" alt="">
-								<div class="portfolio-info">
-									<h4>마이창고</h4>
-									<p>3자 물류, 3PL, 4PL, 온디맨드 창고, 포장 및 택배 대행</p>
-									<a href="https://mychango.com/" title="More Details" class="details-link"><i
-											class="bi bi-link-45deg"></i></a>
-								</div>
-							</div>
-						</div><!-- End Projects Item -->
-	
-						<div class="col-lg-4 col-md-6 portfolio-item filter-repairs">
-							<div class="portfolio-content h-100">
-								<img src="assets/img/projects/repairs-1.jpg" class="img-fluid" alt="">
-								<div class="portfolio-info">
-									<h4>유진로지스틱스</h4>
-									<p>종합물류서비스</p>
-									<a href="http://eugenelogistics.co.kr/" title="More Details" class="details-link"><i
-											class="bi bi-link-45deg"></i></a>
-								</div>
-							</div>
-						</div><!-- End Projects Item -->
-	
-						<div class="col-lg-4 col-md-6 portfolio-item filter-design">
-							<div class="portfolio-content h-100">
-								<img src="assets/img/projects/design-1.jpg" class="img-fluid" alt="">
-								<div class="portfolio-info">
-									<h4>emro</h4>
-									<p>AI 기반 기업용 공급망관리 소프트웨어 전문 기업</p>
-									<a href="http://www.emro.co.kr/" title="More Details" class="details-link"><i
-											class="bi bi-link-45deg"></i></a>
-								</div>
-							</div>
-						</div><!-- End Projects Item -->
-	
-	
-	
-						<div class="col-lg-4 col-md-6 portfolio-item filter-repairs">
-							<div class="portfolio-content h-100">
-								<img src="assets/img/projects/repairs-3.jpg" class="img-fluid" alt="">
-								<div class="portfolio-info">
-									<h4>두산 밥캣</h4>
-									<p>소형장비, 산업차량</p>
-									<a href="https://www.doosanbobcat.com/kr" title="More Details" class="details-link"><i
-											class="bi bi-link-45deg"></i></a>
-								</div>
-							</div>
-						</div><!-- End Projects Item -->
-	
-						<div class="col-lg-4 col-md-6 portfolio-item filter-design">
-							<div class="portfolio-content h-100">
-								<img src="assets/img/projects/design-3.jpg" class="img-fluid" alt="">
-								<div class="portfolio-info">
-									<h4>동원 넥스트로</h4>
-									<p>신선물류, 냉동냉장창고 보관임대</p>
-									<a href="https://www.dongwon.com/" title="More Details" class="details-link"><i
-											class="bi bi-link-45deg"></i></a>
-								</div>
-							</div>
-						</div><!-- End Projects Item -->
-					</div><!-- End Projects Container -->
-				</div>
-			</div>
-		</section><!-- End Our Projects Section -->
+		<!-- ======= 에이콘 협력사 ======= -->
+        <div th:replace="~{fragments/partner :: partner}"></div>  
 	</main><!-- End #main -->
-
-
   <!-- ======= Footer ======= -->
   <div th:replace="~{fragments/footer :: footer}"></div>
 
