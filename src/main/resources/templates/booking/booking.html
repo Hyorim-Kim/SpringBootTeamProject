@@ -27,11 +27,28 @@
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 	<link href="../assets/css/main.css" rel="stylesheet">
 	<link rel="stylesheet" href="../css/booking.css">
+	
+	
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+    // URL에서 쿼리 문자열을 가져옵니다.
+    var queryString = window.location.search;
+
+    // URL에서 cont_no 매개변수의 값을 가져옵니다.
+    var urlParams = new URLSearchParams(queryString);
+    var contNo = urlParams.get('con_no');
+
+    // 가져온 값을 input 요소에 설정합니다.
+    document.getElementById('cont_no').value = contNo;
+});
+	</script>
 </head>
 
 <body>
+
 	<!-- ======= Header ======= -->
  	<div th:replace="~{fragments/header_user :: header}"></div>
+
   <main id="container">
 
 	<!--<main id="container">-->
@@ -56,8 +73,8 @@
 								class="end-date" onchange="checkPrice()">
 						</div>
 					</div>
-					<label for="bookingName">예약자</label> <input type="text" name="user_name" id="book-name" th:value="${userSession.user_name}" required="required"> 
-					<label for="stringcity">지점명</label> <input type="text" name="cont_no" id="stringCity" /> 
+					<label for="bookingName">예약자</label> <input type="text" name="user_name" id="book-name" th:value="${session.userSession.user_name}" required="required" readonly="readonly"> 
+					<label for="cont_no">창고번호</label> <input type="text" name="cont_no" id="cont_no" readonly="readonly"/> 
 						<label for="stringsize">사이즈</label> 
 					<select name="cont_size" id="stringsize"
 						onchange="checkPrice()">
@@ -79,7 +96,6 @@
 		</div>
 	</main>
 	<script src="../js/booking.js"></script>
-</div>
 </body>
 
 </html>
