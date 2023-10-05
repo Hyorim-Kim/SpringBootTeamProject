@@ -84,10 +84,14 @@ public class UserController {
         
         if (user != null) { 
         	// 사용자 정보가 있는 경우 로그인 성공과 동시에 세션에 사용자 정보 설정
-        	session.setAttribute("userSession", user);
+            // 여기서 가독성을 위해 세션 키의 이름은 userSession으로 변경 하였고 값 이름은 그대로 user로 유지.
+            // user는 앞서 사용자가 입력한 아이디와 비밀번호를 담고 있음 그거를 세션에 담는거라 생각하시면 되용
+        	session.setAttribute("userSession", user); 
+            // user는 사용자가 입력한 아이디와 비밀번호를 담고 있음 그거를 세션에 담는거라 생각하시면 되용
         	session.setAttribute("user_id", user.getUser_id()); 
             System.out.println("사용자 ID : " + user.getUser_id() + " " + "사용자 pwd : " + user.getUser_pwd());
         	return "redirect:/usersessionkeep"; // 로그인 성공 시 usersessionkeep로 리다이렉션 
+
         }
         // 사용자 정보가 DB에 없는 경우 즉, 아이디와 비밀번호가 없는 경우
 		else { 

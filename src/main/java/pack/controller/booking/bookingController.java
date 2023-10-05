@@ -38,17 +38,18 @@ public class bookingController {
 		
 	// 10/3 민혁 예약에 따른 상태변경 메소드 추가 예정
 	//예약하기
-	@PostMapping("/bookingDo")
-    public String bookingDo(bookingDTO bookingdto, AdminBean bean) {
-       boolean b = dao.bookingInsert(bookingdto);
-       boolean a = dao.contStatusUpdate(bean);
-       if(b && a) {
-          return "redirect:/booking/bookingInfo";         
-       } else {
-          return "/booking/booking";
-       }   
-    }
-	
+		@PostMapping("/bookingDo")
+		public String bookingDo(bookingDTO bookingdto, AdminBean bean) {
+			boolean b = dao.bookingInsert(bookingdto);
+			boolean a = dao.contStatusUpdate(bean);
+			if(b && a) {
+
+				return "redirect:/booking/bookingInfo";			
+			} else {
+				return "/booking/booking";
+			}	
+		}
+
 	@GetMapping("/bookingInfo")
 	public String bookingProcess(HttpSession session, Model model) {
 		

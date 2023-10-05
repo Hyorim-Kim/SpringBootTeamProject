@@ -2,14 +2,15 @@
 <html xmlns:th="https://www.thymeleaf.org">
 
 <head>
-   <meta charset="UTF-8">
-   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-   <title>에이콘테이너 창고대여</title>
-   <!-- table css -->
-   <link rel="stylesheet" type="text/css" href="../css/container.css">
-   <!-- Favicons -->
-   <link href="../assets/img/favicon.png" rel="icon">
-   <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+<<<<<<< HEAD
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<title>에이콘테이너 창고대여</title>
+	<!-- table css -->
+	<link rel="stylesheet" type="text/css" href="../css/container.css">
+	<!-- Favicons -->
+	<link href="../assets/img/favicon.png" rel="icon">
+	<link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
    <!-- Google Fonts -->
    <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,6 +51,7 @@
                var latitude = results[0].geometry.location.lat();
                var longitude = results[0].geometry.location.lng();
 
+
                // 숨겨진 폼 필드에 위도와 경도 값을 설정합니다.
                document.getElementById('cont_we').value = latitude;
                document.getElementById('cont_kyung').value = longitude;
@@ -60,31 +62,35 @@
       }
 
 
+
+	</script>
+	
+	<script>
+		window.onload = function () {
+			document.querySelector("#btnList").onclick = function () {
+				//alert("a");
+				location.href = "/owner/list";
+			}
+			document.querySelector("#btnUpdate").onclick = function () {
+				// alert("B");
+				if (confirm("정말 수정 하시겠습니까?")) {
+					frm.action = "update";
+					frm.method = "post"
+					frm.submit();
+				}
+			}
+			document.querySelector("#btnDelete").onclick = function () {
+				// alert("C");
+				if (confirm("정말 삭제 하시겠습니까?")) {
+					frm.action = "delete";
+					frm.method = "get"
+					frm.submit();
+				}
+			}
+		}
+
    </script>
-   
-   <script>
-      window.onload = function () {
-         document.querySelector("#btnList").onclick = function () {
-            //alert("a");
-            location.href = "/owner/list";
-         }
-         document.querySelector("#btnUpdate").onclick = function () {
-            // alert("B");
-            if (confirm("정말 수정 하시겠습니까?")) {
-               frm.action = "update";
-               frm.method = "post"
-               frm.submit();
-            }
-         }
-         document.querySelector("#btnDelete").onclick = function () {
-            // alert("C");
-            if (confirm("정말 삭제 하시겠습니까?")) {
-               frm.action = "delete";
-               frm.method = "get"
-               frm.submit();
-            }
-         }
-      }
+
 
 
    </script>
@@ -92,83 +98,85 @@
 </head>
 
 <body>
-   <div th:if="${session.ownerSession != null}">
-      <div th:replace="~{fragments/header_owner :: header}"></div>
-      <main>
-         <div class="custom-gap-top"></div>
-         <div class="text-header">
-            <h3 class="align-detail">창고 정보 수정</h3>
-         </div>
-         <form name="frm" th:object="${conDto}">
-            <div class="table-detail">
-               <input type="hidden" th:field="*{cont_no}" /> <br />
-               <div class="table-row">
-                  <div class="table-cell-detail">창고 번호:</div>
-                  
-                  <div class="table-cell-detail">[[${conDto.cont_no}]]</div>
-               </div>
-               <div class="table-row">
-                  <div class="table-cell-detail">임대인 이름:</div>
-                  <div class="table-cell-detail">
-                     <input type="text" th:field="*{owner_name}" class="text-field" />
-                  </div>
-               </div>
-               <div class="table-row">
-                  <div class="table-cell-detail">창고 주소:</div>
-                  <div class="table-cell-detail">
-                     <input type="text" id="user_postcode" class="text-field-postcode" placeholder="우편번호" />
-                     <input type="button" onclick="user_execDaumPostcode()" class="button-postcode"
-                        value="우편번호 찾기" /><br />
-                     <input type="text" id="user_roadAddress" class="text-field-postcode" placeholder="도로명주소" />
-                     <input type="text" id="user_jibunAddress" class="text-field-postcode" placeholder="지번주소" />
-                     <span id="guide" style="color:#999;display:none"></span>
-                     <input type="text" id="user_detailAddress" class="text-field-postcode" placeholder="상세주소" />
-                     <input type="text" id="user_extraAddress" class="text-field-postcode"
-                        placeholder="참고항목" /><br />
-                     <input type="text" name="cont_addr" id="user_combinedAddress" class="text-field"
-                        placeholder="입력한 주소" />
-                  </div>
-               </div>
-               <div class="table-row">
-                  <div class="table-cell-detail">위/경도 :</div>
-                  <div class="table-cell-detail">
-                     <input type="text" id="cont_we" name="cont_we" class="text-field-postcode" placeholder="위도">
-                     <input type="text" id="cont_kyung" name="cont_kyung" class="text-field-postcode"
-                        placeholder="경도">
-                     <input type="button" onclick="getCoordinatesFromAddress()" class="button-postcode"
-                        value="자동입력" /><br />
-                  </div>
-               </div>
-               <div class="table-row">
-                  <div class="table-cell-detail">창고 크기:</div>
-                  <div class="table-cell-detail">
-                     <input type="text" th:field="*{cont_size}" class="text-field"/>
-                  </div>
-               </div>
-               <div class="table-row">
-                  <div class="table-cell-detail">창고 상세 설명:</div>
-                  <div class="table-cell-detail">
-                     <textarea rows="5" cols="50" name="content"></textarea>
-                  </div>
-               </div>
-               <div class="table-row">
-                  <div class="table-cell-detail">창고 이미지:</div>
-                  <div class="table-cell-detail">
-                     <img th:src="@{/upload/}+${conDto.getCont_image()}" />
-                  </div>
-               </div>
-            </div>
-            <div class="button-link">
-               <div class="button-container">
-                  <input type="button" value="취소" id="btnList" />
-                  <input type="button" value="수정" id="btnUpdate" />
-                  <input type="button" value="삭제" id="btnDelete" />
-               </div>
-            </div>
-         </form>
-      </main>
-      <div th:replace="~{fragments/footer :: footer}"></div>
-   </div>
+
+	<div th:if="${session.ownerSession != null}">
+		<div th:replace="~{fragments/header_owner :: header}"></div>
+		<main>
+			<div class="custom-gap-top"></div>
+			<div class="text-header">
+				<h3 class="align-detail">창고 정보 수정</h3>
+			</div>
+			<form name="frm" th:object="${conDto}">
+				<div class="table-detail">
+					<input type="hidden" th:field="*{cont_no}" /> <br />
+					<div class="table-row">
+						<div class="table-cell-detail">창고 번호:</div>
+						
+						<div class="table-cell-detail">[[${conDto.cont_no}]]</div>
+					</div>
+					<div class="table-row">
+						<div class="table-cell-detail">임대인 이름:</div>
+						<div class="table-cell-detail">
+							<input type="text" th:field="*{owner_name}" class="text-field" />
+						</div>
+					</div>
+					<div class="table-row">
+						<div class="table-cell-detail">창고 주소:</div>
+						<div class="table-cell-detail">
+							<input type="text" id="user_postcode" class="text-field-postcode" placeholder="우편번호" />
+							<input type="button" onclick="user_execDaumPostcode()" class="button-postcode"
+								value="우편번호 찾기" /><br />
+							<input type="text" id="user_roadAddress" class="text-field-postcode" placeholder="도로명주소" />
+							<input type="text" id="user_jibunAddress" class="text-field-postcode" placeholder="지번주소" />
+							<span id="guide" style="color:#999;display:none"></span>
+							<input type="text" id="user_detailAddress" class="text-field-postcode" placeholder="상세주소" />
+							<input type="text" id="user_extraAddress" class="text-field-postcode"
+								placeholder="참고항목" /><br />
+							<input type="text" name="cont_addr" id="user_combinedAddress" class="text-field"
+								placeholder="입력한 주소" />
+						</div>
+					</div>
+					<div class="table-row">
+						<div class="table-cell-detail">위/경도 :</div>
+						<div class="table-cell-detail">
+							<input type="text" id="cont_we" name="cont_we" class="text-field-postcode" placeholder="위도">
+							<input type="text" id="cont_kyung" name="cont_kyung" class="text-field-postcode"
+								placeholder="경도">
+							<input type="button" onclick="getCoordinatesFromAddress()" class="button-postcode"
+								value="자동입력" /><br />
+						</div>
+					</div>
+					<div class="table-row">
+						<div class="table-cell-detail">창고 크기:</div>
+						<div class="table-cell-detail">
+							<input type="text" th:field="*{cont_size}" class="text-field"/>
+						</div>
+					</div>
+					<div class="table-row">
+						<div class="table-cell-detail">창고 상세 설명:</div>
+						<div class="table-cell-detail">
+							<textarea rows="5" cols="50" name="content"></textarea>
+						</div>
+					</div>
+					<div class="table-row">
+						<div class="table-cell-detail">창고 이미지:</div>
+						<div class="table-cell-detail">
+							<img th:src="@{/upload/}+${conDto.getCont_image()}" />
+						</div>
+					</div>
+				</div>
+				<div class="button-link">
+					<div class="button-container">
+						<input type="button" value="취소" id="btnList" />
+						<input type="button" value="수정" id="btnUpdate" />
+						<input type="button" value="삭제" id="btnDelete" />
+					</div>
+				</div>
+			</form>
+		</main>
+		<div th:replace="~{fragments/footer :: footer}"></div>
+	</div>
+
 </body>
 
 </html>

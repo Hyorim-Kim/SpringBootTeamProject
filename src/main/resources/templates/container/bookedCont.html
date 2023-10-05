@@ -31,47 +31,51 @@
 	<link href="../assets/css/main.css" rel="stylesheet">
 </head>
 
+
 <body>
 	<div th:if="${session.ownerSession != null}">
 		<div th:replace="~{fragments/header_owner :: header}"></div>
-
 		<main>
 			<div class="custom-gap-top"></div>
 			<div class="text-header">
-			<h3 class="align">예약 창고 정보</h3>
+				<h3 class="align-detail">예약 정보</h3>
 			</div>
-			<div class="custom-table">
-				<div class="table-header">
-					<div class="table-header-cell">창고번호</div>
-					<div class="table-header-cell">창고주소</div>
-					<div class="table-header-cell">창고크기</div>
-					<div class="table-header-cell">창고상태</div>
-					<div class="table-header-cell">임대인이름</div>
-				</div>
-				<div th:if="${datas.size > 0}" class="table-body">
-					<!-- 컨트롤러에서 선언한 키값을 조건으로 데이터가 있으면 테이블에 값을 담아줌 --> 
-					<div th:each="data:${datas}" class="table-row">
-						<!-- 반복문을 통해 모든데이터 입력 --> 
-						<div class="table-cell">[[${data.cont_no}]]</div>
-						<div class="table-cell">
-						<!--<a th:href="@{/owner/booked(cont_no=${data.cont_no})}" th:text="${data.cont_addr}"></a> 구현 실패-->
-							[[${data.cont_addr}]]
+			<div th:if="${bookDto.size > 0}" class="table-body">
+				<div th:each="b:${bookDto}" class="table-row">
+					<div class="table-detail">
+						<div class="table-row">
+							<div class="table-cell-detail">창고 번호:</div>
+							<div class="table-cell-detail">[[${b.cont_no}]]</div>
 						</div>
-						<div class="table-cell">[[${data.cont_size}]]</div>
-						<div class="table-cell" th:switch="${data.cont_status}">
-							<a th:case='0'>승인대기</a>
-							<a th:case='1'>사용가능</a>
-							<a th:case='2'>예약중</a>
-							<a th:case='3'>사용중</a>
-							<a th:case='4'>승인거절</a>
+						<div class="table-row">
+							<div class="table-cell-detail">예약자:</div>
+							<div class="table-cell-detail">[[${b.user_name}]]</div>
 						</div>
-						<div class="table-cell">[[${data.owner_name}]]</div>
+						<div class="table-row">
+							<div class="table-cell-detail">전화번호:</div>
+							<div class="table-cell-detail">[[${b.user_tel}]]</div>
+						</div>
+						<div class="table-row">
+							<div class="table-cell-detail">이메일:</div>
+							<div class="table-cell-detail">[[${b.user_email}]]</div>
+						</div>
+						<div class="table-row">
+							<div class="table-cell-detail">시작날짜</div>
+							<div class="table-cell-detail">[[${b.booking_date_start}]]</div>
+						</div>
+						<div class="table-row">
+							<div class="table-cell-detail">종료날짜</div>
+							<div class="table-cell-detail">[[${b.booking_date_end}]]</div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</main>
-		
+	</div>
+
+	</main>
+	<div th:replace="~{fragments/footer :: footer}"></div>
 	</div>
 </body>
+
 
 </html>
