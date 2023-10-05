@@ -6,7 +6,8 @@
    <meta charset="UTF-8">
    <meta content="width=device-width, initial-scale=1.0" name="viewport">
    <title>에이콘테이너 창고대여</title>
-
+   <!-- table css -->
+   <link rel="stylesheet" type="text/css" href="../css/container.css">
    <!-- Favicons -->
    <link href="../assets/img/favicon.png" rel="icon">
    <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -28,8 +29,8 @@
    <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
    <link href="../assets/css/main.css" rel="stylesheet">
-   <link rel="stylesheet" href="../css/booking.css">
-   <title>Insert title here</title>
+
+
    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
    <script src="../js/userjoin.js"></script>
 
@@ -75,40 +76,89 @@
 
    <div th:if="${session.ownerSession != null}">
       <div th:replace="~{fragments/header_owner :: header}"></div>
-      ** 창고 등록 **<br />
-      <form action="insert" method="post" enctype="multipart/form-data">
-         창고주소 :
-         <input type="text" id="user_postcode" class="text-field-postcode" placeholder="우편번호">
-         <input type="button" onclick="user_execDaumPostcode()" class="button-postcode" value="우편번호 찾기"><br>
-         <input type="text" id="user_roadAddress" class="text-field-postcode" placeholder="도로명주소">
-         <input type="text" id="user_jibunAddress" class="text-field-postcode" placeholder="지번주소">
-         <span id="guide" style="color:#999;display:none"></span>
-         <input type="text" id="user_detailAddress" class="text-field-postcode" placeholder="상세주소">
-         <input type="text" id="user_extraAddress" class="text-field-postcode" placeholder="참고항목">
-         <br />
-         <!-- 결과를 출력할 한 줄로 된 주소 필드 -->
-         <!-- <h3>입력한 주소</h3> -->
-         <input type="text" name="cont_addr" id="user_combinedAddress" class="text-field" placeholder="입력한 주소"><br />
-         <!-- 주소를 위도와 경도로 변환하는 버튼 -->
-         <input type="button" onclick="getCoordinatesFromAddress()" class="button" value="주소 변환"><br />
-         위도:<input type="text" id="cont_we" name="cont_we" class="text-field-postcode" placeholder="위도">
-         경도:<input type="text" id="cont_kyung" name="cont_kyung" class="text-field-postcode" placeholder="경도"><br />
-         창고크기 : <input type="text" name="cont_size" /><br />
-         <!-- 대여가격 : <input type="text" name="cont_price" /><br/> -->
-         창고설명 :
-         <textarea rows="5" cols="50" name="cont_explain"></textarea><br />
-         사업자번호 : <input type="text" th:placeholder="${session.ownerSession.business_num}"
-            th:value="${session.ownerSession.business_num}" name="owner_num" /> <br />
-         회사명 : <input type="text" name="cont_name" /><br />
-         소유주 전화번호 : <input type="text" name="owner_phone" /><br />
-         이미지 : <input type="file" name="file" /><br />
-         <br />
-         <br />
-         <!-- "저장" 버튼 -->
-         <input type="submit" value="저장">
-      </form>
-      </br>
-      <div th:replace="~{fragments/footer :: footer}"></div>
+      <main>
+         <div class="custom-gap-top"></div>
+         <div class="text-header">
+            <h3 class="align-detail">창고 등록</h3>
+         </div>
+         <form action="insert" method="post" enctype="multipart/form-data">
+            <div class="table-detail">
+               <div class="table-row">
+                  <div class="table-cell-detail">창고 주소:</div>
+                  <div class="table-cell-detail">
+                     <input type="text" id="user_postcode" class="text-field-postcode" placeholder="우편번호" />
+                     <input type="button" onclick="user_execDaumPostcode()" class="button-postcode"
+                        value="우편번호 찾기" /><br />
+                     <input type="text" id="user_roadAddress" class="text-field-postcode" placeholder="도로명주소" />
+                     <input type="text" id="user_jibunAddress" class="text-field-postcode" placeholder="지번주소" />
+                     <span id="guide" style="color:#999;display:none"></span>
+                     <input type="text" id="user_detailAddress" class="text-field-postcode" placeholder="상세주소" />
+                     <input type="text" id="user_extraAddress" class="text-field-postcode"
+                        placeholder="참고항목" /><br />
+                     <input type="text" name="cont_addr" id="user_combinedAddress" class="text-field"
+                        placeholder="입력한 주소" />
+                  </div>
+               </div>
+               <!-- 주소를 위도와 경도로 변환하는 버튼 -->
+               <div class="table-row">
+                  <div class="table-cell-detail">위/경도 :</div>
+                  <div class="table-cell-detail">
+                     <input type="text" id="cont_we" name="cont_we" class="text-field-postcode" placeholder="위도">
+                     <input type="text" id="cont_kyung" name="cont_kyung" class="text-field-postcode"
+                        placeholder="경도">
+                     <input type="button" onclick="getCoordinatesFromAddress()" class="button-postcode"
+                        value="자동입력" /><br />
+                  </div>
+               </div>
+               <div class="table-row">
+                  <div class="table-cell-detail">창고크기 :</div>
+                  <div class="table-cell-detail">
+                     <input type="text" name="cont_size" class="text-field" />
+                  </div>
+               </div>
+               <!-- 대여가격 : <input type="text" name="cont_price" /><br/> -->
+               <div class="table-row">
+                  <div class="table-cell-detail">창고설명 :</div>
+                  <div class="table-cell-detail">
+                     <textarea rows="5" cols="50" name="cont_explain" class="text-field"></textarea>
+                  </div>
+               </div>
+               <div class="table-row">
+                  <div class="table-cell-detail">사업자번호 :</div>
+                  <div class="table-cell-detail">
+                     <input type="text" th:placeholder="${session.ownerSession.business_num}"
+                        th:value="${session.ownerSession.business_num}" name="owner_num" class="text-field" readonly="readonly"/>
+                  </div>
+               </div>
+               <div class="table-row">
+                  <div class="table-cell-detail">회사명 :</div>
+                  <div class="table-cell-detail">
+                     <input type="text" name="cont_name" class="text-field" />
+                  </div>
+               </div>
+               <div class="table-row">
+                  <div class="table-cell-detail">소유주 전화번호 :</div>
+                  <div class="table-cell-detail">
+                     <input type="text" name="owner_phone" class="text-field" />
+                  </div>
+               </div>
+               <div class="table-row">
+                  <div class="table-cell-detail">이미지 :</div>
+                  <div class="table-cell-detail">
+                     <input type="file" name="file" class="text-field" />
+                  </div>
+               </div>
+            </div>
+
+            <!-- "저장" 버튼 -->
+            <div class="button-link">
+               <div class="button-container">
+                  <input type="submit" value="등록">
+               </div>
+            </div>
+         </form>
+         </br>
+         <div th:replace="~{fragments/footer :: footer}"></div>
    </div>
 
 </body>

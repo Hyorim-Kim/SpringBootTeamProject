@@ -30,7 +30,9 @@ public class bookingController {
 
 	//예약페이지 연결/
 	@GetMapping("booking")
-	public String booking() {
+	public String booking(HttpSession session, Model model) {
+		UserDto user = (UserDto) session.getAttribute("userSession");
+		model.addAttribute("userSession", user);
 		return "booking/booking";
 	}
 	//예약하기

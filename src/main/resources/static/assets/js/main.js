@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
 
-  /*모바일 네비게이션 드롭다운(햄버거 메뉴바 하위메뉴 펼치는거) 토글: 네비게이션 바 내부의 드롭다운 메뉴를 처리
+  /*모바일 네비게이션 드롭다운(햄버거 메뉴바 하위메뉴 펼쳐지느 효과) 토글: 네비게이션 바 내부의 드롭다운 메뉴를 처리
   모바일 네비게이션이 활성화되어 있을 때, 드롭다운 메뉴를 클릭하면 해당 메뉴가 확장되고 축소되며, 아이콘도 변경된다.*/
   const navDropdowns = document.querySelectorAll('.navbar .dropdown > a');
 
