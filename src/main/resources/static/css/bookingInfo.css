@@ -1,0 +1,87 @@
+@charset "utf-8";
+
+@import "reset.css";
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@700&display=swap');
+
+/* bookingInfo.css */
+
+/* 전체 페이지 스타일 */
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    display: flex;
+    flex-direction: column; /* 콘텐츠를 세로 중앙 정렬로 변경 */
+    justify-content: center;
+    align-items: center;
+    background: url("../images/userloginimg.jpg") no-repeat center;
+    background-size: cover;
+    position: relative;
+    background-color: rgb(0, 0, 0,.6);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+/* 예약 정보 스타일 */
+#booking-info {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* 예약 상세 정보 테이블 스타일 */
+/* 예약 상세 정보 테이블 스타일 */
+.table-body {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column; /* 새로운 정보를 아래로 표시하도록 변경 */
+}
+
+.table-row {
+    width: 100%; /* 전체 너비를 사용하도록 변경 */
+    display: flex;
+    padding: 10px 0;
+    border-top: 1px solid #ccc; /* 각 행 사이에 구분선 추가 */
+}
+
+.table-cell {
+    width: 50%;
+    font-weight: bold;
+    padding: 5px;
+    /* 아래로 오는 정보에 대한 스타일 추가 */
+    margin: 5px 0;
+    border-bottom: 1px solid #ccc; /* 각 셀 아래에 구분선 추가 */
+}
+/* 예약 취소 및 메인 버튼 스타일 */
+#cancel-btn,
+#main-btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+#main-btn {
+   background-color: darkorange;
+}
+
+#cancel-btn:hover,
+#main-btn:hover {
+    background-color: #0056b3;
+}

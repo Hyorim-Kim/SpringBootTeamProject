@@ -12,7 +12,7 @@ import pack.model.user.UserDto;
 
 @Controller
 public class HomeController {
-    @GetMapping("/") // 사용자가 웹사이트에 처음 접속하거나 홈 페이지를 요청하는 경우에 이 핸들러 매핑이 작동
+    @GetMapping("/") // 사용자가 웹사이트에 처음 접속하거나 메인홈페이지에 접근했을 때 이 핸들러 매핑이 작동
     public String home(HttpSession session) {
         // 세션 유지 상황에 따라 리다이렉션 처리
 

@@ -61,28 +61,30 @@ public class UserController {
 		if(b) {
 			return "user/userlogin";  
 		} else {
+			// 회원 가입 정보를 다시 입력하도록 유도하기 위해 userjoin.html 이동
 			return "user/userjoin";  
 		}	
 	}
 		
 	
     // 사용자 로그인 페이지에서 요청 처리 (성공)
-	// 클라이언트가 요청한 유저 아이디과 유저 비밀번호를 문자열 형식으로 받고, 타임리프 형식으로 뷰에 데이터를 전달하기 위해 Model 객체와
-    // 사용자의 세션 관리를 위해 HttpSession객체를 파라미터 형식으로 받는다.
+	// processLoginForm 메서드는 사용자가 입력한 아이디와 비밀번호 데이터를 받고, 세션 객체를 파라미터로 받습니다.
+	// 의존성 주입을 통해 userDao 객체를 사용하여 사용자 로그인을 처리합니다. 이 메서드가 데이터베이스에서 사용자 정보를 가져오고, 
+	// 이 정보를 UserDto 객체에 저장합니다.
+	// 사용자 정보가 데이터베이스에서 확인되면, 해당 정보를 세션에 저장하고 usersessionkeep 핸들러 매핑으로 리다이렉션합니다.
+	// 로그인에 실패하면 사용자를 다시 로그인 페이지로 이동시킵니다.
     @PostMapping("/userLogSuccess")
     public String processLoginForm(@RequestParam("user_id") String user_id,
             					   @RequestParam("user_pwd") String user_pwd,
             					   HttpSession session) {
+    	// 사용자 로그인 폼에서 사용자가 입력한 아이디와 비밀번호를 받아오고, 데이터베이스에서 해당 정보를 확인합니다.
+    	// 만약 사용자 정보가 일치하는 경우(user가 null이 아닌 경우), 세션에 사용자 정보를 저장하고 로그인 성공 후의 동작을 수행하도록 구성되어 있습니다.
     	
-    	// 필드 객체 선언을 통한 의존성 주입으로 userDao 객체의 메서드를 호출하여 사용자 정보를 가져와 UserDto 객체에 저장하는 역할
-    	// user는 사용자가 입력한 user는 사용자가 입력한 아이디와 비밀번호를 담고 있다. 
         UserDto user = userDao.userLoginProcess(user_id, user_pwd);
         
         if (user != null) { 
         	// 사용자 정보가 있는 경우 로그인 성공과 동시에 세션에 사용자 정보 설정
         	session.setAttribute("userSession", user);
-            // 여기서 가독성을 위해 세션 키의 이름은 userSession으로 변경 하였고 값 이름은 그대로 user로 유지.
-            // user는 사용자가 입력한 아이디와 비밀번호를 담고 있음 그거를 세션에 담는거라 생각하시면 되용
         	session.setAttribute("user_id", user.getUser_id()); 
             System.out.println("사용자 ID : " + user.getUser_id() + " " + "사용자 pwd : " + user.getUser_pwd());
         	return "redirect:/usersessionkeep"; // 로그인 성공 시 usersessionkeep로 리다이렉션 
@@ -94,26 +96,21 @@ public class UserController {
 		}
     }
          
-    // 사용자 마이페이지에서 회원수정을 클릭했을 때 (성공)
+    // 이 메서드는 로그인 이후에 사용자 정보 수정 페이지로 이동하는 데 사용되며, 
+    // 현재 로그인한 사용자의 정보를 화면에 표시하기 위해 세션에서 해당 정보를 가져와 모델에 추가하는 형식입니다.
 	@GetMapping("/userupdate")
 	public String userUpdatePage(Model model, HttpSession session) {
-		// 반환되는 값은 Object 타입이니 "userSession"이라는 이름으로 저장된 객체를 UserDto 타입으로 형변환하여 사용자 정보를 가져온다.
-		// 세션에서 가져온 사용자 정보를 UserDto 객체로 다시 사용할 수 있다.
 		UserDto user = (UserDto) session.getAttribute("userSession");
-		// 세션에서 회원 정보를 가져와서 모델에 추가
 		model.addAttribute("userSession", user);
 		return "user/userupdate"; // 회원 수정 페이지로 이동
 	}
 	
-	// 회원수정 페이지에서 회원수정을 클릭했을 때 (광진)
+	// 사용자가 회원 정보를 수정하고 저장할 때의 동작을 처리합니다. 성공 또는 실패에 따라 다른 뷰로 이동합니다.
 	@PostMapping("/userInfoUpdate")
-	public String userInfoupdate(UserDto userDto, Model model, HttpSession session) {
-		// 여기서 b는 userDao에서 선언된 userDataUpdate 메서드의 반환값을 담고 있다.
+	public String userInfoupdate(UserDto userDto, Model model) {
 		boolean b = userDao.userDataUpdate(userDto);
-		// 반환값이 true 일때
 		if(b) {
 			return "user/userlogin"; 
-		// 반환값이 false 일때
 		} else {
 			return "user/usermypage";  
 		}
@@ -122,9 +119,8 @@ public class UserController {
     // 사용자 마이페이지에서 회원삭제을 클릭했을 때 (성공)
 	@GetMapping("/userdelete")
 	public String userDeletePage(Model model, HttpSession session) {
-		// 세션에서 회원 정보를 가져와서 모델에 추가
 		UserDto user = (UserDto) session.getAttribute("userSession");
-		// userdelete.html에서 세션에 저장된 사용자의 정보를 보여주기 위해 model값에 세션을 담는다.
+		// 세션에서 회원 정보를 가져와서 모델에 추가, userdelete.html에서 세션에 저장된 사용자의 정보를 보여주기 위해 model값에 세션을 담는다.
 		model.addAttribute("userSession", user);
 		return "user/userdelete"; // 회원 수정 페이지로 이동
 	}
@@ -154,9 +150,13 @@ public class UserController {
 	}
 	
 	// 사용자 회원가입시 아이디 중복체크 (광진)
+	// 어노테이션은 /userIdCheck 경로에 대한 POST 요청을 처리하는 메서드를 나타냅니다.
 	@ResponseBody 
 	@PostMapping("/userIdCheck")
+	// POST 요청의 클라이언트가 요청한 user_id 매개변수를 받습니다.
 	public int IdCheck(@RequestParam("user_id") String user_id) {
+		// 이 메서드에서는 받은 user_id를 사용하여 userDao를 통해 데이터베이스에서 아이디 중복 확인을 수행합니다.
+		// 결과 값(result)은 0 또는 1로 되고, 0은 아이디가 중복되지 않음을 의미하고, 1은 아이디가 중복됨을 의미합니다.
 		int result = userDao.userIdCheck(user_id);
 		return result;
 	}

@@ -24,14 +24,13 @@ public class UserDao {
     // 사용자의 회원가입 데이터 유효성을 검사하고, 필드 값이 비어 있거나 정규식 패턴에 맞지 않는 경우 회원가입을 방지하는 데 사용되는 메서드
     private boolean joinUserData(UserDto userDto) {
         boolean b = false; 
-        // 각 필드의 유효성 검사를 수행
+        // 필드 중 하나라도 비어 있거나 정규식에 유효하지 않으면 false를 반환하여 회원 가입을 방지하기 위해 사용
         if (isEmpty(userDto.getUser_id()) ||    
             isEmpty(userDto.getUser_pwd()) ||
             isEmpty(userDto.getUser_name()) ||
             isEmpty(userDto.getUser_tel()) ||
             isEmpty(userDto.getUser_email()) ||
             isEmpty(userDto.getUser_addr()) ||
-            // 필드 중 하나라도 비어 있거나 정규식에 유효하지 않으면 false를 반환하여 회원 가입을 방지하기 위해 논리연산자 || 을 사용
             !userDto.getUser_id().matches("^[a-zA-Z\\d]{4,}$") ||
             !userDto.getUser_tel().matches("^[0-9-]+$") || 
             !userDto.getUser_jumin().matches("^\\d{6}-\\d{7}$") ||

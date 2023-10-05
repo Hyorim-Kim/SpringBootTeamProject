@@ -6,10 +6,10 @@ window.onload = function () {
     let email = document.querySelector('#user_email');
     let tel = document.querySelector('#user_tel');
     let jumin = document.querySelector('#user_jumin');
-    let submitBtn = document.querySelector('#btnUserJoin'); // 추가: submit 버튼
+    let submitBtn = document.querySelector('#btnUserJoin'); 
 
-    /* 이벤트 핸들러 연결하기 */
-    pw1.addEventListener("focusout", checkPw);
+    // addEventListener 메서드를 사용하여 각 입력 필드의 focusout 이벤트에 대한 이벤트 핸들러 함수를 연결
+    pw1.addEventListener("focusout", checkPw); // 이벤트를실행할타겟.addEventListener('이벤트타입', 실행할함수)
     pw2.addEventListener("focusout", check2Pw);
     name.addEventListener("focusout", checkName);
     email.addEventListener("focusout", checkEmail);
@@ -28,11 +28,12 @@ window.onload = function () {
         }
     });
     
-    // 추가: 모든 필드 유효성 검사 함수
+    // 모든 필드 유효성 검사를 한다라는 의미로 checkAllFields 함수를 생성
     function checkAllFields() {
+		// 모든 필드가 유효한 경우 true를 유지하고, 하나라도 유효하지 않은 필드가 있으면 false로 변경하기 위해 true으로 초기화 설정
         let isValid = true;
 
-        // 각 필드별로 유효성 검사 수행
+        // 각 회원가입 입력 필드에 대해서 checkField 함수를 호출하여 해당 필드의 유효성을 검사
         if (!checkField(pw1)) isValid = false;
         if (!checkField(pw2)) isValid = false;
         if (!checkField(name)) isValid = false;

@@ -31,22 +31,25 @@
 					return; // 함수 종료
 				}
 
-				// Ajax 요청 보내기
+
+				// $.ajax 함수를 사용하여 POST 요청을 서버로 전송
 				$.ajax({
 					type: "POST",
-					url: "/userIdCheck", // 컨트롤러의 경로로 하기
-					data: {user_id: user_id}, // 사용자 아이디를 DB 서버로 전달
+					url: "/userIdCheck", // 요청은 /userIdCheck 경로에 전달되며, 이는 Spring 백엔드 컨트롤러에서 대응하는 경로입니다.
+					data: {user_id: user_id}, // 사용자가 입력한 아이디(user_id)를 데이터로 전송합니다.
 					success: function (data) {
+						// 성공 시 서버에서 받은 data 값에 따라 메시지와 글자 색상을 설정하여 결과를 사용자에게 표시합니다.
 						// 메세지와 컬러를 초기화 
 						let message = "";
 						let textColor = "";
-
+						
+						// 서버에서 데이터베이스와 상호작용한 값이 0일 때는 중복이 아닌걸로 판단합니다.
 						if (data === 0) {
 							// 아이디 중복이 아닌 경우
 							message = "사용 가능한 아이디입니다.";
 							textColor = "blue"; // 파란 글씨 스타일
 						} else {
-							// 아이디 중복인 경우
+							// 서버에서 데이터베이스와 상호작용한 값이 1일 때는 중복으로 판단합니다. 
 							message = "아이디가 중복되었습니다.";
 							textColor = "red"; // 빨간 글씨 스타일
 						}
@@ -79,7 +82,7 @@
     <!-- 회원가입 페이지 구성-->
     <div class="join-form">
         <div class="content">
-            <form action="userJoinClick" method="post">
+            <form action="/userJoinClick" method="post">
                 <h3>아이디</h3>
                 <input type="text" name="user_id" id="user_id" class="userId_text-field" placeholder="아이디">
                 <!-- 아이디 중복 메시지 출력 영역 -->
