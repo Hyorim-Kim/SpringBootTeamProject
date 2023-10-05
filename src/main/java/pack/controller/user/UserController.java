@@ -57,8 +57,7 @@ public class UserController {
 	// 사용자 회원가입에서 가입 버튼을 클릭하고 성공 했을 때 (성공)
 	@PostMapping("userJoinClick")
 	public String userLoginOK(UserDto userDto) {
-		boolean b = userDao.userInsertData(userDto);
-		
+		boolean b = userDao.userInsertData(userDto);		
 		if(b) {
 			return "user/userlogin";  
 		} else {
@@ -73,7 +72,7 @@ public class UserController {
     @PostMapping("/userLogSuccess")
     public String processLoginForm(@RequestParam("user_id") String user_id,
             					   @RequestParam("user_pwd") String user_pwd,
-            					   Model model, HttpSession session) {
+            					   HttpSession session) {
     	
     	// 필드 객체 선언을 통한 의존성 주입으로 userDao 객체의 메서드를 호출하여 사용자 정보를 가져와 UserDto 객체에 저장하는 역할
     	// user는 사용자가 입력한 user는 사용자가 입력한 아이디와 비밀번호를 담고 있다. 
@@ -83,8 +82,14 @@ public class UserController {
         	// 사용자 정보가 있는 경우 로그인 성공과 동시에 세션에 사용자 정보 설정
         	session.setAttribute("userSession", user);
             // 여기서 가독성을 위해 세션 키의 이름은 userSession으로 변경 하였고 값 이름은 그대로 user로 유지.
+
+            // user는 앞서 사용자가 입력한 아이디와 비밀번호를 담고 있음 그거를 세션에 담는거라 생각하시면 되용
+        	session.setAttribute("userSession", user); 
             // user는 사용자가 입력한 아이디와 비밀번호를 담고 있음 그거를 세션에 담는거라 생각하시면 되용
+        	session.setAttribute("user_id", user.getUser_id()); 
+            System.out.println("사용자 ID : " + user.getUser_id() + " " + "사용자 pwd : " + user.getUser_pwd());
         	return "redirect:/usersessionkeep"; // 로그인 성공 시 usersessionkeep로 리다이렉션 
+
         }
         // 사용자 정보가 DB에 없는 경우 즉, 아이디와 비밀번호가 없는 경우
 		else { 
@@ -176,19 +181,20 @@ public class UserController {
 	}
 	
 		
-	// 세션 유지 (광진)
+	// 사용자 세션을 확인하고, 세션에 사용자 정보가 있는 경우 유저 마이페이지로 이동하거나 그렇지 않으면 메인 페이지로 이동하게 되는 기능을 가진 메서드
 	@GetMapping("/usersessionkeep")
 	public String userSessionKeep(HttpSession session) {
-	    // 세션에서 사용자 정보를 가져온다.
-	    UserDto userSession = (UserDto) session.getAttribute("userSession"); // 여기서 "userSession"은 user값을 담고 있다.
-	    
-	    // 만약 세션에 사용자 정보가 있는 경우
+	    // 세션에서 사용자 정보를 가져옵니다.
+		// httpSession 객체인 session에서 "userSession"이라는 이름으로 저장된 세션 속성을 가져온다.
+		// userSession은 사용자의 정보를 세션에 담고 있다.
+	    UserDto userSession = (UserDto) session.getAttribute("userSession");
+
+	    // 세션에 사용자 정보가 있는 경우
 	    if (userSession != null) {
-	        // 사용자 정보를 유지하면 로그인페이지에서 home 버튼을 눌러도 로그인 세션이 있는채로 마이페이지로 이동.
+	        // 로그인 상태를 유지하면서 유저 마이페이지로 이동
 	        return "user/usermypage";
-	    } 	    	            	    
-	    else {
-	        // 세션에 사용자 정보가 없는 경우에는 index로 이동.
+	    } else {
+	        // 세션에 사용자 정보가 없는 경우에는 메인 페이지로 이동
 	        return "../templates/index";
 	    }
 	}

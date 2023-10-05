@@ -53,7 +53,7 @@ function insertOpt() {
 
 const nextBtn = document.getElementById("next-btn");
 nextBtn.addEventListener("click", () => {
-	const stringCity = document.getElementById("stringcity");
+	const stringCity = document.getElementById("cont_no");
 	if (stringCity.value == "" || stringSize.value == "" || intMoney.value < 5000) {
 		alert("위 항목들을 선택해 주세요.");
 		return false;

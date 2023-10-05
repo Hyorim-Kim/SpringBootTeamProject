@@ -71,16 +71,16 @@
 
 <h3 style="padding-bottom: 1cm; text-align: center;">상세 보기</h3>
 <form name="frm" th:object="${detail}" style="padding-bottom: 1cm; text-align: center;">
-   작성자 : [[${detail.contact_name}]]<br>
-   이메일 : [[${detail.contact_email}]]<br> <!-- th:field : id="author" name="author" value="가나다" -->
    <input type="hidden" name="contact_no" th:value="${detail.contact_no}">
-   작성일 : [[${detail.contact_date}]]<br><br>
-   제 목 : [[${detail.contact_title}]]<br>
-   문의내용<br>[[${detail.contact_message}]]<br><br>
-   처리상태 :
-    <select name="contact_status" th:field="*{contact_status}">
-        <option value="답변대기">답변대기</option>
-        <option value="답변완료">답변완료</option>
+   <div>작성자 : [[${detail.contact_name}]]</div><br>
+    <div>이메일 : [[${detail.contact_email}]]</div><br> <!-- th:field : id="author" name="author" value="가나다" -->
+    <div>작성일 : [[${detail.contact_date}]]</div><br><br>
+    <div style="font-size: 30q;">제 목 : [[${detail.contact_title}]]</div><br>
+    <div  style="font-size: 30q;">문의내용<br>[[${detail.contact_message}]]</div><br><br>
+    <div>처리상태 :
+    <select name="contact_status" th:field="*{contact_status}"></div>
+         <div><option value="답변대기">답변대기</option></div>
+         <div><option value="답변완료">답변완료</option></div>
     </select><br><br>
    <input type="button" value="수정" id="btnUpdate">
    <input type="button" value="목록" id="btnList"><br><br>

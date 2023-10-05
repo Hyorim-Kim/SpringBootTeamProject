@@ -14,7 +14,6 @@
 	<link href="assets/vendor/aos/aos.css" rel="stylesheet">
 	<link href="assets/css/main.css" rel="stylesheet">
 </head>
-
 <body>
 <div th:if="${session.ownerSession != null}">
   <!-- ======= Header ======= -->
@@ -131,12 +130,10 @@
             </li>
          </ul>
         </div>
-	
+
 		<!-- ======= 에이콘 협력사 ======= -->
    	    <div th:replace="~{fragments/partner :: partner}"></div>
    	    
-	</main><!-- End #main -->
-
   <!-- ======= Footer ======= -->
   <div th:replace="~{fragments/footer :: footer}"></div>
 
