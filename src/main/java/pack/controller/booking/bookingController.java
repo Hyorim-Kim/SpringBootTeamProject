@@ -46,7 +46,7 @@ public class bookingController {
 			boolean b = dao.bookingInsert(bookingdto);
 			boolean a = dao.contStatusUpdate(bean);
 			if(b && a) {
-				return "booking/bookingInfo";			
+				return "redirect:/booking/bookingInfo";			
 			} else {
 				return "/booking/booking";
 			}	

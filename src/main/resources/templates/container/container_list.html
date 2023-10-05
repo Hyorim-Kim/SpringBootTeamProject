@@ -50,7 +50,9 @@
 					<div class="table-header-cell">임대인이름</div>
 				</div>
 				<div th:if="${datas.size > 0}" class="table-body">
+					<!-- 컨트롤러에서 선언한 키값을 조건으로 데이터가 있으면 테이블에 값을 담아줌 --> 
 					<div th:each="data:${datas}" class="table-row">
+						<!-- 반복문을 통해 모든데이터 입력 --> 
 						<div class="table-cell">[[${data.cont_no}]]</div>
 						<div class="table-cell">
 							<a th:href="@{/owner/detail(cont_no=${data.cont_no})}" th:text="${data.cont_addr}"></a>
@@ -70,6 +72,7 @@
 			<div class="custom-gap-middle"></div>
 			<div class="text-link">
 			<a th:href="@{/owner/register}" class="button-align">추가</a>
+			<!-- 컨트롤러 클래스에 매핑된 메소드를 따라 창고등록페이지로 이동 -->
 			</div>
 		</main>
 		<div th:replace="~{fragments/footer :: footer}" class="footer"></div>
