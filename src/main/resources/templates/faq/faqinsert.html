@@ -61,18 +61,21 @@
     
    <section class="sample-page">
    
-<h2 style="padding-top: 1cm;text-align: center;">** FAQ 추가 **</h2><br><br>
+<h2 style="text-align: center;">FAQ 추가</h2><br><br>
 <div>
    <form action="faqinsert" name="ins" method="post" style="padding-bottom: 1cm; text-align: center;">
       <div>
          <div>
-            카테고리 : <input type="text" name="faq_category" id="faq_category" required>
+            카테고리 <br>
+            <input type="text" name="faq_category" id="faq_category" required>
          </div><br>
          <div>
-            제  목 : <input type="text" name="faq_question" id="faq_question" required>
+            제  목 <br>
+            <input type="text" name="faq_question" id="faq_question" required>
          </div><br>
          <div>
-            내  용 : <input type="text" name="faq_answer" id="faq_answer" required>
+            내  용 <br>
+           <textarea name="faq_answer" id="faq_answer" required rows="10" cols="40"></textarea>
          </div><br>
          <div>
             <input type="button" value="추가" name="btn" id="btn"></input>

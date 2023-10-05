@@ -90,16 +90,6 @@ public class ContainerController {
 		return "container/container_reserve";
 	}
 
-   @GetMapping("insert")
-   // @RequestMapping(value="insert", method=RequestMethod.GET)
-   // 창고관리(목록)페이지에서 창고등록 페이지로 넘어가는 링크 매핑
-   // 창고관리 페이지에서 a th:href="@{/insert}" 요거 타고 들어옴
-   public String insertContainer(HttpSession session) {
-      String owner = (String) session.getAttribute("owner");
-      System.out.println(owner);
-      return "container/container_register";
-   }
-
 	// ---------------------------
 	private double[] getCoordinatesFromAddress(String address) {
 		double[] coordinates = new double[2]; // 배열 초기화
@@ -200,7 +190,10 @@ public class ContainerController {
 
 	      try {
 	         inputStream = file.getInputStream();
+
+
 	         String fileSavePath = "C:/Users/cmh17/git/Team/src/main/resources/static/upload/" + randomFilename;
+
 	         File newFile = new File(fileSavePath);
 	         if (!newFile.exists()) {
 	            newFile.createNewFile();
@@ -213,6 +206,7 @@ public class ContainerController {
 	            outputStream.write(bytes, 0, read);
 	         }
 	         bean.setCont_image(randomFilename);
+	         
 	      } catch (Exception e) {
 	         System.out.println("file submit err : " + e);
 	         return "err";
@@ -247,6 +241,7 @@ public class ContainerController {
 	         return "error"; // 이거슨 포워딩
 	      }
 	   }
+
 	   
 //	@GetMapping("/booked")
 //	public String conBooked(@RequestParam("cont_no") String cont_no, Model model) {
@@ -256,6 +251,7 @@ public class ContainerController {
 //		model.addAttribute("bookDto", bookDto);
 //		return "container/bookCont";
 //	} 구현 실패
+
 
 	@GetMapping("/detail")
 	public String conDetail(@RequestParam("cont_no") String cont_no, Model model) {
@@ -275,8 +271,7 @@ public class ContainerController {
 	}
 
 	@PostMapping("update")
-	public String update(FormBean bean) {
-				
+	public String update(FormBean bean) {	
 		boolean b = containDao.update(bean);
 		if (b)
 			return "redirect:/owner/list"; // 수정 후 목록보기

@@ -3,90 +3,90 @@
 
 <head>
 
-	<meta charset="utf-8">
-	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+   <meta charset="utf-8">
+   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
 
-	<title>에이콘테이너</title>
+   <title>에이콘테이너</title>
 
-	<!-- table css -->
-	<link rel="stylesheet" type="text/css" href="../css/admin.css">
-	<!-- 파비콘 -->
-	<link href="assets/img/favicon.png" rel="icon">
-	<!-- 폰트 -->
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-	<!-- Vendor CSS 파일 -->
-	<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-	<link href="assets/vendor/aos/aos.css" rel="stylesheet">
-	<link href="assets/css/main.css" rel="stylesheet">
-	<link rel="stylesheet" href="/css/member.css" />
+   <!-- table css -->
+   <link rel="stylesheet" type="text/css" href="../css/admin.css">
+   <!-- 파비콘 -->
+   <link href="assets/img/favicon.png" rel="icon">
+   <!-- 폰트 -->
+   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+   <!-- Vendor CSS 파일 -->
+   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+   <link href="assets/css/main.css" rel="stylesheet">
+   <link rel="stylesheet" href="/css/member.css" />
 
 </head>
 
 <body>
-	<div th:if="${session.adminSession != null}">
-		<!-- ======= Header ======= -->
-		<div th:replace="~{fragments/header_admin :: header}"></div>
+   <div th:if="${session.adminSession != null}">
+      <!-- ======= Header ======= -->
+      <div th:replace="~{fragments/header_admin :: header}"></div>
 
-		<div class="custom-gap-top"></div>
+      <div class="custom-gap-top"></div>
         <div class="text-header">
             <h2 class="align">등록된 창고 관리하기</h2>
         </div>
-		<div class="table-container">
-			<div class="table-row header-row">
-				<div class="table-header-cell">창고번호</div>
-				<div class="table-header-cell">주소</div>
-				<div class="table-header-cell">위도</div>
-				<div class="table-header-cell">경도</div>
-				<div class="table-header-cell">면적</div>
-				<div class="table-header-cell">회사이름</div>
-				<div class="table-header-cell">소유주 전화번호</div>
-				<div class="table-header-cell">현재 상태</div>
-				<div class="table-header-cell">사업자번호</div>
-			</div>
-			<div th:if="${lists3.size > 0}" class="table-body">
-				<div th:each="data3:${lists3}" class="table-row">
-					<div class="table-cell" th:text="${data3.cont_no}"></div>
-					<div class="table-cell" th:text="${data3.cont_addr}"></div>
-					<div class="table-cell" th:text="${data3.cont_we}"></div>
-					<div class="table-cell" th:text="${data3.cont_kyung}"></div>
-					<div class="table-cell" th:text="${data3.cont_size}"></div>
-					<div class="table-cell" th:text="${data3.cont_name}"></div>
-					<div class="table-cell" th:text="${data3.owner_phone}"></div>
-					<div class="table-cell" th:switch="${data3.cont_status}">
-						<a th:case='0' th:href="@{detail(cont_no=${data3.cont_no})}">승인대기</a>
-						<a th:case='1' th:href="@{detail(cont_no=${data3.cont_no})}">사용가능</a>
-						<a th:case='2' th:href="@{detail(cont_no=${data3.cont_no})}">예약중</a>
-						<a th:case='3' th:href="@{detail(cont_no=${data3.cont_no})}">사용중</a>
-						<a th:case='4' th:href="@{detail(cont_no=${data3.cont_no})}">승인거부</a>
-					</div>
+      <div class="table-container">
+         <div class="table-row header-row">
+            <div class="table-header-cell">창고번호</div>
+            <div class="table-header-cell">주소</div>
+            <div class="table-header-cell">위도</div>
+            <div class="table-header-cell">경도</div>
+            <div class="table-header-cell">면적</div>
+            <div class="table-header-cell">회사이름</div>
+            <div class="table-header-cell">소유주 전화번호</div>
+            <div class="table-header-cell">현재 상태</div>
+            <div class="table-header-cell">사업자번호</div>
+         </div>
+         <div th:if="${lists3.size > 0}" class="table-body">
+            <div th:each="data3:${lists3}" class="table-row">
+               <div class="table-cell" th:text="${data3.cont_no}"></div>
+               <div class="table-cell" th:text="${data3.cont_addr}"></div>
+               <div class="table-cell" th:text="${data3.cont_we}"></div>
+               <div class="table-cell" th:text="${data3.cont_kyung}"></div>
+               <div class="table-cell" th:text="${data3.cont_size}"></div>
+               <div class="table-cell" th:text="${data3.cont_name}"></div>
+               <div class="table-cell" th:text="${data3.owner_phone}"></div>
+               <div class="table-cell" th:switch="${data3.cont_status}">
+                  <a th:case='0' th:href="@{detail(cont_no=${data3.cont_no})}">승인대기</a>
+                  <a th:case='1' th:href="@{detail(cont_no=${data3.cont_no})}">사용가능</a>
+                  <a th:case='2' th:href="@{detail(cont_no=${data3.cont_no})}">예약중</a>
+                  <a th:case='3' th:href="@{detail(cont_no=${data3.cont_no})}">사용중</a>
+                  <a th:case='4' th:href="@{detail(cont_no=${data3.cont_no})}">승인거부</a>
+               </div>
 
-					<!-- <td> <a th:href="@{approve/detail(cont_no=${data3.cont_no})}" th:text="${data3.cont_status}"></a> </td> -->
-					<!-- <td th:text="${data3.cont_status}"></td>-->
-					<div class="table-cell" th:text="${data3.owner_num}"></div>
-				</div>
-			</div>
-		</div>
+               <!-- <td> <a th:href="@{approve/detail(cont_no=${data3.cont_no})}" th:text="${data3.cont_status}"></a> </td> -->
+               <!-- <td th:text="${data3.cont_status}"></td>-->
+               <div class="table-cell" th:text="${data3.owner_num}"></div>
+            </div>
+         </div>
+      </div>
 
-		<div class="custom-gap-middle"></div>
+      <div class="custom-gap-middle"></div>
 
-		<div class="search-container">
-			<form action="/regsearch" method="post">
-				<div class="search-input">
-					<label for="searchName">검색 대상:</label>
-					<select name="searchName" id="searchName">
-						<option value="cont_name" selected>회사이름</option>
-					</select>
-				</div>
-				<div class="search-input">
-					<input type="text" name="searchValue" placeholder="검색어를 입력하세요">
-				</div>
-				<div class="search-button">
-					<input type="submit" value="검 색">
-				</div>
-			</form>
-		 </div>
+      <div class="search-container">
+         <form action="/regsearch" method="post">
+            <div class="search-input">
+               <label for="searchName">검색 대상:</label>
+               <select name="searchName" id="searchName">
+                  <option value="cont_name" selected>회사이름</option>
+               </select>
+            </div>
+            <div class="search-input">
+               <input type="text" name="searchValue" placeholder="검색어를 입력하세요">
+            </div>
+            <div class="search-button">
+               <input type="submit" value="검 색">
+            </div>
+         </form>
+       </div>
 
         <hr />
 
@@ -108,5 +108,4 @@
         </div>
     </div>
 </body>
-
 </html>

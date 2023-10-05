@@ -56,7 +56,6 @@ strong {
   flex-direction: column;
   align-items: center; /* 테이블을 가운데로 이동 */
   margin-top: -50px; /*테이블을 위로 이동*/
-  margin-left: 180px; /* 왼쪽 여백 추가 */
 }
 
 .board-container table {

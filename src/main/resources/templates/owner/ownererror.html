@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Insert title here</title>
+    <link rel="stylesheet" href="/css/member.css" />
+
+    <!-- 파비콘 -->
+    <link href="/assets/img/favicon.png" rel="icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+    
+    <!-- Footer 스타일 -->
+    <style>
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: #f8f8f8; /* 원하는 배경색으로 설정 */
+            padding: 20px 0; /* 원하는 패딩값으로 설정 */
+            text-align: center;
+        }
+
+        /* 페이지 본문과 Footer 간의 간격 조절 */
+        body {
+            margin-bottom: 60px; /* Footer의 높이 + 여분의 간격 설정 */
+        }
+    </style>
+</head>
+<body>
+        <!-- ======= Header ======= -->
+        <div th:replace="~{fragments/header_owner :: header}"></div>
+        <main id="main">
+            <!-- ======= Breadcrumbs ======= -->
+            <div class="breadcrumbs d-flex align-items-center"
+                style="background-image: url('../assets/img/breadcrumbs-bg.jpg');">
+                <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+                    <h2 style="font-family: 'Noto Sans KR'; font-weight: 700;">Service</h2>
+                    <ol>
+                        <li><a href="/ownersessionkeep">Home</a></li>
+                        <li>서비스소개</li>
+                        <li>이용안내</li>
+                    </ol>
+                </div>
+            </div><!-- End Breadcrumbs -->
+            <div style="background-color: white; color: red; text-align: center; padding: 10px; margin-top: 120px;">
+             <h3>창고를 등록한 공급자는 회원탈퇴를 할 수 없습니다. 관리자한테 문의하세요.</h3>
+         </div>
+            <!-- ======= Footer ======= -->
+            <div th:replace="~{fragments/footer :: footer}"></div>
+        </main>
+</body>
+</html>

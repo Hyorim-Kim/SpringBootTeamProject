@@ -46,13 +46,16 @@ public class bookingController {
 			boolean b = dao.bookingInsert(bookingdto);
 			boolean a = dao.contStatusUpdate(bean);
 			if(b && a) {
+
 				return "redirect:/booking/bookingInfo";			
 			} else {
 				return "/booking/booking";
 			}	
 		}
-	
 
+
+
+	
 
 	@GetMapping("/bookingInfo")
 	public String bookingProcess(HttpSession session, Model model) {

@@ -2,6 +2,7 @@
 <html xmlns:th="https://www.thymeleaf.org">
 
 <head>
+<<<<<<< HEAD
 	<meta charset="UTF-8">
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 	<title>에이콘테이너 창고대여</title>
@@ -11,53 +12,55 @@
 	<link href="../assets/img/favicon.png" rel="icon">
 	<link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-	<!-- Google Fonts -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link
-		href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-		rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+   <!-- Google Fonts -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
-	<!-- Vendor CSS Files -->
-	<link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-	<link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-	<link href="../assets/vendor/aos/aos.css" rel="stylesheet">
-	<link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-	<link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-	<link href="../assets/css/main.css" rel="stylesheet">
-	<!-- Google Maps JavaScript API -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzGKmDfbyNTWo-0WqNSdQlQSlxc6Wjna4&libraries=places"
-		defer></script>
-	<script src="../js/userjoin.js"></script>
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<!-- 재민 -->
-	<script>
-		// 주소를 위도와 경도로 변환하고 값을 설정하는 JavaScript 함수
-		function getCoordinatesFromAddress() {
-			var geocoder = new google.maps.Geocoder();
-			var address = document.getElementById('user_combinedAddress').value; // 주소 입력 필드의 값을 가져옵니다.
-			var encodedAddress = encodeURIComponent(address); // 주소를 인코딩
-			var coordinates = []; // 배열 초기화
+   <!-- Vendor CSS Files -->
+   <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+   <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+   <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+   <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+   <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+   <link href="../assets/css/main.css" rel="stylesheet">
+   <!-- Google Maps JavaScript API -->
+   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzGKmDfbyNTWo-0WqNSdQlQSlxc6Wjna4&libraries=places"
+      defer></script>
+   <script src="../js/userjoin.js"></script>
+   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+   <!-- 재민 -->
+   <script>
+      // 주소를 위도와 경도로 변환하고 값을 설정하는 JavaScript 함수
+      function getCoordinatesFromAddress() {
+         var geocoder = new google.maps.Geocoder();
+         var address = document.getElementById('user_combinedAddress').value; // 주소 입력 필드의 값을 가져옵니다.
+         var encodedAddress = encodeURIComponent(address); // 주소를 인코딩
+         var coordinates = []; // 배열 초기화
 
-			// 주소를 위도와 경도로 변환합니다.
-			geocoder.geocode({'address': address}, function (results, status) {
-				console.log('Geocode Status:', status); // status 값 로깅
-				if (status === 'OK') {
-					// 변환에 성공하면 위도와 경도 값을 가져옵니다.
-					var latitude = results[0].geometry.location.lat();
-					var longitude = results[0].geometry.location.lng();
+         // 주소를 위도와 경도로 변환합니다.
+         geocoder.geocode({'address': address}, function (results, status) {
+            console.log('Geocode Status:', status); // status 값 로깅
+            if (status === 'OK') {
+               // 변환에 성공하면 위도와 경도 값을 가져옵니다.
+               var latitude = results[0].geometry.location.lat();
+               var longitude = results[0].geometry.location.lng();
 
-					// 숨겨진 폼 필드에 위도와 경도 값을 설정합니다.
-					document.getElementById('cont_we').value = latitude;
-					document.getElementById('cont_kyung').value = longitude;
-				} else {
-					alert('주소를 찾을 수 없습니다.');
-				}
-			});
-		}
+
+               // 숨겨진 폼 필드에 위도와 경도 값을 설정합니다.
+               document.getElementById('cont_we').value = latitude;
+               document.getElementById('cont_kyung').value = longitude;
+            } else {
+               alert('주소를 찾을 수 없습니다.');
+            }
+         });
+      }
+
 
 
 	</script>
@@ -86,12 +89,16 @@
 			}
 		}
 
+   </script>
 
-	</script>
+
+
+   </script>
 
 </head>
 
 <body>
+
 	<div th:if="${session.ownerSession != null}">
 		<div th:replace="~{fragments/header_owner :: header}"></div>
 		<main>
@@ -169,6 +176,7 @@
 		</main>
 		<div th:replace="~{fragments/footer :: footer}"></div>
 	</div>
+
 </body>
 
 </html>

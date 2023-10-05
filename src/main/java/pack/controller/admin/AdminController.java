@@ -35,7 +35,6 @@ public class AdminController {
 
         if (admin != null) {
         	session.setAttribute("adminSession", admin); // 세션에 사용자 정보 저장
-        	System.out.println("관리자 Id : " + admin.getAdmin_id() + " " + "관리자 비번 : " + admin.getAdmin_pwd());
         	return "admin/adminloginok";  // 로그인 성공 시 adminloginok.html로 이동
             
         } else {
@@ -58,8 +57,6 @@ public class AdminController {
 		AdminDto adminSession = (AdminDto) session.getAttribute("adminSession");
 	    if (adminSession != null) {
 	        // 세션에 ownerSession값이 존재할 경우 ownermain.html 페이지로 이동
-	    	System.out.println("관리자 Id : " + adminSession.getAdmin_id() + " " + "관리자 비번 : " + adminSession.getAdmin_pwd());
-	        // 이동 경로를 상대 경로로 지정
 	        return "admin/adminloginok"; 
 	    } else {
 	    	// 세션값이 없을 경우

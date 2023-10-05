@@ -77,6 +77,4 @@ public class OwnerDao {
 		if(re >= 0) b = true;
 		return b;
     }
-    
-    // 추후 공급자가 창고를 등록을 한 상태라면 회원탈퇴가 되지 않도록 로직 구성
 }

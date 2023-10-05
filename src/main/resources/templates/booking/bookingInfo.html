@@ -1,98 +1,83 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8">
-	<title>예약정보확인</title>
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- Favicons -->
-	<link href="../assets/img/favicon.png" rel="icon">
-	<link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+   <title>예약 정보 확인</title>
+   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+   <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+   <meta charset="UTF-8">
+   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- Favicons -->
+   <link href="../assets/img/favicon.png" rel="icon">
+   <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-	<!-- Google Fonts -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link
-		href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-		rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+   <!-- Google Fonts -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
-	<!-- Vendor CSS Files -->
-	<link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-	<link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-	<link href="../assets/vendor/aos/aos.css" rel="stylesheet">
-	<link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-	<link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-	<link href="../assets/css/main.css" rel="stylesheet">
-	<link rel="stylesheet" href="../css/booking.css">
+   <!-- Vendor CSS Files -->
+   <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+   <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+   <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+   <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+   <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+   <link href="../assets/css/main.css" rel="stylesheet">
+   <link rel="stylesheet" href="../css/bookingInfo.css">
 </head>
 
 <body>
 
-	<!-- ======= Header ======= -->
-	<div th:replace="~{fragments/header_user :: header}"></div>
+   <!-- ======= Header ======= -->
+   <div th:replace="~{fragments/header_user :: header}"></div>
+   <div id="booking-info">
+      <main id="container">
+         <h1>예약 정보</h1>
+         <div>
 
-	<main id="container">
-		<div>
-			<h1>예약 정보</h1>
-			<div id="booking-info">
-				<!-- 여기에 예약 정보를 표시할 HTML 요소를 추가하세요 -->
-			</div>
-		</div>
+            <input type="hidden" th:value="${session.userSession.user_id}" readonly="readonly">
 
-		<main id="container">
-			<div class="booking-box">
-				<h2>나의 예약정보</h2>
-				<div>
-					<input type="hidden" th:value="${session.userSession.user_id}">
-				</div>
+         </div>
 
-				<div class="table-booking">
-					<div th:if="${bList.size > 0}" class="table-body">
-						<div th:each="b : ${bList}" class="table-row">
-							<div class="table-row">
-								<div class="table-cell">예약자</div>
-								<div class="table-cell" th:text="${b.user_name}"></div>
-							</div>
-							<div class="table-row">
-								<div class="table-cell">예약날짜(시작)</div>
-								<div class="table-cell" th:text="${b.booking_date_start}"></div>
-							</div>
-							<div class="table-row">
-								<div class="table-cell">예약날짜(종료)</div>
-								<div class="table-cell" th:text="${b.booking_date_end}"></div>
-							</div>
-							<div class="table-row">
-								<div class="table-cell">회사명</div>
-								<div class="table-cell" th:text="${b.cont_no}"></div>
-							</div>
-							<div class="table-row">
-								<div class="table-cell">사이즈</div>
-								<div class="table-cell" th:text="${b.cont_size}"></div>
-							</div>
-							<div class="table-row">
-								<div class="table-cell">이용요금</div>
-								<div class="table-cell" th:text="${b.booking_price}"></div>
-							</div>
-						</div>
-					</div>
-					<button type="button" id="cancel-btn" onclick="location.href='booking'">취소하기</button>
-					<button type="button" id="main-btn" onClick="location.href='/usersessionkeep'">메인으로 돌아가기</button>
-				</div>
-
-			</div>
-		</main>
-		<script src="../js/bookingInfo.js"></script>
-	</main>
+         <div class="table-booking">
+            <div th:if="${bList.size > 0}" class="table-body">
+               <div th:each="b : ${bList}" class="table-row">
+                  <div class="table-row">
+                     <div class="table-cell">예약자</div>
+                     <div class="table-cell" th:text="${b.user_name}"></div>
+                  </div>
+                  <div class="table-row">
+                     <div class="table-cell">예약날짜(시작)</div>
+                     <div class="table-cell" th:text="${b.booking_date_start}"></div>
+                  </div>
+                  <div class="table-row">
+                     <div class="table-cell">예약날짜(종료)</div>
+                     <div class="table-cell" th:text="${b.booking_date_end}"></div>
+                  </div>
+                  <div class="table-row">
+                     <div class="table-cell">회사명</div>
+                     <div class="table-cell" th:text="${b.cont_no}"></div>
+                  </div>
+                  <div class="table-row">
+                     <div class="table-cell">사이즈</div>
+                     <div class="table-cell" th:text="${b.cont_size}"></div>
+                  </div>
+                  <div class="table-row">
+                     <div class="table-cell">이용요금</div>
+                     <div class="table-cell" th:text="${b.booking_price}"></div>
+                  </div>
+               </div>
+            </div>
+            <button type="button" id="cancel-btn" onclick="location.href='booking'">취소하기</button>
+            <button type="button" id="main-btn" onClick="location.href='/usersessionkeep'">메인으로
+               돌아가기</button>
+         </div>
+         <script src="../js/bookingInfo.js"></script>
+      </main>
 
 </body>
-
-</html>
 
 </html>

@@ -19,36 +19,36 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
    @Autowired
    private DataDao dataDao; //model로 감
    
-   private int tot;        // 전체 FAQ 레코드 수를 저장하는 멤버 변수, 이 변수는 페이지 수 계산을 위해 사용
-   private int plist = 10;  //  페이지당 행 수를 나타내는 멤버 변수로, 한 페이지에 몇 개의 FAQ 항목을 표시할지를 결정
+   private int tot;        // 전체 user 레코드 수를 저장하는 멤버 변수, 이 변수는 페이지 수 계산을 위해 사용
+   private int plist = 10;  //  페이지당 행 수를 나타내는 멤버 변수로, 한 페이지에 몇 개의 user 항목을 표시할지를 결정
    
-   public ArrayList<UserDto> getuserListData(ArrayList<UserDto> list, int page){ // 페이지 번호(page)와 FAQ 목록(list)을 받아와서 해당 페이지에 표시할 FAQ 항목을 추출하여 반환하는 메서드, 페이징 처리를 위해 사용
+   public ArrayList<UserDto> getuserListData(ArrayList<UserDto> list, int page){ // 페이지 번호(page)와 user 목록(list)을 받아와서 해당 페이지에 표시할 user 항목을 추출하여 반환하는 메서드, 페이징 처리를 위해 사용
          ArrayList<UserDto> result = new ArrayList<UserDto>();
          
-         int start = (page - 1) * plist;   // 현재 페이지에서 표시할 FAQ 항목의 시작 인덱스를 계산
-         int end = Math.min(start + plist, list.size());  // 페이지에 표시할 FAQ 항목의 끝 인덱스를 계산하며, 리스트 크기를 초과하지 않도록 조정
+         int start = (page - 1) * plist;   // 현재 페이지에서 표시할 user 항목의 시작 인덱스를 계산
+         int end = Math.min(start + plist, list.size());  // 페이지에 표시할 user 항목의 끝 인덱스를 계산하며, 리스트 크기를 초과하지 않도록 조정
          
          for (int i = start; i < end; i++) {
             result.add(list.get(i));
          }
-         return result; // 페이지에 표시할 FAQ 항목을 담을 ArrayList를 초기화하고, 해당 페이지의 FAQ 항목을 복사하여 반환
+         return result; // 페이지에 표시할 user 항목을 담을 ArrayList를 초기화하고, 해당 페이지의 user 항목을 복사하여 반환
       }
       
       public int getuserPageSu() { // 총 user 페이지 수 얻기
          tot = dataDao.totalUser();
          int pagesu = tot / plist;
          if(tot % plist > 0) pagesu += 1;
-         // FAQ 데이터베이스에 있는 전체 FAQ 레코드 수를 조회하고, 페이지당 행 수(plist)로 나눈 후 나머지가 있으면 페이지 수를 1 증가시켜 반환
+         // user 데이터베이스에 있는 전체 user 레코드 수를 조회하고, 페이지당 행 수(plist)로 나눈 후 나머지가 있으면 페이지 수를 1 증가시켜 반환
          return pagesu;
       }
 
    @GetMapping("/user")   // user 페이지로 이동
-   public String userlist(@RequestParam("page")int page, Model model) {
-      int spage = page;
+   public String userlist(@RequestParam("page")int page, Model model) { // 뷰(템플릿)에 담기 위해 Model 사용
+      int spage = page; // spage는 페이지번호
        if (page <= 0) spage = 1;
        
-      ArrayList<UserDto> slist = (ArrayList<UserDto>)dataDao.getUserAll();
-      ArrayList<UserDto> result = getuserListData(slist, spage);
+      ArrayList<UserDto> slist = (ArrayList<UserDto>)dataDao.getUserAll(); // user정보를 slist에 저장
+      ArrayList<UserDto> result = getuserListData(slist, spage); //페이징이 된 목록을 result에 저장
 
       
       int user_records = dataDao.usercount(); // user 전체 레코드 수
@@ -70,7 +70,7 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
       
       model.addAttribute("lists", userresult);
       model.addAttribute("pagesu", getuserPageSu());
-       model.addAttribute("page", spage);
+      model.addAttribute("page", spage);  // key,value값들을 뷰로 보냄
       return "../templates/user/user";
    }
    
@@ -83,26 +83,27 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
          return "redirect:error";
    }
 
-   public ArrayList<OwnerDto> getownerListData(ArrayList<OwnerDto> list, int page){ // 페이지 번호(page)와 FAQ 목록(list)을 받아와서 해당 페이지에 표시할 FAQ 항목을 추출하여 반환하는 메서드, 페이징 처리를 위해 사용
+   public ArrayList<OwnerDto> getownerListData(ArrayList<OwnerDto> list, int page){ // 페이지 번호(page)와 owner 목록(list)을 받아와서 해당 페이지에 표시할 owner 항목을 추출하여 반환하는 메서드, 페이징 처리를 위해 사용
          ArrayList<OwnerDto> ownresult = new ArrayList<OwnerDto>();
          
-         int start = (page - 1) * plist;   // 현재 페이지에서 표시할 FAQ 항목의 시작 인덱스를 계산
-         int end = Math.min(start + plist, list.size());  // 페이지에 표시할 FAQ 항목의 끝 인덱스를 계산하며, 리스트 크기를 초과하지 않도록 조정
+         int start = (page - 1) * plist;   // 현재 페이지에서 표시할 owner 항목의 시작 인덱스를 계산
+         int end = Math.min(start + plist, list.size());  // 페이지에 표시할 owner 항목의 끝 인덱스를 계산하며, 리스트 크기를 초과하지 않도록 조정
          
          for (int i = start; i < end; i++) {
             ownresult.add(list.get(i));
          }
-         return ownresult; // 페이지에 표시할 FAQ 항목을 담을 ArrayList를 초기화하고, 해당 페이지의 FAQ 항목을 복사하여 반환
+         return ownresult; // 페이지에 표시할 owner 항목을 담을 ArrayList를 초기화하고, 해당 페이지의 owner 항목을 복사하여 반환
       }
       
       public int getownerPageSu() { // 총 owner 페이지 수 얻기
          tot = dataDao.totalOwner();
          int pagesu = tot / plist;
          if(tot % plist > 0) pagesu += 1;
-         // FAQ 데이터베이스에 있는 전체 FAQ 레코드 수를 조회하고, 페이지당 행 수(plist)로 나눈 후 나머지가 있으면 페이지 수를 1 증가시켜 반환
+         // owner 데이터베이스에 있는 전체 owner 레코드 수를 조회하고, 페이지당 행 수(plist)로 나눈 후 나머지가 있으면 페이지 수를 1 증가시켜 반환
          return pagesu;
       }
    
+
 
 
    @GetMapping("/owner")  // owner 페이지로 이동
@@ -136,20 +137,12 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
       
       return "../templates/owner/owner";
    }
-   
-//   @PostMapping("ownerdelete")  // owner에서 삭제하기
-//   public String ownerdel(@RequestParam("business_num")String business_num,
-//         @RequestParam(name = "page", defaultValue = "1") int page) {
-//      if(dataDao.ownerdelete(business_num))
-//         return "redirect:owner?page=" + page;
-//      else
-//         return "/owner/error.html";
-//   }
+
    @PostMapping("ownerdelete")  // owner에서 삭제하기
    public String ownerdel(@RequestParam("business_num") String business_num,
            @RequestParam(name = "page", defaultValue = "1") int page) {
        try {
-           if (dataDao.ownerdelete(business_num)) {
+           if (dataDao.ownerdelete(business_num)) {  // 제공자는 창고와 연관되어 있기 때문에 에러페이지를 따로 만들어주고 이때 try-catch사용
                return "redirect:owner?page=" + page;
            } else {
                return "redirect:error"; // 데이터 삭제에 실패한 경우
@@ -160,17 +153,16 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
    }
 
 
-
-   public ArrayList<ContainerDto> getregisteredListData(ArrayList<ContainerDto> list, int page){ // 페이지 번호(page)와 FAQ 목록(list)을 받아와서 해당 페이지에 표시할 FAQ 항목을 추출하여 반환하는 메서드, 페이징 처리를 위해 사용
+   public ArrayList<ContainerDto> getregisteredListData(ArrayList<ContainerDto> list, int page){ // 페이지 번호(page)와 창고 목록(list)을 받아와서 해당 페이지에 표시할 창고 항목을 추출하여 반환하는 메서드, 페이징 처리를 위해 사용
          ArrayList<ContainerDto> regresult = new ArrayList<ContainerDto>();
          
-         int start = (page - 1) * plist;   // 현재 페이지에서 표시할 FAQ 항목의 시작 인덱스를 계산
-         int end = Math.min(start + plist, list.size());  // 페이지에 표시할 FAQ 항목의 끝 인덱스를 계산하며, 리스트 크기를 초과하지 않도록 조정
+         int start = (page - 1) * plist;   // 현재 페이지에서 표시할 창고 항목의 시작 인덱스를 계산
+         int end = Math.min(start + plist, list.size());  // 페이지에 표시할 창고 항목의 끝 인덱스를 계산하며, 리스트 크기를 초과하지 않도록 조정
          
          for (int i = start; i < end; i++) {
             regresult.add(list.get(i));
          }
-         return regresult; // 페이지에 표시할 FAQ 항목을 담을 ArrayList를 초기화하고, 해당 페이지의 FAQ 항목을 복사하여 반환
+         return regresult; // 페이지에 표시할 창고 항목을 담을 ArrayList를 초기화하고, 해당 페이지의 창고 항목을 복사하여 반환
       }
       
       public int getregisteredPageSu() { // 총 registered 페이지 수 얻기
@@ -212,4 +204,3 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
    }
 
 }
-

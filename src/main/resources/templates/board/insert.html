@@ -1,48 +1,106 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>게시판</title>
-<link rel="stylesheet" type="text/css" href="/css/board.css">
-<script type="text/javascript">
-	window.onload = function() {
-		let btnIns = document.getElementById("btnIns");
-		btnIns.addEventListener("click", checkData);
-	}
+<html xmlns:th="https://www.thymeleaf.org">
 
-	function checkData() {
-		if (frm.name.value === "") {
-			alert("작성자를 입력하시오");
-			frm.name.focus();
-			return;
+<head> 
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>에이콘테이너</title>
+  <!-- 파비콘 -->
+  <link href="/assets/img/favicon.png" rel="icon">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <!-- Template Main CSS File -->
+  <link href="/assets/css/main.css" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/board.css}">
+  <script type="text/javascript">
+    window.onload = function() {
+        let btnIns = document.getElementById("btnIns");
+        btnIns.addEventListener("click", checkData);
+    }
+
+    function checkData() {
+		const desiredAdminId = "aa";
+
+		if (frm.admin_id.value === "") {
+			alert("관리자 ID를 입력하시오");
+			frm.admin_id.focus();
+		} else if (frm.admin_id.value !== desiredAdminId) {
+			// 관리자 아이디와 다를 경우 알림 표시
+			alert("관리자 아이디가 올바르지 않습니다.");
+		} else {
+			// 모든 조건을 통과하면 폼 제출
+			frm.submit();
 		}
-
-		frm.submit();
-	}
-</script>
+	}  
+  </script>
 </head>
+
 <body>
-** 글 쓰기 **<p/>
-<form action="insert" method="post" name="frm">
-	<table style="width: 80%">
-		<tr>
-			<td>이름</td>
-			<td><input type="text" name="name"></td>
-		</tr>
-		<tr>
-			<td>제목</td>
-			<td><input type="text" name="title" style="width: 99%"></td>
-		</tr>
-		<tr>
-			<td>내용</td>
-			<td><textarea rows="5" style="width: 99%" name="cont"></textarea></td>
-		</tr>
-		<tr>
-			<td colspan="2" style="text-align: center;">
-				<input type="button" value="등록" id="btnIns" /> 
-				<input type="button" value="목록" onclick="location.href='listAdmin?page=1'" /></td>
-		</tr>
-	</table>
-</form>
+<div th:if="${session.adminSession != null}">
+  <!-- ======= Header ======= -->
+  <div th:replace="~{fragments/header_admin :: header}"></div>
+  <main id="main">
+	  
+	  <!-- ======= Breadcrumbs ======= -->
+		<div class="breadcrumbs d-flex align-items-center"
+			style="background-image: url('/assets/img/breadcrumbs-bg.jpg');">
+			<div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+				<h2 style="font-family: 'Noto Sans KR';">공지사항</h2>
+				<ol>
+					<li><a href="/">Home</a></li>
+					<li>게시판</li>
+				</ol>
+			</div>
+		</div><!-- End Breadcrumbs -->
+		<section>
+			<form action="insert" method="post" name="frm">
+				<table style="width: 80%; margin: 0 auto;">
+					<tr>
+						<td>관리자 아이디</td>
+						<td><input type="text" name="admin_id"></td>
+					</tr>
+					<tr>
+						<td>제목</td>
+						<td><input type="text" name="title" style="width: 99%"></td>
+					</tr>
+					<tr>
+						<td>내용</td>
+						<td><textarea rows="5" style="width: 99%" name="cont"></textarea></td>
+					</tr>
+					<tr>
+						<td colspan="2" style="text-align: center;">
+							<input type="button" value="등록" id="btnIns" />
+							<input type="button" value="목록" onclick="location.href='listAdmin?page=1'" />
+						</td>
+					</tr>
+				</table>
+			</form>
+ 		</section>
+ 	</main>
+ 	
+ 	<!-- ======= Footer ======= -->
+    <div th:replace="~{fragments/footer :: footer}"></div>
+    
+    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+    <div id="preloader"></div>
+    
+    <!-- Vendor JS Files -->
+  <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/vendor/aos/aos.js"></script>
+  <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/assets/js/main.js"></script>
+</div>
 </body>
 </html>

@@ -28,7 +28,7 @@ window.onload = function () {
         }
     });
     
-    	// 추가: 모든 필드 유효성 검사 함수
+    // 추가: 모든 필드 유효성 검사 함수
     function checkAllFields() {
         let isValid = true;
 
@@ -168,10 +168,14 @@ window.onload = function () {
 // **** 주소 등록하기 **** (광진) //
 function user_execDaumPostcode() {
     new daum.Postcode({
+		// 이 함수는 Daum 우편번호 서비스에서 주소 검색이 완료될 때 실행된다. 또한 다양한 주소 정보를 처리하고 해당 정보를 웹 페이지의 입력 필드에 설정한다.
         oncomplete: function(data) {
+			// data 객체에서 도로명 주소를 가져와 roadAddr 변수에 저장
             var roadAddr = data.roadAddress;
+            // 추가 도로명 주소 정보를 저장할 빈 문자열을 생성
             var extraRoadAddr = '';
-
+			// 만약 data.bname이 비어 있지 않고, 끝에 '동', '로', 또는 '가'가 있는지를 정규 표현식으로 검사한다. 
+			// 만약 조건이 참이라면, 해당 문자열을 extraRoadAddr에 추가한다.
             if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
                 extraRoadAddr += data.bname;
             }
