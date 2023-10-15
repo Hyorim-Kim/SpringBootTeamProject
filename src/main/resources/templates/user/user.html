@@ -24,7 +24,7 @@
   </style>
 </head>
 <body>
-<div th:if="${session.adminSession != null}">
+<div th:if="${session.adminSession != null}"> <!-- admin 세션을 유지하지 못하면 밑 부분들은 아예 못봄 -->
   <!-- ======= Header ======= -->
   <div th:replace="~{fragments/header_admin :: header}"></div>
 
@@ -57,12 +57,14 @@
         <th:block th:if="${lists.size > 0}">
             <tr th:each="data:${lists}">
                 <td th:text="${data.user_id}">num 출력</td>
-                <td>**********</td>
+                <td th:text="${#strings.substring(data.user_pwd, 0, 2) + '******'}"></td>
+
                 <td th:text="${data.user_name}"></td>
                 <td th:text="${data.user_tel}"></td>
                 <td th:text="${data.user_email}"></td>
                 <td th:text="${data.user_addr}"></td>
-                <td>******-*******</td>
+                <td th:text="${#strings.substring(data.user_jumin, 0, 8) + '******'}"></td>
+
                 <td>
                <form action="/userdelete" method="post">
                       <input type="hidden" name="user_id" th:value="${data.user_id}" />
@@ -87,7 +89,7 @@
     <table style="margin-top: 20px;">
         <tr style="text-align: center;">
             <td colspan="5">
-                <th:block th:each="num : ${#numbers.sequence(1, pagesu)}">
+                <th:block th:each="num : ${#numbers.sequence(1, pagesu)}"> <!-- 1부터 페이지수까지 출력 -->
                     <th:span th:if="${num == page}">
                         <b th:text="${num}">num 표시(현재 페이지는 링크를 걸지 않음)</b>
                     </th:span>

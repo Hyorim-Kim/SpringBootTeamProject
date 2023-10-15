@@ -46,9 +46,9 @@ public class DataDao {
 	      return dataMapper.totalUser();
    }
    
-   public boolean userdelete(String user_id) {
+    public boolean userdelete(String user_id) {
 		boolean b = false;
-		int re = dataMapper.userdeleteData(user_id);
+		int re = dataMapper.userdeleteData(user_id); // 삭제된 행의 수가 re로 들어감
 		if (re > 0)
 			b = true;
 		return b;
