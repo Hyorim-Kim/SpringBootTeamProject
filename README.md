@@ -7,7 +7,5 @@
 <img src="https://img.shields.io/badge/thymeleaf-005F0F?style=for-the-badge&logo=thymeleaf&logoColor=white"> 
 <img src="https://img.shields.io/badge/mariadb-003545?style=for-the-badge&logo=mariadb&logoColor=white">
 <img src="https://img.shields.io/badge/MyBatis-2E5E82?style=for-the-badge&logo=MyBatis&logoColor=white">
-<img src="https://img.shields.io/badge/JPA-569A31?style=for-the-badge&logo=JPA&logoColor=white">
-<img src="https://img.shields.io/badge/amazonaws-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white">
-<img src="https://img.shields.io/badge/SpringSecurity-6DB33F?style=for-the-badge&logo=SpringSecurity&logoColor=white">
-<img src="https://img.shields.io/badge/jsonwebtokens-7856FF?style=for-the-badge&logo=jsonwebtokens&logoColor=white">
+
+
