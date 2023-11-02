@@ -8,15 +8,13 @@ import pack.model.DataMapperInter;
 
 // ************ 광진 ************** // 
 
-@Repository // 퍼시스턴스 레이어, DB나 파일같은 외부 I/O 작업을 처리함, DAO는 DB 서버에 접근하여 SQL문을 실행할 수 있는 객체
+@Repository 
 public class UserDao { 
 	
-	// @Autowired 어노테이션을 사용하여 dataMapperInter를 주입함으로써 데이터베이스와 상호작용할 수 있는 구현체를 UserDao 클래스에 제공한다.
 	@Autowired
 	private DataMapperInter dataMapperInter;
 	
-	// isEmpty() 정의 문자열이 비였는지 여부 체크.
-	// isEmpty 메서드는 문자열 값이 공백이거나 양옆의 공백을 제거했을때에도 공백일때 true를 반환합니다.
+
     private boolean isEmpty(String value) {
         return value == null || value.trim().isEmpty();
     }
@@ -52,12 +50,8 @@ public class UserDao {
     public boolean userInsertData(UserDto userDto) {
 		boolean b = false;
 		try {
-			// joinUserData(userDto) 메서드를 호출하여 사용자가 입력한 데이터의 유효성을 검사
 			if (joinUserData(userDto)) { // // 데이터가 유효할 때 (true 값일 때)
-				// 데이터베이스에 사용자의 회원가입 데이터를 삽입하기 위해 메서드 호출  
 				int re = dataMapperInter.userInsertData(userDto);
-				// re 변수의 값이 양수(보통 1)인 경우, 데이터베이스 삽입이 성공한 것으로 간주
-				// 따라서 b 변수를 true로 설정하여 회원가입 작업의 성공 여부를 나타낸다.
 				if (re > 0) {
 					b = true;
 				}
