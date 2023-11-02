@@ -22,17 +22,17 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
    private int tot;        // 전체 user 레코드 수를 저장하는 멤버 변수, 이 변수는 페이지 수 계산을 위해 사용
    private int plist = 10;  //  페이지당 행 수를 나타내는 멤버 변수로, 한 페이지에 몇 개의 user 항목을 표시할지를 결정
    
-   public ArrayList<UserDto> getuserListData(ArrayList<UserDto> list, int page){ // 페이지 번호(page)와 user 목록(list)을 받아와서 해당 페이지에 표시할 user 항목을 추출하여 반환하는 메서드, 페이징 처리를 위해 사용
+   public ArrayList<UserDto> getuserListData(ArrayList<UserDto> list, int page){ //  해당 페이지에 대한 user 항목을 추출하고 반환, 페이징 처리를 위해 사용
          ArrayList<UserDto> result = new ArrayList<UserDto>();
          
          int start = (page - 1) * plist;   // 현재 페이지에서 표시할 user 항목의 시작 인덱스를 계산
          int end = Math.min(start + plist, list.size());  // 페이지에 표시할 user 항목의 끝 인덱스를 계산하며, 리스트 크기를 초과하지 않도록 조정
-         
+         // start와 end변수를 사용하여 페이지와 해당 페이지의 목록을 추출하여 그 정보들을 result에 넣음
          for (int i = start; i < end; i++) {
-            result.add(list.get(i));
+            result.add(list.get(i));  
          }
          return result; // 페이지에 표시할 user 항목을 담을 ArrayList를 초기화하고, 해당 페이지의 user 항목을 복사하여 반환
-      }
+    }
       
       public int getuserPageSu() { // 총 user 페이지 수 얻기
          tot = dataDao.totalUser();
@@ -53,10 +53,10 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
       
       int user_records = dataDao.usercount(); // user 전체 레코드 수
 
-      model.addAttribute("lists", result);
-      model.addAttribute("pagesu", getuserPageSu());
-      model.addAttribute("page", spage);
-      model.addAttribute("user_records", user_records);
+      model.addAttribute("lists", result);  //페이징 처리된 페이지에 표시할 유저 목록 ... getuserListData()에 대한 result
+      model.addAttribute("pagesu", getuserPageSu());  //총 유저 페이지 수
+      model.addAttribute("page", spage);  //현재 페이지 번호
+      model.addAttribute("user_records", user_records); //전체 유저 레코드 수
        
       return "../templates/user/user";
    }
@@ -68,7 +68,7 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
       ArrayList<UserDto> userlist = (ArrayList<UserDto>)dataDao.getUserSearch(bean);
       ArrayList<UserDto> userresult = getuserListData(userlist, spage);
       
-      model.addAttribute("lists", userresult);
+      model.addAttribute("lists", userresult); // 검색결과와 페이징처리된 것들이 넘어감
       model.addAttribute("pagesu", getuserPageSu());
       model.addAttribute("page", spage);  // key,value값들을 뷰로 보냄
       return "../templates/user/user";
@@ -102,9 +102,6 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
          // owner 데이터베이스에 있는 전체 owner 레코드 수를 조회하고, 페이지당 행 수(plist)로 나눈 후 나머지가 있으면 페이지 수를 1 증가시켜 반환
          return pagesu;
       }
-   
-
-
 
    @GetMapping("/owner")  // owner 페이지로 이동
    public String ownerlist(@RequestParam("page")int page, Model model) {
@@ -184,7 +181,7 @@ public class ListController {  // 리스트 목록 보게 도와주는 컨트롤
       
       model.addAttribute("lists3", result);
       model.addAttribute("pagesu", getregisteredPageSu());
-       model.addAttribute("page", spage);
+      model.addAttribute("page", spage);
       return "../templates/admin/cont_registered";
    }
    

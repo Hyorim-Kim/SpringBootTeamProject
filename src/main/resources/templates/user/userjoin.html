@@ -32,11 +32,12 @@
 				}
 
 
-				// $.ajax 함수를 사용하여 POST 요청을 서버로 전송
+				//  jQuery 라이브러리를 사용하여 AJAX 방식 사용하여 POST 요청을 서버로 전송
 				$.ajax({
 					type: "POST",
-					url: "/userIdCheck", // 요청은 /userIdCheck 경로에 전달되며, 이는 Spring 백엔드 컨트롤러에서 대응하는 경로입니다.
+					url: "/userIdCheck", // 이 요청은 Spring 백엔드 컨트롤러에서 대응하는 경로인 /userIdCheck 경로에 전달되며,
 					data: {user_id: user_id}, // 사용자가 입력한 아이디(user_id)를 데이터로 전송합니다.
+					//  jQuery는 자동으로 응답의 데이터 타입을 감지하고 처리하기 때문에 dataType 옵션을 설정하지 않아도 잘 작동 
 					success: function (data) {
 						// 성공 시 서버에서 받은 data 값에 따라 메시지와 글자 색상을 설정하여 결과를 사용자에게 표시합니다.
 						// 메세지와 컬러를 초기화 

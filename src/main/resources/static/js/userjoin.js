@@ -1,5 +1,6 @@
 // ***** 회원 가입 (사용자) 수정 *****
 window.onload = function () {
+	// 이 메서드는 CSS 선택자를 사용하여 요소를 선택하며, 해당 선택자에 일치하는 첫 번째 요소를 반환
     let pw1 = document.querySelector('#user_pwd');
     let pw2 = document.querySelector('#user_repwd');
     let name = document.querySelector('#user_name');
@@ -16,7 +17,7 @@ window.onload = function () {
     tel.addEventListener("focusout", checkTel);
     jumin.addEventListener("focusout", checkJumin);
 
-    // 추가: submit 버튼 클릭 시 전체 필드 검사
+    //  이 코드는 사용자가 폼을 제출할 때 모든 필드가 유효한지 확인하고, 유효한 경우에만 서버로 폼을 제출하도록 하는 기능을 구현
     submitBtn.addEventListener("click", function (event) {
         event.preventDefault(); // 기본 submit 동작 방지
         if (checkAllFields()) {
@@ -28,22 +29,6 @@ window.onload = function () {
         }
     });
     
-    // 모든 필드 유효성 검사를 한다라는 의미로 checkAllFields 함수를 생성
-    function checkAllFields() {
-		// 모든 필드가 유효한 경우 true를 유지하고, 하나라도 유효하지 않은 필드가 있으면 false로 변경하기 위해 true으로 초기화 설정
-        let isValid = true;
-
-        // 각 회원가입 입력 필드에 대해서 checkField 함수를 호출하여 해당 필드의 유효성을 검사
-        if (!checkField(pw1)) isValid = false;
-        if (!checkField(pw2)) isValid = false;
-        if (!checkField(name)) isValid = false;
-        if (!checkField(email)) isValid = false;
-        if (!checkField(tel)) isValid = false;
-        if (!checkField(jumin)) isValid = false;
-
-        return isValid;
-    }
-
     // 추가: 개별 필드 유효성 검사 함수
     function checkField(field) {
         let isValid = true;
@@ -58,16 +43,34 @@ window.onload = function () {
 
         return isValid;
     }
+    
+    // 모든 필드 유효성 검사를 한다라는 의미로 checkAllFields 함수를 생성
+    function checkAllFields() {
+		// 모든 필드가 유효한 경우 true를 유지하고, 하나라도 유효하지 않은 필드가 있으면 false로 변경하기 위해 true으로 초기화 설정
+        let isValid = true;
 
+        // 각 회원가입 입력 필드에 대해서 checkField 함수를 호출하여 해당 필드의 유효성을 검사
+        if (!checkField(pw1)) isValid = false;
+        //  비밀번호(pw1) 필드에 대한 유효성 검사를 수행하고, 해당 필드가 유효하지 않으면 isValid 변수를 false로 설정하는 역할
+        if (!checkField(pw2)) isValid = false;
+        if (!checkField(name)) isValid = false;
+        if (!checkField(email)) isValid = false;
+        if (!checkField(tel)) isValid = false;
+        if (!checkField(jumin)) isValid = false;
+
+        return isValid;
+    }
 
 	
 	function checkPw() {
-		let pwPattern = /^.{4,}$/; // 정규식 패턴
+		let pwPattern = /^.{4,}$/; // 비밀번호의 최소 길이를 4글자로 설정해주는 정규식을 선언
 		if (pw1.value === "") { // 공백일 때 
+		// 즉, 사용자가 아무런 입력도 하지 않았을 때, setErrorStyle('user_pwd') 함수가 호출
 			setErrorStyle('user_pwd');
 		} else if (!pwPattern.test(pw1.value)) {
 			setErrorStyle('user_pwd');
 		} else {
+			// 공백이지 않을 때와 정규식 조건에 충족이 되었을 때는 resetErrorStyle에 호출합니다.
 			resetErrorStyle('user_pwd');
 		}
 	}
@@ -140,11 +143,13 @@ window.onload = function () {
 	}
 
 	/* 에러 스타일 적용 함수 */
+	// 이 함수는 특정 입력 요소에 대한 에러 스타일을 적용하고 사용자에게 해당 입력이 올바르지 않다는 에러 메시지를 표시
 	function setErrorStyle(elementId) {
 		const element = document.getElementById(elementId);
 		element.classList.add('error-input'); // 예를 들어, 'error-input' 클래스를 추가하여 스타일링
 
 		// 해당 메시지 요소에 빨간색 텍스트 스타일 적용
+		// 보통 입력 요소와 연관된 에러 메시지를 표시하는 요소에는 입력 요소의 ID 뒤에 'Message'가 붙는 관례
 		const messageElement = document.getElementById(elementId + 'Message');
 		messageElement.style.color = 'red';
 

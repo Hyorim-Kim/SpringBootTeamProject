@@ -192,7 +192,7 @@ public class ContainerController {
 	         inputStream = file.getInputStream();
 
 
-	         String fileSavePath = "C:/Users/cmh17/git/Team/src/main/resources/static/upload/" + randomFilename;
+	         String fileSavePath = "C:/Users/kwang/git/Team/src/main/resources/static/upload/" + randomFilename;
 
 	         File newFile = new File(fileSavePath);
 	         if (!newFile.exists()) {

@@ -78,7 +78,7 @@ public class UserController {
             					   @RequestParam("user_pwd") String user_pwd,
             					   HttpSession session) {
     	// 사용자 로그인 폼에서 사용자가 입력한 아이디와 비밀번호를 받아오고, 데이터베이스에서 해당 정보를 확인합니다.
-    	// 만약 사용자 정보가 일치하는 경우(user가 null이 아닌 경우), 세션에 사용자 정보를 저장하고 로그인 성공 후의 동작을 수행하도록 구성되어 있습니다.
+    	// 만약 사용자 정보가 데이터베이스와 일치하는 경우(user가 null이 아닌 경우), 세션에 사용자 정보를 저장하고 로그인 성공 후의 동작을 수행하도록 구성되어 있습니다.
     	
         UserDto user = userDao.userLoginProcess(user_id, user_pwd);
         
@@ -155,7 +155,7 @@ public class UserController {
 	
 	// 사용자 회원가입시 아이디 중복체크 (광진)
 	// 어노테이션은 /userIdCheck 경로에 대한 POST 요청을 처리하는 메서드를 나타냅니다.
-	@ResponseBody 
+	@ResponseBody // 서버 -> 클라이언트
 	@PostMapping("/userIdCheck")
 	// POST 요청의 클라이언트가 요청한 user_id 매개변수를 받습니다.
 	public int IdCheck(@RequestParam("user_id") String user_id) {
@@ -165,18 +165,19 @@ public class UserController {
 		return result;
 	}
 	
-	// 사용자 아이디 찾기 (광진)
-	@ResponseBody // @ResponseBody 사용함으로서 http요청 body를 자바 객체로 전달받을 수 있다.
+	// 클라이언트에서 제공한 정보를 기반으로 데이터베이스에서 사용자를 조회하고 그 결과를 클라이언트에게 반환하는 역할하는 메서드입니다.
+	@ResponseBody // 서버 -> 클라이언트
 	@PostMapping("/userIdInfoFind")
 	public String userIdFindProcess(@RequestParam("user_name") String user_name, 
 	                                @RequestParam("user_email") String user_email, 
 	                                @RequestParam("user_jumin") String user_jumin) {
-	    
+	    // 제공된 이름, 이메일, 주민등록번호를 기반으로 사용자를 찾고, 찾은 사용자 정보를 user 변수에 저장
 	    UserDto user = userDao.userIdFind(user_name, user_email, user_jumin);
+	    // 데이터베이스에서 사용자를 찾았을 경우
 	    if (user != null) {
 	        return user.getUser_id(); // 사용자 아이디를 직접 반환
 	    } else {
-	        return "not_found"; // 사용자를 찾지 못한 경우를 특별한 문자열로 표시
+	        return "not_found"; // 사용자를 찾지 못한 경우를 문자열로 표시
 	    }
 	}
 	
