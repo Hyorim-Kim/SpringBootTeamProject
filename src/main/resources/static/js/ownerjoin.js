@@ -8,30 +8,25 @@ window.onload = function () {
     
     let submitBtn = document.querySelector('#btnOwnerJoin');
 
-    /* 이벤트 핸들러 연결하기 */
     business_num.addEventListener("focusout", checkBusinessNum);
     owner_pwd.addEventListener("focusout", checkPwd);
     owner_repwd.addEventListener("focusout", checkPwdMatch);
     owner_name.addEventListener("focusout", checkName);
     owner_tel.addEventListener("focusout", checkTel);
     email.addEventListener("focusout", checkEmail);
-    
-    /* 추가: submit 버튼 클릭 시 전체 필드 검사 */
+
     submitBtn.addEventListener("click", function (event) {
-        event.preventDefault(); // 기본 submit 동작 방지
+        event.preventDefault();
         if (checkAllFields()) {
-            // 모든 필드가 유효한 경우 서버로 전송
             document.querySelector('form').submit();
         } else {
                    
         }
     });
-    
-    // 추가: 모든 필드 유효성 검사 함수
+
     function checkAllFields() {
         let isValid = true;
 
-        // 각 필드별로 유효성 검사 수행
         if (!checkField(business_num)) isValid = false;
         if (!checkField(owner_pwd)) isValid = false;
         if (!checkField(owner_name)) isValid = false;
@@ -42,12 +37,11 @@ window.onload = function () {
         return isValid;
     }
 
-    // 추가: 개별 필드 유효성 검사 함수
     function checkField(field) {
         let isValid = true;
-        const value = field.value.trim(); // 앞뒤 공백 제거
+        const value = field.value.trim();
 
-        if (value === "") { // 공백일 때
+        if (value === "") {
             setErrorStyle(field.id);
             isValid = false;
         } else {
@@ -57,7 +51,7 @@ window.onload = function () {
         return isValid;
     }
 
-    /* 콜백 함수 */
+
     function checkBusinessNum() {
         let businessNumPattern = /^\d{3}-\d{2}-\d{5}$/;
         if (business_num.value === "") {
@@ -125,28 +119,22 @@ window.onload = function () {
         }
     }
 
-
-    /* 에러 스타일 적용 함수 */
     function setErrorStyle(elementId) {
         const element = document.getElementById(elementId);
-        element.classList.add('error-input'); // 예를 들어, 'error-input' 클래스를 추가하여 스타일링
+        element.classList.add('error-input');
 
-        // 해당 메시지 요소에 빨간색 텍스트 스타일 적용
         const messageElement = document.getElementById(elementId + 'Message');
         messageElement.style.color = 'red';
 
-        // 에러 메시지 설정
         messageElement.textContent = '입력한 ' + element.getAttribute('placeholder') + '이(가) 올바르지 않습니다.';
     }
 
-    /* 에러 스타일 초기화 함수 */
     function resetErrorStyle(elementId) {
         const element = document.getElementById(elementId);
-        element.classList.remove('error-input'); // 'error-input' 클래스를 제거하여 초기 스타일로 복원
+        element.classList.remove('error-input');
 
-        // 해당 메시지 요소 초기화
         const messageElement = document.getElementById(elementId + 'Message');
-        messageElement.style.color = 'black'; // 원하는 색상으로 변경 가능
-        messageElement.textContent = ''; // 에러 메시지 초기화
+        messageElement.style.color = 'black';
+        messageElement.textContent = '';
     }
 }

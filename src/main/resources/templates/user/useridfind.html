@@ -12,7 +12,7 @@
 	<script>
 		$(document).ready(function () {
 			$("form").submit(function (e) {
-				e.preventDefault(); // 폼 제출 방지
+				e.preventDefault();
 
 				let user_name = $("input[name='user_name']").val();
 				let user_email = $("input[name='user_email']").val();
@@ -27,9 +27,8 @@
 						user_email: user_email,
 						user_jumin: user_jumin
 					},
-					dataType: "text", // 서버가 텍스트 응답을 반환하는 경우
+					dataType: "text",
 					success: function (data) {
-						// 사용자 아이디를 표시할 창을 띄우고 사용자 아이디를 출력
 						if (data === "not_found") {
 							alert("사용자 아이디를 찾을 수 없습니다.");
 						} else {

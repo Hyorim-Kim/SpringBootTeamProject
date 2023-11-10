@@ -1,4 +1,3 @@
-// ***** 회원 가입일 때 각 필드의 유효성 검사 *****
 window.onload = function () {
     let pw1 = document.querySelector('#user_pwd');
     let pw2 = document.querySelector('#user_repwd');
@@ -7,14 +6,12 @@ window.onload = function () {
     let tel = document.querySelector('#user_tel');
     let jumin = document.querySelector('#user_jumin');
 
-    /* 정규식 패턴 정의 */
     let pwPattern = /^.{4,}$/;
     let namePattern = /^[가-힣]{2,}$/;
     let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     let telPattern = /^\d{3}-\d{3,4}-\d{4}$/;
     let juminPattern = /^\d{6}-\d{7}$/;
 
-    /* 이벤트 핸들러 연결하기 */
     pw1.addEventListener("focusout", checkPw);
     pw2.addEventListener("focusout", check2Pw);
     name.addEventListener("focusout", checkName);
@@ -22,7 +19,6 @@ window.onload = function () {
     tel.addEventListener("focusout", checkTel);
     jumin.addEventListener("focusout", checkJumin);
 
-    // 폼 제출 이벤트 핸들러 추가
     const form = document.querySelector('form');
     form.addEventListener('submit', function (event) {
         if (!isFormValid()) {
@@ -30,11 +26,9 @@ window.onload = function () {
         }
     });
 
-    /* 폼 유효성 검사 함수 */
     function isFormValid() {
         let isValid = true;
 
-        // 필드 유효성 검사를 진행하고, 필드가 유효하지 않은 경우 isValid 값을 false로 설정
         if (pw1.value === "" || !pwPattern.test(pw1.value)) {
             setErrorStyle('user_pwd');
             isValid = false;
@@ -80,7 +74,6 @@ window.onload = function () {
         return isValid;
     }
 
-	/* 콜백 함수 */
 	function checkPw() {
 		let pwPattern = /^.{4,}$/;
 		if (pw1.value === "") {
@@ -148,8 +141,6 @@ window.onload = function () {
 		}
 	}
 
-
-	/* 메시지 표시 함수 */
 	function showMessage(message) {
 		const messageDiv = document.createElement('div');
 		messageDiv.className = 'message';
@@ -159,20 +150,16 @@ window.onload = function () {
 		messageContainer.appendChild(messageDiv);
 	}
 
-	/* 에러 스타일 적용 함수 */
 	function setErrorStyle(elementId) {
 		const element = document.getElementById(elementId);
-		element.classList.add('error-input'); // 예를 들어, 'error-input' 클래스를 추가하여 스타일링
+		element.classList.add('error-input');
 
-		// 해당 메시지 요소에 빨간색 텍스트 스타일 적용
 		const messageElement = document.getElementById(elementId + 'Message');
 		messageElement.style.color = 'red';
 
-		// 에러 메시지 설정
 		messageElement.textContent = '입력한 ' + element.getAttribute('placeholder') + '이(가) 올바르지 않습니다.';
 	}
 
-	/* 에러 스타일 초기화 함수 */
 	function resetErrorStyle(elementId) {
 		const element = document.getElementById(elementId);
 		element.classList.remove('error-input'); // 'error-input' 클래스를 제거하여 초기 스타일로 복원
@@ -184,10 +171,6 @@ window.onload = function () {
 	}
 }
 
-
-
-
-// **** 주소 등록하기 **** (광진) //
 function user_execDaumPostcode() {
     new daum.Postcode({
         oncomplete: function(data) {

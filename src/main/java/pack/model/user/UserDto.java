@@ -2,8 +2,14 @@ package pack.model.user;
 
 import lombok.Data;
 
-//*********** 서호, 광진 *************// 
 @Data
 public class UserDto {
-	private String user_id, user_pwd, user_name, user_tel, user_email, user_addr, user_jumin, user_repwd;
+	private String user_id;
+	private String user_pwd;
+	private String user_repwd;
+	private String user_name;
+	private String user_tel;
+	private String user_email;
+	private String user_addr;
+	private String user_jumin;
 }

@@ -20,15 +20,12 @@ import pack.model.user.UserDto;
 @Repository
 public class DataDao {
    private Logger logger = LoggerFactory.getLogger(this.getClass());
-   
-   
+
    @Autowired
    private DataMapperInterface dataMapper;
-
    public DataDao() {
       
    }
-   
    // User 정보 출력하기-------------------------------------------------------------
    public List<UserDto> getUserAll(){
       List<UserDto> list = dataMapper.selectAll();  // sql문이 실행

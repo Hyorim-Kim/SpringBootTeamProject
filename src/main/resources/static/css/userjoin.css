@@ -7,9 +7,9 @@
   top: 0;
   left: 0;
   right: 0;
-  display: flex; /* Flexbox 레이아웃을 사용합니다. */
-  justify-content: space-between; /* 요소들을 양 끝으로 정렬합니다. */
-  align-items: center; /* 요소들을 수직 중앙 정렬합니다. */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   text-shadow: 1px 1px 1px #000;
 }
 
@@ -36,7 +36,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  display: flex; /* 메뉴 항목들을 가로로 나란히 배치합니다. */
+  display: flex;
 }
 
 .header ul li {
@@ -56,7 +56,7 @@
 
 .navbar {
   margin-left: auto;
-  margin-right: 60px; /* 오른쪽 여백을 조절 */
+  margin-right: 60px;
 }
 
 
@@ -85,7 +85,7 @@ body {
   font-size: 13px;
 }
 
-/* 아이디 텍스트칸 css */
+
 .userId_text-field {
   font-size: 14px;
   width: 300px;
@@ -96,7 +96,6 @@ body {
   margin-bottom: 5px;
 }
 
-/* 아이디 중복 확인 버튼 */
 .userId_button{
   font-size: 14px;
   width: 140px;
@@ -106,22 +105,19 @@ body {
   margin-top: 5px;
   margin-bottom: 5px;
   margin-left: 22px;
-  background-color: burlywood; /* 배경색 */
-  color: #fff; /* 텍스트 색상 */
-  cursor: pointer; /* 포인터 형태로 변경하여 버튼임을 나타냅니다 */
+  background-color: burlywood;
+  color: #fff;
+  cursor: pointer;
 }
 
-/* 빨간 글씨 스타일 */
 #id_check_message.red {
     color: red;
 }
 
-/* 파란 글씨 스타일 */
 #id_check_message.blue {
     color: blue;
 }
 
-/* 텍스트칸 css */
 .text-field {
   font-size: 14px;
   width: 470px;
@@ -132,7 +128,6 @@ body {
   margin-bottom: 5px;
 }
 
-/* 우편 번호 css */
 .text-field-postcode {
   font-size: 14px;
   width: 200px;
@@ -152,13 +147,13 @@ body {
   padding: 15px 10px;
   margin-top: 5px;
   margin-bottom: 5px;
-  background-color: burlywood; /* 배경색 */
-  color: #fff; /* 텍스트 색상 */
-  cursor: pointer; /* 포인터 형태로 변경하여 버튼임을 나타냅니다 */
+  background-color: burlywood;
+  color: #fff;
+  cursor: pointer;
 }
 
 .button-postcode:hover {
-  background-color: burlywood; /* 마우스 오버 시 배경색 변경 */
+  background-color: burlywood;
 }
 
 .submit-btn {
@@ -172,9 +167,8 @@ body {
   margin-top: 5px;
   margin-bottom: 5px;
   border: none;
-  float: right; /* 오른쪽으로 이동 */
-  clear: both; /* 다음 요소와의 레이아웃 충돌 방지 */
-
+  float: right;
+  clear: both;
 }
 
 .reset-btn {

@@ -21,7 +21,7 @@ public class ConajaxController {
        }                              
        else {
            // 세션에 사용자 정보가 없는 경우에는 index로 이동.
-           return "../templates/user/userlogin";
+           return "user-login";
        }
     }
 }

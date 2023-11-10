@@ -21,19 +21,16 @@ window.onload = function () {
     owner_tel.addEventListener("focusout", checkTel);
     business_num.addEventListener("focusout", checkBusinessNum);
 
-    // 폼 제출 이벤트 핸들러 추가
     const form = document.querySelector('form');
     form.addEventListener('submit', function (event) {
         if (!isFormValid()) {
-            event.preventDefault(); // 폼 제출을 막음
+            event.preventDefault();
         }
     });
 
-    /* 폼 유효성 검사 함수 */
     function isFormValid() {
         let isValid = true;
 
-        // 필드 유효성 검사를 진행하고, 필드가 유효하지 않은 경우 isValid 값을 false로 설정
         if (owner_pwd.value === "" || !pwdPattern.test(owner_pwd.value)) {
             setErrorStyle('owner_pwd', '비밀번호를 입력하세요.');
             isValid = false;
@@ -79,7 +76,6 @@ window.onload = function () {
         return isValid;
     }
 
-    /* 콜백 함수 */
     function checkPwd() {
         if (owner_pwd.value === "") {
             setErrorStyle('owner_pwd', '비밀번호를 입력하세요.');
@@ -155,7 +151,6 @@ window.onload = function () {
         messageElement.textContent = errorMessage;
     }
 
-    /* 에러 스타일 초기화 함수 */
     function resetErrorStyle(elementId) {
         const element = document.getElementById(elementId);
         element.classList.remove('error-input'); // 'error-input' 클래스를 제거하여 초기 스타일로 복원

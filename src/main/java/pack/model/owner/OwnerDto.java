@@ -2,8 +2,13 @@ package pack.model.owner;
 
 import lombok.Data;
 
-//*********** 서호, 광진 *************//
 @Data
 public class OwnerDto {
-   private String business_num, owner_pwd, owner_repwd, owner_name, owner_tel, email, cont_num;
+   private String business_num;
+   private String owner_pwd;
+   private String owner_repwd;
+   private String owner_name;
+   private String owner_tel;
+   private String email;
+   private String cont_num;
 }

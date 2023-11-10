@@ -11,13 +11,13 @@
 <body>
 	<div th:if="${session.userSession != null}">
 	<header id="header" class="header d-flex align-items-center">        
-        </a>
-        <nav id="navbar" class="navbar">
-          <ul>
-            <li><a href="/usersessionkeep" class="active">Home</a></li>
-          </ul>
-        </nav><!-- .navbar -->
-      </div>
+        <div>
+			<nav id="navbar" class="navbar">
+			  <ul>
+				<li><a href="/usersessionkeep" class="active">Home</a></li>
+			  </ul>
+			</nav><!-- .navbar -->
+      	</div>
     </header><!-- End Header -->	
 		<h3 style="text-align: center; line-height: 2;"><span th:text="${userSession.user_name}"></span>님의 회원수정</h3>
 		<div class="join-form">
@@ -28,7 +28,6 @@
 					<input type="text" name="user_id" id="user_id" class="text-field" th:value="${userSession.user_id}">
 					<div id="messageContainer">
 					<h3>비밀번호</h3>
-					<!-- 정보 수정이여서 굳이 type은 password로 해야 하나요..?-->
 					<input type="text" name="user_pwd" id="user_pwd" class="text-field" th:value="${userSession.user_pwd}" placeholder="비밀번호">
 					<div id="user_pwdMessage"></div>
 					
@@ -58,11 +57,9 @@
 					<input type="text" id="user_detailAddress" class="text-field-postcode" placeholder="상세주소">
 					<input type="text" id="user_extraAddress" class="text-field-postcode" placeholder="참고항목">
 					<br />
-					<!-- 결과를 출력할 한 줄로 된 주소 필드 -->
 					<h3>입력한 주소</h3>
 					<input type="text" name="user_addr" id="user_combinedAddress" class="text-field"
 						th:value="${userSession.user_addr}" >
-		
 					<h3>주민등록번호</h3>				
 					<input type="tel" name="user_jumin" id="user_jumin" class="text-field" th:value="${userSession.user_jumin}" placeholder="주민번호">
 					<div id="user_juminMessage"></div>

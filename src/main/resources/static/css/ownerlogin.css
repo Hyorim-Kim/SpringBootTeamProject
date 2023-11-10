@@ -2,17 +2,15 @@
 
 * {margin: 0; padding: 0; box-sizing: border-box;}
 
-/* 헤더 요소 가운데 정렬 */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-/* 네비게이션을 오른쪽으로 이동 */
 .navbar {
   margin-left: auto;
-  margin-right: 60px;/* 오른쪽 여백을 조절 */
+  margin-right: 60px;
 }
 
 
@@ -68,7 +66,6 @@ body::before{
     font-size: 18px; color: #999;
 } 
 
-/* 텍스트 필드를 클릭하면 user name이 올라감 */
 .int-area input:focus + label,
 .int-area input:valid + label{
     top:0;
@@ -88,7 +85,7 @@ body::before{
     75% {transform: translateX(8px);}
 }
 
-/* 로그인 버튼 */
+
 .btn-area {
     margin-top: 30px;
 }
@@ -101,7 +98,7 @@ body::before{
     font-size: 20px;
     border: none;
     border-radius: 25px;
-    margin-bottom: 10px; /* 버튼 사이의 간격 조절 */
+    margin-bottom: 10px;
 }
 
 .btn-area-join button {
@@ -112,7 +109,7 @@ body::before{
     font-size: 20px;
     border: none;
     border-radius: 25px;
-    margin-bottom: 10px; /* 버튼 사이의 간격 조절 */
+    margin-bottom: 10px;
 }
 
 /*.caption {
