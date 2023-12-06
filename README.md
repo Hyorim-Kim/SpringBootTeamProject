@@ -1,19 +1,19 @@
-# JAVA 기반 웹 개발 프로젝트 창고 중개 플랫폼 개발 (Team Project)
+# JAVA 기반 웹 개발 프로젝트 창고 중개 플랫폼 개발
 - 참여자 : 최민혁, 조혁진, 이재민, 한지원, 유광진, 이서호, 김효림 (7명)
 - 총 개발기간 : 2023/09/01 ~ 2023/10/05 4주)
 
 
 # 목차
-- [시연 동영상](https://github.com/Youkwangjin/Final-Project)
-- [프로젝트 개요](https://github.com/Youkwangjin/Final-Project)
-- [프로젝트 문서](https://github.com/Youkwangjin/Final-Project)
-- [웹 개발 과정](https://github.com/Youkwangjin/Final-Project)
-- [미래 개선 방안](https://github.com/Youkwangjin/Final-Project)
-- [개발환경](https://github.com/Youkwangjin/Final-Project)
-- [참조 사이트](https://github.com/Youkwangjin/Final-Project)
+- [시연 동영상](https://github.com/Hyorim-Kim/SpringBootTeamProject)
+- [프로젝트 개요](https://github.com/Hyorim-Kim/SpringBootTeamProject)
+- [프로젝트 문서](https://github.com/Hyorim-Kim/SpringBootTeamProject)
+- [웹 개발 과정](https://github.com/Hyorim-Kim/SpringBootTeamProject)
+- [미래 개선 방안](https://github.com/Hyorim-Kim/SpringBootTeamProject)
+- [개발환경](https://github.com/Hyorim-Kim/SpringBootTeamProject)
+- [참조 사이트](https://github.com/Hyorim-Kim/SpringBootTeamProject)
 
 # 시연 동영상
-[시연 동영상](https://github.com/Youkwangjin/Final-Project)
+[시연 동영상](https://github.com/Hyorim-Kim/SpringBootTeamProject)
 
 # 프로젝트 개요
 
