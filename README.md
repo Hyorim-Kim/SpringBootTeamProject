@@ -31,6 +31,10 @@
 
 # 웹 개발 과정
 
+# ERD
+![image](https://github.com/Hyorim-Kim/SpringBootTeamProject/assets/139676579/1b75d937-81c6-4864-826d-6f5e7ea41bc2)
+
+
 # 미래 개선 방안
 
 # 개발환경 
