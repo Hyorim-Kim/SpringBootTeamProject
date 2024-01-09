@@ -30,7 +30,6 @@ public class bookingController {
 	@Autowired
 	private BookingDao dao;
 	
-	//예약 페이지 연결
 	@GetMapping("booking")
 	public String booking() {
 		return "booking/booking";
